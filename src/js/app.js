@@ -7,29 +7,15 @@ var React = require('react'),
     Chat = require('./chat'),
     Form = require('./form'),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
-    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated"),
-    authClient = new FirebaseSimpleLogin(ref, function(error, user) {
-      if (error) {
-        // an error occurred while attempting login
-        console.log(error);
-      } else if (user) {
-        // user authenticated with Firebase
-        console.log("User ID: " + user.uid + ", Provider: " + user.provider);
-      } else {
-        // user is logged out
-      }
-    });
-    _ = require('lodash');
+    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated");
 
 var App = React.createClass({
   componentWillMount: function(){
     this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
-        // an error occurred while attempting login
         console.log(error);
       } else if (user) {
         this.setState({username:user.username});
-        // user authenticated with Firebase
       } else {
         // user is logged out
       }

@@ -28980,29 +28980,15 @@ var React = require('react'),
     Chat = require('./chat'),
     Form = require('./form'),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
-    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated"),
-    authClient = new FirebaseSimpleLogin(ref, function(error, user) {
-      if (error) {
-        // an error occurred while attempting login
-        console.log(error);
-      } else if (user) {
-        // user authenticated with Firebase
-        console.log("User ID: " + user.uid + ", Provider: " + user.provider);
-      } else {
-        // user is logged out
-      }
-    });
-    _ = require('lodash');
+    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated");
 
 var App = React.createClass({displayName: 'App',
   componentWillMount: function(){
     this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
-        // an error occurred while attempting login
         console.log(error);
       } else if (user) {
         this.setState({username:user.username});
-        // user authenticated with Firebase
       } else {
         // user is logged out
       }
@@ -29031,7 +29017,7 @@ var App = React.createClass({displayName: 'App',
 });
 module.exports = App;
 
-},{"../lib/firebase-simple-login":160,"./chat":157,"./form":159,"firebase":1,"lodash":3,"react":148,"reflux":154}],157:[function(require,module,exports){
+},{"../lib/firebase-simple-login":160,"./chat":157,"./form":159,"firebase":1,"react":148,"reflux":154}],157:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -29041,8 +29027,7 @@ var React = require('react'),
     _ = require('lodash');
 
 var Chat = React.createClass({displayName: 'Chat',
-  componentWillMount: function(){
-    this.updateFromSnapshot = this.updateFromSnapshot.bind(this);
+  componentDidMount: function(){
     ref.on("value",this.updateFromSnapshot);
     ref.on("child_added",this.updateFromSnapshot);
     ref.on("child_removed",this.updateFromSnapshot);
@@ -29091,7 +29076,7 @@ var Form = React.createClass({displayName: 'Form',
   },
   setError: function(msg){
     this.setState({error:msg});
-    setTimeout(function(){this.setState({error:''});}.bind(this),2000);
+    setTimeout(function(){this.setState({error:''});},2000);
   },
   submitChatMessage: function(e){
     var node = this.refs['msgfield'].getDOMNode(),

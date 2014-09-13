@@ -14,7 +14,7 @@ var Form = React.createClass({
   },
   setError: function(msg){
     this.setState({error:msg});
-    setTimeout(function(){this.setState({error:''});}.bind(this),2000);
+    setTimeout(function(){this.setState({error:''});},2000);
   },
   submitChatMessage: function(e){
     var node = this.refs['msgfield'].getDOMNode(),

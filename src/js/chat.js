@@ -7,8 +7,7 @@ var React = require('react'),
     _ = require('lodash');
 
 var Chat = React.createClass({
-  componentWillMount: function(){
-    this.updateFromSnapshot = this.updateFromSnapshot.bind(this);
+  componentDidMount: function(){
     ref.on("value",this.updateFromSnapshot);
     ref.on("child_added",this.updateFromSnapshot);
     ref.on("child_removed",this.updateFromSnapshot);
