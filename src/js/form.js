@@ -1,9 +1,8 @@
 /** @jsx React.DOM */
 
-var Firebase = require("firebase"),
-    chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
-    moment = require('moment'),
-    React = require('react');
+var moment = require('moment'),
+    React = require('react'),
+    actions = require('./actions');
 
 var Form = React.createClass({
   propTypes: {
@@ -28,7 +27,7 @@ var Form = React.createClass({
     return false;
   },
   sendMessage: function(msg){
-    chatRef.push({
+    actions.sendchatmsg({
       username: this.props.username,
       date: moment().format('YYYY-MM-DD HH:mm'),
       message: msg

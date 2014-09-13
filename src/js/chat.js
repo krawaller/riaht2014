@@ -2,19 +2,13 @@
 
 var React = require('react'),
     Reflux = require('reflux'),
-    Firebase = require("firebase"),
-    ref = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
-    _ = require('lodash');
+    _ = require('lodash'),
+    chatStore = require('./chatstore');
 
 var Chat = React.createClass({
+  mixins: [Reflux.ListenerMixin],
   componentDidMount: function(){
-    ref.on("value",this.updateFromSnapshot);
-    ref.on("child_added",this.updateFromSnapshot);
-    ref.on("child_removed",this.updateFromSnapshot);
-    ref.on("child_moved",this.updateFromSnapshot);
-  },
-  updateFromSnapshot: function(snapshot){
-    this.setState(snapshot.val());
+    this.listenTo(chatStore,this.setState,this.setState);
   },
   getInitialState: function(){return {};},
   render: function(){

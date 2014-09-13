@@ -28971,70 +28971,53 @@ exports.handleDefaultCallback = function (listener, listenable, defaultCallback)
 };
 
 },{"eventemitter3":149}],156:[function(require,module,exports){
+var Reflux = require('reflux');
+
+module.exports = Reflux.createActions(["login","logout","sendchatmsg"]);
+},{"reflux":154}],157:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
     Reflux = require('reflux'),
-    Firebase = require("firebase"),
-    FirebaseSimpleLogin = require('../lib/firebase-simple-login'),
     Chat = require('./chat'),
     Form = require('./form'),
-    ref = new Firebase("https://riaht2014.firebaseio.com/"),
-    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated");
+    loginStore = require('./loginstore'),
+    actions = require('./actions');
+
 
 var App = React.createClass({displayName: 'App',
-  componentWillMount: function(){
-    this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
-      if (error) {
-        console.log(error);
-      } else if (user) {
-        this.setState({username:user.username});
-      } else {
-        // user is logged out
-      }
-    }.bind(this));
-  	authRef.on("value",function(snapshot){
-      this.setState({loggedin:snapshot.val()});
-  	}.bind(this));
+  mixins: [Reflux.ListenerMixin],
+  componentDidMount: function(){
+    this.listenTo(loginStore,this.loginUpdate);
+  },
+  loginUpdate: function(username){
+    this.setState({username:username});
   },
   getInitialState: function(){return {};},
-  catchClick: function(){
-    if (this.state.loggedin){
-      this.authClient.logout();
-    } else {
-      this.authClient.login("github");
-    }
-  },
   render: function(){
-    return this.state.loggedin ?
+    return this.state.username ?
       React.DOM.div(null, 
-        React.DOM.button({onClick: this.catchClick}, "log out ", this.state.username), 
+        React.DOM.button({onClick: function(){actions.logout();}}, "log out ", this.state.username), 
         Form({username: this.state.username}), 
         Chat(null)
       )
-    : React.DOM.button({onClick: this.catchClick}, "log in");
+    : React.DOM.button({onClick: actions.login}, "log in");
   }
 });
 module.exports = App;
 
-},{"../lib/firebase-simple-login":160,"./chat":157,"./form":159,"firebase":1,"react":148,"reflux":154}],157:[function(require,module,exports){
+},{"./actions":156,"./chat":158,"./form":161,"./loginstore":162,"react":148,"reflux":154}],158:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
     Reflux = require('reflux'),
-    Firebase = require("firebase"),
-    ref = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
-    _ = require('lodash');
+    _ = require('lodash'),
+    chatStore = require('./chatstore');
 
 var Chat = React.createClass({displayName: 'Chat',
+  mixins: [Reflux.ListenerMixin],
   componentDidMount: function(){
-    ref.on("value",this.updateFromSnapshot);
-    ref.on("child_added",this.updateFromSnapshot);
-    ref.on("child_removed",this.updateFromSnapshot);
-    ref.on("child_moved",this.updateFromSnapshot);
-  },
-  updateFromSnapshot: function(snapshot){
-    this.setState(snapshot.val());
+    this.listenTo(chatStore,this.setState,this.setState);
   },
   getInitialState: function(){return {};},
   render: function(){
@@ -29050,7 +29033,29 @@ var Chat = React.createClass({displayName: 'Chat',
 });
 module.exports = Chat;
 
-},{"firebase":1,"lodash":3,"react":148,"reflux":154}],158:[function(require,module,exports){
+},{"./chatstore":159,"lodash":3,"react":148,"reflux":154}],159:[function(require,module,exports){
+var Reflux = require('reflux'),
+    Firebase = require("firebase"),
+    chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
+    actions = require('./actions');
+
+module.exports = Reflux.createStore({
+  init: function(){
+    this.updateChat = this.updateChat.bind(this);
+    chatRef.on("value",this.updateChat);
+    chatRef.on("child_added",this.updateChat);
+    chatRef.on("child_removed",this.updateChat);
+    chatRef.on("child_moved",this.updateChat);
+    this.listenTo(actions.sendchatmsg,chatRef.push.bind(chatRef));
+  },
+  updateChat: function(snapshot){
+    this.trigger(snapshot.val());
+  },
+  getDefaultData: function(){
+    chatRef.once("value",this.updateChat);
+  }
+});
+},{"./actions":156,"firebase":1,"reflux":154}],160:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var App = require('./app'),
@@ -29059,13 +29064,12 @@ var App = require('./app'),
 React.renderComponent(
   App(null),
   document.getElementById('main'));
-},{"./app":156,"react":148}],159:[function(require,module,exports){
+},{"./app":157,"react":148}],161:[function(require,module,exports){
 /** @jsx React.DOM */
 
-var Firebase = require("firebase"),
-    chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
-    moment = require('moment'),
-    React = require('react');
+var moment = require('moment'),
+    React = require('react'),
+    actions = require('./actions');
 
 var Form = React.createClass({displayName: 'Form',
   propTypes: {
@@ -29090,7 +29094,7 @@ var Form = React.createClass({displayName: 'Form',
     return false;
   },
   sendMessage: function(msg){
-    chatRef.push({
+    actions.sendchatmsg({
       username: this.props.username,
       date: moment().format('YYYY-MM-DD HH:mm'),
       message: msg
@@ -29108,7 +29112,36 @@ var Form = React.createClass({displayName: 'Form',
 });
 
 module.exports = Form;
-},{"firebase":1,"moment":4,"react":148}],160:[function(require,module,exports){
+},{"./actions":156,"moment":4,"react":148}],162:[function(require,module,exports){
+var Reflux = require('reflux'),
+    Firebase = require("firebase"),
+    FirebaseSimpleLogin = require('../lib/firebase-simple-login'),
+    ref = new Firebase("https://riaht2014.firebaseio.com/"),
+    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated"),
+    actions = require('./actions'),
+    _ = require('lodash');
+
+module.exports = Reflux.createStore({
+  init: function(){
+    this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
+      if (error) {
+        console.log(error);
+      } else if (user) {
+        this.trigger(user.username);
+      } else {
+        this.trigger(undefined);
+      }
+    }.bind(this));
+    authRef.on("value",function(snapshot){
+      if (!snapshot.val()){
+        this.trigger(undefined);
+      }
+    }.bind(this));
+    this.listenTo(actions.login,function(){this.authClient.login("github");});
+    this.listenTo(actions.logout,this.authClient.logout);
+  }
+});
+},{"../lib/firebase-simple-login":163,"./actions":156,"firebase":1,"lodash":3,"reflux":154}],163:[function(require,module,exports){
 (function (process){
 (function() {var COMPILED=!0,goog=goog||{};goog.global=this;goog.exportPath_=function(a,d,e){a=a.split(".");e=e||goog.global;a[0]in e||!e.execScript||e.execScript("var "+a[0]);for(var f;a.length&&(f=a.shift());)a.length||void 0===d?e=e[f]?e[f]:e[f]={}:e[f]=d};goog.define=function(a,d){var e=d;COMPILED||goog.global.CLOSURE_DEFINES&&Object.prototype.hasOwnProperty.call(goog.global.CLOSURE_DEFINES,a)&&(e=goog.global.CLOSURE_DEFINES[a]);goog.exportPath_(a,e)};goog.DEBUG=!0;goog.LOCALE="en";goog.TRUSTED_SITE=!0;
 goog.provide=function(a){if(!COMPILED){if(goog.isProvided_(a))throw Error('Namespace "'+a+'" already declared.');delete goog.implicitNamespaces_[a];for(var d=a;(d=d.substring(0,d.lastIndexOf(".")))&&!goog.getObjectByName(d);)goog.implicitNamespaces_[d]=!0}goog.exportPath_(a)};goog.setTestOnly=function(a){if(COMPILED&&!goog.DEBUG)throw a=a||"",Error("Importing test-only code into non-debug environment"+a?": "+a:".");};goog.forwardDeclare=function(a){};
@@ -29256,4 +29289,4 @@ fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.createUser"
 fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.removeUser",3,e,!0);return h.removeUser(a,d,e)},sendPasswordResetEmail:function(a,d){fb.simplelogin.util.validation.validateArgCount("FirebaseSimpleLogin.sendPasswordResetEmail",1,2,arguments.length);fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.sendPasswordResetEmail",2,d,!0);return h.sendPasswordResetEmail(a,d)}}};goog.exportSymbol("FirebaseSimpleLogin",FirebaseSimpleLogin);FirebaseSimpleLogin.onOpen=function(a){fb.simplelogin.client.onOpen(a)};
 goog.exportProperty(FirebaseSimpleLogin,"onOpen",FirebaseSimpleLogin.onOpen);FirebaseSimpleLogin.VERSION=fb.simplelogin.client.VERSION();module.exports=FirebaseSimpleLogin})();
 }).call(this,require("oMfpAn"))
-},{"oMfpAn":2}]},{},[158])
+},{"oMfpAn":2}]},{},[160])
