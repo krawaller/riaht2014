@@ -2,7 +2,7 @@
 
 var moment = require('moment'),
     React = require('react'),
-    actions = require('./actions');
+    actions = require('../actions');
 
 var Form = React.createClass({
   propTypes: {

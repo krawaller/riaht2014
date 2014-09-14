@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var App = require('./app'),
+var App = require('./components/app'),
 	React = require('react');
 
 React.renderComponent(

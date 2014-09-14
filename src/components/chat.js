@@ -1,15 +1,12 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Reflux = require('reflux'),
+    connect = require('../lib/reflux').connect,
     _ = require('lodash'),
-    chatStore = require('./chatstore');
+    chatStore = require('../stores/chatstore');
 
 var Chat = React.createClass({
-  mixins: [Reflux.ListenerMixin],
-  componentDidMount: function(){
-    this.listenTo(chatStore,this.setState,this.setState);
-  },
+  mixins: [connect(chatStore)],
   getInitialState: function(){return {};},
   render: function(){
     var messages = _.map(this.state,function(val,key){
