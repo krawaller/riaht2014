@@ -1,3 +1,3 @@
-So:
+So!
 
-![dependencies](https://david-dm.org/krawaller/riaht2014.png)
+[![devDependency Status](https://david-dm.org/krawaller/riaht2014/dev-status.svg)](https://david-dm.org/krawaller/riaht2014#info=devDependencies)
