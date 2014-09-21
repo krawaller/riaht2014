@@ -1,7 +1,8 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Loginbutton = require('./loginbutton');
+    Loginbutton = require('./loginbutton'),
+    Console = require('./console');
 
 var Wrapper = React.createClass({
   render: function(){
@@ -9,6 +10,7 @@ var Wrapper = React.createClass({
       <div>
         <Loginbutton />
         {this.props.activeRouteHandler()}
+        <Console />
       </div>
     );
   }

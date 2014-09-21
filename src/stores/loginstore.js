@@ -4,16 +4,21 @@ var Reflux = require('../lib/reflux'),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
     authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated"),
     actions = require('../actions'),
-    _ = require('lodash');
+    _ = require('lodash'),
+    users = require('./users.json');
 
 module.exports = Reflux.createStore({
   init: function(){
     this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
       if (error) {
-        console.log(error);
+        actions.error("Login error: "+error)
       } else if (user) {
-        actions.finishlogin(user.username);
-        this.trigger(user.username);
+          if (users.indexOf(user.username)!==-1){
+            actions.finishlogin(user.username);
+            this.trigger(user.username);
+          } else {
+            actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
+          }
       } else {
         this.trigger(false);
       }

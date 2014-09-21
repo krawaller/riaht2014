@@ -2,24 +2,19 @@
 
 var moment = require('moment'),
     React = require('react'),
-    actions = require('../actions');
+    actions = require('../actions'),
+    connect = require('../lib/reflux').connect,
+    loginStore = require('../stores/loginstore');
 
 var Form = React.createClass({
-  propTypes: {
-    username: React.PropTypes.string.isRequired
-  },
-  getInitialState: function(){
-    return {error:''};
-  },
-  setError: function(msg){
-    this.setState({error:msg});
-    setTimeout(function(){this.setState({error:''});},2000);
-  },
+  mixins: [connect(loginStore,'username')],
   submitChatMessage: function(e){
     var node = this.refs['msgfield'].getDOMNode(),
         msg = (node.value || '');
-    if (!msg) {
-      this.setError('Well, surely you have SOMETHING to say? Moron!');
+    if (!this.state.username){
+      actions.error("Must be logged in to chat!");
+    } else if (!msg) {
+      actions.error('Must say something!');
     } else {
       this.sendMessage(msg);
       node.value = '';
@@ -28,7 +23,7 @@ var Form = React.createClass({
   },
   sendMessage: function(msg){
     actions.sendchatmsg({
-      username: this.props.username,
+      username: this.state.username,
       date: moment().format('YYYY-MM-DD HH:mm'),
       message: msg
     });
@@ -38,7 +33,6 @@ var Form = React.createClass({
       <form onSubmit={this.submitChatMessage}>
         <input type='text' ref='msgfield' />
         <button type='submit'>Send!</button>
-        <p className='error' ref='errormsg'>{this.state.error}</p>
       </form>
     );
   }

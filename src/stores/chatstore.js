@@ -8,7 +8,16 @@ module.exports = Reflux.createStore({
     this.updateChat = this.updateChat.bind(this);
     chatRef.on("value",this.updateChat);
     chatRef.on("child_added",function(snap){actions.newchatmessageloaded(snap.val());});
-    this.listenTo(actions.sendchatmsg,chatRef.push.bind(chatRef));
+    this.listenTo(actions.sendchatmsg,this.addChatMsg.bind(this));
+  },
+  addChatMsg: function(msg){
+    chatRef.push(msg,function(err){
+      if (err){
+        actions.error("Chat send failure: "+err);
+      } else {
+        actions.sendchatmsgsuccess();
+      }
+    });
   },
   updateChat: function(snapshot){
     actions.chatdataloaded();
