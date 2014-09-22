@@ -34366,7 +34366,9 @@ module.exports = Reflux.createActions([
 	"sendchatmsg",
 	"sendchatmsgsuccess",
 	"newchatmessageloaded",
-	"chatdataloaded"
+	"chatdataloaded",
+	"clearlog",
+	"userdataloaded"
 ]);
 },{"reflux":200}],203:[function(require,module,exports){
 /** @jsx React.DOM */
@@ -34375,19 +34377,26 @@ var React = require('react'),
     Routes = require('react-router').Routes,
     Route = require('react-router').Route,
     DefaultRoute = require('react-router').DefaultRoute,
+    Multiroute = require('./multiroute'),
     Chat = require('./chat'),
+    Userlist = require('./userlist'),
+    User = require('./user'),
     Wrapper = require('./wrapper');
 
 var App = (
   Routes({location: "hash"}, 
     Route({name: "app", path: "/", handler: Wrapper}, 
       Route({name: "chat", handler: Chat}), 
-      DefaultRoute({handler: Chat})
+      Route({name: "users", handler: Multiroute}, 
+        Route({name: "user", path: ":username", handler: User}), 
+        DefaultRoute({handler: Userlist})
+      ), 
+      DefaultRoute({handler: Userlist})
     )
   )
 );
 module.exports = App;
-},{"./chat":204,"./wrapper":208,"react":194,"react-router":17}],204:[function(require,module,exports){
+},{"./chat":204,"./multiroute":208,"./user":209,"./userlist":210,"./wrapper":211,"react":194,"react-router":17}],204:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34395,22 +34404,24 @@ var React = require('react'),
     _ = require('lodash'),
     chatStore = require('../stores/chatstore'),
     chatcountStore = require('../stores/chatcountstore'),
-    Form = require('./form');
+    Form = require('./form'),
+    Link = require('react-router').Link;
 
 var Chat = React.createClass({displayName: 'Chat',
   mixins: [connect(chatStore,"messages"),connect(chatcountStore,"count")],
-  getInitialState: function(){return {};},
+  getInitialState: function(){return {messages:{}};},
   render: function(){
-    var messages = _.map(this.state.messages,function(val,key){
-      return React.DOM.tr(null, React.DOM.td(null, val.date), React.DOM.td(null, val.username), React.DOM.td(null, val.message));
+    var messages = _.map(Object.keys(this.state.messages).reverse(),function(key){
+      var val = this.state.messages[key];
+      return React.DOM.tr(null, React.DOM.td(null, val.date), React.DOM.td(null, Link({to: "user", params: {username:val.username}}, val.username)), React.DOM.td(null, val.message));
     },this);
     return (
       React.DOM.div(null, 
         React.DOM.p(null, "Total msg count: ", this.state.count||0), 
+        Form(null), 
         React.DOM.table({className: "chat-table"}, 
           messages
-        ), 
-        Form(null)
+        )
       )
     );
   }
@@ -34418,26 +34429,30 @@ var Chat = React.createClass({displayName: 'Chat',
 
 module.exports = Chat;
 
-},{"../lib/reflux":211,"../stores/chatcountstore":212,"../stores/chatstore":213,"./form":206,"lodash":7,"react":194}],205:[function(require,module,exports){
+},{"../lib/reflux":214,"../stores/chatcountstore":215,"../stores/chatstore":216,"./form":206,"lodash":7,"react":194,"react-router":17}],205:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
     connect = require('../lib/reflux').connect,
-    messageStore = require('../stores/messageStore'),
+    logStore = require('../stores/logstore'),
+    actions = require('../actions'),
     _ = require('lodash');
 
 var Console = React.createClass({displayName: 'Console',
-  mixins:[connect(messageStore,"messages")],
+  mixins:[connect(logStore,"messages")],
   render: function(){
     var msgs = _.map((this.state||{}).messages||[],function(msg){
       return React.DOM.li({className: msg[2]}, React.DOM.span(null, msg[0]), msg[1]);
     },this);
-    return React.DOM.ul(null, msgs);
+    return React.DOM.div(null, 
+      React.DOM.button({onClick: actions.clearlog}, "Clear log"), 
+      React.DOM.ul(null, msgs)
+    );
   }
 });
 
 module.exports = Console;
-},{"../lib/reflux":211,"../stores/messageStore":215,"lodash":7,"react":194}],206:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"../stores/logstore":218,"lodash":7,"react":194}],206:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var moment = require('moment'),
@@ -34448,13 +34463,10 @@ var moment = require('moment'),
 
 var Form = React.createClass({displayName: 'Form',
   mixins: [connect(loginStore,'username')],
-  propTypes: {
-    username: React.PropTypes.string.isRequired
-  },
   submitChatMessage: function(e){
     var node = this.refs['msgfield'].getDOMNode(),
         msg = (node.value || '');
-    if (!this.state.username){
+    if (!(this.state && this.state.username)){
       actions.error("Must be logged in to chat!");
     } else if (!msg) {
       actions.error('Must say something!');
@@ -34462,7 +34474,6 @@ var Form = React.createClass({displayName: 'Form',
       this.sendMessage(msg);
       node.value = '';
     }
-    return false;
   },
   sendMessage: function(msg){
     actions.sendchatmsg({
@@ -34473,16 +34484,16 @@ var Form = React.createClass({displayName: 'Form',
   },
   render: function() {
     return (
-      React.DOM.form({onSubmit: this.submitChatMessage}, 
+      React.DOM.div(null, 
         React.DOM.input({type: "text", ref: "msgfield"}), 
-        React.DOM.button({type: "submit"}, "Send!")
+        React.DOM.button({onClick: this.submitChatMessage}, "Send!")
       )
     );
   }
 });
 
 module.exports = Form;
-},{"../actions":202,"../lib/reflux":211,"../stores/loginstore":214,"moment":8,"react":194}],207:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"../stores/loginstore":217,"moment":8,"react":194}],207:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34500,10 +34511,77 @@ var Loginbutton = React.createClass({displayName: 'Loginbutton',
   }
 });
 module.exports = Loginbutton;
-},{"../actions":202,"../lib/reflux":211,"../stores/loginstore":214,"react":194}],208:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"../stores/loginstore":217,"react":194}],208:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react');
+
+var Multiroute = React.createClass({displayName: 'Multiroute',
+  render: function(){
+    return this.props.activeRouteHandler();
+  }
+});
+
+module.exports = Multiroute;
+
+},{"react":194}],209:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
+    listenTo = require('../lib/reflux').listenTo,
+    userStore = require('../stores/userstore');
+
+var User = React.createClass({displayName: 'User',
+  mixins: [listenTo(userStore,"getUserData","getUserData")],
+  getUserData: function(users){
+    var user = users[this.props.params.username];
+    if (user){
+      this.setState({found:true,user:user});
+    } else {
+      this.setState({found:false});
+    }
+  },
+  render: function(){
+    var name = this.props.params.username;
+    return this.state && this.state.found ? React.DOM.p(null, name, " is a nice dude!") : React.DOM.p(null, "Couldn't find user ", name, ".");
+  }
+});
+
+module.exports = User;
+
+},{"../lib/reflux":214,"../stores/userstore":220,"react":194}],210:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    connect = require('../lib/reflux').connect,
+    _ = require('lodash'),
+    userStore = require('../stores/userstore'),
+    Link = require('react-router').Link;
+
+var Userlist = React.createClass({displayName: 'Userlist',
+  mixins: [connect(userStore)],
+  render: function(){
+    var users = _.map(this.state,function(user,key){
+      return React.DOM.tr(null, React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), React.DOM.td(null, "Logins:", user.logins), React.DOM.td(null, "Chats:", user.chats));
+    },this);
+    return (
+      React.DOM.div(null, 
+        React.DOM.table({className: "user-table"}, 
+          users
+        )
+      )
+    );
+  }
+});
+
+module.exports = Userlist;
+
+},{"../lib/reflux":214,"../stores/userstore":220,"lodash":7,"react":194,"react-router":17}],211:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    Router = require('react-router'),
+    Link = Router.Link,
     Loginbutton = require('./loginbutton'),
     Console = require('./console');
 
@@ -34511,6 +34589,10 @@ var Wrapper = React.createClass({displayName: 'Wrapper',
   render: function(){
     return (
       React.DOM.div(null, 
+        React.DOM.ul(null, 
+          React.DOM.li(null, Link({to: "users"}, "Users")), 
+          React.DOM.li(null, Link({to: "chat"}, "Chat"))
+        ), 
         Loginbutton(null), 
         this.props.activeRouteHandler(), 
         Console(null)
@@ -34519,7 +34601,7 @@ var Wrapper = React.createClass({displayName: 'Wrapper',
   }
 });
 module.exports = Wrapper;
-},{"./console":205,"./loginbutton":207,"react":194}],209:[function(require,module,exports){
+},{"./console":205,"./loginbutton":207,"react":194,"react-router":17}],212:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
@@ -34528,7 +34610,7 @@ var App = require('./components/app'),
 React.renderComponent(
   App,
   document.getElementById('main'));
-},{"./components/app":203,"react":194}],210:[function(require,module,exports){
+},{"./components/app":203,"react":194}],213:[function(require,module,exports){
 (function (process){
 (function() {var COMPILED=!0,goog=goog||{};goog.global=this;goog.exportPath_=function(a,d,e){a=a.split(".");e=e||goog.global;a[0]in e||!e.execScript||e.execScript("var "+a[0]);for(var f;a.length&&(f=a.shift());)a.length||void 0===d?e=e[f]?e[f]:e[f]={}:e[f]=d};goog.define=function(a,d){var e=d;COMPILED||goog.global.CLOSURE_DEFINES&&Object.prototype.hasOwnProperty.call(goog.global.CLOSURE_DEFINES,a)&&(e=goog.global.CLOSURE_DEFINES[a]);goog.exportPath_(a,e)};goog.DEBUG=!0;goog.LOCALE="en";goog.TRUSTED_SITE=!0;
 goog.provide=function(a){if(!COMPILED){if(goog.isProvided_(a))throw Error('Namespace "'+a+'" already declared.');delete goog.implicitNamespaces_[a];for(var d=a;(d=d.substring(0,d.lastIndexOf(".")))&&!goog.getObjectByName(d);)goog.implicitNamespaces_[d]=!0}goog.exportPath_(a)};goog.setTestOnly=function(a){if(COMPILED&&!goog.DEBUG)throw a=a||"",Error("Importing test-only code into non-debug environment"+a?": "+a:".");};goog.forwardDeclare=function(a){};
@@ -34676,7 +34758,7 @@ fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.createUser"
 fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.removeUser",3,e,!0);return h.removeUser(a,d,e)},sendPasswordResetEmail:function(a,d){fb.simplelogin.util.validation.validateArgCount("FirebaseSimpleLogin.sendPasswordResetEmail",1,2,arguments.length);fb.simplelogin.util.validation.validateCallback("FirebaseSimpleLogin.sendPasswordResetEmail",2,d,!0);return h.sendPasswordResetEmail(a,d)}}};goog.exportSymbol("FirebaseSimpleLogin",FirebaseSimpleLogin);FirebaseSimpleLogin.onOpen=function(a){fb.simplelogin.client.onOpen(a)};
 goog.exportProperty(FirebaseSimpleLogin,"onOpen",FirebaseSimpleLogin.onOpen);FirebaseSimpleLogin.VERSION=fb.simplelogin.client.VERSION();module.exports=FirebaseSimpleLogin})();
 }).call(this,require("1YiZ5S"))
-},{"1YiZ5S":6}],211:[function(require,module,exports){
+},{"1YiZ5S":6}],214:[function(require,module,exports){
 (function (global){
 !function(e){if("object"==typeof exports&&"undefined"!=typeof module)module.exports=e();else if("function"==typeof define&&define.amd)define([],e);else{var f;"undefined"!=typeof window?f=window:"undefined"!=typeof global?f=global:"undefined"!=typeof self&&(f=self),f.Reflux=e()}}(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(_dereq_,module,exports){
 'use strict';
@@ -35446,7 +35528,7 @@ exports.object = function(keys,vals){
 (6)
 });
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],212:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 var Reflux = require('../lib/reflux'),
     Firebase = require("firebase"),
     countRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chatcount"),
@@ -35468,7 +35550,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":202,"../lib/reflux":211,"firebase":1}],213:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"firebase":1}],216:[function(require,module,exports){
 var Reflux = require('../lib/reflux'),
     Firebase = require("firebase"),
     chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
@@ -35476,9 +35558,15 @@ var Reflux = require('../lib/reflux'),
 
 module.exports = Reflux.createStore({
   init: function(){
-    this.updateChat = this.updateChat.bind(this);
-    chatRef.on("value",this.updateChat);
-    chatRef.on("child_added",function(snap){actions.newchatmessageloaded(snap.val());});
+    chatRef.on("value",this.updateChat.bind(this));
+    chatRef.limit(1).once("child_added",function(snap){
+      this.trackfrom = snap.name();
+      chatRef.limit(1).on("child_added",function(snap){
+        if (snap.name()!==this.trackfrom){
+          actions.newchatmessageloaded(snap.val());
+        }
+      }.bind(this));
+    }.bind(this));
     this.listenTo(actions.sendchatmsg,this.addChatMsg.bind(this));
   },
   addChatMsg: function(msg){
@@ -35486,7 +35574,7 @@ module.exports = Reflux.createStore({
       if (err){
         actions.error("Chat send failure: "+err);
       } else {
-        actions.sendchatmsgsuccess();
+        actions.sendchatmsgsuccess(msg);
       }
     });
   },
@@ -35495,11 +35583,10 @@ module.exports = Reflux.createStore({
     this.trigger((this.last = snapshot.val()||{}));
   },
   getDefaultData: function(){
-    chatRef.once("value",this.updateChat);
     return this.last || {};
   }
 });
-},{"../actions":202,"../lib/reflux":211,"firebase":1}],214:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"firebase":1}],217:[function(require,module,exports){
 var Reflux = require('../lib/reflux'),
     Firebase = require("firebase"),
     FirebaseSimpleLogin = require('../lib/firebase-simple-login'),
@@ -35535,7 +35622,7 @@ module.exports = Reflux.createStore({
     this.listenTo(actions.initlogout,function(){this.authClient.logout();});
   }
 });
-},{"../actions":202,"../lib/firebase-simple-login":210,"../lib/reflux":211,"./users.json":216,"firebase":1,"lodash":7}],215:[function(require,module,exports){
+},{"../actions":202,"../lib/firebase-simple-login":213,"../lib/reflux":214,"./users.json":219,"firebase":1,"lodash":7}],218:[function(require,module,exports){
 var Reflux = require('../lib/reflux'),
     actions = require('../actions'),
     _ = require('lodash'),
@@ -35556,9 +35643,8 @@ module.exports = Reflux.createStore({
     this.addMessage = _.bind(this.addMessage,this);
     for (var m in messages){
       this.listenTo(actions[m],_.partial(this.addMessage,messages[m]));
-      console.log("Setting listener to ",m)
     }
-    console.log("Message store initialized");
+    this.listenTo(actions.clearlog,function(){this.trigger((this.messages=[]));}.bind(this));
   },
   addMessage: function(def,data){
     var stamp = moment().format('HH:mm:ss:SS'),
@@ -35566,6 +35652,33 @@ module.exports = Reflux.createStore({
     this.trigger((this.messages = [[stamp,msg,def[1]]].concat(this.messages)));
   }
 });
-},{"../actions":202,"../lib/reflux":211,"lodash":7,"moment":8}],216:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"lodash":7,"moment":8}],219:[function(require,module,exports){
 module.exports=["litenjacob","krawaller","hkwaller"]
-},{}]},{},[209])
+},{}],220:[function(require,module,exports){
+var Reflux = require('../lib/reflux'),
+    Firebase = require("firebase"),
+    dataRef = new Firebase("https://riaht2014.firebaseio.com/web/data/users"),
+    actions = require('../actions');
+
+module.exports = Reflux.createStore({
+  init: function(){
+    dataRef.on("value",this.transmitUserData.bind(this));
+    this.listenTo(actions.sendchatmsgsuccess,this.updateUserChatCount.bind(this));
+    this.listenTo(actions.finishlogin,this.updateUserLoginCount.bind(this));
+  },
+  transmitUserData: function(snapshot){
+    actions.userdataloaded();
+    this.trigger((this.last = snapshot.val()||{}));
+  },
+  updateUserChatCount: function(msg){
+    dataRef.child(msg.username).child("chats").transaction(function(count){return (count||0)+1;});
+  },
+  updateUserLoginCount: function(username){
+    dataRef.child(username).child("logins").transaction(function(count){return (count||0)+1;});
+  },
+  getDefaultData: function(){
+    dataRef.once("value",this.transmitUserData.bind(this));
+    return this.last || {};
+  }
+});
+},{"../actions":202,"../lib/reflux":214,"firebase":1}]},{},[212])

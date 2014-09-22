@@ -11,7 +11,7 @@ var Form = React.createClass({
   submitChatMessage: function(e){
     var node = this.refs['msgfield'].getDOMNode(),
         msg = (node.value || '');
-    if (!this.state.username){
+    if (!(this.state && this.state.username)){
       actions.error("Must be logged in to chat!");
     } else if (!msg) {
       actions.error('Must say something!');
@@ -19,7 +19,6 @@ var Form = React.createClass({
       this.sendMessage(msg);
       node.value = '';
     }
-    return false;
   },
   sendMessage: function(msg){
     actions.sendchatmsg({
@@ -30,10 +29,10 @@ var Form = React.createClass({
   },
   render: function() {
     return (
-      <form onSubmit={this.submitChatMessage}>
+      <div>
         <input type='text' ref='msgfield' />
-        <button type='submit'>Send!</button>
-      </form>
+        <button onClick={this.submitChatMessage}>Send!</button>
+      </div>
     );
   }
 });

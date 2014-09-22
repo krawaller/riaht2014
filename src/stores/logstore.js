@@ -18,9 +18,8 @@ module.exports = Reflux.createStore({
     this.addMessage = _.bind(this.addMessage,this);
     for (var m in messages){
       this.listenTo(actions[m],_.partial(this.addMessage,messages[m]));
-      console.log("Setting listener to ",m)
     }
-    console.log("Message store initialized");
+    this.listenTo(actions.clearlog,function(){this.trigger((this.messages=[]));}.bind(this));
   },
   addMessage: function(def,data){
     var stamp = moment().format('HH:mm:ss:SS'),

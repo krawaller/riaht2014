@@ -5,9 +5,15 @@ var Reflux = require('../lib/reflux'),
 
 module.exports = Reflux.createStore({
   init: function(){
-    this.updateChat = this.updateChat.bind(this);
-    chatRef.on("value",this.updateChat);
-    chatRef.on("child_added",function(snap){actions.newchatmessageloaded(snap.val());});
+    chatRef.on("value",this.updateChat.bind(this));
+    chatRef.limit(1).once("child_added",function(snap){
+      this.trackfrom = snap.name();
+      chatRef.limit(1).on("child_added",function(snap){
+        if (snap.name()!==this.trackfrom){
+          actions.newchatmessageloaded(snap.val());
+        }
+      }.bind(this));
+    }.bind(this));
     this.listenTo(actions.sendchatmsg,this.addChatMsg.bind(this));
   },
   addChatMsg: function(msg){
@@ -15,7 +21,7 @@ module.exports = Reflux.createStore({
       if (err){
         actions.error("Chat send failure: "+err);
       } else {
-        actions.sendchatmsgsuccess();
+        actions.sendchatmsgsuccess(msg);
       }
     });
   },
@@ -24,7 +30,6 @@ module.exports = Reflux.createStore({
     this.trigger((this.last = snapshot.val()||{}));
   },
   getDefaultData: function(){
-    chatRef.once("value",this.updateChat);
     return this.last || {};
   }
 });

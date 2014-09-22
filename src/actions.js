@@ -10,5 +10,7 @@ module.exports = Reflux.createActions([
 	"sendchatmsg",
 	"sendchatmsgsuccess",
 	"newchatmessageloaded",
-	"chatdataloaded"
+	"chatdataloaded",
+	"clearlog",
+	"userdataloaded"
 ]);
