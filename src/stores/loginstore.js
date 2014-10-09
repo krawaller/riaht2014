@@ -15,21 +15,24 @@ module.exports = Reflux.createStore({
       } else if (user) {
           if (users.indexOf(user.username)!==-1){
             actions.finishlogin(user.username);
-            this.trigger(user.username);
+            this.trigger((this.last = user.username));
           } else {
             actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
           }
       } else {
-        this.trigger(false);
+        this.trigger((this.last = false));
       }
     }.bind(this));
     authRef.on("value",function(snapshot){
       if (!snapshot.val()){
         actions.finishlogout();
-        this.trigger(false);
+        this.trigger((this.last = false));
       }
     }.bind(this));
     this.listenTo(actions.initlogin,function(){this.authClient.login("github");});
     this.listenTo(actions.initlogout,function(){this.authClient.logout();});
+  },
+  getDefaultData: function(){
+    return this.last;
   }
 });

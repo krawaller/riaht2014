@@ -1,37 +1,25 @@
 /** @jsx React.DOM */
 
-var moment = require('moment'),
-    React = require('react'),
-    actions = require('../actions'),
-    connect = require('../lib/reflux').connect,
-    loginStore = require('../stores/loginstore');
+var React = require('react'),
+    actions = require('../actions');
 
 var Form = React.createClass({
-  mixins: [connect(loginStore,'username')],
-  submitChatMessage: function(e){
-    var node = this.refs['msgfield'].getDOMNode(),
-        msg = (node.value || '');
-    if (!(this.state && this.state.username)){
-      actions.error("Must be logged in to chat!");
-    } else if (!msg) {
-      actions.error('Must say something!');
+  onSubmit: function(e){
+    var node = this.refs['field'].getDOMNode(),
+        val = (node.value || ''),
+        err = "";
+    if (this.props.validate && (err=this.props.validate(val))){
+      actions.error(err);
     } else {
-      this.sendMessage(msg);
+      this.props.submit(val);
       node.value = '';
     }
-  },
-  sendMessage: function(msg){
-    actions.sendchatmsg({
-      username: this.state.username,
-      date: moment().format('YYYY-MM-DD HH:mm'),
-      message: msg
-    });
   },
   render: function() {
     return (
       <div>
-        <input type='text' ref='msgfield' />
-        <button onClick={this.submitChatMessage}>Send!</button>
+        <input type='text' ref='field' value={this.props.value||''} />
+        <button onClick={this.onSubmit}>Send!</button>
       </div>
     );
   }

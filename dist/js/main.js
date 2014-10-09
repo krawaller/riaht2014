@@ -34404,12 +34404,29 @@ var React = require('react'),
     _ = require('lodash'),
     chatStore = require('../stores/chatstore'),
     chatcountStore = require('../stores/chatcountstore'),
+    loginStore = require('../stores/loginstore'),
     Form = require('./form'),
-    Link = require('react-router').Link;
+    Link = require('react-router').Link,
+    moment = require('moment'),
+    actions = require('../actions');
 
 var Chat = React.createClass({displayName: 'Chat',
-  mixins: [connect(chatStore,"messages"),connect(chatcountStore,"count")],
+  mixins: [connect(chatStore,"messages"),connect(chatcountStore,"count"),connect(loginStore,'username')],
   getInitialState: function(){return {messages:{}};},
+  validateMessage: function(content){
+    if (!this.state.username){
+      return "Must be logged in to chat!";
+    } else if (!content) {
+      return 'Must say something!';
+    }
+  },
+  sendMessage: function(msg){
+    actions.sendchatmsg({
+      username: this.state.username,
+      date: moment().format('YYYY-MM-DD HH:mm'),
+      message: msg
+    });
+  },
   render: function(){
     var messages = _.map(Object.keys(this.state.messages).reverse(),function(key){
       var val = this.state.messages[key];
@@ -34418,7 +34435,7 @@ var Chat = React.createClass({displayName: 'Chat',
     return (
       React.DOM.div(null, 
         React.DOM.p(null, "Total msg count: ", this.state.count||0), 
-        Form(null), 
+        Form({validate: this.validateMessage, submit: this.sendMessage}), 
         React.DOM.table({className: "chat-table"}, 
           messages
         )
@@ -34429,7 +34446,7 @@ var Chat = React.createClass({displayName: 'Chat',
 
 module.exports = Chat;
 
-},{"../lib/reflux":214,"../stores/chatcountstore":215,"../stores/chatstore":216,"./form":206,"lodash":7,"react":194,"react-router":17}],205:[function(require,module,exports){
+},{"../actions":202,"../lib/reflux":214,"../stores/chatcountstore":215,"../stores/chatstore":216,"../stores/loginstore":217,"./form":206,"lodash":7,"moment":8,"react":194,"react-router":17}],205:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34455,45 +34472,33 @@ module.exports = Console;
 },{"../actions":202,"../lib/reflux":214,"../stores/logstore":218,"lodash":7,"react":194}],206:[function(require,module,exports){
 /** @jsx React.DOM */
 
-var moment = require('moment'),
-    React = require('react'),
-    actions = require('../actions'),
-    connect = require('../lib/reflux').connect,
-    loginStore = require('../stores/loginstore');
+var React = require('react'),
+    actions = require('../actions');
 
 var Form = React.createClass({displayName: 'Form',
-  mixins: [connect(loginStore,'username')],
-  submitChatMessage: function(e){
-    var node = this.refs['msgfield'].getDOMNode(),
-        msg = (node.value || '');
-    if (!(this.state && this.state.username)){
-      actions.error("Must be logged in to chat!");
-    } else if (!msg) {
-      actions.error('Must say something!');
+  onSubmit: function(e){
+    var node = this.refs['field'].getDOMNode(),
+        val = (node.value || ''),
+        err = "";
+    if (this.props.validate && (err=this.props.validate(val))){
+      actions.error(err);
     } else {
-      this.sendMessage(msg);
+      this.props.submit(val);
       node.value = '';
     }
-  },
-  sendMessage: function(msg){
-    actions.sendchatmsg({
-      username: this.state.username,
-      date: moment().format('YYYY-MM-DD HH:mm'),
-      message: msg
-    });
   },
   render: function() {
     return (
       React.DOM.div(null, 
-        React.DOM.input({type: "text", ref: "msgfield"}), 
-        React.DOM.button({onClick: this.submitChatMessage}, "Send!")
+        React.DOM.input({type: "text", ref: "field"}), 
+        React.DOM.button({onClick: this.onSubmit}, "Send!")
       )
     );
   }
 });
 
 module.exports = Form;
-},{"../actions":202,"../lib/reflux":214,"../stores/loginstore":217,"moment":8,"react":194}],207:[function(require,module,exports){
+},{"../actions":202,"react":194}],207:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35604,22 +35609,25 @@ module.exports = Reflux.createStore({
       } else if (user) {
           if (users.indexOf(user.username)!==-1){
             actions.finishlogin(user.username);
-            this.trigger(user.username);
+            this.trigger((this.last = user.username));
           } else {
             actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
           }
       } else {
-        this.trigger(false);
+        this.trigger((this.last = false));
       }
     }.bind(this));
     authRef.on("value",function(snapshot){
       if (!snapshot.val()){
         actions.finishlogout();
-        this.trigger(false);
+        this.trigger((this.last = false));
       }
     }.bind(this));
     this.listenTo(actions.initlogin,function(){this.authClient.login("github");});
     this.listenTo(actions.initlogout,function(){this.authClient.logout();});
+  },
+  getDefaultData: function(){
+    return this.last;
   }
 });
 },{"../actions":202,"../lib/firebase-simple-login":213,"../lib/reflux":214,"./users.json":219,"firebase":1,"lodash":7}],218:[function(require,module,exports){
