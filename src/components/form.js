@@ -4,7 +4,7 @@ var React = require('react'),
     actions = require('../actions');
 
 var Form = React.createClass({
-  onSubmit: function(e){
+  onSubmit: function(){
     var node = this.refs['field'].getDOMNode(),
         val = (node.value || ''),
         err = "";

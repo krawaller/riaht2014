@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    listenTo = require('../lib/reflux').listenTo,
+    listenTo = require('reflux').listenTo,
     userStore = require('../stores/userstore');
 
 var User = React.createClass({

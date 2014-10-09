@@ -1,5 +1,4 @@
 
-*    läs på om react
-*    läs på om firebase, registrera
-*    build system! gulp, package.json
+*    package.json stuff
+*    build process
 *    travis setup

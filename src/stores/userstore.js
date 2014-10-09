@@ -1,4 +1,4 @@
-var Reflux = require('../lib/reflux'),
+var Reflux = require('reflux'),
     Firebase = require("firebase"),
     dataRef = new Firebase("https://riaht2014.firebaseio.com/web/data/users"),
     actions = require('../actions');

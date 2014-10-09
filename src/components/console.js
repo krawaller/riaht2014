@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    connect = require('../lib/reflux').connect,
+    connect = require('reflux').connect,
     logStore = require('../stores/logstore'),
     actions = require('../actions'),
     _ = require('lodash');

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    connect = require('../lib/reflux').connect,
+    connect = require('reflux').connect,
     _ = require('lodash'),
     chatStore = require('../stores/chatstore'),
     chatcountStore = require('../stores/chatcountstore'),

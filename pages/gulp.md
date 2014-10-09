@@ -29,3 +29,8 @@ gulp.task('watch', function() {
 [intro](http://www.sitepoint.com/introduction-gulp-js/)
 
 Bra e-bok: [Developing a Gulp edge](http://shop.oreilly.com/product/9781939902146.do)
+
+
+###Plugins
+
+[gulp-jshint](https://github.com/spenceralger/gulp-jshint)

@@ -1,4 +1,4 @@
-var Reflux = require('../lib/reflux'),
+var Reflux = require('reflux'),
     actions = require('../actions'),
     _ = require('lodash'),
     moment = require('moment'),
