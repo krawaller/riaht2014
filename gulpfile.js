@@ -22,7 +22,7 @@ gulp.task('browserify', function() {
       .pipe(gulp.dest('dist/js'));
 });
 
-gulp.task('copy', function() {
+gulp.task('copyindex', function() {
     gulp.src('src/index.html')
       .pipe(gulp.dest('dist'));
 });
@@ -33,7 +33,7 @@ gulp.task('syntax', function(){
       .pipe(gulp.dest('pages'));
 });
 
-gulp.task('default',['lint', 'browserify', 'copy']);
+gulp.task('default',['lint', 'browserify', 'copyindex']);
 
 gulp.task('watch', function() {
     gulp.watch('src/**/*.*', ['default']);
