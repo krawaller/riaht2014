@@ -1,35 +1,42 @@
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
-    FirebaseSimpleLogin = require('../../lib/firebase-simple-login'),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
-    authRef = new Firebase("https://riaht2014.firebaseio.com/.info/authenticated"),
     actions = require('../actions'),
     users = require('./users.json');
 
 module.exports = Reflux.createStore({
-  init: function(){
-    this.authClient = new FirebaseSimpleLogin(ref, function(error, user) {
-      if (error) {
-        actions.error("Login error: "+error);
+  startlogin: function(tryredirect){
+    ref["authWithOAuth"+tryredirect?"Redirect":"Popup"]("github", function(err, user) {
+      if (err) {
+        if (err.code === "TRANSPORT_UNAVAILABLE" && !tryredirect) {
+          this.startlogin(true);
+        } else {
+          actions.error("Login error: "+err);
+        }
       } else if (user) {
-          if (users.indexOf(user.username)!==-1){
-            actions.finishlogin(user.username);
-            this.trigger((this.last = user.username));
-          } else {
-            actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
-          }
+        if (users.indexOf(user.username)!==-1){
+          actions.finishlogin(user.username);
+          this.trigger((this.last = user.username));
+        } else {
+          actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
+        }
       } else {
+        actions.error("Login failed, no data returned!");
         this.trigger((this.last = false));
       }
-    }.bind(this));
-    authRef.on("value",function(snapshot){
-      if (!snapshot.val()){
+    });
+  },
+  init: function(){
+
+    ref.onAuth(function(authData){
+      if (!authData){
         actions.finishlogout();
         this.trigger((this.last = false));
       }
     }.bind(this));
-    this.listenTo(actions.initlogin,function(){this.authClient.login("github");});
-    this.listenTo(actions.initlogout,function(){this.authClient.logout();});
+
+    this.listenTo(actions.initlogin,function(){this.startlogin();}.bind(this));
+    this.listenTo(actions.initlogout,function(){ref.unauth();});
   },
   getDefaultData: function(){
     return this.last;
