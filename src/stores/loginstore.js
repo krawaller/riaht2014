@@ -15,11 +15,12 @@ module.exports = Reflux.createStore({
           actions.error("Login error: "+err);
         }
       } else if (user) {
-        if (users.indexOf(user.username)!==-1){
-          actions.finishlogin(user.username);
-          this.trigger((this.last = user.username));
+        var username = user && user.github && user.github.username;
+        if (users.indexOf(username)!==-1){
+          actions.finishlogin(username);
+          this.trigger((this.last = username));
         } else {
-          actions.error("Github user '"+user.username+"' isn't a member here. Add to the users.json array and do a pull request!");
+          actions.error("Github user '"+username+"' isn't a member here. Add to the users.json array and do a pull request!");
         }
       } else {
         actions.error("Login failed, no data returned!");
