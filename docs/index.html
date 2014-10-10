@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Files</title>
+
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  
+  <link rel="stylesheet" media="all" href="index.html_assets/css/normalize.css" />
+  <link rel="stylesheet" media="all" href="index.html_assets/css/styles.css" />
+
+  
+</head>
+<body>
+
+  <div class="file-index">
+
+    <h1>Files</h1>
+
+    <form class="search-form">
+      <input name="file-filter"/>
+    </form>
+
+    
+      
+      <a class="file" href="actions.html" target="file-content">
+        <span class="file-name">actions.html</span>
+        <span class="file-path">actions.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/app.html" target="file-content">
+        <span class="file-name">app.html</span>
+        <span class="file-path">components/app.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/chat.html" target="file-content">
+        <span class="file-name">chat.html</span>
+        <span class="file-path">components/chat.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/console.html" target="file-content">
+        <span class="file-name">console.html</span>
+        <span class="file-path">components/console.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/form.html" target="file-content">
+        <span class="file-name">form.html</span>
+        <span class="file-path">components/form.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/loginbutton.html" target="file-content">
+        <span class="file-name">loginbutton.html</span>
+        <span class="file-path">components/loginbutton.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/multiroute.html" target="file-content">
+        <span class="file-name">multiroute.html</span>
+        <span class="file-path">components/multiroute.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/user.html" target="file-content">
+        <span class="file-name">user.html</span>
+        <span class="file-path">components/user.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/userlist.html" target="file-content">
+        <span class="file-name">userlist.html</span>
+        <span class="file-path">components/userlist.html</span>
+      </a>
+    
+      
+      <a class="file" href="components/wrapper.html" target="file-content">
+        <span class="file-name">wrapper.html</span>
+        <span class="file-path">components/wrapper.html</span>
+      </a>
+    
+      
+      <a class="file" href="main.html" target="file-content">
+        <span class="file-name">main.html</span>
+        <span class="file-path">main.html</span>
+      </a>
+    
+      
+      <a class="file" href="stores/chatcountstore.html" target="file-content">
+        <span class="file-name">chatcountstore.html</span>
+        <span class="file-path">stores/chatcountstore.html</span>
+      </a>
+    
+      
+      <a class="file" href="stores/chatstore.html" target="file-content">
+        <span class="file-name">chatstore.html</span>
+        <span class="file-path">stores/chatstore.html</span>
+      </a>
+    
+      
+      <a class="file" href="stores/loginstore.html" target="file-content">
+        <span class="file-name">loginstore.html</span>
+        <span class="file-path">stores/loginstore.html</span>
+      </a>
+    
+      
+      <a class="file" href="stores/logstore.html" target="file-content">
+        <span class="file-name">logstore.html</span>
+        <span class="file-path">stores/logstore.html</span>
+      </a>
+    
+      
+      <a class="file" href="stores/userstore.html" target="file-content">
+        <span class="file-name">userstore.html</span>
+        <span class="file-path">stores/userstore.html</span>
+      </a>
+    
+  </div>
+
+  <iframe src="actions.html" name="file-content" class="file-content"></iframe>
+
+  <script type="text/javascript" src="index.html_assets/js/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    (function(){
+
+      var $searchInput = $('input[name="file-filter"]'),
+        $files = $('.file');
+
+      function filter(txt){
+        $files.each(function(){
+          var $this = $(this);
+          if (!filter || $this.find('.file-path').html().indexOf(txt) >= 0){
+            $this.show();
+          } else {
+            $this.hide();
+          }
+        });
+      }
+
+      $searchInput.on('keyup', function(){
+        filter($searchInput.val());
+      });
+
+
+      $searchInput.val('');
+
+    })();
+
+  </script>
+</body>
+</html>

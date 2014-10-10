@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>loginstore.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>loginstore.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Reflux = <span class="hljs-built_in">require</span>(<span class="hljs-string">'reflux'</span>),
+    Firebase = <span class="hljs-built_in">require</span>(<span class="hljs-string">"firebase"</span>),
+    FirebaseSimpleLogin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../lib/firebase-simple-login'</span>),
+    ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">"https://riaht2014.firebaseio.com/"</span>),
+    authRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">"https://riaht2014.firebaseio.com/.info/authenticated"</span>),
+    actions = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../actions'</span>),
+    users = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./users.json'</span>);
+
+<span class="hljs-built_in">module</span>.exports = Reflux.createStore({
+  init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">this</span>.authClient = <span class="hljs-keyword">new</span> FirebaseSimpleLogin(ref, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, user)</span> </span>{
+      <span class="hljs-keyword">if</span> (error) {
+        actions.error(<span class="hljs-string">"Login error: "</span>+error);
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (user) {
+          <span class="hljs-keyword">if</span> (users.indexOf(user.username)!==-<span class="hljs-number">1</span>){
+            actions.finishlogin(user.username);
+            <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = user.username));
+          } <span class="hljs-keyword">else</span> {
+            actions.error(<span class="hljs-string">"Github user '"</span>+user.username+<span class="hljs-string">"' isn't a member here. Add to the users.json array and do a pull request!"</span>);
+          }
+      } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = <span class="hljs-literal">false</span>));
+      }
+    }.bind(<span class="hljs-keyword">this</span>));
+    authRef.on(<span class="hljs-string">"value"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(snapshot)</span></span>{
+      <span class="hljs-keyword">if</span> (!snapshot.val()){
+        actions.finishlogout();
+        <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = <span class="hljs-literal">false</span>));
+      }
+    }.bind(<span class="hljs-keyword">this</span>));
+    <span class="hljs-keyword">this</span>.listenTo(actions.initlogin,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">this</span>.authClient.login(<span class="hljs-string">"github"</span>);});
+    <span class="hljs-keyword">this</span>.listenTo(actions.initlogout,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">this</span>.authClient.logout();});
+  },
+  getDefaultData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.last;
+  }
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

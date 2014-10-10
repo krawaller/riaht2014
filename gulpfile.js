@@ -4,7 +4,9 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
     react = require('gulp-react'),
-    highlight = require('gulp-highlight');
+    highlight = require('gulp-highlight'),
+    docco = require('gulp-docco'),
+    folderToc = require('folder-toc');
 
 gulp.task('lint', function(){
     gulp.src(['src/*/*.js','src/*.js'])
@@ -33,7 +35,24 @@ gulp.task('syntax', function(){
       .pipe(gulp.dest('pages'));
 });
 
+gulp.task('builddocs', function(){
+    gulp.src(['src/*/*.js','src/*.js'])
+      .pipe(docco())
+      .pipe(gulp.dest('./docs'))
+});
+
+gulp.task('docsindex', function(){
+  folderToc('docs', {
+    name : 'index.html',
+    layout: 'classic',
+    filter: '*.html',
+    title: 'Files'    
+  });
+});
+
 gulp.task('default',['lint', 'browserify', 'copyindex']);
+
+gulp.task('docs',['builddocs','docsindex']);
 
 gulp.task('watch', function() {
     gulp.watch('src/**/*.*', ['default']);
