@@ -3,7 +3,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     jshint = require('gulp-jshint'),
     stylish = require('jshint-stylish'),
-    react = require('gulp-react');
+    react = require('gulp-react'),
+    highlight = require('gulp-highlight');
 
 gulp.task('lint', function(){
     gulp.src(['src/*/*.js','src/*.js'])
@@ -24,6 +25,12 @@ gulp.task('browserify', function() {
 gulp.task('copy', function() {
     gulp.src('src/index.html')
       .pipe(gulp.dest('dist'));
+});
+
+gulp.task('syntax', function(){
+    gulp.src('pages/*.md')
+      .pipe(highlight())
+      .pipe(gulp.dest('pages'));
 });
 
 gulp.task('default',['lint', 'browserify', 'copy']);

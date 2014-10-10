@@ -19,6 +19,7 @@
     "firebase": "^1.0.21",
     "jquery": "^2.1.1",
     "moment": "^2.8.3",
-    "reflux": "0.1.13"
+    "reflux": "0.1.13",
+    "gulp-highlight": "0.0.3"
   }
 }
