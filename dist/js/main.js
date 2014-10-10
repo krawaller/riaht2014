@@ -34897,16 +34897,16 @@ var Routes = require('react-router').Routes,
     Wrapper = require('./wrapper');
 
 var App = (
-  <Routes location="hash">
-    <Route name="app" path="/" handler={Wrapper}>
-      <Route name="chat" handler={Chat}/>
-      <Route name="users" handler={Multiroute}>
-        <Route name="user" path=":username" handler={User}/>
-        <DefaultRoute handler={Userlist}/>
-      </Route>
-      <DefaultRoute handler={Userlist}/>
-    </Route>
-  </Routes>
+  Routes({location: "hash"}, 
+    Route({name: "app", path: "/", handler: Wrapper}, 
+      Route({name: "chat", handler: Chat}), 
+      Route({name: "users", handler: Multiroute}, 
+        Route({name: "user", path: ":username", handler: User}), 
+        DefaultRoute({handler: Userlist})
+      ), 
+      DefaultRoute({handler: Userlist})
+    )
+  )
 );
 module.exports = App;
 },{"./chat":211,"./multiroute":215,"./user":216,"./userlist":217,"./wrapper":218,"react-router":18}],211:[function(require,module,exports){
@@ -34923,7 +34923,7 @@ var React = require('react'),
     moment = require('moment'),
     actions = require('../actions');
 
-var Chat = React.createClass({
+var Chat = React.createClass({displayName: 'Chat',
   mixins: [connect(chatStore,"messages"),connect(chatcountStore,"count"),connect(loginStore,'username')],
   getInitialState: function(){return {messages:{}};},
   validateMessage: function(content){
@@ -34943,16 +34943,16 @@ var Chat = React.createClass({
   render: function(){
     var messages = _.map(Object.keys(this.state.messages).reverse(),function(key){
       var val = this.state.messages[key];
-      return <tr><td>{val.date}</td><td><Link to="user" params={{username:val.username}}>{val.username}</Link></td><td>{val.message}</td></tr>;
+      return React.DOM.tr(null, React.DOM.td(null, val.date), React.DOM.td(null, Link({to: "user", params: {username:val.username}}, val.username)), React.DOM.td(null, val.message));
     },this);
     return (
-      <div>
-        <p>Total msg count: {this.state.count||0}</p>
-        <Form validate={this.validateMessage} submit={this.sendMessage} />
-        <table className='chat-table'>
-          {messages}
-        </table>
-      </div>
+      React.DOM.div(null, 
+        React.DOM.p(null, "Total msg count: ", this.state.count||0), 
+        Form({validate: this.validateMessage, submit: this.sendMessage}), 
+        React.DOM.table({className: "chat-table"}, 
+          messages
+        )
+      )
     );
   }
 });
@@ -34968,16 +34968,16 @@ var React = require('react'),
     actions = require('../actions'),
     _ = require('lodash');
 
-var Console = React.createClass({
+var Console = React.createClass({displayName: 'Console',
   mixins:[connect(logStore,"messages")],
   render: function(){
     var msgs = _.map((this.state||{}).messages||[],function(msg){
-      return <li className={msg[2]}><span>{msg[0]}</span>{msg[1]}</li>;
+      return React.DOM.li({className: msg[2]}, React.DOM.span(null, msg[0]), msg[1]);
     },this);
-    return <div>
-      <button onClick={actions.clearlog}>Clear log</button>
-      <ul>{msgs}</ul>
-    </div>;
+    return React.DOM.div(null, 
+      React.DOM.button({onClick: actions.clearlog}, "Clear log"), 
+      React.DOM.ul(null, msgs)
+    );
   }
 });
 
@@ -34988,7 +34988,7 @@ module.exports = Console;
 var React = require('react'),
     actions = require('../actions');
 
-var Form = React.createClass({
+var Form = React.createClass({displayName: 'Form',
   onSubmit: function(){
     var node = this.refs['field'].getDOMNode(),
         val = (node.value || ''),
@@ -35002,10 +35002,10 @@ var Form = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <input type='text' ref='field' value={this.props.value||''} />
-        <button onClick={this.onSubmit}>Send!</button>
-      </div>
+      React.DOM.div(null, 
+        React.DOM.input({type: "text", ref: "field", value: this.props.value||''}), 
+        React.DOM.button({onClick: this.onSubmit}, "Send!")
+      )
     );
   }
 });
@@ -35019,13 +35019,13 @@ var React = require('react'),
     loginStore = require('../stores/loginstore'),
     actions = require('../actions');
 
-var Loginbutton = React.createClass({
+var Loginbutton = React.createClass({displayName: 'Loginbutton',
   mixins: [connect(loginStore,"username")],
   getInitialState: function(){return {};},
   render: function(){
     return this.state.username ?
-      <button onClick={actions.initlogout}>log out {this.state.username}</button>
-      : <button onClick={actions.initlogin}>log in</button>;
+      React.DOM.button({onClick: actions.initlogout}, "log out ", this.state.username)
+      : React.DOM.button({onClick: actions.initlogin}, "log in");
   }
 });
 module.exports = Loginbutton;
@@ -35034,7 +35034,7 @@ module.exports = Loginbutton;
 
 var React = require('react');
 
-var Multiroute = React.createClass({
+var Multiroute = React.createClass({displayName: 'Multiroute',
   render: function(){
     return this.props.activeRouteHandler();
   }
@@ -35049,7 +35049,7 @@ var React = require('react'),
     listenTo = require('reflux').listenTo,
     userStore = require('../stores/userstore');
 
-var User = React.createClass({
+var User = React.createClass({displayName: 'User',
   mixins: [listenTo(userStore,"getUserData","getUserData")],
   getUserData: function(users){
     var user = users[this.props.params.username];
@@ -35061,7 +35061,7 @@ var User = React.createClass({
   },
   render: function(){
     var name = this.props.params.username;
-    return this.state && this.state.found ? <p>{name} is a nice dude!</p> : <p>Couldn't find user {name}.</p>;
+    return this.state && this.state.found ? React.DOM.p(null, name, " is a nice dude!") : React.DOM.p(null, "Couldn't find user ", name, ".");
   }
 });
 
@@ -35076,18 +35076,18 @@ var React = require('react'),
     userStore = require('../stores/userstore'),
     Link = require('react-router').Link;
 
-var Userlist = React.createClass({
+var Userlist = React.createClass({displayName: 'Userlist',
   mixins: [connect(userStore)],
   render: function(){
     var users = _.map(this.state,function(user,key){
-      return <tr><td><Link to="user" params={{username:key}}>{key}</Link></td><td>Logins:{user.logins}</td><td>Chats:{user.chats}</td></tr>;
+      return React.DOM.tr(null, React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), React.DOM.td(null, "Logins:", user.logins), React.DOM.td(null, "Chats:", user.chats));
     },this);
     return (
-      <div>
-        <table className='user-table'>
-          {users}
-        </table>
-      </div>
+      React.DOM.div(null, 
+        React.DOM.table({className: "user-table"}, 
+          users
+        )
+      )
     );
   }
 });
@@ -35103,18 +35103,18 @@ var React = require('react'),
     Loginbutton = require('./loginbutton'),
     Console = require('./console');
 
-var Wrapper = React.createClass({
+var Wrapper = React.createClass({displayName: 'Wrapper',
   render: function(){
     return (
-      <div>
-        <ul>
-          <li><Link to="users">Users</Link></li>
-          <li><Link to="chat">Chat</Link></li>
-        </ul>
-        <Loginbutton />
-        {this.props.activeRouteHandler()}
-        <Console />
-      </div>
+      React.DOM.div(null, 
+        React.DOM.ul(null, 
+          React.DOM.li(null, Link({to: "users"}, "Users")), 
+          React.DOM.li(null, Link({to: "chat"}, "Chat"))
+        ), 
+        Loginbutton(null), 
+        this.props.activeRouteHandler(), 
+        Console(null)
+      )
     );
   }
 });

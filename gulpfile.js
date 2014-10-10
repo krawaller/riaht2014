@@ -18,8 +18,7 @@ gulp.task('lint', function(){
 
 gulp.task('browserify', function() {
     gulp.src('src/main.js')
-      .pipe(react())
-      .pipe(browserify())
+      .pipe(browserify({transform:"reactify"}))
       .pipe(concat('main.js'))
       .pipe(gulp.dest('dist/js'));
 });

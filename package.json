@@ -22,6 +22,7 @@
     "reflux": "0.1.13",
     "gulp-highlight": "0.0.3",
     "gulp-docco": "0.0.4",
-    "folder-toc": "0.1.0"
+    "folder-toc": "0.1.0",
+    "reactify": "0.14.0"
   }
 }
