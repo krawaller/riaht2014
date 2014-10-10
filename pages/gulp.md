@@ -2,7 +2,7 @@ Gulp woo! :)
 
 Här till exempel är guildens gulpfil:
 
-<pre><code class='hljs'>
+<pre class='hljs'><code>
 <span class="hljs-keyword">var</span> gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>),
     browserify = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-browserify'</span>),
     concat = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-concat'</span>);
