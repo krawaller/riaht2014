@@ -35085,7 +35085,7 @@ var Reflux = require('reflux'),
 
 module.exports = Reflux.createStore({
   startlogin: function(tryredirect){
-    ref["authWithOAuth"+tryredirect?"Redirect":"Popup"]("github", function(err, user) {
+    ref["authWithOAuth"+(tryredirect?"Redirect":"Popup")]("github", function(err, user) {
       if (err) {
         if (err.code === "TRANSPORT_UNAVAILABLE" && !tryredirect) {
           this.startlogin(true);
