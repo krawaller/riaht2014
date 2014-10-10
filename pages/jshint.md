@@ -4,8 +4,7 @@ I kursen viktigt, kollaboreringsprojekt bla bla.
 
 .jshintrc-fil i roten av ert projekt. Här är min:
 
-<pre><code>
-{
+<pre><code>{
     "<span class="hljs-attribute">maxparams</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
     "<span class="hljs-attribute">maxdepth</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
     "<span class="hljs-attribute">maxstatements</span>": <span class="hljs-value"><span class="hljs-number">25</span></span>,
@@ -44,8 +43,7 @@ I kursen viktigt, kollaboreringsprojekt bla bla.
 
 Kompetent editor alddar in, men vi kör också via gulp i byggprocessen!
 
-<pre><code>
-gulp.task(<span class="hljs-string">'lint'</span>, function(){
+<pre><code>gulp.task(<span class="hljs-string">'lint'</span>, function(){
     gulp.src([<span class="hljs-string">'src/*/*.js'</span>,<span class="hljs-string">'src/*.js'</span>])
       .<span class="hljs-keyword">pipe</span>(react())
       .<span class="hljs-keyword">pipe</span>(jshint())
@@ -58,8 +56,7 @@ Vi måste först göra om reacts jsx. sedan kör vi jshint, rapporterar resultat
 
 Vi ser sedan till att lintningen körs som en del av byggprocessen:
 
-<pre><code>
-gulp.<span class="hljs-keyword">task</span>(<span class="hljs-string">'default'</span>,[<span class="hljs-string">'lint'</span>, <span class="hljs-string">'browserify'</span>, <span class="hljs-string">'copyindex'</span>]);
+<pre><code>gulp.<span class="hljs-keyword">task</span>(<span class="hljs-string">'default'</span>,[<span class="hljs-string">'lint'</span>, <span class="hljs-string">'browserify'</span>, <span class="hljs-string">'copyindex'</span>]);
 </code></pre>
 
 Därmed kommer Travis visa om en pull request innehåller dumheter.
