@@ -2,7 +2,7 @@ Gulp woo! :)
 
 Här till exempel är guildens gulpfil:
 
-```javascript
+```
 var gulp = require('gulp'),
     browserify = require('gulp-browserify'),
     concat = require('gulp-concat');
