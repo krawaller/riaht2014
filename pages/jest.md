@@ -2,7 +2,9 @@
 
 [Jest](http://facebook.github.io/jest/) är ett testramverk byggt på [Jasmine](http://jasmine.github.io/), och är specialanpassat för att kunna testa React-komponenter.
 
-I kursen är det obligatoriskt att installera Jest och integrera det i projektet, men det är sedan frivilligt huruvida du använder testsviten och bygger nya test under projektets gång. Det är också frivilligt exakt HUR du integrerar Jest - förslaget nedan kan innebära [långsam exekvering av testen](https://github.com/facebook/jest/issues/116), och de underliggande biblioteken håller på att förändras i skrivande stund.
+I kursen är det obligatoriskt att installera Jest och integrera det i projektet, men det är sedan frivilligt huruvida du använder testsviten och bygger nya test under projektets gång. Om du väljer att bygga test så finns möjlighet att tjäna poäng på dem även i kursen [Mjukvarutestning](https://coursepress.lnu.se/kurs/mjukvarutestning/) som går parallellt - prata med Daniel och se vilka möjligheter som finns!
+
+Det är också frivilligt exakt HUR du integrerar Jest - förslaget nedan kan innebära [långsam exekvering av testen](https://github.com/facebook/jest/issues/116), och de underliggande biblioteken håller på att förändras i skrivande stund.
 
 ###Förslag på integrering
 
@@ -50,10 +52,7 @@ För att testa att allting fungerar som det ska, och ha något att utgå ifrån 
   },
   render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
     <span class="hljs-keyword">return</span> (
-      
-        
-        {<span class="hljs-keyword">this</span>.state.isChecked ? <span class="hljs-keyword">this</span>.props.labelOn : <span class="hljs-keyword">this</span>.props.labelOff}
-      
+      {<span class="hljs-keyword">this</span>.state.isChecked ? <span class="hljs-keyword">this</span>.props.labelOn : <span class="hljs-keyword">this</span>.props.labelOff}
     );
   }
 });
@@ -73,9 +72,7 @@ describe(<span class="hljs-string">'CheckboxWithLabel'</span>, function() {
     <span class="hljs-keyword">var</span> TestUtils = React.addons.TestUtils;
 
     <span class="hljs-comment">// Render a checkbox with label in the document</span>
-    <span class="hljs-keyword">var</span> checkbox = TestUtils.renderIntoDocument(
-      
-    );
+    <span class="hljs-keyword">var</span> checkbox = TestUtils.renderIntoDocument();
 
     <span class="hljs-comment">// Verify that it's Off by default</span>
     <span class="hljs-keyword">var</span> label = TestUtils.findRenderedDOMComponentWithTag(
