@@ -28,8 +28,7 @@ Först och främst måste vi säga till Travis att vakta vårt repositorium. Det
 
 Om inget annat anges så kör Travis scriptet `test` definierat i vår `package.json`. Här är den relevanta delen av den filen för guilden:
 
-<pre><code>
-{
+<pre><code>{
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"riaht2014"</span></span>,
   "<span class="hljs-attribute">version</span>": <span class="hljs-value"><span class="hljs-string">"0.0.2"</span></span>,
   "<span class="hljs-attribute">author</span>": <span class="hljs-value"><span class="hljs-string">"krawaller"</span></span>,
@@ -44,8 +43,7 @@ Här ser vi att Travis kommer köra `gulp test`. Alla dependencies kommer automa
 
 Men vi måste också ange Travis-specifika inställningar. Dessa bor i filen `.travis.yml`, som läggs i roten av repot. Så här kan den se ut:
 
-<pre><code>
-language: node_js
+<pre><code>language: node_js
 node_js:
   -<span class="ruby"> <span class="hljs-string">"0.10"</span>
 </span>before_install:
@@ -65,8 +63,7 @@ Den förklarar sig själv ganska väl, men här följer några kommentarer:
 
 En bildfil genereras automatiskt som visar resultatet för ett projekts senaste build på Travis. Adressen blir `https://img.shields.io/travis/<githubusername>/<reponame>/<repobranch>.svg`. Normalt är att inkludera den i sin README-fil för projektet, och länka bilden till Travis-sidan för projektet. Så här kan det se ut:
 
-<pre><code>
-<span class="hljs-header"># Algol3</span>
+<pre><code><span class="hljs-header"># Algol3</span>
 
 Third time's the charm!
 
