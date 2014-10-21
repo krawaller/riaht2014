@@ -6,7 +6,7 @@
 *    [bygga vår kod för webbläsaren](../build)
 *    [linta vår kod](../jshint)
 *    [generera dokumentation](../dokumentation)
-*    [köra våra unittests (frivilligt)](../test-driven-utveckling)
+*    [köra våra unittests](../test-driven-utveckling)
 
 ###Användning
 

@@ -6,7 +6,9 @@ var gulp = require('gulp'),
     react = require('gulp-react'),
     highlight = require('gulp-highlight'),
     docco = require('gulp-docco'),
-    folderToc = require('folder-toc');
+    folderToc = require('folder-toc'),
+    jest = require('gulp-jest'),
+    ReactTools = require('react-tools');
 
 gulp.task('lint', function(){
     gulp.src(['src/*/*.js','src/*.js'])
@@ -14,6 +16,18 @@ gulp.task('lint', function(){
       .pipe(jshint())
       .pipe(jshint.reporter(stylish))
       .pipe(jshint.reporter('fail'))
+});
+
+gulp.task('test',function(){
+    return gulp.src('__tests__').pipe(jest({
+      testDirectoryName: "spec",
+      scriptPreprocessor: './support/preprocessor.js',
+      unmockedModulePathPatterns: ['node_modules/react'],
+      testPathIgnorePatterns: [
+        "node_modules",
+        "./support"
+      ]
+    }));
 });
 
 gulp.task('browserify', function() {
@@ -49,7 +63,7 @@ gulp.task('docsindex', function(){
   });
 });
 
-gulp.task('default',['lint', 'browserify', 'copyindex']);
+gulp.task('default',['lint', 'test', 'browserify', 'copyindex']);
 
 gulp.task('docs',['builddocs','docsindex']);
 

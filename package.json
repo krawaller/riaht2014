@@ -4,11 +4,14 @@
   "description": "",
   "author": "krawaller",
   "license": "ISC",
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "gulp": "^3.7.0",
     "gulp-jshint": "1.8.5",
-    "jshint-stylish": "*",
-    "gulp-react": "*",
+    "jshint-stylish": "1.0.0",
+    "gulp-react": "1.0.2",
     "gulp-browserify": "^0.5.0",
     "gulp-concat": "^2.2.0",
     "react": "^0.11.2",
@@ -24,6 +27,8 @@
     "gulp-docco": "0.0.4",
     "folder-toc": "0.1.0",
     "reactify": "0.14.0",
-    "reactfire": "0.2.0"
+    "reactfire": "0.2.0",
+    "gulp-jest": "0.2.2",
+    "react-tools": "0.11.2"
   }
 }
