@@ -37,6 +37,8 @@ Så här ser exempelvis `package.json` ut för JavaScript-guilden:
   </span>}
 </span>}</code></pre>
 
+Genom att registrera sig på [David Dependency Manager](https://david-dm.org/) så kan du få en elegant överblick över dina dependencies. Se exempelvis [guildens lista här](https://david-dm.org/krawaller/riaht2014#info=devDependencies).
+
 ###Byggprocess
 
 Vi använder också Node för att kunna exekvera [Gulp-kod](../gulp) i vårt projekts byggprocess.

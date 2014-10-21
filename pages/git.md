@@ -21,4 +21,4 @@ Det är helt ok att bara köra "vaniljanvändning" av Git och Github, dvs hela t
 *    Använd issues på Github för projektstyrning (vilket också gör det lättare för andra att hjälpa till)
 *    Använd labels på dina issues och pull-requests
 *    Assigna issues till olika användare
-*    Sortera issues och commits med milestones
+*    Sortera issues och commits med milestones</reponame></gituser></reponame></gituser></reponame></gituser>

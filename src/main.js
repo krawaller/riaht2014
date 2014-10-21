@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
-	React = require('react');
+    React = require('react');
 
 React.renderComponent(
   App,

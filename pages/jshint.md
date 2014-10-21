@@ -2,7 +2,7 @@
 
 Som erfarna JavaScriptare är ni förmodligen sedan länge bekanta med [Douglas Crockfords](http://crockford.com/) [JSLint](http://www.jslint.com/), och sannolikt också den mer toleranta varianten [JSHint](http://www.jshint.com/). I kursen är det obligatoriskt att använda det sistnämnda.
 
-När man jobbar på egen hand räcker det att hooka upp sina regler till den egna editorn, men i ett kollaborativt projekt måste vi också se till att andra jobbar utifrån samma stilregler! Därför måste reglernas inställningar bo i själva projektet! JSHint stöder detta via en `jshintrc`-fil som man lägger i roten av sitt projekt. Som ett exempel på hur det kan se ut kommer här guildens fil:
+När man jobbar på egen hand räcker det att hooka upp sina regler till den egna editorn, men i ett kollaborativt projekt måste vi också se till att andra jobbar utifrån samma stilregler! Därför måste reglernas inställningar bo i själva projektet! JSHint stöder detta via en `.jshintrc`-fil som man lägger i roten av sitt projekt. Som ett exempel på hur det kan se ut kommer här guildens fil:
 
 <pre><code>{
     "<span class="hljs-attribute">maxparams</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
