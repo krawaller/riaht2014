@@ -1,6 +1,12 @@
-Som en del i byggprocessen kommer vi generera dokumentation för vår kod. I kursen använder vi Docco, Jeremy Ashkenas lättanvända variant där koden visas i sin helhet, och kommentarer lyfts ut och läggs bredvid respektive kodavsnitt. 
+
+### Doccos approach
+
+Som en del i byggprocessen kommer vi generera dokumentation för vår kod. I kursen använder vi [Docco](http://jashkenas.github.io/docco), Jeremy Ashkenas lättanvända variant där koden visas i sin helhet, och kommentarer lyfts ut och läggs bredvid respektive kodavsnitt.
+
+Detta är alltså inte en motsvarighet till exempelvis JSDoc där enskilda funktioner och klasser dokumenteras med exakta definitioner av parametrar och returvärden, utan ett sätt att mer övergripande beskriva sin kod.
 
 
+### Användning i kursen
 
 Enklast är att använda Gulp-pluginen [gulp-docco](https://github.com/jsBoot/gulp-docco), och göra en Gulp-task för detta i din gulpfil:
 
