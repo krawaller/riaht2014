@@ -3,7 +3,7 @@
 
 [Travis CI](https://travis-ci.org/) är en webbtjänst för Continuous Integration. Definitionen av vad det är kan vara mer komplex, men i vårt fall så innebär det att köra vår byggprocess och testsvit varje gång kod pushas till vårt repo på Github. När vi har kopplat Travis till vårt repo så kan vi sedan se resultatet för varje push:
 
-[![travis result](../img/travisresults.png)](https://travis-ci.org/krawaller/algol3/builds)
+[![travis result](https://raw.githubusercontent.com/krawaller/riaht2014/gh-pages/img/travisresults.png)](https://travis-ci.org/krawaller/algol3/builds)
 
 
 ### Varför
@@ -12,11 +12,11 @@ Att Travis testar koden varje gång vi pushar till Github är ingen större vins
 
 Men Github har en Travis hook för pull requests, vilket gör att varje gång någon öppnar en pull request mot mitt repositorium så kan Travisresultaten visas direkt i pull requesten!
 
-[![silly pull request](../img/sillypullrequest.png)](https://github.com/krawaller/algol3/pull/1/files)
+[![silly pull request](https://raw.githubusercontent.com/krawaller/riaht2014/gh-pages/img/sillypullrequest.png)](https://github.com/krawaller/algol3/pull/1/files)
 
 Klickar man på varninen så kommer man direkt till en logg på Travis som visar vad som gått snett:
 
-[![travis fail](../img/travisfail.png)](https://travis-ci.org/krawaller/algol3/jobs/32018043)
+[![travis fail](https://raw.githubusercontent.com/krawaller/riaht2014/gh-pages/img/travisfail.png)](https://travis-ci.org/krawaller/algol3/jobs/32018043)
 
 Tack vare detta så såg vi direkt att denna pull request är en dålig idé. Utan Travis skulle jag ha varit tvungen att ladda ned den föreslagna koden och köra byggprocess + testsvit på min maskin, men nu blir jag istället genast (eller åtminstone inom några minuter) varnad av Travis.
 
@@ -24,7 +24,7 @@ Tack vare detta så såg vi direkt att denna pull request är en dålig idé. Ut
 
 Först och främst måste vi säga till Travis att vakta vårt repositorium. Det gör vi genom att logga in på [http://travis-ci.org](http://travis-ci.org) (notera att [http://travis-ci.com](http://travis-ci.com) är för privata repon, vilket kostar pengar) med vårt Githubkonto, och sedan aktivera det aktuella repot:
 
-![travis activation](../img/travisflick.png)
+![travis activation](https://raw.githubusercontent.com/krawaller/riaht2014/gh-pages/img/travisflick.png)
 
 Om inget annat anges så kör Travis scriptet `test` definierat i vår `package.json`. Här är den relevanta delen av den filen för guilden:
 
@@ -75,5 +75,5 @@ Third time's the charm!
 
 ...vilket får följande resultat:
 
-[![readme with travis badge](../img/readmewithtravisbadge.png)](https://github.com/krawaller/algol3/blob/gh-pages/README.md)
+[![readme with travis badge](https://raw.githubusercontent.com/krawaller/riaht2014/gh-pages/img/readmewithtravisbadge.png)](https://github.com/krawaller/algol3/blob/gh-pages/README.md)
 </repobranch></reponame></githubusername>
