@@ -1,8 +1,8 @@
-Säkert redan använt woo! 
+###Projektspecifika stilregler
 
-I kursen viktigt, kollaboreringsprojekt bla bla. 
+Som erfarna JavaScriptare är ni förmodligen sedan länge bekanta med [Douglas Crockfords](http://crockford.com/) [JSLint](http://www.jslint.com/), och sannolikt också den mer toleranta varianten [JSHint](http://www.jshint.com/). I kursen är det obligatoriskt att använda det sistnämnda.
 
-.jshintrc-fil i roten av ert projekt. Här är min:
+När man jobbar på egen hand räcker det att hooka upp sina regler till den egna editorn, men i ett kollaborativt projekt måste vi också se till att andra jobbar utifrån samma stilregler! Därför måste reglernas inställningar bo i själva projektet! JSHint stöder detta via en `jshintrc`-fil som man lägger i roten av sitt projekt. Som ett exempel på hur det kan se ut kommer här guildens fil:
 
 <pre><code>{
     "<span class="hljs-attribute">maxparams</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
@@ -39,9 +39,11 @@ I kursen viktigt, kollaboreringsprojekt bla bla.
 </span>}
 </code></pre>
 
-###Usage
+###Användning
 
-Kompetent editor alddar in, men vi kör också via gulp i byggprocessen!
+De flesta editorer hittar automagiskt filen och ser till att den tillämpas i koden. Gör den inte det så måste du själv på något sätt förklara för editorn att den skall titta i filen.
+
+Vi måste också på något sätt få in stilregelkontrollen i vår byggprocess i Gulp. För detta skapar vi en egen task. Här är återigen motsvarande exempel från guilden:
 
 <pre><code>gulp.task(<span class="hljs-string">'lint'</span>, function(){
     gulp.src([<span class="hljs-string">'src/*/*.js'</span>,<span class="hljs-string">'src/*.js'</span>])
@@ -52,18 +54,23 @@ Kompetent editor alddar in, men vi kör också via gulp i byggprocessen!
 });
 </code></pre>
 
-Vi måste först göra om reacts jsx. sedan kör vi jshint, rapporterar resultatet, och kastar fel om något inte lydde.
+Några kommentarer till tasken:
 
-Vi ser sedan till att lintningen körs som en del av byggprocessen:
+*    Vi måste först se till att omvandla eventuell jsx-kod till JavaScript: `.pipe(react())`
+*    Därefter lintar vi koden: `.pipe(jshint())`
+*    Vi skriver sedan ut resultatet i terminalen: `.pipe(jshint.reporter(stylish))`
+*    Slutligen kastar vi ett fel ifall några brott mot reglerna påträffades.
+
+Nu kan lint-tasken köras separat i terminalen, men vi måste också se till att den körs som en del av byggprocessen:
 
 <pre><code>gulp.<span class="hljs-keyword">task</span>(<span class="hljs-string">'default'</span>,[<span class="hljs-string">'lint'</span>, <span class="hljs-string">'browserify'</span>, <span class="hljs-string">'copyindex'</span>]);
 </code></pre>
 
-Därmed kommer Travis visa om en pull request innehåller dumheter.
+Eftersom Travis kör byggsteget, och byggsteget nu innehåller stilregelskontrollen, så säkerställer vi att alla kodbidrag följer reglerna!
 
 ###Vilka regler skall användas?
 
-Upp till dig, förutom:
+Detta är helt upp till dig, förutom att:
 
 *    `newcap` måste vara `false`, annars kommer JSHint klaga på den kompilerade jsx-koden.
 *    Det är obligatoriskt att använda `maxparams`, `maxdepth`, `maxstatements` och `maxcomplexity`! Läs mer om dessa [här](http://www.elijahmanor.com/control-the-complexity-of-your-javascript-functions-with-jshint/).
