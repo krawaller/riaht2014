@@ -34,4 +34,4 @@ Slutligen registrerar vi en sammansatt gulp-task som först genererar dokumentat
 
 <pre><code>gulp.<span class="hljs-keyword">task</span>(<span class="hljs-string">'docs'</span>,[<span class="hljs-string">'builddocs'</span>,<span class="hljs-string">'docsindex'</span>]);</code></pre>
 
-Resultatet för JavaScript-guilden kan beskådas [här](blog.krawaller.se/riaht2014/docs/).
+Resultatet för JavaScript-guilden kan beskådas [här](http://blog.krawaller.se/riaht2014/docs/).
