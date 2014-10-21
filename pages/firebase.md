@@ -1,9 +1,5 @@
 
-I kursen använder vi [Firebase](https://www.firebase.com/) som backend. Firebase är...
-
-> a powerful API to store and sync data in realtime
-
-Helt enkelt en NoSQL-databas med ett realtidsAPI! Just att det är realtid rimmar extra väl med Reacts approach att omrendera vid uppdatering, vilket du kommer märka.
+I kursen använder vi [Firebase](https://www.firebase.com/) som backend. Firebase är "a powerful API to store and sync data in realtime" - Helt enkelt en NoSQL-databas med ett realtidsAPI! Just att det är realtid rimmar extra väl med Reacts approach att omrendera vid uppdatering, vilket du kommer märka.
 
 För att snabbt få en känsla för vad Firebase är kan du...
 
