@@ -83,5 +83,5 @@ Vi använder också Node för att kunna exekvera [Gulp-kod](../gulp) i vårt pro
 
 ###Installation
 
-På [Nodes hemsida](http://nodejs.org/) hittar du guider till hur du installerar Node, vilket ser lite olika ut beroende på om du kör Windows, Mac eller Linux. Testa huruvida du har lyckats genom att öppna en terminal och prova att skriva `node --version` och `npm`.
+På [Nodes hemsida](http://nodejs.org/) hittar du guider till hur du installerar Node, vilket ser lite olika ut beroende på om du kör Windows, Mac eller Linux. Testa huruvida du har lyckats genom att öppna en terminal och prova att skriva `node --version` och `npm version`.
 </pathtomymodule></pathtomymodule>

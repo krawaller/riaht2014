@@ -6,6 +6,6 @@ Varmt välkomna till RIA-kursen! Här i steg 0 ska vi kratta manégen inför de 
 4.    starta en [kursblogg](../blog)
 5.    gå med i [guilden](../guilden)
 6.    börja så smått att läsa på om [React](../react) och [Firebase](../firebase)
-6.    försök fånga David för ett första handledningstillfälle!
+6.    försök fånga David för ett första [handledningstillfälle](../handledning)!
 7.    skriv ett första blogginlägg där du **presenterar dig**, beskriver dina **förväntningar på kursen**, din **JavaScript idag** inklusive kommentarer till hur det gick att gå igenom **Resigs lektion**.
 
