@@ -1,5 +1,3 @@
-###Vår byggprocess
-
 I kursen kommer vi använda CommonJS-moduler för att bygga vår app, och [NPM](../node-och-npm) för att hämta hem beroenden. Det innebär att vi inte kan köra vår kod i webbläsaren, eftersom `require`-metoden inte finns där. Därför måste vi först omvandla vår kodbas till något webbläsaren kan hantera, vilket vi gör via [Browserify](http://browserify.org/). Den vandrar igenom din källkod utifrån en startfil, och laddar in alla andra filers innehåll via `require`-anropen. Detta sparar vi sedan ned som en enda javascript-fil, som därmed blir körbar i webbläsaren.
 
 Själva källkoden rekommenderas att du har i en `src`-katalog i projektet. Det kompilerade resultatet lägger vi sedan i en `dist`-katalog.
