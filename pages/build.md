@@ -25,7 +25,7 @@ Bredvid `main.js` skapar vi `index.html`:
 <span class="hljs-tag">&lt;/<span class="hljs-title">head</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"main"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"container"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"js/main.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"main.js"</span>&gt;</span><span class="javascript"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-title">html</span>&gt;</span>
 </code></pre>
@@ -40,7 +40,7 @@ gulp.task(<span class="hljs-string">'browserify'</span>, <span class="hljs-funct
     gulp.src(<span class="hljs-string">'src/main.js'</span>)
       .pipe(browserify({transform:<span class="hljs-string">"reactify"</span>}))
       .pipe(concat(<span class="hljs-string">'main.js'</span>))
-      .pipe(gulp.dest(<span class="hljs-string">'dist/js'</span>));
+      .pipe(gulp.dest(<span class="hljs-string">'dist'</span>));
 });
 
 gulp.task(<span class="hljs-string">'copyindex'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span>
