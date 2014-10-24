@@ -1,0 +1,3 @@
+Som många andra kurser på denna nivå är RIA-kursen väldigt fritt hållen, med stort eget ansvar över arbetsinsats och att tillgodogöra sig relevant kunskap. Det betyder dock inte att ni är lämnade vind för våg! Kursledare David finns hela tiden tillgänglig för handledning.
+
+Denna är inte bara tänkt som en hjälp när man kör fast, utan planen är att den skall utgöra ett bollplank och ta dig vidare i dina kodorganiseringsskills! Ropa därför inte bara till när du hamnat i diket, utan utnyttja med jämna mellanrum möjligheten att få feedback på ditt projekt!
