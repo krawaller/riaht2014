@@ -4,7 +4,7 @@ Som ni förhoppningsvis sett vid det här laget så handlar kursen i huvudsak om
 
 För det första så är ni tvungna att använda vissa verktyg, såsom beskrivna under kursstegen:
 
-1.   Projekten ska publiceras via [Github Pages](../git-github), och måste vara körbara i sin helhet därifrån. Det innebär att ni **inte kan ha några serverside-komponenter**, utan helt kommer jobba mot local storage.
+1.   Projekten ska publiceras via [Github Pages](../git-github), och måste vara körbara i sin helhet därifrån.
 2.   Projektet skall [kompileras för distribution](../bygg) via [Gulp](../gulp)
 3.   Projektet måste på något vis **hantera &amp; spara data från användaren**. Det kan ej bara handla om statisk bearbetning (typ miniräknare), utan måste *keep some state* i någon mening. Till detta använder vi [Firebase](firebase).
 4.   Projektet måste byggas med [React](../react). Plugins och övriga byggstenar väljs fritt!
