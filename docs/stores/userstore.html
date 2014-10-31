@@ -41,6 +41,8 @@
     <span class="hljs-keyword">this</span>.listenTo(actions.sendchatmsgsuccess,<span class="hljs-keyword">this</span>.updateUserChatCount.bind(<span class="hljs-keyword">this</span>));
     <span class="hljs-keyword">this</span>.listenTo(actions.finishlogin,<span class="hljs-keyword">this</span>.updateUserLoginCount.bind(<span class="hljs-keyword">this</span>));
     <span class="hljs-keyword">this</span>.listenTo(actions.updateuserfield,<span class="hljs-string">"updateUserField"</span>);
+    <span class="hljs-keyword">this</span>.listenTo(actions.adduserlistitem,<span class="hljs-string">"adduserlistitem"</span>);
+    <span class="hljs-keyword">this</span>.listenTo(actions.deleteuserfield,<span class="hljs-string">"deleteuserfield"</span>);
   },
   transmitUserData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(snapshot)</span></span>{
     actions.userdataloaded();
@@ -55,9 +57,27 @@
   updateUserField: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(username,fieldname,data)</span></span>{
     dataRef.child(username).child(fieldname).set(data,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span></span>{
       <span class="hljs-keyword">if</span> (err){
-        actions.error(<span class="hljs-string">"User field save failed: "</span>+err);
+        actions.error(<span class="hljs-string">"User field data update failed: "</span>+err);
       } <span class="hljs-keyword">else</span> {
         actions.updateuserfieldsuccess();
+      }
+    });
+  },
+  adduserlistitem: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(username,fieldname,data)</span></span>{
+    dataRef.child(username).child(fieldname).push(data,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span></span>{
+      <span class="hljs-keyword">if</span> (err){
+        actions.error(<span class="hljs-string">"User field list add failed: "</span>+err);
+      } <span class="hljs-keyword">else</span> {
+        actions.adduserlistitemsuccess();
+      }
+    });
+  },
+  deleteuserfield: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(username,fieldname)</span></span>{
+    dataRef.child(username).child(fieldname).remove(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span></span>{
+      <span class="hljs-keyword">if</span> (err){
+        actions.error(<span class="hljs-string">"User field removal failed: "</span>+err);
+      } <span class="hljs-keyword">else</span> {
+        actions.deleteuserfieldsuccess();
       }
     });
   },

@@ -9,6 +9,8 @@ module.exports = Reflux.createStore({
     this.listenTo(actions.sendchatmsgsuccess,this.updateUserChatCount.bind(this));
     this.listenTo(actions.finishlogin,this.updateUserLoginCount.bind(this));
     this.listenTo(actions.updateuserfield,"updateUserField");
+    this.listenTo(actions.adduserlistitem,"adduserlistitem");
+    this.listenTo(actions.deleteuserfield,"deleteuserfield");
   },
   transmitUserData: function(snapshot){
     actions.userdataloaded();
@@ -23,9 +25,27 @@ module.exports = Reflux.createStore({
   updateUserField: function(username,fieldname,data){
     dataRef.child(username).child(fieldname).set(data,function(err){
       if (err){
-        actions.error("User field save failed: "+err);
+        actions.error("User field data update failed: "+err);
       } else {
         actions.updateuserfieldsuccess();
+      }
+    });
+  },
+  adduserlistitem: function(username,fieldname,data){
+    dataRef.child(username).child(fieldname).push(data,function(err){
+      if (err){
+        actions.error("User field list add failed: "+err);
+      } else {
+        actions.adduserlistitemsuccess();
+      }
+    });
+  },
+  deleteuserfield: function(username,fieldname){
+    dataRef.child(username).child(fieldname).remove(function(err){
+      if (err){
+        actions.error("User field removal failed: "+err);
+      } else {
+        actions.deleteuserfieldsuccess();
       }
     });
   },

@@ -38,7 +38,7 @@
     chatStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/chatstore'</span>),
     chatcountStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/chatcountstore'</span>),
     loginStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/loginstore'</span>),
-    Form = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./form'</span>),
+    Chatform = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./chatform'</span>),
     Link = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-router'</span>).Link,
     moment = <span class="hljs-built_in">require</span>(<span class="hljs-string">'moment'</span>),
     actions = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../actions'</span>);
@@ -74,7 +74,7 @@
     return (
       <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Total msg count: {this.state.count||0}<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">Form</span> <span class="hljs-attribute">validate</span>=<span class="hljs-value">{this.validateMessage}</span> <span class="hljs-attribute">submit</span>=<span class="hljs-value">{this.sendMessage}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">Chatform</span> <span class="hljs-attribute">validate</span>=<span class="hljs-value">{this.validateMessage}</span> <span class="hljs-attribute">submit</span>=<span class="hljs-value">{this.sendMessage}</span> /&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">table</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'chat-table'</span>&gt;</span>
           {messages}
         <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>

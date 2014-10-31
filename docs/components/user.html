@@ -35,7 +35,8 @@
 <span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>),
     listenTo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'reflux'</span>).listenTo,
     userStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/userstore'</span>),
-    UserField = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./userfield'</span>);
+    UserDataField = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./userdatafield'</span>),
+    UserDataList = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./userdatalist'</span>);
 
 <span class="hljs-keyword">var</span> User = React.createClass({
   mixins: [listenTo(userStore,<span class="hljs-string">"getUserData"</span>,<span class="hljs-string">"getUserData"</span>)],
@@ -60,11 +61,11 @@
           <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Chats:<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>{user.chats}<span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Description:<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">UserField</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"desc"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">UserDataField</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"desc"</span>/&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>repo name:<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span>
-            <span class="hljs-tag">&lt;<span class="hljs-title">UserField</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"repo"</span>/&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">UserDataField</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"repo"</span>/&gt;</span>
             {repo ? (
               <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>
                 {' '}<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">{'http:</span>//<span class="hljs-attribute">github.com</span>/'+<span class="hljs-attribute">name</span>+"/"+<span class="hljs-attribute">repo</span>}&gt;</span>code<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
@@ -72,6 +73,10 @@
               <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
             ) : ""}
           <span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Pull requests<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">UserDataList</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"pulls"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">dt</span>&gt;</span>Blog posts<span class="hljs-tag">&lt;/<span class="hljs-title">dt</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">dd</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">UserDataList</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{name}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"blogs"</span>/&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">dd</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">dl</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     ) : <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Couldn't find user {name}.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>;</span>

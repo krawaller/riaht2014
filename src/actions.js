@@ -14,5 +14,9 @@ module.exports = Reflux.createActions([
 	"clearlog",
 	"userdataloaded",
 	"updateuserfield",
-	"updateuserfieldsuccess"
+	"updateuserfieldsuccess",
+	"adduserlistitem",
+	"adduserlistitemsuccess",
+	"deleteuserfield",
+	"deleteuserfieldsuccess"
 ]);

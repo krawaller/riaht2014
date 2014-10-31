@@ -34767,7 +34767,11 @@ module.exports = Reflux.createActions([
 	"clearlog",
 	"userdataloaded",
 	"updateuserfield",
-	"updateuserfieldsuccess"
+	"updateuserfieldsuccess",
+	"adduserlistitem",
+	"adduserlistitemsuccess",
+	"deleteuserfield",
+	"deleteuserfieldsuccess"
 ]);
 },{"reflux":203}],209:[function(require,module,exports){
 /** @jsx React.DOM */
@@ -34795,7 +34799,7 @@ var App = (
   )
 );
 module.exports = App;
-},{"./chat":210,"./multiroute":214,"./start.js":216,"./user":218,"./userlist":220,"./wrapper":221,"react-router":18}],210:[function(require,module,exports){
+},{"./chat":210,"./multiroute":214,"./start.js":216,"./user":218,"./userlist":221,"./wrapper":222,"react-router":18}],210:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34804,7 +34808,7 @@ var React = require('react'),
     chatStore = require('../stores/chatstore'),
     chatcountStore = require('../stores/chatcountstore'),
     loginStore = require('../stores/loginstore'),
-    Form = require('./form'),
+    Chatform = require('./chatform'),
     Link = require('react-router').Link,
     moment = require('moment'),
     actions = require('../actions');
@@ -34840,7 +34844,7 @@ var Chat = React.createClass({displayName: 'Chat',
     return (
       React.DOM.div(null, 
         React.DOM.p(null, "Total msg count: ", this.state.count||0), 
-        Form({validate: this.validateMessage, submit: this.sendMessage}), 
+        Chatform({validate: this.validateMessage, submit: this.sendMessage}), 
         React.DOM.table({className: "chat-table"}, 
           messages
         )
@@ -34851,7 +34855,42 @@ var Chat = React.createClass({displayName: 'Chat',
 
 module.exports = Chat;
 
-},{"../actions":208,"../stores/chatcountstore":223,"../stores/chatstore":224,"../stores/loginstore":225,"./form":212,"lodash":7,"moment":8,"react":194,"react-router":18,"reflux":203}],211:[function(require,module,exports){
+},{"../actions":208,"../stores/chatcountstore":224,"../stores/chatstore":225,"../stores/loginstore":226,"./chatform":211,"lodash":7,"moment":8,"react":194,"react-router":18,"reflux":203}],211:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    actions = require('../actions');
+
+var Chatform = React.createClass({displayName: 'Chatform',
+  onSubmit: function(e){
+    e.preventDefault();
+    var node = this.refs['field'].getDOMNode(),
+        val = (node.value || ''),
+        err = "";
+    if (this.props.validate && (err=this.props.validate(val))){
+      actions.error(err);
+    } else {
+      this.props.submit(val);
+      node.value = '';
+    }
+    return false;
+  },
+  render: function() {
+    return (
+      React.DOM.form({onSubmit: this.onSubmit}, 
+        React.DOM.div({className: "input-group"}, 
+          React.DOM.input({className: "form-control", type: "text", ref: "field"}), 
+          React.DOM.span({className: "input-group-btn"}, 
+            React.DOM.button({className: "btn btn-default", type: "submit"}, "Send!")
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = Chatform;
+},{"../actions":208,"react":194}],212:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34879,38 +34918,7 @@ var Console = React.createClass({displayName: 'Console',
 });
 
 module.exports = Console;
-},{"../actions":208,"../stores/logstore":226,"lodash":7,"react":194,"reflux":203}],212:[function(require,module,exports){
-/** @jsx React.DOM */
-
-var React = require('react'),
-    actions = require('../actions');
-
-var Form = React.createClass({displayName: 'Form',
-  onSubmit: function(){
-    var node = this.refs['field'].getDOMNode(),
-        val = (node.value || ''),
-        err = "";
-    if (this.props.validate && (err=this.props.validate(val))){
-      actions.error(err);
-    } else {
-      this.props.submit(val);
-      node.value = '';
-    }
-  },
-  render: function() {
-    return (
-      React.DOM.div({className: "input-group"}, 
-        React.DOM.input({className: "form-control", type: "text", ref: "field"}), 
-        React.DOM.span({className: "input-group-btn"}, 
-          React.DOM.button({className: "btn btn-default", type: "button", onClick: this.onSubmit}, "Send!")
-        )
-      )
-    );
-  }
-});
-
-module.exports = Form;
-},{"../actions":208,"react":194}],213:[function(require,module,exports){
+},{"../actions":208,"../stores/logstore":227,"lodash":7,"react":194,"reflux":203}],213:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34929,7 +34937,7 @@ var Loginbutton = React.createClass({displayName: 'Loginbutton',
   }
 });
 module.exports = Loginbutton;
-},{"../actions":208,"../stores/loginstore":225,"react":194,"reflux":203}],214:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":226,"react":194,"reflux":203}],214:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
@@ -35006,7 +35014,8 @@ module.exports = Topbar;
 var React = require('react'),
     listenTo = require('reflux').listenTo,
     userStore = require('../stores/userstore'),
-    UserField = require('./userfield');
+    UserDataField = require('./userdatafield'),
+    UserDataList = require('./userdatalist');
 
 var User = React.createClass({displayName: 'User',
   mixins: [listenTo(userStore,"getUserData","getUserData")],
@@ -35031,18 +35040,22 @@ var User = React.createClass({displayName: 'User',
           React.DOM.dt(null, "Chats:"), React.DOM.dd(null, user.chats), 
           React.DOM.dt(null, "Description:"), 
           React.DOM.dd(null, 
-            UserField({username: name, path: "desc"})
+            UserDataField({username: name, path: "desc"})
           ), 
           React.DOM.dt(null, "repo name:"), 
           React.DOM.dd(null, 
-            UserField({username: name, path: "repo"}), 
+            UserDataField({username: name, path: "repo"}), 
             repo ? (
               React.DOM.span(null, 
                 ' ', React.DOM.a({href: 'http://github.com/'+name+"/"+repo}, "code"), 
                 ' ', React.DOM.a({href: 'https://'+name+'.github.io/'+repo+"/dist"}, "app")
               )
             ) : ""
-          )
+          ), 
+          React.DOM.dt(null, "Pull requests"), 
+          React.DOM.dd(null, UserDataList({username: name, path: "pulls"})), 
+          React.DOM.dt(null, "Blog posts"), 
+          React.DOM.dd(null, UserDataList({username: name, path: "blogs"}))
         )
       )
     ) : React.DOM.p(null, "Couldn't find user ", name, ".");
@@ -35051,7 +35064,7 @@ var User = React.createClass({displayName: 'User',
 
 module.exports = User;
 
-},{"../stores/userstore":228,"./userfield":219,"react":194,"reflux":203}],219:[function(require,module,exports){
+},{"../stores/userstore":229,"./userdatafield":219,"./userdatalist":220,"react":194,"reflux":203}],219:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35063,7 +35076,7 @@ var React = require('react'),
     actions = require('../actions'),
     loginStore = require('../stores/loginstore');
 
-var UserField = React.createClass({displayName: 'UserField',
+var UserDataField = React.createClass({displayName: 'UserDataField',
   mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
   getInitialState: function(){return {val:""};},
   getUserData: function(users){
@@ -35084,27 +35097,107 @@ var UserField = React.createClass({displayName: 'UserField',
   stopEdit: function(){
   	this.setState({editing:false});
   },
+  delete: function(){
+    actions.deleteuserfield(this.props.username,this.props.path);
+  },
   render: function(){
     return this.state.editing ? (
-      React.DOM.form({style: {display:'inline-block'}, onSubmit: this.save}, 
-        React.DOM.input({type: "text", ref: "input", defaultValue: this.state.val||""}), 
-        ' ', React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.stopEdit}, "Cancel"), 
-        ' ', React.DOM.button({className: "btn btn-default btn-xs", type: "submit"}, "Save")
+      React.DOM.form({onSubmit: this.save}, 
+        React.DOM.div({className: "input-group"}, 
+          React.DOM.input({className: "form-control", type: "text", ref: "input", defaultValue: this.state.val||""}), 
+          React.DOM.div({className: "input-group-btn"}, 
+            React.DOM.button({className: "btn btn-default", type: "button", onClick: this.stopEdit}, "Cancel"), 
+            React.DOM.button({className: "btn btn-default", type: "submit"}, "Save")
+          )
+        )
       )
     ) : (
       React.DOM.span(null, 
         React.DOM.span(null, this.state.val), 
         ' ', 
-        this.state.username===this.props.username?
-          React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.startEdit}, "Edit"):''
+        !this.props.surpressedit && this.state.username===this.props.username?
+          React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.startEdit}, "Edit"):'', 
+        ' ', 
+        !this.props.surpressedit && this.state.username===this.props.username && this.props.allowdelete?
+          React.DOM.button({className: "btn btn-danger btn-xs", type: "button", onClick: this.delete}, "Delete"):''
       )
     );
   }
 });
 
-module.exports = UserField;
+module.exports = UserDataField;
 
-},{"../actions":208,"../stores/loginstore":225,"../stores/userstore":228,"lodash":7,"react":194,"reflux":203}],220:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":226,"../stores/userstore":229,"lodash":7,"react":194,"reflux":203}],220:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    Reflux = require('reflux'),
+    listenTo = Reflux.listenTo,
+    connect = Reflux.connect,
+    userStore = require('../stores/userstore'),
+    _ = require('lodash'),
+    actions = require('../actions'),
+    loginStore = require('../stores/loginstore'),
+    UserDataField = require('./userdatafield');
+
+var UserDataList = React.createClass({displayName: 'UserDataList',
+  mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
+  getInitialState: function(){return {val:{}};},
+  getUserData: function(users){
+  	var val = _.reduce([this.props.username].concat(this.props.path.split("/")),function(memo,step){
+      return memo[step];
+  	},users) || {};
+  	this.setState({val:val});
+  },
+  startEdit: function(){
+  	this.setState({editing:true});
+  },
+  addItem: function(e){
+  	e.preventDefault();
+    var val = this.refs.input.getDOMNode().value;
+    if (!val){
+      actions.error("Cannot add empty list item!");
+
+    } else {
+      actions.adduserlistitem(this.props.username,this.props.path,val);
+      this.stopEdit();
+    }
+    return false;
+  },
+  stopEdit: function(){
+  	this.setState({editing:false});
+  },
+  render: function(){
+    var lines = _.map(this.state.val,function(val,key){
+      return React.DOM.div({key: key}, UserDataField({username: this.props.username, path: this.props.path+"/"+key, surpressedit: !this.state.editing, allowdelete: "true"}));
+    },this);
+    return (
+      React.DOM.div({className: this.state.editing?'panel panel-default':''}, 
+        (lines.length?lines:[React.DOM.div({className: "small"}, "list is empty")]).concat(this.state.editing&&this.props.username===this.state.username?(
+          React.DOM.div(null, 
+            React.DOM.form({className: "panel-body", onSubmit: this.addItem}, 
+              React.DOM.div({className: "input-group"}, 
+                React.DOM.input({className: "form-control", type: "text", ref: "input"}), 
+                React.DOM.div({className: "input-group-btn"}, 
+                  React.DOM.button({className: "btn btn-default", type: "submit"}, "Add")
+                )
+              )
+            ), 
+            React.DOM.div({className: "panel-footer"}, 
+              React.DOM.button({className: "btn btn-default btn-xs", onClick: this.stopEdit}, "Stop editing")
+            )
+          )
+        ):(
+          this.props.username===this.state.username?React.DOM.button({className: "btn btn-default btn-xs", onClick: this.startEdit}, "Edit list"):""
+        ))
+      )
+    );
+  }
+});
+
+module.exports = UserDataList;
+
+},{"../actions":208,"../stores/loginstore":226,"../stores/userstore":229,"./userdatafield":219,"lodash":7,"react":194,"reflux":203}],221:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35117,11 +35210,9 @@ var Userlist = React.createClass({displayName: 'Userlist',
   mixins: [connect(userStore,"users")],
   getInitialState: function(){return {};},
   render: function(){
-    console.log("RENDER IN USERLIST");
     var users = _.map(this.state.users,function(user,key){
       return React.DOM.tr(null, React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), React.DOM.td(null, "Logins:", user.logins), React.DOM.td(null, "Chats:", user.chats));
     },this);
-    console.log("here be the stuff",users);
     return (
       React.DOM.div(null, 
         React.DOM.table({className: "user-table"}, 
@@ -35134,7 +35225,7 @@ var Userlist = React.createClass({displayName: 'Userlist',
 
 module.exports = Userlist;
 
-},{"../stores/userstore":228,"lodash":7,"react":194,"react-router":18,"reflux":203}],221:[function(require,module,exports){
+},{"../stores/userstore":229,"lodash":7,"react":194,"react-router":18,"reflux":203}],222:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35161,7 +35252,7 @@ var Wrapper = React.createClass({displayName: 'Wrapper',
   }
 });
 module.exports = Wrapper;
-},{"./console":211,"./topbar":217,"react":194}],222:[function(require,module,exports){
+},{"./console":212,"./topbar":217,"react":194}],223:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
@@ -35170,7 +35261,7 @@ var App = require('./components/app'),
 React.renderComponent(
   App,
   document.querySelector('body'));
-},{"./components/app":209,"react":194}],223:[function(require,module,exports){
+},{"./components/app":209,"react":194}],224:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     countRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chatcount"),
@@ -35192,7 +35283,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],224:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],225:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
@@ -35228,7 +35319,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],225:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],226:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
@@ -35274,7 +35365,7 @@ module.exports = Reflux.createStore({
     return this.last;
   }
 });
-},{"../actions":208,"./users.json":227,"firebase":1,"reflux":203}],226:[function(require,module,exports){
+},{"../actions":208,"./users.json":228,"firebase":1,"reflux":203}],227:[function(require,module,exports){
 var Reflux = require('reflux'),
     actions = require('../actions'),
     _ = require('lodash'),
@@ -35288,7 +35379,9 @@ var Reflux = require('reflux'),
       finishlogout: ["Finished logout","net"],
       error: ["Error: %S","error"],
       userdataloaded: ["User data received","net"],
-      updateuserfieldsuccess: ["Updated user data field","net"]
+      updateuserfieldsuccess: ["Updated user data field","net"],
+      adduserlistitemsuccess: ["Added list item","net"],
+      deleteuserfieldsuccess: ["Deleted user field","net"]
     };
 
 module.exports = Reflux.createStore({
@@ -35306,9 +35399,9 @@ module.exports = Reflux.createStore({
     this.trigger((this.messages = [[stamp,msg,def[1]]].concat(this.messages)));
   }
 });
-},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],227:[function(require,module,exports){
+},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],228:[function(require,module,exports){
 module.exports=["litenjacob","krawaller","hkwaller"]
-},{}],228:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     dataRef = new Firebase("https://riaht2014.firebaseio.com/web/data/users"),
@@ -35320,6 +35413,8 @@ module.exports = Reflux.createStore({
     this.listenTo(actions.sendchatmsgsuccess,this.updateUserChatCount.bind(this));
     this.listenTo(actions.finishlogin,this.updateUserLoginCount.bind(this));
     this.listenTo(actions.updateuserfield,"updateUserField");
+    this.listenTo(actions.adduserlistitem,"adduserlistitem");
+    this.listenTo(actions.deleteuserfield,"deleteuserfield");
   },
   transmitUserData: function(snapshot){
     actions.userdataloaded();
@@ -35334,9 +35429,27 @@ module.exports = Reflux.createStore({
   updateUserField: function(username,fieldname,data){
     dataRef.child(username).child(fieldname).set(data,function(err){
       if (err){
-        actions.error("User field save failed: "+err);
+        actions.error("User field data update failed: "+err);
       } else {
         actions.updateuserfieldsuccess();
+      }
+    });
+  },
+  adduserlistitem: function(username,fieldname,data){
+    dataRef.child(username).child(fieldname).push(data,function(err){
+      if (err){
+        actions.error("User field list add failed: "+err);
+      } else {
+        actions.adduserlistitemsuccess();
+      }
+    });
+  },
+  deleteuserfield: function(username,fieldname){
+    dataRef.child(username).child(fieldname).remove(function(err){
+      if (err){
+        actions.error("User field removal failed: "+err);
+      } else {
+        actions.deleteuserfieldsuccess();
       }
     });
   },
@@ -35344,4 +35457,4 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}]},{},[222])
+},{"../actions":208,"firebase":1,"reflux":203}]},{},[223])

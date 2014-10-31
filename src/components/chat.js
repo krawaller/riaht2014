@@ -6,7 +6,7 @@ var React = require('react'),
     chatStore = require('../stores/chatstore'),
     chatcountStore = require('../stores/chatcountstore'),
     loginStore = require('../stores/loginstore'),
-    Form = require('./form'),
+    Chatform = require('./chatform'),
     Link = require('react-router').Link,
     moment = require('moment'),
     actions = require('../actions');
@@ -42,7 +42,7 @@ var Chat = React.createClass({
     return (
       <div>
         <p>Total msg count: {this.state.count||0}</p>
-        <Form validate={this.validateMessage} submit={this.sendMessage} />
+        <Chatform validate={this.validateMessage} submit={this.sendMessage} />
         <table className='chat-table'>
           {messages}
         </table>

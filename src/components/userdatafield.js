@@ -9,7 +9,7 @@ var React = require('react'),
     actions = require('../actions'),
     loginStore = require('../stores/loginstore');
 
-var UserField = React.createClass({
+var UserDataField = React.createClass({
   mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
   getInitialState: function(){return {val:""};},
   getUserData: function(users){
@@ -30,22 +30,32 @@ var UserField = React.createClass({
   stopEdit: function(){
   	this.setState({editing:false});
   },
+  delete: function(){
+    actions.deleteuserfield(this.props.username,this.props.path);
+  },
   render: function(){
     return this.state.editing ? (
-      <form style={{display:'inline-block'}} onSubmit={this.save}>
-        <input type='text' ref='input' defaultValue={this.state.val||""}/>
-        {' '}<button className='btn btn-default btn-xs' type='button' onClick={this.stopEdit}>Cancel</button>
-        {' '}<button className='btn btn-default btn-xs' type='submit'>Save</button>
+      <form onSubmit={this.save}>
+        <div className='input-group'>
+          <input className='form-control' type='text' ref='input' defaultValue={this.state.val||""}/>
+          <div className='input-group-btn'>
+            <button className='btn btn-default' type='button' onClick={this.stopEdit}>Cancel</button>
+            <button className='btn btn-default' type='submit'>Save</button>
+          </div>
+        </div>
       </form>
     ) : (
       <span>
         <span>{this.state.val}</span>
         {' '}
-        {this.state.username===this.props.username?
+        {!this.props.surpressedit && this.state.username===this.props.username?
           <button className='btn btn-default btn-xs' type='button' onClick={this.startEdit}>Edit</button>:''}
+        {' '}
+        {!this.props.surpressedit && this.state.username===this.props.username && this.props.allowdelete?
+          <button className='btn btn-danger btn-xs' type='button' onClick={this.delete}>Delete</button>:''}
       </span>
     );
   }
 });
 
-module.exports = UserField;
+module.exports = UserDataField;

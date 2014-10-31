@@ -11,7 +11,9 @@ var Reflux = require('reflux'),
       finishlogout: ["Finished logout","net"],
       error: ["Error: %S","error"],
       userdataloaded: ["User data received","net"],
-      updateuserfieldsuccess: ["Updated user data field","net"]
+      updateuserfieldsuccess: ["Updated user data field","net"],
+      adduserlistitemsuccess: ["Added list item","net"],
+      deleteuserfieldsuccess: ["Deleted user field","net"]
     };
 
 module.exports = Reflux.createStore({

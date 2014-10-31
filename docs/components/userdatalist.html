@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>userdatalist.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>userdatalist.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/** @jsx React.DOM */</span>
+
+<span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>),
+    Reflux = <span class="hljs-built_in">require</span>(<span class="hljs-string">'reflux'</span>),
+    listenTo = Reflux.listenTo,
+    connect = Reflux.connect,
+    userStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/userstore'</span>),
+    _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>),
+    actions = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../actions'</span>),
+    loginStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/loginstore'</span>),
+    UserDataField = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./userdatafield'</span>);
+
+<span class="hljs-keyword">var</span> UserDataList = React.createClass({
+  mixins: [listenTo(userStore,<span class="hljs-string">"getUserData"</span>,<span class="hljs-string">"getUserData"</span>),connect(loginStore,<span class="hljs-string">'username'</span>)],
+  getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">return</span> {val:{}};},
+  getUserData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(users)</span></span>{
+  	<span class="hljs-keyword">var</span> val = _.reduce([<span class="hljs-keyword">this</span>.props.username].concat(<span class="hljs-keyword">this</span>.props.path.split(<span class="hljs-string">"/"</span>)),<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(memo,step)</span></span>{
+      <span class="hljs-keyword">return</span> memo[step];
+  	},users) || {};
+  	<span class="hljs-keyword">this</span>.setState({val:val});
+  },
+  startEdit: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  	<span class="hljs-keyword">this</span>.setState({editing:<span class="hljs-literal">true</span>});
+  },
+  addItem: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(e)</span></span>{
+  	e.preventDefault();
+    <span class="hljs-keyword">var</span> val = <span class="hljs-keyword">this</span>.refs.input.getDOMNode().value;
+    <span class="hljs-keyword">if</span> (!val){
+      actions.error(<span class="hljs-string">"Cannot add empty list item!"</span>);
+
+    } <span class="hljs-keyword">else</span> {
+      actions.adduserlistitem(<span class="hljs-keyword">this</span>.props.username,<span class="hljs-keyword">this</span>.props.path,val);
+      <span class="hljs-keyword">this</span>.stopEdit();
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+  },
+  stopEdit: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  	<span class="hljs-keyword">this</span>.setState({editing:<span class="hljs-literal">false</span>});
+  },
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">var</span> lines = _.map(<span class="hljs-keyword">this</span>.state.val,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(val,key)</span></span>{
+      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">{key}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">UserDataField</span> <span class="hljs-attribute">username</span>=<span class="hljs-value">{this.props.username}</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">{this.props.path+"</span>/"+<span class="hljs-attribute">key</span>} <span class="hljs-attribute">surpressedit</span>=<span class="hljs-value">{!this.state.editing}</span> <span class="hljs-attribute">allowdelete</span>=<span class="hljs-value">'true'</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>;</span>
+    },<span class="hljs-keyword">this</span>);
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{this.state.editing?'panel</span> <span class="hljs-attribute">panel-default</span>'<span class="hljs-attribute">:</span>''}&gt;</span>
+        {(lines.length?lines:[<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'small'</span>&gt;</span>list is empty<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>]).concat(this.state.editing&amp;&amp;this.props.username===this.state.username?(
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel-body'</span> <span class="hljs-attribute">onSubmit</span>=<span class="hljs-value">{this.addItem}</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'input-group'</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'form-control'</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">'text'</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">'input'</span>/&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'input-group-btn'</span>&gt;</span>
+                  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default'</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">'submit'</span>&gt;</span>Add<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+                <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+              <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel-footer'</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default btn-xs'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.stopEdit}</span>&gt;</span>Stop editing<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        ):(
+          this.props.username===this.state.username?<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default btn-xs'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.startEdit}</span>&gt;</span>Edit list<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>:""
+        ))}
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    );
+  }
+});
+
+module.exports = UserDataList;
+
+</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -3,7 +3,8 @@
 var React = require('react'),
     listenTo = require('reflux').listenTo,
     userStore = require('../stores/userstore'),
-    UserField = require('./userfield');
+    UserDataField = require('./userdatafield'),
+    UserDataList = require('./userdatalist');
 
 var User = React.createClass({
   mixins: [listenTo(userStore,"getUserData","getUserData")],
@@ -28,11 +29,11 @@ var User = React.createClass({
           <dt>Chats:</dt><dd>{user.chats}</dd>
           <dt>Description:</dt>
           <dd>
-            <UserField username={name} path="desc"/>
+            <UserDataField username={name} path="desc"/>
           </dd>
           <dt>repo name:</dt>
           <dd>
-            <UserField username={name} path="repo"/>
+            <UserDataField username={name} path="repo"/>
             {repo ? (
               <span>
                 {' '}<a href={'http://github.com/'+name+"/"+repo}>code</a>
@@ -40,6 +41,10 @@ var User = React.createClass({
               </span>
             ) : ""}
           </dd>
+          <dt>Pull requests</dt>
+          <dd><UserDataList username={name} path="pulls"/></dd>
+          <dt>Blog posts</dt>
+          <dd><UserDataList username={name} path="blogs"/></dd>
         </dl>
       </div>
     ) : <p>Couldn't find user {name}.</p>;
