@@ -34977,7 +34977,20 @@ var React = require('react');
 var Start = React.createClass({displayName: 'Start',
   render: function() {
     return (
-      React.DOM.p(null, "Welcome to the JavaScript Guild!")
+     React.DOM.div(null, 
+      React.DOM.p(null, 
+        "Welcome to the ", React.DOM.strong(null, "JavaScript Guild"), "! This site supports the",  
+        ' ', React.DOM.a({href: "https://coursepress.lnu.se/kurs/ria-utveckling-med-javascript/"}, "RIA development course"), 
+        ' ', "at ", React.DOM.a({href: "http://lnu.se/"}, "Linnaeus University"), " autumn 2014."
+       ), 
+       React.DOM.p(null, 
+         "The site serves two purposes; it allows the students to enter their data so their progression can" + ' ' +
+         "be tracked, and also the site itself is an example of a RIA built with the relevant techniques (mainly React and Firebase)."
+       ), 
+       React.DOM.p(null, 
+         "For more information see the ", React.DOM.a({href: "https://coursepress.lnu.se/kurs/ria-utveckling-med-javascript/guilden/"}, "course web"), " (in Swedish)."
+       )
+     )
     );
   }
 });
@@ -35080,8 +35093,9 @@ var UserDataField = React.createClass({displayName: 'UserDataField',
   mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
   getInitialState: function(){return {val:""};},
   getUserData: function(users){
+    if (this.deleted){return;}
   	var val = _.reduce([this.props.username].concat(this.props.path.split("/")),function(memo,step){
-      return memo[step];
+      return memo && memo[step];
   	},users);
   	this.setState({val:val});
   },
@@ -35099,6 +35113,7 @@ var UserDataField = React.createClass({displayName: 'UserDataField',
   },
   delete: function(){
     actions.deleteuserfield(this.props.username,this.props.path);
+    this.deleted=true;
   },
   render: function(){
     return this.state.editing ? (
@@ -35113,7 +35128,7 @@ var UserDataField = React.createClass({displayName: 'UserDataField',
       )
     ) : (
       React.DOM.span(null, 
-        React.DOM.span(null, this.state.val), 
+        this.state.val.substr(0,4)==="http"?React.DOM.a({href: this.state.val}, this.state.val):React.DOM.span(null, this.state.val), 
         ' ', 
         !this.props.surpressedit && this.state.username===this.props.username?
           React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.startEdit}, "Edit"):'', 

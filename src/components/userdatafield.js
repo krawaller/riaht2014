@@ -13,8 +13,9 @@ var UserDataField = React.createClass({
   mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
   getInitialState: function(){return {val:""};},
   getUserData: function(users){
+    if (this.deleted){return;}
   	var val = _.reduce([this.props.username].concat(this.props.path.split("/")),function(memo,step){
-      return memo[step];
+      return memo && memo[step];
   	},users);
   	this.setState({val:val});
   },
@@ -32,6 +33,7 @@ var UserDataField = React.createClass({
   },
   delete: function(){
     actions.deleteuserfield(this.props.username,this.props.path);
+    this.deleted=true;
   },
   render: function(){
     return this.state.editing ? (
@@ -46,7 +48,7 @@ var UserDataField = React.createClass({
       </form>
     ) : (
       <span>
-        <span>{this.state.val}</span>
+        {this.state.val.substr(0,4)==="http"?<a href={this.state.val}>{this.state.val}</a>:<span>{this.state.val}</span>}
         {' '}
         {!this.props.surpressedit && this.state.username===this.props.username?
           <button className='btn btn-default btn-xs' type='button' onClick={this.startEdit}>Edit</button>:''}
