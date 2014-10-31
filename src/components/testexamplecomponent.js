@@ -1,4 +1,7 @@
 /** @jsx React.DOM */
+
+// This component isn't used in the guild, but is used as a demonstration of how tests work.
+
 var React = require('react/addons');
 var CheckboxWithLabel = React.createClass({
   getInitialState: function() {

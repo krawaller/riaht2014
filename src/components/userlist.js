@@ -7,11 +7,14 @@ var React = require('react'),
     Link = require('react-router').Link;
 
 var Userlist = React.createClass({
-  mixins: [connect(userStore)],
+  mixins: [connect(userStore,"users")],
+  getInitialState: function(){return {};},
   render: function(){
-    var users = _.map(this.state,function(user,key){
+    console.log("RENDER IN USERLIST");
+    var users = _.map(this.state.users,function(user,key){
       return <tr><td><Link to="user" params={{username:key}}>{key}</Link></td><td>Logins:{user.logins}</td><td>Chats:{user.chats}</td></tr>;
     },this);
+    console.log("here be the stuff",users);
     return (
       <div>
         <table className='user-table'>

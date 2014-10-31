@@ -41,9 +41,10 @@
   mixins: [connect(loginStore,<span class="hljs-string">"username"</span>)],
   getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">return</span> {};},
   render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">var</span> cls = <span class="hljs-string">'btn btn-default navbar-btn'</span>;
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.username ?
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.initlogout}</span>&gt;</span>log out {this.state.username}<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-      : <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.initlogin}</span>&gt;</span>log in<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>;</span>
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{cls}</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.initlogout}</span>&gt;</span>log out {this.state.username}<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+      : <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{cls}</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.initlogin}</span>&gt;</span>log in<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>;</span>
   }
 });
 <span class="hljs-built_in">module</span>.exports = Loginbutton;</pre></div></div>

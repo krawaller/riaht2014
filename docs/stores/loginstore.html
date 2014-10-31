@@ -32,36 +32,44 @@
             
             <div class="content"><div class='highlight'><pre><span class="hljs-keyword">var</span> Reflux = <span class="hljs-built_in">require</span>(<span class="hljs-string">'reflux'</span>),
     Firebase = <span class="hljs-built_in">require</span>(<span class="hljs-string">"firebase"</span>),
-    FirebaseSimpleLogin = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../../lib/firebase-simple-login'</span>),
     ref = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">"https://riaht2014.firebaseio.com/"</span>),
-    authRef = <span class="hljs-keyword">new</span> Firebase(<span class="hljs-string">"https://riaht2014.firebaseio.com/.info/authenticated"</span>),
     actions = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../actions'</span>),
     users = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./users.json'</span>);
 
 <span class="hljs-built_in">module</span>.exports = Reflux.createStore({
-  init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    <span class="hljs-keyword">this</span>.authClient = <span class="hljs-keyword">new</span> FirebaseSimpleLogin(ref, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error, user)</span> </span>{
-      <span class="hljs-keyword">if</span> (error) {
-        actions.error(<span class="hljs-string">"Login error: "</span>+error);
+  startlogin: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(tryredirect)</span></span>{
+    ref[<span class="hljs-string">"authWithOAuth"</span>+(tryredirect?<span class="hljs-string">"Redirect"</span>:<span class="hljs-string">"Popup"</span>)](<span class="hljs-string">"github"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err, user)</span> </span>{
+      <span class="hljs-keyword">if</span> (err) {
+        <span class="hljs-keyword">if</span> (err.code === <span class="hljs-string">"TRANSPORT_UNAVAILABLE"</span> &amp;&amp; !tryredirect) {
+          <span class="hljs-keyword">this</span>.startlogin(<span class="hljs-literal">true</span>);
+        } <span class="hljs-keyword">else</span> {
+          actions.error(<span class="hljs-string">"Login error: "</span>+err);
+        }
       } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (user) {
-          <span class="hljs-keyword">if</span> (users.indexOf(user.username)!==-<span class="hljs-number">1</span>){
-            actions.finishlogin(user.username);
-            <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = user.username));
-          } <span class="hljs-keyword">else</span> {
-            actions.error(<span class="hljs-string">"Github user '"</span>+user.username+<span class="hljs-string">"' isn't a member here. Add to the users.json array and do a pull request!"</span>);
-          }
+        <span class="hljs-keyword">var</span> username = user &amp;&amp; user.github &amp;&amp; user.github.username;
+        <span class="hljs-keyword">if</span> (users.indexOf(username)!==-<span class="hljs-number">1</span>){
+          actions.finishlogin(username);
+          <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = username));
+        } <span class="hljs-keyword">else</span> {
+          actions.error(<span class="hljs-string">"Github user '"</span>+username+<span class="hljs-string">"' isn't a member here. Add to the users.json array and do a pull request!"</span>);
+        }
       } <span class="hljs-keyword">else</span> {
+        actions.error(<span class="hljs-string">"Login failed, no data returned!"</span>);
         <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = <span class="hljs-literal">false</span>));
       }
     }.bind(<span class="hljs-keyword">this</span>));
-    authRef.on(<span class="hljs-string">"value"</span>,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(snapshot)</span></span>{
-      <span class="hljs-keyword">if</span> (!snapshot.val()){
+  },
+  init: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+
+    ref.onAuth(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(authData)</span></span>{
+      <span class="hljs-keyword">if</span> (!authData){
         actions.finishlogout();
         <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = <span class="hljs-literal">false</span>));
       }
     }.bind(<span class="hljs-keyword">this</span>));
-    <span class="hljs-keyword">this</span>.listenTo(actions.initlogin,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">this</span>.authClient.login(<span class="hljs-string">"github"</span>);});
-    <span class="hljs-keyword">this</span>.listenTo(actions.initlogout,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">this</span>.authClient.logout();});
+
+    <span class="hljs-keyword">this</span>.listenTo(actions.initlogin,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">this</span>.startlogin();}.bind(<span class="hljs-keyword">this</span>));
+    <span class="hljs-keyword">this</span>.listenTo(actions.initlogout,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{ref.unauth();});
   },
   getDefaultData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.last;

@@ -17,9 +17,11 @@ var Form = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <input type='text' ref='field' value={this.props.value||''} />
-        <button onClick={this.onSubmit}>Send!</button>
+      <div className='input-group'>
+        <input className='form-control' type='text' ref='field' />
+        <span className='input-group-btn'>
+          <button className='btn btn-default' type='button' onClick={this.onSubmit}>Send!</button>
+        </span>
       </div>
     );
   }

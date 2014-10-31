@@ -63,9 +63,11 @@ gulp.task('docsindex', function(){
   });
 });
 
-gulp.task('default',['lint', 'test', 'browserify', 'copyindex']);
+gulp.task('build',['browserify','copyindex']);
 
 gulp.task('docs',['builddocs','docsindex']);
+
+gulp.task('default',['lint', 'test', 'build', 'docs']);
 
 gulp.task('watch', function() {
     gulp.watch('src/**/*.*', ['default']);

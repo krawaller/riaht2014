@@ -31,7 +31,13 @@ var Chat = React.createClass({
   render: function(){
     var messages = _.map(Object.keys(this.state.messages).reverse(),function(key){
       var val = this.state.messages[key];
-      return <tr><td>{val.date}</td><td><Link to="user" params={{username:val.username}}>{val.username}</Link></td><td>{val.message}</td></tr>;
+      return (
+        <tr>
+          <td><small>{val.date} </small></td>
+          <td><Link to="user" params={{username:val.username}}>{val.username}</Link></td>
+          <td>{val.message}</td>
+        </tr>
+      );
     },this);
     return (
       <div>

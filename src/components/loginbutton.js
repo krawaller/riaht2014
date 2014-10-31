@@ -9,9 +9,10 @@ var Loginbutton = React.createClass({
   mixins: [connect(loginStore,"username")],
   getInitialState: function(){return {};},
   render: function(){
+    var cls = 'btn btn-default navbar-btn';
     return this.state.username ?
-      <button onClick={actions.initlogout}>log out {this.state.username}</button>
-      : <button onClick={actions.initlogin}>log in</button>;
+      <button className={cls} onClick={actions.initlogout}>log out {this.state.username}</button>
+      : <button className={cls} onClick={actions.initlogin}>log in</button>;
   }
 });
 module.exports = Loginbutton;

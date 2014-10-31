@@ -40,19 +40,28 @@
     dataRef.on(<span class="hljs-string">"value"</span>,<span class="hljs-keyword">this</span>.transmitUserData.bind(<span class="hljs-keyword">this</span>));
     <span class="hljs-keyword">this</span>.listenTo(actions.sendchatmsgsuccess,<span class="hljs-keyword">this</span>.updateUserChatCount.bind(<span class="hljs-keyword">this</span>));
     <span class="hljs-keyword">this</span>.listenTo(actions.finishlogin,<span class="hljs-keyword">this</span>.updateUserLoginCount.bind(<span class="hljs-keyword">this</span>));
+    <span class="hljs-keyword">this</span>.listenTo(actions.updateuserfield,<span class="hljs-string">"updateUserField"</span>);
   },
   transmitUserData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(snapshot)</span></span>{
     actions.userdataloaded();
-    <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = snapshot.val()||{}));
+    <span class="hljs-keyword">this</span>.trigger((<span class="hljs-keyword">this</span>.last = snapshot.val()||{}),snapshot);
   },
   updateUserChatCount: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(msg)</span></span>{
-    dataRef.child(msg.username).child(<span class="hljs-string">"chats"</span>).transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(count)</span></span>{<span class="hljs-keyword">return</span> (count||<span class="hljs-number">0</span>)+<span class="hljs-number">1</span>;});
+    dataRef.child(msg.username+<span class="hljs-string">"/chats"</span>).transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(count)</span></span>{<span class="hljs-keyword">return</span> (count||<span class="hljs-number">0</span>)+<span class="hljs-number">1</span>;});
   },
   updateUserLoginCount: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(username)</span></span>{
-    dataRef.child(username).child(<span class="hljs-string">"logins"</span>).transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(count)</span></span>{<span class="hljs-keyword">return</span> (count||<span class="hljs-number">0</span>)+<span class="hljs-number">1</span>;});
+    dataRef.child(username+<span class="hljs-string">"/logins"</span>).transaction(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(count)</span></span>{<span class="hljs-keyword">return</span> (count||<span class="hljs-number">0</span>)+<span class="hljs-number">1</span>;});
+  },
+  updateUserField: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(username,fieldname,data)</span></span>{
+    dataRef.child(username).child(fieldname).set(data,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(err)</span></span>{
+      <span class="hljs-keyword">if</span> (err){
+        actions.error(<span class="hljs-string">"User field save failed: "</span>+err);
+      } <span class="hljs-keyword">else</span> {
+        actions.updateuserfieldsuccess();
+      }
+    });
   },
   getDefaultData: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
-    dataRef.once(<span class="hljs-string">"value"</span>,<span class="hljs-keyword">this</span>.transmitUserData.bind(<span class="hljs-keyword">this</span>));
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.last || {};
   }
 });</pre></div></div>

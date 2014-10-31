@@ -1,5 +1,5 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-/*! @license Firebase v1.1.1 - License: https://www.firebase.com/terms/terms-of-service.html */ (function() {var k,ba=this;function l(a){return void 0!==a}function ca(){}function da(a){a.ib=function(){return a.Ld?a.Ld:a.Ld=new a}}
+/*! @license Firebase v1.1.2 - License: https://www.firebase.com/terms/terms-of-service.html */ (function() {var k,ba=this;function l(a){return void 0!==a}function ca(){}function da(a){a.ib=function(){return a.Ld?a.Ld:a.Ld=new a}}
 function ea(a){var b=typeof a;if("object"==b)if(a){if(a instanceof Array)return"array";if(a instanceof Object)return b;var c=Object.prototype.toString.call(a);if("[object Window]"==c)return"object";if("[object Array]"==c||"number"==typeof a.length&&"undefined"!=typeof a.splice&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("splice"))return"array";if("[object Function]"==c||"undefined"!=typeof a.call&&"undefined"!=typeof a.propertyIsEnumerable&&!a.propertyIsEnumerable("call"))return"function"}else return"null";
 else if("function"==b&&"undefined"==typeof a.call)return"object";return b}function fa(a){return"array"==ea(a)}function ga(a){var b=ea(a);return"array"==b||"object"==b&&"number"==typeof a.length}function p(a){return"string"==typeof a}function ha(a){return"number"==typeof a}function ia(a){return"function"==ea(a)}function ja(a){var b=typeof a;return"object"==b&&null!=a||"function"==b}function ka(a,b,c){return a.call.apply(a.bind,arguments)}
 function la(a,b,c){if(!a)throw Error();if(2<arguments.length){var d=Array.prototype.slice.call(arguments,2);return function(){var c=Array.prototype.slice.call(arguments);Array.prototype.unshift.apply(c,d);return a.apply(b,c)}}return function(){return a.apply(b,arguments)}}function r(a,b,c){r=Function.prototype.bind&&-1!=Function.prototype.bind.toString().indexOf("native code")?ka:la;return r.apply(null,arguments)}var ma=Date.now||function(){return+new Date};
@@ -14,8 +14,8 @@ function Ka(a,b,c,d){if(!d||l(c)){if(Ia(c))throw Error(y(a,b,d)+"is "+c.toString
 function La(a,b,c){if(!c||l(b))switch(b){case "value":case "child_added":case "child_removed":case "child_changed":case "child_moved":break;default:throw Error(y(a,1,c)+'must be a valid event type: "value", "child_added", "child_removed", "child_changed", or "child_moved".');}}function Ma(a,b){if(l(b)&&!Ea(b))throw Error(y(a,2,!0)+'was an invalid key: "'+b+'".  Firebase keys must be non-empty strings and can\'t contain ".", "#", "$", "/", "[", or "]").');}
 function Na(a,b){if(!p(b)||0===b.length||Da.test(b))throw Error(y(a,1,!1)+'was an invalid path: "'+b+'". Paths must be non-empty strings and can\'t contain ".", "#", "$", "[", or "]"');}function C(a,b){if(".info"===D(b))throw Error(a+" failed: Can't modify data under /.info/");}function Oa(a,b){if(!p(b))throw Error(y(a,1,!1)+"must be a valid credential (a string).");}function Pa(a,b,c){if(!p(c))throw Error(y(a,b,!1)+"must be a valid string.");}
 function E(a,b,c,d){if(!d||l(c))if(!ja(c)||null===c)throw Error(y(a,b,d)+"must be a valid object.");}function Qa(a,b,c){if(!ja(b)||null===b||!A(b,c))throw Error(y(a,1,!1)+'must contain the key "'+c+'"');if(!p(B(b,c)))throw Error(y(a,1,!1)+'must contain the key "'+c+'" with type "string"');};function F(a,b,c,d,e,f,g){this.i=a;this.path=b;this.Ga=c;this.fa=d;this.za=e;this.Ea=f;this.fb=g;if(l(this.fa)&&l(this.Ea)&&l(this.Ga))throw"Query: Can't combine startAt(), endAt(), and limit().";}F.prototype.rd=function(){x("Query.ref",0,0,arguments.length);return new G(this.i,this.path)};F.prototype.ref=F.prototype.rd;
-F.prototype.Ta=function(a,b){x("Query.on",2,4,arguments.length);La("Query.on",a,!1);z("Query.on",2,b,!1);var c=Ra("Query.on",arguments[2],arguments[3]);this.i.ec(this,a,b,c.cancel,c.$);return b};F.prototype.on=F.prototype.Ta;F.prototype.nb=function(a,b,c){x("Query.off",0,3,arguments.length);La("Query.off",a,!0);z("Query.off",2,b,!0);za("Query.off",3,c);this.i.Dc(this,a,b,c)};F.prototype.off=F.prototype.nb;
-F.prototype.Ke=function(a,b){function c(g){f&&(f=!1,e.nb(a,c),b.call(d.$,g))}x("Query.once",2,4,arguments.length);La("Query.once",a,!1);z("Query.once",2,b,!1);var d=Ra("Query.once",arguments[2],arguments[3]),e=this,f=!0;this.Ta(a,c,function(b){e.nb(a,c);d.cancel&&d.cancel.call(d.$,b)})};F.prototype.once=F.prototype.Ke;
+F.prototype.Ua=function(a,b){x("Query.on",2,4,arguments.length);La("Query.on",a,!1);z("Query.on",2,b,!1);var c=Ra("Query.on",arguments[2],arguments[3]);this.i.ec(this,a,b,c.cancel,c.$);return b};F.prototype.on=F.prototype.Ua;F.prototype.nb=function(a,b,c){x("Query.off",0,3,arguments.length);La("Query.off",a,!0);z("Query.off",2,b,!0);za("Query.off",3,c);this.i.Dc(this,a,b,c)};F.prototype.off=F.prototype.nb;
+F.prototype.Ke=function(a,b){function c(g){f&&(f=!1,e.nb(a,c),b.call(d.$,g))}x("Query.once",2,4,arguments.length);La("Query.once",a,!1);z("Query.once",2,b,!1);var d=Ra("Query.once",arguments[2],arguments[3]),e=this,f=!0;this.Ua(a,c,function(b){e.nb(a,c);d.cancel&&d.cancel.call(d.$,b)})};F.prototype.once=F.prototype.Ke;
 F.prototype.ze=function(a){x("Query.limit",1,1,arguments.length);if(!ha(a)||Math.floor(a)!==a||0>=a)throw"Query.limit: First argument must be a positive integer.";return new F(this.i,this.path,a,this.fa,this.za,this.Ea,this.fb)};F.prototype.limit=F.prototype.ze;F.prototype.ae=function(a,b){x("Query.startAt",0,2,arguments.length);Ka("Query.startAt",1,a,!0);Ma("Query.startAt",b);l(a)||(b=a=null);return new F(this.i,this.path,this.Ga,a,b,this.Ea,this.fb)};F.prototype.startAt=F.prototype.ae;
 F.prototype.Hd=function(a,b){x("Query.endAt",0,2,arguments.length);Ka("Query.endAt",1,a,!0);Ma("Query.endAt",b);return new F(this.i,this.path,this.Ga,this.fa,this.za,a,b)};F.prototype.endAt=F.prototype.Hd;F.prototype.se=function(a,b){x("Query.equalTo",1,2,arguments.length);Ka("Query.equalTo",1,a,!1);Ma("Query.equalTo",b);return this.ae(a,b).Hd(a,b)};F.prototype.equalTo=F.prototype.se;
 function Sa(a){var b={};l(a.fa)&&(b.sp=a.fa);l(a.za)&&(b.sn=a.za);l(a.Ea)&&(b.ep=a.Ea);l(a.fb)&&(b.en=a.fb);l(a.Ga)&&(b.l=a.Ga);l(a.fa)&&l(a.za)&&null===a.fa&&null===a.za&&(b.vf="l");return b}F.prototype.Wa=function(){var a=Ta(Sa(this));return"{}"===a?"default":a};
@@ -30,7 +30,7 @@ k.M=function(a,b,c,d,e){return new jb(null!=a?a:this.key,null!=b?b:this.value,nu
 k.lb=function(){return this.right.f()?this.key:this.right.lb()};k.ta=function(a,b,c){var d,e;e=this;d=c(a,e.key);e=0>d?e.M(null,null,null,e.left.ta(a,b,c),null):0===d?e.M(null,b,null,null,null):e.M(null,null,null,null,e.right.ta(a,b,c));return lb(e)};function mb(a){if(a.left.f())return eb;a.left.R()||a.left.left.R()||(a=nb(a));a=a.M(null,null,null,mb(a.left),null);return lb(a)}
 k.remove=function(a,b){var c,d;c=this;if(0>b(a,c.key))c.left.f()||c.left.R()||c.left.left.R()||(c=nb(c)),c=c.M(null,null,null,c.left.remove(a,b),null);else{c.left.R()&&(c=ob(c));c.right.f()||c.right.R()||c.right.left.R()||(c=pb(c),c.left.left.R()&&(c=ob(c),c=pb(c)));if(0===b(a,c.key)){if(c.right.f())return eb;d=kb(c.right);c=c.M(d.key,d.value,null,null,mb(c.right))}c=c.M(null,null,null,null,c.right.remove(a,b))}return lb(c)};k.R=function(){return this.color};
 function lb(a){a.right.R()&&!a.left.R()&&(a=qb(a));a.left.R()&&a.left.left.R()&&(a=ob(a));a.left.R()&&a.right.R()&&(a=pb(a));return a}function nb(a){a=pb(a);a.right.left.R()&&(a=a.M(null,null,null,null,ob(a.right)),a=qb(a),a=pb(a));return a}function qb(a){return a.right.M(null,null,a.color,a.M(null,null,!0,null,a.right.left),null)}function ob(a){return a.left.M(null,null,a.color,null,a.M(null,null,!0,a.left.right,null))}
-function pb(a){return a.M(null,null,!a.color,a.left.M(null,null,!a.left.color,null,null),a.right.M(null,null,!a.right.color,null,null))}function rb(){}k=rb.prototype;k.M=function(){return this};k.ta=function(a,b){return new jb(a,b,null)};k.remove=function(){return this};k.count=function(){return 0};k.f=function(){return!0};k.Fa=function(){return!1};k.Xa=function(){return!1};k.Lb=function(){return null};k.lb=function(){return null};k.R=function(){return!1};var eb=new rb;function sb(a){this.Cb=a;this.zc="firebase:"}k=sb.prototype;k.set=function(a,b){null==b?this.Cb.removeItem(this.zc+a):this.Cb.setItem(this.zc+a,u(b))};k.get=function(a){a=this.Cb.getItem(this.zc+a);return null==a?null:va(a)};k.remove=function(a){this.Cb.removeItem(this.zc+a)};k.Nd=!1;k.toString=function(){return this.Cb.toString()};function tb(){this.yb={}}tb.prototype.set=function(a,b){null==b?delete this.yb[a]:this.yb[a]=b};tb.prototype.get=function(a){return A(this.yb,a)?this.yb[a]:null};tb.prototype.remove=function(a){delete this.yb[a]};tb.prototype.Nd=!0;function wb(a){try{if("undefined"!==typeof window&&"undefined"!==typeof window[a]){var b=window[a];b.setItem("firebase:sentinel","cache");b.removeItem("firebase:sentinel");return new sb(b)}}catch(c){}return new tb}var xb=wb("localStorage"),J=wb("sessionStorage");function yb(a,b,c,d,e){this.host=a.toLowerCase();this.domain=this.host.substr(this.host.indexOf(".")+1);this.Ya=b;this.Sa=c;this.Ye=d;this.yc=e||"";this.ia=xb.get("host:"+a)||this.host}function zb(a,b){b!==a.ia&&(a.ia=b,"s-"===a.ia.substr(0,2)&&xb.set("host:"+a.host,a.ia))}yb.prototype.toString=function(){var a=(this.Ya?"https://":"http://")+this.host;this.yc&&(a+="<"+this.yc+">");return a};function Ab(){this.ra=-1};function Bb(){this.ra=-1;this.ra=64;this.F=[];this.Sc=[];this.ge=[];this.vc=[];this.vc[0]=128;for(var a=1;a<this.ra;++a)this.vc[a]=0;this.Kc=this.kb=0;this.reset()}oa(Bb,Ab);Bb.prototype.reset=function(){this.F[0]=1732584193;this.F[1]=4023233417;this.F[2]=2562383102;this.F[3]=271733878;this.F[4]=3285377520;this.Kc=this.kb=0};
+function pb(a){return a.M(null,null,!a.color,a.left.M(null,null,!a.left.color,null,null),a.right.M(null,null,!a.right.color,null,null))}function rb(){}k=rb.prototype;k.M=function(){return this};k.ta=function(a,b){return new jb(a,b,null)};k.remove=function(){return this};k.count=function(){return 0};k.f=function(){return!0};k.Fa=function(){return!1};k.Xa=function(){return!1};k.Lb=function(){return null};k.lb=function(){return null};k.R=function(){return!1};var eb=new rb;function sb(a){this.Cb=a;this.zc="firebase:"}k=sb.prototype;k.set=function(a,b){null==b?this.Cb.removeItem(this.zc+a):this.Cb.setItem(this.zc+a,u(b))};k.get=function(a){a=this.Cb.getItem(this.zc+a);return null==a?null:va(a)};k.remove=function(a){this.Cb.removeItem(this.zc+a)};k.Nd=!1;k.toString=function(){return this.Cb.toString()};function tb(){this.yb={}}tb.prototype.set=function(a,b){null==b?delete this.yb[a]:this.yb[a]=b};tb.prototype.get=function(a){return A(this.yb,a)?this.yb[a]:null};tb.prototype.remove=function(a){delete this.yb[a]};tb.prototype.Nd=!0;function wb(a){try{if("undefined"!==typeof window&&"undefined"!==typeof window[a]){var b=window[a];b.setItem("firebase:sentinel","cache");b.removeItem("firebase:sentinel");return new sb(b)}}catch(c){}return new tb}var xb=wb("localStorage"),J=wb("sessionStorage");function yb(a,b,c,d,e){this.host=a.toLowerCase();this.domain=this.host.substr(this.host.indexOf(".")+1);this.Ya=b;this.Ta=c;this.Ye=d;this.yc=e||"";this.ia=xb.get("host:"+a)||this.host}function zb(a,b){b!==a.ia&&(a.ia=b,"s-"===a.ia.substr(0,2)&&xb.set("host:"+a.host,a.ia))}yb.prototype.toString=function(){var a=(this.Ya?"https://":"http://")+this.host;this.yc&&(a+="<"+this.yc+">");return a};function Ab(){this.ra=-1};function Bb(){this.ra=-1;this.ra=64;this.F=[];this.Sc=[];this.ge=[];this.vc=[];this.vc[0]=128;for(var a=1;a<this.ra;++a)this.vc[a]=0;this.Kc=this.kb=0;this.reset()}oa(Bb,Ab);Bb.prototype.reset=function(){this.F[0]=1732584193;this.F[1]=4023233417;this.F[2]=2562383102;this.F[3]=271733878;this.F[4]=3285377520;this.Kc=this.kb=0};
 function Cb(a,b,c){c||(c=0);var d=a.ge;if(p(b))for(var e=0;16>e;e++)d[e]=b.charCodeAt(c)<<24|b.charCodeAt(c+1)<<16|b.charCodeAt(c+2)<<8|b.charCodeAt(c+3),c+=4;else for(e=0;16>e;e++)d[e]=b[c]<<24|b[c+1]<<16|b[c+2]<<8|b[c+3],c+=4;for(e=16;80>e;e++){var f=d[e-3]^d[e-8]^d[e-14]^d[e-16];d[e]=(f<<1|f>>>31)&4294967295}b=a.F[0];c=a.F[1];for(var g=a.F[2],h=a.F[3],m=a.F[4],n,e=0;80>e;e++)40>e?20>e?(f=h^c&(g^h),n=1518500249):(f=c^g^h,n=1859775393):60>e?(f=c&g|h&(c|g),n=2400959708):(f=c^g^h,n=3395469782),f=(b<<
 5|b>>>27)+f+m+n+d[e]&4294967295,m=h,h=g,g=(c<<30|c>>>2)&4294967295,c=b,b=f;a.F[0]=a.F[0]+b&4294967295;a.F[1]=a.F[1]+c&4294967295;a.F[2]=a.F[2]+g&4294967295;a.F[3]=a.F[3]+h&4294967295;a.F[4]=a.F[4]+m&4294967295}
 Bb.prototype.update=function(a,b){l(b)||(b=a.length);for(var c=b-this.ra,d=0,e=this.Sc,f=this.kb;d<b;){if(0==f)for(;d<=c;)Cb(this,a,d),d+=this.ra;if(p(a))for(;d<b;){if(e[f]=a.charCodeAt(d),++f,++d,f==this.ra){Cb(this,e);f=0;break}}else for(;d<b;)if(e[f]=a[d],++f,++d,f==this.ra){Cb(this,e);f=0;break}}this.kb=f;this.Kc+=b};function Db(){return Math.floor(2147483648*Math.random()).toString(36)+Math.abs(Math.floor(2147483648*Math.random())^ma()).toString(36)};var L=Array.prototype,Eb=L.indexOf?function(a,b,c){return L.indexOf.call(a,b,c)}:function(a,b,c){c=null==c?0:0>c?Math.max(0,a.length+c):c;if(p(a))return p(b)&&1==b.length?a.indexOf(b,c):-1;for(;c<a.length;c++)if(c in a&&a[c]===b)return c;return-1},Fb=L.forEach?function(a,b,c){L.forEach.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=p(a)?a.split(""):a,f=0;f<d;f++)f in e&&b.call(c,e[f],f,a)},Gb=L.filter?function(a,b,c){return L.filter.call(a,b,c)}:function(a,b,c){for(var d=a.length,e=[],f=0,g=p(a)?
@@ -48,56 +48,57 @@ function jc(a,b){return a!==b?null===a?-1:null===b?1:typeof a!==typeof b?"number
 function Ta(a){if("object"!==typeof a||null===a)return u(a);var b=[],c;for(c in a)b.push(c);b.sort();c="{";for(var d=0;d<b.length;d++)0!==d&&(c+=","),c+=u(b[d]),c+=":",c+=Ta(a[b[d]]);return c+"}"}function nc(a,b){if(a.length<=b)return[a];for(var c=[],d=0;d<a.length;d+=b)d+b>a?c.push(a.substring(d,a.length)):c.push(a.substring(d,d+b));return c}function oc(a,b){if(fa(a))for(var c=0;c<a.length;++c)b(c,a[c]);else pc(a,b)}function qc(a,b){return b?r(a,b):a}
 function rc(a){v(!Ia(a),"Invalid JSON number");var b,c,d,e;0===a?(d=c=0,b=-Infinity===1/a?1:0):(b=0>a,a=Math.abs(a),a>=Math.pow(2,-1022)?(d=Math.min(Math.floor(Math.log(a)/Math.LN2),1023),c=d+1023,d=Math.round(a*Math.pow(2,52-d)-Math.pow(2,52))):(c=0,d=Math.round(a/Math.pow(2,-1074))));e=[];for(a=52;a;a-=1)e.push(d%2?1:0),d=Math.floor(d/2);for(a=11;a;a-=1)e.push(c%2?1:0),c=Math.floor(c/2);e.push(b?1:0);e.reverse();b=e.join("");c="";for(a=0;64>a;a+=8)d=parseInt(b.substr(a,8),2).toString(16),1===d.length&&
 (d="0"+d),c+=d;return c.toLowerCase()}function sc(a){var b="Unknown Error";"too_big"===a?b="The data requested exceeds the maximum size that can be accessed with a single request.":"permission_denied"==a?b="Client doesn't have permission to access the desired data.":"unavailable"==a&&(b="The service is unavailable");b=Error(a+": "+b);b.code=a.toUpperCase();return b}var tc=/^-?\d{1,10}$/;function lc(a){return tc.test(a)&&(a=Number(a),-2147483648<=a&&2147483647>=a)?a:null}
-function uc(a){try{a()}catch(b){setTimeout(function(){throw b;},Math.floor(0))}}function P(a,b){if(ia(a)){var c=Array.prototype.slice.call(arguments,1).slice();uc(function(){a.apply(null,c)})}};function vc(a,b){this.H=a;v(null!==this.H,"LeafNode shouldn't be created with null value.");this.pb="undefined"!==typeof b?b:null}k=vc.prototype;k.Q=function(){return!0};k.m=function(){return this.pb};k.Ka=function(a){return new vc(this.H,a)};k.P=function(){return Q};k.N=function(a){return null===D(a)?this:Q};k.ha=function(){return null};k.K=function(a,b){return(new R).K(a,b).Ka(this.pb)};k.Ba=function(a,b){var c=D(a);return null===c?b:this.K(c,Q.Ba(Ua(a),b))};k.f=function(){return!1};k.qc=function(){return 0};
-k.X=function(a){return a&&null!==this.m()?{".value":this.k(),".priority":this.m()}:this.k()};k.hash=function(){var a="";null!==this.m()&&(a+="priority:"+wc(this.m())+":");var b=typeof this.H,a=a+(b+":"),a="number"===b?a+rc(this.H):a+this.H;return $b(a)};k.k=function(){return this.H};k.toString=function(){return"string"===typeof this.H?this.H:'"'+this.H+'"'};function xc(a,b){return jc(a.la,b.la)||kc(a.name,b.name)}function yc(a,b){return kc(a.name,b.name)}function zc(a,b){return kc(a,b)};function R(a,b){this.o=a||new cb(zc);this.pb="undefined"!==typeof b?b:null}k=R.prototype;k.Q=function(){return!1};k.m=function(){return this.pb};k.Ka=function(a){return new R(this.o,a)};k.K=function(a,b){var c=this.o.remove(a);b&&b.f()&&(b=null);null!==b&&(c=c.ta(a,b));return b&&null!==b.m()?new Ac(c,null,this.pb):new R(c,this.pb)};k.Ba=function(a,b){var c=D(a);if(null===c)return b;var d=this.P(c).Ba(Ua(a),b);return this.K(c,d)};k.f=function(){return this.o.f()};k.qc=function(){return this.o.count()};
+function uc(a){try{a()}catch(b){setTimeout(function(){throw b;},Math.floor(0))}}function P(a,b){if(ia(a)){var c=Array.prototype.slice.call(arguments,1).slice();uc(function(){a.apply(null,c)})}};function vc(a,b){this.H=a;v(null!==this.H,"LeafNode shouldn't be created with null value.");this.pb="undefined"!==typeof b?b:null}k=vc.prototype;k.Q=function(){return!0};k.m=function(){return this.pb};k.La=function(a){return new vc(this.H,a)};k.P=function(){return Q};k.N=function(a){return null===D(a)?this:Q};k.ha=function(){return null};k.K=function(a,b){return(new R).K(a,b).La(this.pb)};k.Ba=function(a,b){var c=D(a);return null===c?b:this.K(c,Q.Ba(Ua(a),b))};k.f=function(){return!1};k.qc=function(){return 0};
+k.X=function(a){return a&&null!==this.m()?{".value":this.k(),".priority":this.m()}:this.k()};k.hash=function(){var a="";null!==this.m()&&(a+="priority:"+wc(this.m())+":");var b=typeof this.H,a=a+(b+":"),a="number"===b?a+rc(this.H):a+this.H;return $b(a)};k.k=function(){return this.H};k.toString=function(){return"string"===typeof this.H?this.H:'"'+this.H+'"'};function xc(a,b){return jc(a.la,b.la)||kc(a.name,b.name)}function yc(a,b){return kc(a.name,b.name)}function zc(a,b){return kc(a,b)};function R(a,b){this.o=a||new cb(zc);this.pb="undefined"!==typeof b?b:null}k=R.prototype;k.Q=function(){return!1};k.m=function(){return this.pb};k.La=function(a){return new R(this.o,a)};k.K=function(a,b){var c=this.o.remove(a);b&&b.f()&&(b=null);null!==b&&(c=c.ta(a,b));return b&&null!==b.m()?new Ac(c,null,this.pb):new R(c,this.pb)};k.Ba=function(a,b){var c=D(a);if(null===c)return b;var d=this.P(c).Ba(Ua(a),b);return this.K(c,d)};k.f=function(){return this.o.f()};k.qc=function(){return this.o.count()};
 var Bc=/^(0|[1-9]\d*)$/;k=R.prototype;k.X=function(a){if(this.f())return null;var b={},c=0,d=0,e=!0;this.B(function(f,g){b[f]=g.X(a);c++;e&&Bc.test(f)?d=Math.max(d,Number(f)):e=!1});if(!a&&e&&d<2*c){var f=[],g;for(g in b)f[g]=b[g];return f}a&&null!==this.m()&&(b[".priority"]=this.m());return b};k.hash=function(){var a="";null!==this.m()&&(a+="priority:"+wc(this.m())+":");this.B(function(b,c){var d=c.hash();""!==d&&(a+=":"+b+":"+d)});return""===a?"":$b(a)};
 k.P=function(a){a=this.o.get(a);return null===a?Q:a};k.N=function(a){var b=D(a);return null===b?this:this.P(b).N(Ua(a))};k.ha=function(a){return gb(this.o,a)};k.Jd=function(){return this.o.Lb()};k.Kd=function(){return this.o.lb()};k.B=function(a){return this.o.Fa(a)};k.$c=function(a){return this.o.Xa(a)};k.jb=function(){return this.o.jb()};k.toString=function(){var a="{",b=!0;this.B(function(c,d){b?b=!1:a+=", ";a+='"'+c+'" : '+d.toString()});return a+="}"};var Q=new R;function Ac(a,b,c){R.call(this,a,c);null===b&&(b=new cb(xc),a.Fa(function(a,c){b=b.ta({name:a,la:c.m()},c)}));this.ya=b}oa(Ac,R);k=Ac.prototype;k.K=function(a,b){var c=this.P(a),d=this.o,e=this.ya;null!==c&&(d=d.remove(a),e=e.remove({name:a,la:c.m()}));b&&b.f()&&(b=null);null!==b&&(d=d.ta(a,b),e=e.ta({name:a,la:b.m()},b));return new Ac(d,e,this.m())};k.ha=function(a,b){var c=gb(this.ya,{name:a,la:b.m()});return c?c.name:null};k.B=function(a){return this.ya.Fa(function(b,c){return a(b.name,c)})};
 k.$c=function(a){return this.ya.Xa(function(b,c){return a(b.name,c)})};k.jb=function(){return this.ya.jb(function(a,b){return{key:a.name,value:b}})};k.Jd=function(){return this.ya.f()?null:this.ya.Lb().name};k.Kd=function(){return this.ya.f()?null:this.ya.lb().name};function S(a,b){if(null===a)return Q;var c=null;"object"===typeof a&&".priority"in a?c=a[".priority"]:"undefined"!==typeof b&&(c=b);v(null===c||"string"===typeof c||"number"===typeof c||"object"===typeof c&&".sv"in c,"Invalid priority type found: "+typeof c);"object"===typeof a&&".value"in a&&null!==a[".value"]&&(a=a[".value"]);if("object"!==typeof a||".sv"in a)return new vc(a,c);if(a instanceof Array){var d=Q,e=a;pc(e,function(a,b){if(A(e,b)&&"."!==b.substring(0,1)){var c=S(a);if(c.Q()||!c.f())d=
-d.K(b,c)}});return d.Ka(c)}var f=[],g={},h=!1,m=a;oc(m,function(a,b){if("string"!==typeof b||"."!==b.substring(0,1)){var c=S(m[b]);c.f()||(h=h||null!==c.m(),f.push({name:b,la:c.m()}),g[b]=c)}});var n=Cc(f,g,!1);if(h){var q=Cc(f,g,!0);return new Ac(n,q,c)}return new R(n,c)}var Dc=Math.log(2);function Ec(a){this.count=parseInt(Math.log(a+1)/Dc,10);this.Fd=this.count-1;this.pe=a+1&parseInt(Array(this.count+1).join("1"),2)}function Fc(a){var b=!(a.pe&1<<a.Fd);a.Fd--;return b}
+d.K(b,c)}});return d.La(c)}var f=[],g={},h=!1,m=a;oc(m,function(a,b){if("string"!==typeof b||"."!==b.substring(0,1)){var c=S(m[b]);c.f()||(h=h||null!==c.m(),f.push({name:b,la:c.m()}),g[b]=c)}});var n=Cc(f,g,!1);if(h){var q=Cc(f,g,!0);return new Ac(n,q,c)}return new R(n,c)}var Dc=Math.log(2);function Ec(a){this.count=parseInt(Math.log(a+1)/Dc,10);this.Fd=this.count-1;this.pe=a+1&parseInt(Array(this.count+1).join("1"),2)}function Fc(a){var b=!(a.pe&1<<a.Fd);a.Fd--;return b}
 function Cc(a,b,c){function d(e,f){var m=f-e;if(0==m)return null;if(1==m){var m=a[e].name,n=c?a[e]:m;return new jb(n,b[m],!1,null,null)}var n=parseInt(m/2,10)+e,q=d(e,n),s=d(n+1,f),m=a[n].name,n=c?a[n]:m;return new jb(n,b[m],!1,q,s)}var e=c?xc:yc;a.sort(e);var f=function(e){function f(e,g){var h=q-e,s=q;q-=e;var t=a[h].name,h=new jb(c?a[h]:t,b[t],g,null,d(h+1,s));m?m.left=h:n=h;m=h}for(var m=null,n=null,q=a.length,s=0;s<e.count;++s){var t=Fc(e),w=Math.pow(2,e.count-(s+1));t?f(w,!1):(f(w,!1),f(w,!0))}return n}(new Ec(a.length)),
 e=c?xc:zc;return null!==f?new cb(e,f):new cb(e)}function wc(a){return"number"===typeof a?"number:"+rc(a):"string:"+a};function T(a,b){this.A=a;this.Cc=b}T.prototype.X=function(){x("Firebase.DataSnapshot.val",0,0,arguments.length);return this.A.X()};T.prototype.val=T.prototype.X;T.prototype.te=function(){x("Firebase.DataSnapshot.exportVal",0,0,arguments.length);return this.A.X(!0)};T.prototype.exportVal=T.prototype.te;T.prototype.J=function(a){x("Firebase.DataSnapshot.child",0,1,arguments.length);ha(a)&&(a=String(a));Na("Firebase.DataSnapshot.child",a);var b=new H(a),c=this.Cc.J(b);return new T(this.A.N(b),c)};
 T.prototype.child=T.prototype.J;T.prototype.ed=function(a){x("Firebase.DataSnapshot.hasChild",1,1,arguments.length);Na("Firebase.DataSnapshot.hasChild",a);var b=new H(a);return!this.A.N(b).f()};T.prototype.hasChild=T.prototype.ed;T.prototype.m=function(){x("Firebase.DataSnapshot.getPriority",0,0,arguments.length);return this.A.m()};T.prototype.getPriority=T.prototype.m;
 T.prototype.forEach=function(a){x("Firebase.DataSnapshot.forEach",1,1,arguments.length);z("Firebase.DataSnapshot.forEach",1,a,!1);if(this.A.Q())return!1;var b=this;return this.A.B(function(c,d){return a(new T(d,b.Cc.J(c)))})};T.prototype.forEach=T.prototype.forEach;T.prototype.Fb=function(){x("Firebase.DataSnapshot.hasChildren",0,0,arguments.length);return this.A.Q()?!1:!this.A.f()};T.prototype.hasChildren=T.prototype.Fb;
-T.prototype.name=function(){x("Firebase.DataSnapshot.name",0,0,arguments.length);return this.Cc.name()};T.prototype.name=T.prototype.name;T.prototype.qc=function(){x("Firebase.DataSnapshot.numChildren",0,0,arguments.length);return this.A.qc()};T.prototype.numChildren=T.prototype.qc;T.prototype.rd=function(){x("Firebase.DataSnapshot.ref",0,0,arguments.length);return this.Cc};T.prototype.ref=T.prototype.rd;function Gc(a){v(fa(a)&&0<a.length,"Requires a non-empty array");this.he=a;this.Jb={}}Gc.prototype.Mc=function(a,b){for(var c=this.Jb[a]||[],d=0;d<c.length;d++)c[d].ca.apply(c[d].$,Array.prototype.slice.call(arguments,1))};Gc.prototype.Ta=function(a,b,c){Hc(this,a);this.Jb[a]=this.Jb[a]||[];this.Jb[a].push({ca:b,$:c});(a=this.cd(a))&&b.apply(c,a)};Gc.prototype.nb=function(a,b,c){Hc(this,a);a=this.Jb[a]||[];for(var d=0;d<a.length;d++)if(a[d].ca===b&&(!c||c===a[d].$)){a.splice(d,1);break}};
+T.prototype.name=function(){x("Firebase.DataSnapshot.name",0,0,arguments.length);return this.Cc.name()};T.prototype.name=T.prototype.name;T.prototype.qc=function(){x("Firebase.DataSnapshot.numChildren",0,0,arguments.length);return this.A.qc()};T.prototype.numChildren=T.prototype.qc;T.prototype.rd=function(){x("Firebase.DataSnapshot.ref",0,0,arguments.length);return this.Cc};T.prototype.ref=T.prototype.rd;function Gc(a){v(fa(a)&&0<a.length,"Requires a non-empty array");this.he=a;this.Jb={}}Gc.prototype.Mc=function(a,b){for(var c=this.Jb[a]||[],d=0;d<c.length;d++)c[d].ca.apply(c[d].$,Array.prototype.slice.call(arguments,1))};Gc.prototype.Ua=function(a,b,c){Hc(this,a);this.Jb[a]=this.Jb[a]||[];this.Jb[a].push({ca:b,$:c});(a=this.cd(a))&&b.apply(c,a)};Gc.prototype.nb=function(a,b,c){Hc(this,a);a=this.Jb[a]||[];for(var d=0;d<a.length;d++)if(a[d].ca===b&&(!c||c===a[d].$)){a.splice(d,1);break}};
 function Hc(a,b){v(Kb(a.he,function(a){return a===b}),"Unknown event: "+b)};function Ic(){Gc.call(this,["visible"]);var a,b;"undefined"!==typeof document&&"undefined"!==typeof document.addEventListener&&("undefined"!==typeof document.hidden?(b="visibilitychange",a="hidden"):"undefined"!==typeof document.mozHidden?(b="mozvisibilitychange",a="mozHidden"):"undefined"!==typeof document.msHidden?(b="msvisibilitychange",a="msHidden"):"undefined"!==typeof document.webkitHidden&&(b="webkitvisibilitychange",a="webkitHidden"));this.xb=!0;if(b){var c=this;document.addEventListener(b,
 function(){var b=!document[a];b!==c.xb&&(c.xb=b,c.Mc("visible",b))},!1)}}oa(Ic,Gc);da(Ic);Ic.prototype.cd=function(a){v("visible"===a,"Unknown event type: "+a);return[this.xb]};function Jc(){Gc.call(this,["online"]);this.Ob=!0;if("undefined"!==typeof window&&"undefined"!==typeof window.addEventListener){var a=this;window.addEventListener("online",function(){a.Ob||a.Mc("online",!0);a.Ob=!0},!1);window.addEventListener("offline",function(){a.Ob&&a.Mc("online",!1);a.Ob=!1},!1)}}oa(Jc,Gc);da(Jc);Jc.prototype.cd=function(a){v("online"===a,"Unknown event type: "+a);return[this.Ob]};function pc(a,b){for(var c in a)b.call(void 0,a[c],c,a)}function Kc(a){var b=[],c=0,d;for(d in a)b[c++]=d;return b}function Lc(a){for(var b in a)return!1;return!0}function Mc(a){var b={},c;for(c in a)b[c]=a[c];return b}var Nc="constructor hasOwnProperty isPrototypeOf propertyIsEnumerable toLocaleString toString valueOf".split(" ");
-function Pc(a,b){for(var c,d,e=1;e<arguments.length;e++){d=arguments[e];for(c in d)a[c]=d[c];for(var f=0;f<Nc.length;f++)c=Nc[f],Object.prototype.hasOwnProperty.call(d,c)&&(a[c]=d[c])}};function Qc(){this.Bb={}}function Rc(a,b,c){l(c)||(c=1);A(a.Bb,b)||(a.Bb[b]=0);a.Bb[b]+=c}Qc.prototype.get=function(){return Mc(this.Bb)};function Sc(a){this.qe=a;this.mc=null}Sc.prototype.get=function(){var a=this.qe.get(),b=Mc(a);if(this.mc)for(var c in this.mc)b[c]-=this.mc[c];this.mc=a;return b};function Tc(a,b){this.yd={};this.Hc=new Sc(a);this.n=b;var c=1E4+2E4*Math.random();setTimeout(r(this.Ud,this),Math.floor(c))}Tc.prototype.Ud=function(){var a=this.Hc.get(),b={},c=!1,d;for(d in a)0<a[d]&&A(this.yd,d)&&(b[d]=a[d],c=!0);c&&(a=this.n,a.T&&(b={c:b},a.e("reportStats",b),a.Ia("s",b)));setTimeout(r(this.Ud,this),Math.floor(6E5*Math.random()))};var Uc={},Vc={};function Wc(a){a=a.toString();Uc[a]||(Uc[a]=new Qc);return Uc[a]}function Xc(a,b){var c=a.toString();Vc[c]||(Vc[c]=b());return Vc[c]};var Yc=null;"undefined"!==typeof MozWebSocket?Yc=MozWebSocket:"undefined"!==typeof WebSocket&&(Yc=WebSocket);function Zc(a,b,c){this.Wc=a;this.e=ec(this.Wc);this.frames=this.Hb=null;this.Ma=this.Na=this.Ad=0;this.ga=Wc(b);this.Ca=(b.Ya?"wss://":"ws://")+b.ia+"/.ws?v=5";"undefined"!==typeof location&&location.href&&-1!==location.href.indexOf("firebaseio.com")&&(this.Ca+="&r=f");b.host!==b.ia&&(this.Ca=this.Ca+"&ns="+b.Sa);c&&(this.Ca=this.Ca+"&s="+c)}var $c;
-Zc.prototype.open=function(a,b){this.ka=b;this.Ge=a;this.e("Websocket connecting to "+this.Ca);this.Y=new Yc(this.Ca);this.Db=!1;xb.set("previous_websocket_failure",!0);var c=this;this.Y.onopen=function(){c.e("Websocket connected.");c.Db=!0};this.Y.onclose=function(){c.e("Websocket connection was disconnected.");c.Y=null;c.Va()};this.Y.onmessage=function(a){if(null!==c.Y)if(a=a.data,c.Ma+=a.length,Rc(c.ga,"bytes_received",a.length),ad(c),null!==c.frames)bd(c,a);else{a:{v(null===c.frames,"We already have a frame buffer");
-if(6>=a.length){var b=Number(a);if(!isNaN(b)){c.Ad=b;c.frames=[];a=null;break a}}c.Ad=1;c.frames=[]}null!==a&&bd(c,a)}};this.Y.onerror=function(a){c.e("WebSocket error.  Closing connection.");(a=a.message||a.data)&&c.e(a);c.Va()}};Zc.prototype.start=function(){};Zc.isAvailable=function(){var a=!1;if("undefined"!==typeof navigator&&navigator.userAgent){var b=navigator.userAgent.match(/Android ([0-9]{0,}\.[0-9]{0,})/);b&&1<b.length&&4.4>parseFloat(b[1])&&(a=!0)}return!a&&null!==Yc&&!$c};
-Zc.responsesRequiredToBeHealthy=2;Zc.healthyTimeout=3E4;k=Zc.prototype;k.nc=function(){xb.remove("previous_websocket_failure")};function bd(a,b){a.frames.push(b);if(a.frames.length==a.Ad){var c=a.frames.join("");a.frames=null;c=va(c);a.Ge(c)}}k.send=function(a){ad(this);a=u(a);this.Na+=a.length;Rc(this.ga,"bytes_sent",a.length);a=nc(a,16384);1<a.length&&this.Y.send(String(a.length));for(var b=0;b<a.length;b++)this.Y.send(a[b])};
-k.ac=function(){this.Qa=!0;this.Hb&&(clearInterval(this.Hb),this.Hb=null);this.Y&&(this.Y.close(),this.Y=null)};k.Va=function(){this.Qa||(this.e("WebSocket is closing itself"),this.ac(),this.ka&&(this.ka(this.Db),this.ka=null))};k.close=function(){this.Qa||(this.e("WebSocket is being closed"),this.ac())};function ad(a){clearInterval(a.Hb);a.Hb=setInterval(function(){a.Y&&a.Y.send("0");ad(a)},Math.floor(45E3))};function cd(a){this.ob=a;this.xc=[];this.eb=0;this.Vc=-1;this.Ua=null}function dd(a,b,c){a.Vc=b;a.Ua=c;a.Vc<a.eb&&(a.Ua(),a.Ua=null)}function ed(a,b,c){for(a.xc[b]=c;a.xc[a.eb];){var d=a.xc[a.eb];delete a.xc[a.eb];for(var e=0;e<d.length;++e)if(d[e]){var f=a;uc(function(){f.ob(d[e])})}if(a.eb===a.Vc){a.Ua&&(clearTimeout(a.Ua),a.Ua(),a.Ua=null);break}a.eb++}};function fd(){this.set={}}k=fd.prototype;k.add=function(a,b){this.set[a]=null!==b?b:!0};k.contains=function(a){return A(this.set,a)};k.get=function(a){return this.contains(a)?this.set[a]:void 0};k.remove=function(a){delete this.set[a]};k.clear=function(){this.set={}};k.f=function(){return Lc(this.set)};k.count=function(){var a=this.set,b=0,c;for(c in a)b++;return b};function gd(a,b){pc(a.set,function(a,d){b(d,a)})}k.keys=function(){var a=[];pc(this.set,function(b,c){a.push(c)});return a};function hd(a,b,c){this.Wc=a;this.e=ec(a);this.Ma=this.Na=0;this.ga=Wc(b);this.Gc=c;this.Db=!1;this.dc=function(a){b.host!==b.ia&&(a.ns=b.Sa);var c=[],f;for(f in a)a.hasOwnProperty(f)&&c.push(f+"="+a[f]);return(b.Ya?"https://":"http://")+b.ia+"/.lp?"+c.join("&")}}var id,jd;
-hd.prototype.open=function(a,b){this.Ed=0;this.U=b;this.Od=new cd(a);this.Qa=!1;var c=this;this.Oa=setTimeout(function(){c.e("Timed out trying to connect.");c.Va();c.Oa=null},Math.floor(3E4));ic(function(){if(!c.Qa){c.na=new kd(function(a,b,d,h,m){ld(c,arguments);if(c.na)if(c.Oa&&(clearTimeout(c.Oa),c.Oa=null),c.Db=!0,"start"==a)c.id=b,c.Td=d;else if("close"===a)b?(c.na.Fc=!1,dd(c.Od,b,function(){c.Va()})):c.Va();else throw Error("Unrecognized command received: "+a);},function(a,b){ld(c,arguments);
-ed(c.Od,a,b)},function(){c.Va()},c.dc);var a={start:"t"};a.ser=Math.floor(1E8*Math.random());c.na.Nc&&(a.cb=c.na.Nc);a.v="5";c.Gc&&(a.s=c.Gc);"undefined"!==typeof location&&location.href&&-1!==location.href.indexOf("firebaseio.com")&&(a.r="f");a=c.dc(a);c.e("Connecting via long-poll to "+a);md(c.na,a,function(){})}})};
+function Pc(a,b){for(var c,d,e=1;e<arguments.length;e++){d=arguments[e];for(c in d)a[c]=d[c];for(var f=0;f<Nc.length;f++)c=Nc[f],Object.prototype.hasOwnProperty.call(d,c)&&(a[c]=d[c])}};function Qc(){this.Bb={}}function Rc(a,b,c){l(c)||(c=1);A(a.Bb,b)||(a.Bb[b]=0);a.Bb[b]+=c}Qc.prototype.get=function(){return Mc(this.Bb)};function Sc(a){this.qe=a;this.mc=null}Sc.prototype.get=function(){var a=this.qe.get(),b=Mc(a);if(this.mc)for(var c in this.mc)b[c]-=this.mc[c];this.mc=a;return b};function Tc(a,b){this.yd={};this.Hc=new Sc(a);this.n=b;var c=1E4+2E4*Math.random();setTimeout(r(this.Ud,this),Math.floor(c))}Tc.prototype.Ud=function(){var a=this.Hc.get(),b={},c=!1,d;for(d in a)0<a[d]&&A(this.yd,d)&&(b[d]=a[d],c=!0);c&&(a=this.n,a.T&&(b={c:b},a.e("reportStats",b),a.Ja("s",b)));setTimeout(r(this.Ud,this),Math.floor(6E5*Math.random()))};var Uc={},Vc={};function Wc(a){a=a.toString();Uc[a]||(Uc[a]=new Qc);return Uc[a]}function Xc(a,b){var c=a.toString();Vc[c]||(Vc[c]=b());return Vc[c]};var Yc=null;"undefined"!==typeof MozWebSocket?Yc=MozWebSocket:"undefined"!==typeof WebSocket&&(Yc=WebSocket);function Zc(a,b,c){this.Wc=a;this.e=ec(this.Wc);this.frames=this.Hb=null;this.Na=this.Oa=this.Ad=0;this.ga=Wc(b);this.Ca=(b.Ya?"wss://":"ws://")+b.ia+"/.ws?v=5";"undefined"!==typeof location&&location.href&&-1!==location.href.indexOf("firebaseio.com")&&(this.Ca+="&r=f");b.host!==b.ia&&(this.Ca=this.Ca+"&ns="+b.Ta);c&&(this.Ca=this.Ca+"&s="+c)}var $c;
+Zc.prototype.open=function(a,b){this.ka=b;this.Ge=a;this.e("Websocket connecting to "+this.Ca);this.Db=!1;xb.set("previous_websocket_failure",!0);try{this.Y=new Yc(this.Ca)}catch(c){this.e("Error instantiating WebSocket.");var d=c.message||c.data;d&&this.e(d);this.Ia();return}var e=this;this.Y.onopen=function(){e.e("Websocket connected.");e.Db=!0};this.Y.onclose=function(){e.e("Websocket connection was disconnected.");e.Y=null;e.Ia()};this.Y.onmessage=function(a){if(null!==e.Y)if(a=a.data,e.Na+=a.length,
+Rc(e.ga,"bytes_received",a.length),ad(e),null!==e.frames)bd(e,a);else{a:{v(null===e.frames,"We already have a frame buffer");if(6>=a.length){var b=Number(a);if(!isNaN(b)){e.Ad=b;e.frames=[];a=null;break a}}e.Ad=1;e.frames=[]}null!==a&&bd(e,a)}};this.Y.onerror=function(a){e.e("WebSocket error.  Closing connection.");(a=a.message||a.data)&&e.e(a);e.Ia()}};Zc.prototype.start=function(){};
+Zc.isAvailable=function(){var a=!1;if("undefined"!==typeof navigator&&navigator.userAgent){var b=navigator.userAgent.match(/Android ([0-9]{0,}\.[0-9]{0,})/);b&&1<b.length&&4.4>parseFloat(b[1])&&(a=!0)}return!a&&null!==Yc&&!$c};Zc.responsesRequiredToBeHealthy=2;Zc.healthyTimeout=3E4;k=Zc.prototype;k.nc=function(){xb.remove("previous_websocket_failure")};function bd(a,b){a.frames.push(b);if(a.frames.length==a.Ad){var c=a.frames.join("");a.frames=null;c=va(c);a.Ge(c)}}
+k.send=function(a){ad(this);a=u(a);this.Oa+=a.length;Rc(this.ga,"bytes_sent",a.length);a=nc(a,16384);1<a.length&&this.Y.send(String(a.length));for(var b=0;b<a.length;b++)this.Y.send(a[b])};k.ac=function(){this.Ra=!0;this.Hb&&(clearInterval(this.Hb),this.Hb=null);this.Y&&(this.Y.close(),this.Y=null)};k.Ia=function(){this.Ra||(this.e("WebSocket is closing itself"),this.ac(),this.ka&&(this.ka(this.Db),this.ka=null))};k.close=function(){this.Ra||(this.e("WebSocket is being closed"),this.ac())};
+function ad(a){clearInterval(a.Hb);a.Hb=setInterval(function(){a.Y&&a.Y.send("0");ad(a)},Math.floor(45E3))};function cd(a){this.ob=a;this.xc=[];this.eb=0;this.Vc=-1;this.Va=null}function dd(a,b,c){a.Vc=b;a.Va=c;a.Vc<a.eb&&(a.Va(),a.Va=null)}function ed(a,b,c){for(a.xc[b]=c;a.xc[a.eb];){var d=a.xc[a.eb];delete a.xc[a.eb];for(var e=0;e<d.length;++e)if(d[e]){var f=a;uc(function(){f.ob(d[e])})}if(a.eb===a.Vc){a.Va&&(clearTimeout(a.Va),a.Va(),a.Va=null);break}a.eb++}};function fd(){this.set={}}k=fd.prototype;k.add=function(a,b){this.set[a]=null!==b?b:!0};k.contains=function(a){return A(this.set,a)};k.get=function(a){return this.contains(a)?this.set[a]:void 0};k.remove=function(a){delete this.set[a]};k.clear=function(){this.set={}};k.f=function(){return Lc(this.set)};k.count=function(){var a=this.set,b=0,c;for(c in a)b++;return b};function gd(a,b){pc(a.set,function(a,d){b(d,a)})}k.keys=function(){var a=[];pc(this.set,function(b,c){a.push(c)});return a};function hd(a,b,c){this.Wc=a;this.e=ec(a);this.Na=this.Oa=0;this.ga=Wc(b);this.Gc=c;this.Db=!1;this.dc=function(a){b.host!==b.ia&&(a.ns=b.Ta);var c=[],f;for(f in a)a.hasOwnProperty(f)&&c.push(f+"="+a[f]);return(b.Ya?"https://":"http://")+b.ia+"/.lp?"+c.join("&")}}var id,jd;
+hd.prototype.open=function(a,b){this.Ed=0;this.U=b;this.Od=new cd(a);this.Ra=!1;var c=this;this.Pa=setTimeout(function(){c.e("Timed out trying to connect.");c.Ia();c.Pa=null},Math.floor(3E4));ic(function(){if(!c.Ra){c.na=new kd(function(a,b,d,h,m){ld(c,arguments);if(c.na)if(c.Pa&&(clearTimeout(c.Pa),c.Pa=null),c.Db=!0,"start"==a)c.id=b,c.Td=d;else if("close"===a)b?(c.na.Fc=!1,dd(c.Od,b,function(){c.Ia()})):c.Ia();else throw Error("Unrecognized command received: "+a);},function(a,b){ld(c,arguments);
+ed(c.Od,a,b)},function(){c.Ia()},c.dc);var a={start:"t"};a.ser=Math.floor(1E8*Math.random());c.na.Nc&&(a.cb=c.na.Nc);a.v="5";c.Gc&&(a.s=c.Gc);"undefined"!==typeof location&&location.href&&-1!==location.href.indexOf("firebaseio.com")&&(a.r="f");a=c.dc(a);c.e("Connecting via long-poll to "+a);md(c.na,a,function(){})}})};
 hd.prototype.start=function(){var a=this.na,b=this.Td;a.Be=this.id;a.Ce=b;for(a.Qc=!0;nd(a););a=this.id;b=this.Td;this.mb=document.createElement("iframe");var c={dframe:"t"};c.id=a;c.pw=b;this.mb.src=this.dc(c);this.mb.style.display="none";document.body.appendChild(this.mb)};hd.isAvailable=function(){return!jd&&!("object"===typeof window&&window.chrome&&window.chrome.extension&&!/^chrome/.test(window.location.href))&&!("object"===typeof Windows&&"object"===typeof Windows.Ze)&&(id||!0)};k=hd.prototype;
-k.nc=function(){};k.ac=function(){this.Qa=!0;this.na&&(this.na.close(),this.na=null);this.mb&&(document.body.removeChild(this.mb),this.mb=null);this.Oa&&(clearTimeout(this.Oa),this.Oa=null)};k.Va=function(){this.Qa||(this.e("Longpoll is closing itself"),this.ac(),this.U&&(this.U(this.Db),this.U=null))};k.close=function(){this.Qa||(this.e("Longpoll is being closed."),this.ac())};
-k.send=function(a){a=u(a);this.Na+=a.length;Rc(this.ga,"bytes_sent",a.length);a=wa(a);a=Xb(a,!0);a=nc(a,1840);for(var b=0;b<a.length;b++){var c=this.na;c.Tb.push({Pe:this.Ed,We:a.length,Gd:a[b]});c.Qc&&nd(c);this.Ed++}};function ld(a,b){var c=u(b).length;a.Ma+=c;Rc(a.ga,"bytes_received",c)}
+k.nc=function(){};k.ac=function(){this.Ra=!0;this.na&&(this.na.close(),this.na=null);this.mb&&(document.body.removeChild(this.mb),this.mb=null);this.Pa&&(clearTimeout(this.Pa),this.Pa=null)};k.Ia=function(){this.Ra||(this.e("Longpoll is closing itself"),this.ac(),this.U&&(this.U(this.Db),this.U=null))};k.close=function(){this.Ra||(this.e("Longpoll is being closed."),this.ac())};
+k.send=function(a){a=u(a);this.Oa+=a.length;Rc(this.ga,"bytes_sent",a.length);a=wa(a);a=Xb(a,!0);a=nc(a,1840);for(var b=0;b<a.length;b++){var c=this.na;c.Tb.push({Pe:this.Ed,We:a.length,Gd:a[b]});c.Qc&&nd(c);this.Ed++}};function ld(a,b){var c=u(b).length;a.Na+=c;Rc(a.ga,"bytes_received",c)}
 function kd(a,b,c,d){this.dc=d;this.ka=c;this.od=new fd;this.Tb=[];this.Yc=Math.floor(1E8*Math.random());this.Fc=!0;this.Nc=Yb();window["pLPCommand"+this.Nc]=a;window["pRTLPCB"+this.Nc]=b;a=document.createElement("iframe");a.style.display="none";if(document.body){document.body.appendChild(a);try{a.contentWindow.document||M("No IE domain setting required")}catch(e){a.src="javascript:void((function(){document.open();document.domain='"+document.domain+"';document.close();})())"}}else throw"Document body has not initialized. Wait to initialize Firebase until after the document is ready.";
 a.contentDocument?a.Da=a.contentDocument:a.contentWindow?a.Da=a.contentWindow.document:a.document&&(a.Da=a.document);this.aa=a;a="";this.aa.src&&"javascript:"===this.aa.src.substr(0,11)&&(a='<script>document.domain="'+document.domain+'";\x3c/script>');a="<html><body>"+a+"</body></html>";try{this.aa.Da.open(),this.aa.Da.write(a),this.aa.Da.close()}catch(f){M("frame writing exception"),f.stack&&M(f.stack),M(f)}}
 kd.prototype.close=function(){this.Qc=!1;if(this.aa){this.aa.Da.body.innerHTML="";var a=this;setTimeout(function(){null!==a.aa&&(document.body.removeChild(a.aa),a.aa=null)},Math.floor(0))}var b=this.ka;b&&(this.ka=null,b())};
 function nd(a){if(a.Qc&&a.Fc&&a.od.count()<(0<a.Tb.length?2:1)){a.Yc++;var b={};b.id=a.Be;b.pw=a.Ce;b.ser=a.Yc;for(var b=a.dc(b),c="",d=0;0<a.Tb.length;)if(1870>=a.Tb[0].Gd.length+30+c.length){var e=a.Tb.shift(),c=c+"&seg"+d+"="+e.Pe+"&ts"+d+"="+e.We+"&d"+d+"="+e.Gd;d++}else break;od(a,b+c,a.Yc);return!0}return!1}function od(a,b,c){function d(){a.od.remove(c);nd(a)}a.od.add(c);var e=setTimeout(d,Math.floor(25E3));md(a,b,function(){clearTimeout(e);d()})}
 function md(a,b,c){setTimeout(function(){try{if(a.Fc){var d=a.aa.Da.createElement("script");d.type="text/javascript";d.async=!0;d.src=b;d.onload=d.onreadystatechange=function(){var a=d.readyState;a&&"loaded"!==a&&"complete"!==a||(d.onload=d.onreadystatechange=null,d.parentNode&&d.parentNode.removeChild(d),c())};d.onerror=function(){M("Long-poll script failed to load: "+b);a.Fc=!1;a.close()};a.aa.Da.body.appendChild(d)}}catch(e){}},Math.floor(1))};function pd(a){qd(this,a)}var rd=[hd,Zc];function qd(a,b){var c=Zc&&Zc.isAvailable(),d=c&&!(xb.Nd||!0===xb.get("previous_websocket_failure"));b.Ye&&(c||O("wss:// URL used, but browser isn't known to support websockets.  Trying anyway."),d=!0);if(d)a.bc=[Zc];else{var e=a.bc=[];oc(rd,function(a,b){b&&b.isAvailable()&&e.push(b)})}}function sd(a){if(0<a.bc.length)return a.bc[0];throw Error("No transports available");};function td(a,b,c,d,e,f){this.id=a;this.e=ec("c:"+this.id+":");this.ob=c;this.Nb=d;this.U=e;this.md=f;this.D=b;this.wc=[];this.Dd=0;this.ce=new pd(b);this.oa=0;this.e("Connection created");ud(this)}
-function ud(a){var b=sd(a.ce);a.C=new b("c:"+a.id+":"+a.Dd++,a.D);a.qd=b.responsesRequiredToBeHealthy||0;var c=vd(a,a.C),d=wd(a,a.C);a.cc=a.C;a.$b=a.C;a.w=null;a.Ra=!1;setTimeout(function(){a.C&&a.C.open(c,d)},Math.floor(0));b=b.healthyTimeout||0;0<b&&(a.kc=setTimeout(function(){a.kc=null;a.Ra||(a.C&&102400<a.C.Ma?(a.e("Connection exceeded healthy timeout but has received "+a.C.Ma+" bytes.  Marking connection healthy."),a.Ra=!0,a.C.nc()):a.C&&10240<a.C.Na?a.e("Connection exceeded healthy timeout but has sent "+
-a.C.Na+" bytes.  Leaving connection alive."):(a.e("Closing unhealthy connection after timeout."),a.close()))},Math.floor(b)))}function wd(a,b){return function(c){b===a.C?(a.C=null,c||0!==a.oa?1===a.oa&&a.e("Realtime connection lost."):(a.e("Realtime connection failed."),"s-"===a.D.ia.substr(0,2)&&(xb.remove("host:"+a.D.host),a.D.ia=a.D.host)),a.close()):b===a.w?(a.e("Secondary connection lost."),c=a.w,a.w=null,a.cc!==c&&a.$b!==c||a.close()):a.e("closing an old connection")}}
+function ud(a){var b=sd(a.ce);a.C=new b("c:"+a.id+":"+a.Dd++,a.D);a.qd=b.responsesRequiredToBeHealthy||0;var c=vd(a,a.C),d=wd(a,a.C);a.cc=a.C;a.$b=a.C;a.w=null;a.Sa=!1;setTimeout(function(){a.C&&a.C.open(c,d)},Math.floor(0));b=b.healthyTimeout||0;0<b&&(a.kc=setTimeout(function(){a.kc=null;a.Sa||(a.C&&102400<a.C.Na?(a.e("Connection exceeded healthy timeout but has received "+a.C.Na+" bytes.  Marking connection healthy."),a.Sa=!0,a.C.nc()):a.C&&10240<a.C.Oa?a.e("Connection exceeded healthy timeout but has sent "+
+a.C.Oa+" bytes.  Leaving connection alive."):(a.e("Closing unhealthy connection after timeout."),a.close()))},Math.floor(b)))}function wd(a,b){return function(c){b===a.C?(a.C=null,c||0!==a.oa?1===a.oa&&a.e("Realtime connection lost."):(a.e("Realtime connection failed."),"s-"===a.D.ia.substr(0,2)&&(xb.remove("host:"+a.D.host),a.D.ia=a.D.host)),a.close()):b===a.w?(a.e("Secondary connection lost."),c=a.w,a.w=null,a.cc!==c&&a.$b!==c||a.close()):a.e("closing an old connection")}}
 function vd(a,b){return function(c){if(2!=a.oa)if(b===a.$b){var d=mc("t",c);c=mc("d",c);if("c"==d){if(d=mc("t",c),"d"in c)if(c=c.d,"h"===d){var d=c.ts,e=c.v,f=c.h;a.Gc=c.s;zb(a.D,f);0==a.oa&&(a.C.start(),xd(a,a.C,d),"5"!==e&&O("Protocol version mismatch detected"),c=a.ce,(c=1<c.bc.length?c.bc[1]:null)&&yd(a,c))}else if("n"===d){a.e("recvd end transmission on primary");a.$b=a.w;for(c=0;c<a.wc.length;++c)a.tc(a.wc[c]);a.wc=[];zd(a)}else"s"===d?(a.e("Connection shutdown command received. Shutting down..."),
 a.md&&(a.md(c),a.md=null),a.U=null,a.close()):"r"===d?(a.e("Reset packet received.  New host: "+c),zb(a.D,c),1===a.oa?a.close():(Ad(a),ud(a))):"e"===d?fc("Server Error: "+c):"o"===d?(a.e("got pong on primary."),Dd(a),Ed(a)):fc("Unknown control packet command: "+d)}else"d"==d&&a.tc(c)}else if(b===a.w)if(d=mc("t",c),c=mc("d",c),"c"==d)"t"in c&&(c=c.t,"a"===c?Fd(a):"r"===c?(a.e("Got a reset on secondary, closing it"),a.w.close(),a.cc!==a.w&&a.$b!==a.w||a.close()):"o"===c&&(a.e("got pong on secondary."),
 a.Yd--,Fd(a)));else if("d"==d)a.wc.push(c);else throw Error("Unknown protocol layer: "+d);else a.e("message on old connection")}}td.prototype.Zd=function(a){Gd(this,{t:"d",d:a})};function zd(a){a.cc===a.w&&a.$b===a.w&&(a.e("cleaning up and promoting a connection: "+a.w.Wc),a.C=a.w,a.w=null)}
-function Fd(a){0>=a.Yd?(a.e("Secondary connection is healthy."),a.Ra=!0,a.w.nc(),a.w.start(),a.e("sending client ack on secondary"),a.w.send({t:"c",d:{t:"a",d:{}}}),a.e("Ending transmission on primary"),a.C.send({t:"c",d:{t:"n",d:{}}}),a.cc=a.w,zd(a)):(a.e("sending ping on secondary."),a.w.send({t:"c",d:{t:"p",d:{}}}))}td.prototype.tc=function(a){Dd(this);this.ob(a)};function Dd(a){a.Ra||(a.qd--,0>=a.qd&&(a.e("Primary connection is healthy."),a.Ra=!0,a.C.nc()))}
-function yd(a,b){a.w=new b("c:"+a.id+":"+a.Dd++,a.D,a.Gc);a.Yd=b.responsesRequiredToBeHealthy||0;a.w.open(vd(a,a.w),wd(a,a.w));setTimeout(function(){a.w&&(a.e("Timed out trying to upgrade."),a.w.close())},Math.floor(6E4))}function xd(a,b,c){a.e("Realtime connection established.");a.C=b;a.oa=1;a.Nb&&(a.Nb(c),a.Nb=null);0===a.qd?(a.e("Primary connection is healthy."),a.Ra=!0):setTimeout(function(){Ed(a)},Math.floor(5E3))}
-function Ed(a){a.Ra||1!==a.oa||(a.e("sending ping on primary."),Gd(a,{t:"c",d:{t:"p",d:{}}}))}function Gd(a,b){if(1!==a.oa)throw"Connection is not connected";a.cc.send(b)}td.prototype.close=function(){2!==this.oa&&(this.e("Closing realtime connection."),this.oa=2,Ad(this),this.U&&(this.U(),this.U=null))};function Ad(a){a.e("Shutting down all connections");a.C&&(a.C.close(),a.C=null);a.w&&(a.w.close(),a.w=null);a.kc&&(clearTimeout(a.kc),a.kc=null)};function Hd(a){var b={},c={},d={},e="";try{var f=a.split("."),b=va(Zb(f[0])||""),c=va(Zb(f[1])||""),e=f[2],d=c.d||{};delete c.d}catch(g){}return{cf:b,Uc:c,data:d,Ue:e}}function Id(a){a=Hd(a).Uc;return"object"===typeof a&&a.hasOwnProperty("iat")?B(a,"iat"):null}function Jd(a){a=Hd(a);var b=a.Uc;return!!a.Ue&&!!b&&"object"===typeof b&&b.hasOwnProperty("iat")};function Kd(a,b,c,d,e){this.id=Ld++;this.e=ec("p:"+this.id+":");this.Za=!0;this.ja={};this.V=[];this.Pb=0;this.Mb=[];this.T=!1;this.va=1E3;this.oc=3E5;this.uc=b||ca;this.sc=c||ca;this.nd=d||ca;this.dd=e||ca;this.D=a;this.ud=null;this.Xb={};this.Oe=0;this.Ib=this.hd=null;Md(this,0);Ic.ib().Ta("visible",this.Je,this);-1===a.host.indexOf("fblocal")&&Jc.ib().Ta("online",this.He,this)}var Ld=0,Nd=0;k=Kd.prototype;
-k.Ia=function(a,b,c){var d=++this.Oe;a={r:d,a:a,b:b};this.e(u(a));v(this.T,"sendRequest_ call when we're not connected not allowed.");this.ma.Zd(a);c&&(this.Xb[d]=c)};function Od(a,b,c){var d=b.toString(),e=b.path().toString();a.ja[e]=a.ja[e]||{};v(!a.ja[e][d],"listen() called twice for same path/queryId.");a.ja[e][d]={qb:b.qb(),G:c};a.T&&Pd(a,e,d,b.qb(),c)}
-function Pd(a,b,c,d,e){a.e("Listen on "+b+" for "+c);var f={p:b};d=Hb(d,function(a){return Sa(a)});"{}"!==c&&(f.q=d);f.h=a.dd(b);a.Ia("l",f,function(d){a.e("listen response",d);d=d.s;"ok"!==d&&Qd(a,b,c);e&&e(d)})}k.I=function(a,b,c){this.bb={re:a,Id:!1,ca:b,fc:c};this.e("Authenticating using credential: "+a);Rd(this);(b=40==a.length)||(a=Hd(a).Uc,b="object"===typeof a&&!0===B(a,"admin"));b&&(this.e("Admin auth credential detected.  Reducing max reconnect time."),this.oc=3E4)};
-k.Bd=function(a){delete this.bb;this.T&&this.Ia("unauth",{},function(b){a(b.s,b.d)})};function Rd(a){var b=a.bb;a.T&&b&&a.Ia("auth",{cred:b.re},function(c){var d=c.s;c=c.d||"error";"ok"!==d&&a.bb===b&&delete a.bb;b.Id?"ok"!==d&&b.fc&&b.fc(d,c):(b.Id=!0,b.ca&&b.ca(d,c))})}function Sd(a,b,c,d){b=b.toString();Qd(a,b,c)&&a.T&&Td(a,b,c,d)}function Td(a,b,c,d){a.e("Unlisten on "+b+" for "+c);b={p:b};d=Hb(d,function(a){return Sa(a)});"{}"!==c&&(b.q=d);a.Ia("u",b)}
-function Ud(a,b,c,d){a.T?Vd(a,"o",b,c,d):a.Mb.push({Rb:b,action:"o",data:c,G:d})}function Wd(a,b,c,d){a.T?Vd(a,"om",b,c,d):a.Mb.push({Rb:b,action:"om",data:c,G:d})}k.ld=function(a,b){this.T?Vd(this,"oc",a,null,b):this.Mb.push({Rb:a,action:"oc",data:null,G:b})};function Vd(a,b,c,d,e){c={p:c,d:d};a.e("onDisconnect "+b,c);a.Ia(b,c,function(a){e&&setTimeout(function(){e(a.s,a.d)},Math.floor(0))})}k.put=function(a,b,c,d){Xd(this,"p",a,b,c,d)};function Yd(a,b,c,d){Xd(a,"m",b,c,d,void 0)}
-function Xd(a,b,c,d,e,f){c={p:c,d:d};l(f)&&(c.h=f);a.V.push({action:b,Vd:c,G:e});a.Pb++;b=a.V.length-1;a.T&&Zd(a,b)}function Zd(a,b){var c=a.V[b].action,d=a.V[b].Vd,e=a.V[b].G;a.V[b].Le=a.T;a.Ia(c,d,function(d){a.e(c+" response",d);delete a.V[b];a.Pb--;0===a.Pb&&(a.V=[]);e&&e(d.s,d.d)})}
+function Fd(a){0>=a.Yd?(a.e("Secondary connection is healthy."),a.Sa=!0,a.w.nc(),a.w.start(),a.e("sending client ack on secondary"),a.w.send({t:"c",d:{t:"a",d:{}}}),a.e("Ending transmission on primary"),a.C.send({t:"c",d:{t:"n",d:{}}}),a.cc=a.w,zd(a)):(a.e("sending ping on secondary."),a.w.send({t:"c",d:{t:"p",d:{}}}))}td.prototype.tc=function(a){Dd(this);this.ob(a)};function Dd(a){a.Sa||(a.qd--,0>=a.qd&&(a.e("Primary connection is healthy."),a.Sa=!0,a.C.nc()))}
+function yd(a,b){a.w=new b("c:"+a.id+":"+a.Dd++,a.D,a.Gc);a.Yd=b.responsesRequiredToBeHealthy||0;a.w.open(vd(a,a.w),wd(a,a.w));setTimeout(function(){a.w&&(a.e("Timed out trying to upgrade."),a.w.close())},Math.floor(6E4))}function xd(a,b,c){a.e("Realtime connection established.");a.C=b;a.oa=1;a.Nb&&(a.Nb(c),a.Nb=null);0===a.qd?(a.e("Primary connection is healthy."),a.Sa=!0):setTimeout(function(){Ed(a)},Math.floor(5E3))}
+function Ed(a){a.Sa||1!==a.oa||(a.e("sending ping on primary."),Gd(a,{t:"c",d:{t:"p",d:{}}}))}function Gd(a,b){if(1!==a.oa)throw"Connection is not connected";a.cc.send(b)}td.prototype.close=function(){2!==this.oa&&(this.e("Closing realtime connection."),this.oa=2,Ad(this),this.U&&(this.U(),this.U=null))};function Ad(a){a.e("Shutting down all connections");a.C&&(a.C.close(),a.C=null);a.w&&(a.w.close(),a.w=null);a.kc&&(clearTimeout(a.kc),a.kc=null)};function Hd(a){var b={},c={},d={},e="";try{var f=a.split("."),b=va(Zb(f[0])||""),c=va(Zb(f[1])||""),e=f[2],d=c.d||{};delete c.d}catch(g){}return{cf:b,Uc:c,data:d,Ue:e}}function Id(a){a=Hd(a).Uc;return"object"===typeof a&&a.hasOwnProperty("iat")?B(a,"iat"):null}function Jd(a){a=Hd(a);var b=a.Uc;return!!a.Ue&&!!b&&"object"===typeof b&&b.hasOwnProperty("iat")};function Kd(a,b,c,d,e){this.id=Ld++;this.e=ec("p:"+this.id+":");this.Za=!0;this.ja={};this.V=[];this.Pb=0;this.Mb=[];this.T=!1;this.va=1E3;this.oc=3E5;this.uc=b||ca;this.sc=c||ca;this.nd=d||ca;this.dd=e||ca;this.D=a;this.ud=null;this.Xb={};this.Oe=0;this.Ib=this.hd=null;Md(this,0);Ic.ib().Ua("visible",this.Je,this);-1===a.host.indexOf("fblocal")&&Jc.ib().Ua("online",this.He,this)}var Ld=0,Nd=0;k=Kd.prototype;
+k.Ja=function(a,b,c){var d=++this.Oe;a={r:d,a:a,b:b};this.e(u(a));v(this.T,"sendRequest_ call when we're not connected not allowed.");this.ma.Zd(a);c&&(this.Xb[d]=c)};function Od(a,b,c){var d=b.toString(),e=b.path().toString();a.ja[e]=a.ja[e]||{};v(!a.ja[e][d],"listen() called twice for same path/queryId.");a.ja[e][d]={qb:b.qb(),G:c};a.T&&Pd(a,e,d,b.qb(),c)}
+function Pd(a,b,c,d,e){a.e("Listen on "+b+" for "+c);var f={p:b};d=Hb(d,function(a){return Sa(a)});"{}"!==c&&(f.q=d);f.h=a.dd(b);a.Ja("l",f,function(d){a.e("listen response",d);d=d.s;"ok"!==d&&Qd(a,b,c);e&&e(d)})}k.I=function(a,b,c){this.bb={re:a,Id:!1,ca:b,fc:c};this.e("Authenticating using credential: "+a);Rd(this);(b=40==a.length)||(a=Hd(a).Uc,b="object"===typeof a&&!0===B(a,"admin"));b&&(this.e("Admin auth credential detected.  Reducing max reconnect time."),this.oc=3E4)};
+k.Bd=function(a){delete this.bb;this.T&&this.Ja("unauth",{},function(b){a(b.s,b.d)})};function Rd(a){var b=a.bb;a.T&&b&&a.Ja("auth",{cred:b.re},function(c){var d=c.s;c=c.d||"error";"ok"!==d&&a.bb===b&&delete a.bb;b.Id?"ok"!==d&&b.fc&&b.fc(d,c):(b.Id=!0,b.ca&&b.ca(d,c))})}function Sd(a,b,c,d){b=b.toString();Qd(a,b,c)&&a.T&&Td(a,b,c,d)}function Td(a,b,c,d){a.e("Unlisten on "+b+" for "+c);b={p:b};d=Hb(d,function(a){return Sa(a)});"{}"!==c&&(b.q=d);a.Ja("u",b)}
+function Ud(a,b,c,d){a.T?Vd(a,"o",b,c,d):a.Mb.push({Rb:b,action:"o",data:c,G:d})}function Wd(a,b,c,d){a.T?Vd(a,"om",b,c,d):a.Mb.push({Rb:b,action:"om",data:c,G:d})}k.ld=function(a,b){this.T?Vd(this,"oc",a,null,b):this.Mb.push({Rb:a,action:"oc",data:null,G:b})};function Vd(a,b,c,d,e){c={p:c,d:d};a.e("onDisconnect "+b,c);a.Ja(b,c,function(a){e&&setTimeout(function(){e(a.s,a.d)},Math.floor(0))})}k.put=function(a,b,c,d){Xd(this,"p",a,b,c,d)};function Yd(a,b,c,d){Xd(a,"m",b,c,d,void 0)}
+function Xd(a,b,c,d,e,f){c={p:c,d:d};l(f)&&(c.h=f);a.V.push({action:b,Vd:c,G:e});a.Pb++;b=a.V.length-1;a.T&&Zd(a,b)}function Zd(a,b){var c=a.V[b].action,d=a.V[b].Vd,e=a.V[b].G;a.V[b].Le=a.T;a.Ja(c,d,function(d){a.e(c+" response",d);delete a.V[b];a.Pb--;0===a.Pb&&(a.V=[]);e&&e(d.s,d.d)})}
 k.tc=function(a){if("r"in a){this.e("from server: "+u(a));var b=a.r,c=this.Xb[b];c&&(delete this.Xb[b],c(a.b))}else{if("error"in a)throw"A server-side error has occurred: "+a.error;"a"in a&&(b=a.a,c=a.b,this.e("handleServerMessage",b,c),"d"===b?this.uc(c.p,c.d,!1):"m"===b?this.uc(c.p,c.d,!0):"c"===b?$d(this,c.p,c.q):"ac"===b?(a=c.s,b=c.d,c=this.bb,delete this.bb,c&&c.fc&&c.fc(a,b)):"sd"===b?this.ud?this.ud(c):"msg"in c&&"undefined"!==typeof console&&console.log("FIREBASE: "+c.msg.replace("\n","\nFIREBASE: ")):
 fc("Unrecognized action received from server: "+u(b)+"\nAre you using the latest client?"))}};k.Nb=function(a){this.e("connection ready");this.T=!0;this.Ib=(new Date).getTime();this.nd({serverTimeOffset:a-(new Date).getTime()});Rd(this);for(var b in this.ja)for(var c in this.ja[b])a=this.ja[b][c],Pd(this,b,c,a.qb,a.G);for(b=0;b<this.V.length;b++)this.V[b]&&Zd(this,b);for(;this.Mb.length;)b=this.Mb.shift(),Vd(this,b.action,b.Rb,b.data,b.G);this.sc(!0)};
 function Md(a,b){v(!a.ma,"Scheduling a connect when we're already connected/ing?");a.gb&&clearTimeout(a.gb);a.gb=setTimeout(function(){a.gb=null;ae(a)},Math.floor(b))}k.Je=function(a){a&&!this.xb&&this.va===this.oc&&(this.e("Window became visible.  Reducing delay."),this.va=1E3,this.ma||Md(this,0));this.xb=a};
 k.He=function(a){a?(this.e("Browser went online.  Reconnecting."),this.va=1E3,this.Za=!0,this.ma||Md(this,0)):(this.e("Browser went offline.  Killing connection; don't reconnect."),this.Za=!1,this.ma&&this.ma.close())};
 k.Qd=function(){this.e("data client disconnected");this.T=!1;this.ma=null;for(var a=0;a<this.V.length;a++){var b=this.V[a];b&&"h"in b.Vd&&b.Le&&(b.G&&b.G("disconnect"),delete this.V[a],this.Pb--)}0===this.Pb&&(this.V=[]);if(this.Za)this.xb?this.Ib&&(3E4<(new Date).getTime()-this.Ib&&(this.va=1E3),this.Ib=null):(this.e("Window isn't visible.  Delaying reconnect."),this.va=this.oc,this.hd=(new Date).getTime()),a=Math.max(0,this.va-((new Date).getTime()-this.hd)),a*=Math.random(),this.e("Trying to reconnect in "+
-a+"ms"),Md(this,a),this.va=Math.min(this.oc,1.3*this.va);else for(var c in this.Xb)delete this.Xb[c];this.sc(!1)};function ae(a){if(a.Za){a.e("Making a connection attempt");a.hd=(new Date).getTime();a.Ib=null;var b=r(a.tc,a),c=r(a.Nb,a),d=r(a.Qd,a),e=a.id+":"+Nd++;a.ma=new td(e,a.D,b,c,d,function(b){O(b+" ("+a.D.toString()+")");a.Za=!1})}}k.Pa=function(){this.Za=!1;this.ma?this.ma.close():(this.gb&&(clearTimeout(this.gb),this.gb=null),this.T&&this.Qd())};
+a+"ms"),Md(this,a),this.va=Math.min(this.oc,1.3*this.va);else for(var c in this.Xb)delete this.Xb[c];this.sc(!1)};function ae(a){if(a.Za){a.e("Making a connection attempt");a.hd=(new Date).getTime();a.Ib=null;var b=r(a.tc,a),c=r(a.Nb,a),d=r(a.Qd,a),e=a.id+":"+Nd++;a.ma=new td(e,a.D,b,c,d,function(b){O(b+" ("+a.D.toString()+")");a.Za=!1})}}k.Qa=function(){this.Za=!1;this.ma?this.ma.close():(this.gb&&(clearTimeout(this.gb),this.gb=null),this.T&&this.Qd())};
 k.tb=function(){this.Za=!0;this.va=1E3;this.T||Md(this,0)};function $d(a,b,c){c=c?Hb(c,function(a){return Ta(a)}).join("$"):"{}";(a=Qd(a,b,c))&&a.G&&a.G("permission_denied")}function Qd(a,b,c){b=(new H(b)).toString();c||(c="{}");var d=a.ja[b][c];delete a.ja[b][c];return d};function be(){this.o=this.H=null}be.prototype.rb=function(a,b){if(a.f())this.H=b,this.o=null;else if(null!==this.H)this.H=this.H.Ba(a,b);else{null==this.o&&(this.o=new fd);var c=D(a);this.o.contains(c)||this.o.add(c,new be);c=this.o.get(c);a=Ua(a);c.rb(a,b)}};
 function ce(a,b){if(b.f())return a.H=null,a.o=null,!0;if(null!==a.H){if(a.H.Q())return!1;var c=a.H;a.H=null;c.B(function(b,c){a.rb(new H(b),c)});return ce(a,b)}return null!==a.o?(c=D(b),b=Ua(b),a.o.contains(c)&&ce(a.o.get(c),b)&&a.o.remove(c),a.o.f()?(a.o=null,!0):!1):!0}function de(a,b,c){null!==a.H?c(b,a.H):a.B(function(a,e){var f=new H(b.toString()+"/"+a);de(e,f,c)})}be.prototype.B=function(a){null!==this.o&&gd(this.o,function(b,c){a(b,c)})};function ee(){this.ba=Q}function U(a,b){return a.ba.N(b)}function V(a,b,c){a.ba=a.ba.Ba(b,c)}ee.prototype.toString=function(){return this.ba.toString()};function fe(){this.wa=new ee;this.O=new ee;this.qa=new ee;this.Sb=new Ya}function ge(a,b,c){V(a.wa,b,c);return he(a,b)}function he(a,b){for(var c=U(a.wa,b),d=U(a.O,b),e=I(a.Sb,b),f=!1,g=e;null!==g;){if(null!==g.k()){f=!0;break}g=g.parent()}if(f)return!1;c=ie(c,d,e);return c!==d?(V(a.O,b,c),!0):!1}function ie(a,b,c){if(c.f())return a;if(null!==c.k())return b;a=a||Q;c.B(function(d){d=d.name();var e=a.P(d),f=b.P(d),g=I(c,d),e=ie(e,f,g);a=a.K(d,e)});return a}
-fe.prototype.set=function(a,b){var c=this,d=[];Fb(b,function(a){var b=a.path;a=a.ua;var g=Yb();Za(I(c.Sb,b),g);V(c.O,b,a);d.push({path:b,Re:g})});return d};function je(a,b){Fb(b,function(b){var d=b.Re;b=I(a.Sb,b.path);var e=b.k();v(null!==e,"pendingPut should not be null.");e===d&&Za(b,null)})};function ke(a,b){return a&&"object"===typeof a?(v(".sv"in a,"Unexpected leaf node or priority contents"),b[a[".sv"]]):a}function le(a,b){var c=new be;de(a,new H(""),function(a,e){c.rb(a,me(e,b))});return c}function me(a,b){var c=ke(a.m(),b),d;if(a.Q()){var e=ke(a.k(),b);return e!==a.k()||c!==a.m()?new vc(e,c):a}d=a;c!==a.m()&&(d=d.Ka(c));a.B(function(a,c){var e=me(c,b);e!==c&&(d=d.K(a,e))});return d};var ne="auth.firebase.com";function oe(a,b,c){this.hc=a||{};this.Lc=b||{};this.ub=c||{};this.hc.remember||(this.hc.remember="default")}var pe=["remember","redirectTo"];function qe(a){var b={},c={};Aa(a||{},function(a,e){0<=Eb(pe,a)?b[a]=e:c[a]=e});return new oe(b,{},c)};var re={NETWORK_ERROR:"Unable to contact the Firebase server.",SERVER_ERROR:"An unknown server error occurred.",TRANSPORT_UNAVAILABLE:"There are no login transports available for the requested method.",REQUEST_INTERRUPTED:"The browser redirected the page before the login request could complete.",USER_CANCELLED:"The user cancelled authentication."};function W(a){var b=Error(B(re,a),a);b.code=a;return b};function se(){var a=window.opener.frames,b;for(b=a.length-1;0<=b;b--)try{if(a[b].location.protocol===window.location.protocol&&a[b].location.host===window.location.host&&"__winchan_relay_frame"===a[b].name)return a[b]}catch(c){}return null}function te(a,b,c){a.attachEvent?a.attachEvent("on"+b,c):a.addEventListener&&a.addEventListener(b,c,!1)}function ue(a,b,c){a.detachEvent?a.detachEvent("on"+b,c):a.removeEventListener&&a.removeEventListener(b,c,!1)}
+fe.prototype.set=function(a,b){var c=this,d=[];Fb(b,function(a){var b=a.path;a=a.ua;var g=Yb();Za(I(c.Sb,b),g);V(c.O,b,a);d.push({path:b,Re:g})});return d};function je(a,b){Fb(b,function(b){var d=b.Re;b=I(a.Sb,b.path);var e=b.k();v(null!==e,"pendingPut should not be null.");e===d&&Za(b,null)})};function ke(a,b){return a&&"object"===typeof a?(v(".sv"in a,"Unexpected leaf node or priority contents"),b[a[".sv"]]):a}function le(a,b){var c=new be;de(a,new H(""),function(a,e){c.rb(a,me(e,b))});return c}function me(a,b){var c=ke(a.m(),b),d;if(a.Q()){var e=ke(a.k(),b);return e!==a.k()||c!==a.m()?new vc(e,c):a}d=a;c!==a.m()&&(d=d.La(c));a.B(function(a,c){var e=me(c,b);e!==c&&(d=d.K(a,e))});return d};var ne="auth.firebase.com";function oe(a,b,c){this.hc=a||{};this.Lc=b||{};this.ub=c||{};this.hc.remember||(this.hc.remember="default")}var pe=["remember","redirectTo"];function qe(a){var b={},c={};Aa(a||{},function(a,e){0<=Eb(pe,a)?b[a]=e:c[a]=e});return new oe(b,{},c)};var re={NETWORK_ERROR:"Unable to contact the Firebase server.",SERVER_ERROR:"An unknown server error occurred.",TRANSPORT_UNAVAILABLE:"There are no login transports available for the requested method.",REQUEST_INTERRUPTED:"The browser redirected the page before the login request could complete.",USER_CANCELLED:"The user cancelled authentication."};function W(a){var b=Error(B(re,a),a);b.code=a;return b};function se(){var a=window.opener.frames,b;for(b=a.length-1;0<=b;b--)try{if(a[b].location.protocol===window.location.protocol&&a[b].location.host===window.location.host&&"__winchan_relay_frame"===a[b].name)return a[b]}catch(c){}return null}function te(a,b,c){a.attachEvent?a.attachEvent("on"+b,c):a.addEventListener&&a.addEventListener(b,c,!1)}function ue(a,b,c){a.detachEvent?a.detachEvent("on"+b,c):a.removeEventListener&&a.removeEventListener(b,c,!1)}
 function ve(a){/^https?:\/\//.test(a)||(a=window.location.href);var b=/^(https?:\/\/[\-_a-zA-Z\.0-9:]+)/.exec(a);return b?b[1]:a}function we(a){var b="";try{a=a.replace("#","");var c={},d=a.replace(/^\?/,"").split("&");for(a=0;a<d.length;a++)if(d[a]){var e=d[a].split("=");c[e[0]]=e[1]}c&&A(c,"__firebase_request_key")&&(b=B(c,"__firebase_request_key"))}catch(f){}return b}
 function xe(a){var b=[],c;for(c in a)if(A(a,c)){var d=B(a,c);if(fa(d))for(var e=0;e<d.length;e++)b.push(encodeURIComponent(c)+"="+encodeURIComponent(d[e]));else b.push(encodeURIComponent(c)+"="+encodeURIComponent(B(a,c)))}return b.join("&")}function ye(){var a=hc(ne);return a.scheme+"://"+a.host+"/v2"};function ze(){return!!(window.cordova||window.phonegap||window.PhoneGap)&&/ios|iphone|ipod|ipad|android|blackberry|iemobile/i.test(navigator.userAgent)}function Ae(){var a=navigator.userAgent;if("Microsoft Internet Explorer"===navigator.appName){if((a=a.match(/MSIE ([0-9]{1,}[\.0-9]{0,})/))&&1<a.length)return 8<=parseFloat(a[1])}else if(-1<a.indexOf("Trident")&&(a=a.match(/rv:([0-9]{2,2}[\.0-9]{0,})/))&&1<a.length)return 8<=parseFloat(a[1]);return!1};function Be(a){a=a||{};a.method||(a.method="GET");a.headers||(a.headers={});a.headers.content_type||(a.headers.content_type="application/json");a.headers.content_type=a.headers.content_type.toLowerCase();this.options=a}
 Be.prototype.open=function(a,b,c){function d(){c&&(c(W("REQUEST_INTERRUPTED")),c=null)}var e=new XMLHttpRequest,f=this.options.method.toUpperCase(),g;te(window,"beforeunload",d);e.onreadystatechange=function(){if(c&&4===e.readyState){var a;if(200<=e.status&&300>e.status){try{a=va(e.responseText)}catch(b){}c(null,a)}else 500<=e.status&&600>e.status?c(W("SERVER_ERROR")):c(W("NETWORK_ERROR"));c=null;ue(window,"beforeunload",d)}};if("GET"===f)a+=(/\?/.test(a)?"":"?")+xe(b),g=null;else{var h=this.options.headers.content_type;
@@ -110,17 +111,17 @@ na("fb.login.transports.Popup.prototype.open",De.prototype.open);De.isAvailable=
 De.prototype.Ab=function(){return"popup"};function Ee(a){a=a||{};a.callback_parameter||(a.callback_parameter="callback");this.options=a;window.__firebase_auth_jsonp=window.__firebase_auth_jsonp||{}}
 Ee.prototype.open=function(a,b,c){function d(){c&&(c(W("REQUEST_INTERRUPTED")),c=null)}function e(){setTimeout(function(){delete window.__firebase_auth_jsonp[f];Lc(window.__firebase_auth_jsonp)&&delete window.__firebase_auth_jsonp;try{var a=document.getElementById(f);a&&a.parentNode.removeChild(a)}catch(b){}},1);ue(window,"beforeunload",d)}var f="fn"+(new Date).getTime()+Math.floor(99999*Math.random());b[this.options.callback_parameter]="__firebase_auth_jsonp."+f;a+=(/\?/.test(a)?"":"?")+xe(b);te(window,
 "beforeunload",d);window.__firebase_auth_jsonp[f]=function(a){c&&(c(null,a),c=null);e()};Fe(f,a,c)};function Fe(a,b,c){setTimeout(function(){try{var d=document.createElement("script");d.type="text/javascript";d.id=a;d.async=!0;d.src=b;d.onerror=function(){var b=document.getElementById(a);null!==b&&b.parentNode.removeChild(b);c&&c(W("NETWORK_ERROR"))};var e=document.getElementsByTagName("head");(e&&0!=e.length?e[0]:document.documentElement).appendChild(d)}catch(f){c&&c(W("NETWORK_ERROR"))}},0)}
-Ee.isAvailable=function(){return!ze()};Ee.prototype.Ab=function(){return"json"};function Ge(a,b){this.pd=["session",a.yc,a.Sa].join(":");this.Ic=b}Ge.prototype.set=function(a,b){if(!b)if(this.Ic.length)b=this.Ic[0];else throw Error("fb.login.SessionManager : No storage options available!");b.set(this.pd,a)};Ge.prototype.get=function(){var a=Hb(this.Ic,r(this.we,this)),a=Gb(a,function(a){return null!==a});Lb(a,function(a,c){return Id(c.token)-Id(a.token)});return 0<a.length?a.shift():null};Ge.prototype.we=function(a){try{var b=a.get(this.pd);if(b&&b.token)return b}catch(c){}return null};
-Ge.prototype.clear=function(){var a=this;Fb(this.Ic,function(b){b.remove(a.pd)})};function He(a){a=a||{};this.Yb=Db()+Db()+Db();this.Rd=a||{}}He.prototype.open=function(a,b){J.set("redirect_request_id",this.Yb);b.requestId=this.Yb;b.redirectTo=b.redirectTo||window.location.href;a+=(/\?/.test(a)?"":"?")+xe(b);window.location=a};na("fb.login.transports.Redirect.prototype.open",He.prototype.open);He.isAvailable=function(){return!/^file:\//.test(location.href)&&!ze()};He.prototype.Ab=function(){return"redirect"};function Ie(a,b,c,d){Gc.call(this,["auth_status"]);this.D=a;this.Cd=b;this.Xe=c;this.jd=d;this.vb=new Ge(a,[xb,J]);this.La=null;Je(this)}oa(Ie,Gc);k=Ie.prototype;k.bd=function(){return this.La||null};function Je(a){J.get("redirect_request_id")&&Ke(a);var b=a.vb.get();b&&b.token?(Le(a,b),a.Cd(b.token,function(c,d){Me(a,c,d,!1,b.token,b)},function(b,d){Ne(a,"resumeSession()",b,d)})):Le(a,null)}
+Ee.isAvailable=function(){return!ze()};Ee.prototype.Ab=function(){return"json"};function Ge(a,b){this.pd=["session",a.yc,a.Ta].join(":");this.Ic=b}Ge.prototype.set=function(a,b){if(!b)if(this.Ic.length)b=this.Ic[0];else throw Error("fb.login.SessionManager : No storage options available!");b.set(this.pd,a)};Ge.prototype.get=function(){var a=Hb(this.Ic,r(this.we,this)),a=Gb(a,function(a){return null!==a});Lb(a,function(a,c){return Id(c.token)-Id(a.token)});return 0<a.length?a.shift():null};Ge.prototype.we=function(a){try{var b=a.get(this.pd);if(b&&b.token)return b}catch(c){}return null};
+Ge.prototype.clear=function(){var a=this;Fb(this.Ic,function(b){b.remove(a.pd)})};function He(a){a=a||{};this.Yb=Db()+Db()+Db();this.Rd=a||{}}He.prototype.open=function(a,b){J.set("redirect_request_id",this.Yb);b.requestId=this.Yb;b.redirectTo=b.redirectTo||window.location.href;a+=(/\?/.test(a)?"":"?")+xe(b);window.location=a};na("fb.login.transports.Redirect.prototype.open",He.prototype.open);He.isAvailable=function(){return!/^file:\//.test(location.href)&&!ze()};He.prototype.Ab=function(){return"redirect"};function Ie(a,b,c,d){Gc.call(this,["auth_status"]);this.D=a;this.Cd=b;this.Xe=c;this.jd=d;this.vb=new Ge(a,[xb,J]);this.Ma=null;Je(this)}oa(Ie,Gc);k=Ie.prototype;k.bd=function(){return this.Ma||null};function Je(a){J.get("redirect_request_id")&&Ke(a);var b=a.vb.get();b&&b.token?(Le(a,b),a.Cd(b.token,function(c,d){Me(a,c,d,!1,b.token,b)},function(b,d){Ne(a,"resumeSession()",b,d)})):Le(a,null)}
 function Oe(a,b,c,d,e,f){"firebaseio-demo.com"===a.D.domain&&O("FirebaseRef.auth() not supported on demo Firebases (*.firebaseio-demo.com). Please use on production Firebases only (*.firebaseio.com).");a.Cd(b,function(f,h){Me(a,f,h,!0,b,c,d||{},e)},function(b,c){Ne(a,"auth()",b,c,f)})}function Pe(a,b){a.vb.clear();Le(a,null);a.Xe(function(a,d){if("ok"===a)P(b);else{var e=(a||"error").toUpperCase(),f=e;d&&(f+=": "+d);f=Error(f);f.code=e;P(b,f)}})}
 function Me(a,b,c,d,e,f,g,h){"ok"===b?(d&&(b=c.auth,f.auth=b,f.expires=c.expires,f.token=Jd(e)?e:"",c=null,b&&A(b,"uid")?c=B(b,"uid"):A(f,"uid")&&(c=B(f,"uid")),f.uid=c,c="custom",b&&A(b,"provider")?c=B(b,"provider"):A(f,"provider")&&(c=B(f,"provider")),f.provider=c,a.vb.clear(),Jd(e)&&(g=g||{},c=xb,"sessionOnly"===g.remember&&(c=J),"none"!==g.remember&&a.vb.set(f,c)),Le(a,f)),P(h,null,f)):(a.vb.clear(),Le(a,null),f=a=(b||"error").toUpperCase(),c&&(f+=": "+c),f=Error(f),f.code=a,P(h,f))}
 function Ne(a,b,c,d,e){O(b+" was canceled: "+d);a.vb.clear();Le(a,null);a=Error(d);a.code=c.toUpperCase();P(e,a)}function Qe(a,b,c,d){Re(a);var e=[Be,Ee];c=qe(c);Se(a,e,"/auth/"+b,c,d)}
-function Te(a,b,c,d){Re(a);var e=[De,Ce];c=qe(c);"anonymous"===b||"password"===b?setTimeout(function(){P(d,W("TRANSPORT_UNAVAILABLE"))},0):(c.Lc.window_features="menubar=yes,modal=yes,alwaysRaised=yeslocation=yes,resizable=yes,scrollbars=yes,status=yes,height=625,width=625,top="+("object"===typeof screen?.5*(screen.height-625):0)+",left="+("object"===typeof screen?.5*(screen.width-625):0),c.Lc.relay_url=ye()+"/"+a.D.Sa+"/auth/channel",c.Lc.requestWithCredential=r(a.Zb,a),Se(a,e,"/auth/"+b,c,d))}
+function Te(a,b,c,d){Re(a);var e=[De,Ce];c=qe(c);"anonymous"===b||"password"===b?setTimeout(function(){P(d,W("TRANSPORT_UNAVAILABLE"))},0):(c.Lc.window_features="menubar=yes,modal=yes,alwaysRaised=yeslocation=yes,resizable=yes,scrollbars=yes,status=yes,height=625,width=625,top="+("object"===typeof screen?.5*(screen.height-625):0)+",left="+("object"===typeof screen?.5*(screen.width-625):0),c.Lc.relay_url=ye()+"/"+a.D.Ta+"/auth/channel",c.Lc.requestWithCredential=r(a.Zb,a),Se(a,e,"/auth/"+b,c,d))}
 function Ke(a){var b=J.get("redirect_request_id");if(b){var c=J.get("redirect_client_options");J.remove("redirect_request_id");J.remove("redirect_client_options");var d=[Be,Ee],b={requestId:b,requestKey:we(document.location.hash)},c=new oe(c,{},b);try{document.location.hash=document.location.hash.replace(/&__firebase_request_key=([a-zA-z0-9]*)/,"")}catch(e){}Se(a,d,"/auth/session",c)}}k.Xc=function(a,b){Re(this);var c=qe(a);c.ub._method="POST";this.Zb("/users",c,function(a){P(b,a)})};
-k.sd=function(a,b){var c=this;Re(this);var d="/users/"+encodeURIComponent(a.email),e=qe(a);e.ub._method="DELETE";this.Zb(d,e,function(a,d){!a&&d&&d.uid&&c.La&&c.La.uid&&c.La.uid===d.uid&&Pe(c);P(b,a)})};k.Tc=function(a,b){Re(this);var c="/users/"+encodeURIComponent(a.email)+"/password",d=qe(a);d.ub._method="PUT";d.ub.password=a.newPassword;this.Zb(c,d,function(a){P(b,a)})};
+k.sd=function(a,b){var c=this;Re(this);var d="/users/"+encodeURIComponent(a.email),e=qe(a);e.ub._method="DELETE";this.Zb(d,e,function(a,d){!a&&d&&d.uid&&c.Ma&&c.Ma.uid&&c.Ma.uid===d.uid&&Pe(c);P(b,a)})};k.Tc=function(a,b){Re(this);var c="/users/"+encodeURIComponent(a.email)+"/password",d=qe(a);d.ub._method="PUT";d.ub.password=a.newPassword;this.Zb(c,d,function(a){P(b,a)})};
 k.td=function(a,b){Re(this);var c="/users/"+encodeURIComponent(a.email)+"/password",d=qe(a);d.ub._method="POST";this.Zb(c,d,function(a){P(b,a)})};k.Zb=function(a,b,c){Ue(this,[Be,Ee],a,b,c)};function Se(a,b,c,d,e){Ue(a,b,c,d,function(b,c){!b&&c&&c.token&&c.uid?Oe(a,c.token,c,d.hc,function(a,b){a?P(e,a):P(e,null,b)}):P(e,b||W("UNKNOWN_ERROR"))})}
-function Ue(a,b,c,d,e){b=Gb(b,function(a){return"function"===typeof a.isAvailable&&a.isAvailable()});0===b.length?setTimeout(function(){P(e,W("TRANSPORT_UNAVAILABLE"))},0):(b=new (b.shift())(d.Lc),d=Ba(d.ub),d.v="js-1.1.1",d.transport=b.Ab(),d.suppress_status_codes=!0,a=ye()+"/"+a.D.Sa+c,b.open(a,d,function(a,b){if(a)P(e,a);else if(b&&b.error){var c=Error(b.error.message);c.code=b.error.code;c.details=b.error.details;P(e,c)}else P(e,null,b)}))}
-function Le(a,b){var c=null!==a.La||null!==b;a.La=b;c&&a.Mc("auth_status",b);a.jd(null!==b)}k.cd=function(a){v("auth_status"===a,'initial event must be of type "auth_status"');return[this.La]};function Re(a){var b=a.D;if("firebaseio.com"!==b.domain&&"firebaseio-demo.com"!==b.domain&&"auth.firebase.com"===ne)throw Error("This custom Firebase server ('"+a.D.domain+"') does not support delegated login.");};function Ve(){this.hb=[]}function We(a,b){if(0!==b.length)for(var c=0;c<b.length;c++)a.hb.push(b[c])}Ve.prototype.Vb=function(){for(var a=0;a<this.hb.length;a++)if(this.hb[a]){var b=this.hb[a];this.hb[a]=null;Xe(b)}this.hb=[]};function Xe(a){var b=a.ca,c=a.$d,d=a.Ub;uc(function(){b(c,d)})};function X(a,b,c,d){this.type=a;this.xa=b;this.da=c;this.Ub=d};function Ye(a){this.S=a;this.sa=[];this.Zc=new Ve}function Ze(a,b,c,d,e){a.sa.push({type:b,ca:c,cancel:d,$:e});d=[];var f=$e(a.j);a.Gb&&f.push(new X("value",a.j));for(var g=0;g<f.length;g++)if(f[g].type===b){var h=new G(a.S.i,a.S.path);f[g].da&&(h=h.J(f[g].da));d.push({ca:qc(c,e),$d:new T(f[g].xa,h),Ub:f[g].Ub})}We(a.Zc,d)}Ye.prototype.Ac=function(a,b){b=this.Bc(a,b);null!=b&&af(this,b)};
+function Ue(a,b,c,d,e){b=Gb(b,function(a){return"function"===typeof a.isAvailable&&a.isAvailable()});0===b.length?setTimeout(function(){P(e,W("TRANSPORT_UNAVAILABLE"))},0):(b=new (b.shift())(d.Lc),d=Ba(d.ub),d.v="js-1.1.2",d.transport=b.Ab(),d.suppress_status_codes=!0,a=ye()+"/"+a.D.Ta+c,b.open(a,d,function(a,b){if(a)P(e,a);else if(b&&b.error){var c=Error(b.error.message);c.code=b.error.code;c.details=b.error.details;P(e,c)}else P(e,null,b)}))}
+function Le(a,b){var c=null!==a.Ma||null!==b;a.Ma=b;c&&a.Mc("auth_status",b);a.jd(null!==b)}k.cd=function(a){v("auth_status"===a,'initial event must be of type "auth_status"');return[this.Ma]};function Re(a){var b=a.D;if("firebaseio.com"!==b.domain&&"firebaseio-demo.com"!==b.domain&&"auth.firebase.com"===ne)throw Error("This custom Firebase server ('"+a.D.domain+"') does not support delegated login.");};function Ve(){this.hb=[]}function We(a,b){if(0!==b.length)for(var c=0;c<b.length;c++)a.hb.push(b[c])}Ve.prototype.Vb=function(){for(var a=0;a<this.hb.length;a++)if(this.hb[a]){var b=this.hb[a];this.hb[a]=null;Xe(b)}this.hb=[]};function Xe(a){var b=a.ca,c=a.$d,d=a.Ub;uc(function(){b(c,d)})};function X(a,b,c,d){this.type=a;this.xa=b;this.da=c;this.Ub=d};function Ye(a){this.S=a;this.sa=[];this.Zc=new Ve}function Ze(a,b,c,d,e){a.sa.push({type:b,ca:c,cancel:d,$:e});d=[];var f=$e(a.j);a.Gb&&f.push(new X("value",a.j));for(var g=0;g<f.length;g++)if(f[g].type===b){var h=new G(a.S.i,a.S.path);f[g].da&&(h=h.J(f[g].da));d.push({ca:qc(c,e),$d:new T(f[g].xa,h),Ub:f[g].Ub})}We(a.Zc,d)}Ye.prototype.Ac=function(a,b){b=this.Bc(a,b);null!=b&&af(this,b)};
 function af(a,b){for(var c=[],d=0;d<b.length;d++){var e=b[d],f=e.type,g=new G(a.S.i,a.S.path);b[d].da&&(g=g.J(b[d].da));g=new T(b[d].xa,g);"value"!==e.type||g.Fb()?"value"!==e.type&&(f+=" "+g.name()):f+="("+g.X()+")";M(a.S.i.n.id+": event:"+a.S.path+":"+a.S.Wa()+":"+f);for(f=0;f<a.sa.length;f++){var h=a.sa[f];b[d].type===h.type&&c.push({ca:qc(h.ca,h.$),$d:g,Ub:e.Ub})}}We(a.Zc,c)}Ye.prototype.Vb=function(){this.Zc.Vb()};
 function $e(a){var b=[];if(!a.Q()){var c=null;a.B(function(a,e){b.push(new X("child_added",e,a,c));c=a})}return b}function bf(a){a.Gb||(a.Gb=!0,af(a,[new X("value",a.j)]))};function cf(a,b){Ye.call(this,a);this.j=b}oa(cf,Ye);cf.prototype.Bc=function(a,b){this.j=a;this.Gb&&null!=b&&b.push(new X("value",this.j));return b};cf.prototype.Eb=function(){return{}};function df(a,b){this.jc=a;this.kd=b}function ef(a,b,c,d,e){var f=a.N(c),g=b.N(c);d=new df(d,e);e=ff(d,c,f,g);g=!f.f()&&!g.f()&&f.m()!==g.m();if(e||g)for(f=c,c=e;null!==f.parent();){var h=a.N(f);e=b.N(f);var m=f.parent();if(!d.jc||I(d.jc,m).k()){var n=b.N(m),q=[],f=Va(f);h.f()?(h=n.ha(f,e),q.push(new X("child_added",e,f,h))):e.f()?q.push(new X("child_removed",h,f)):(h=n.ha(f,e),g&&q.push(new X("child_moved",e,f,h)),c&&q.push(new X("child_changed",e,f,h)));d.kd(m,n,q)}g&&(g=!1,c=!0);f=m}}
 function ff(a,b,c,d){var e,f=[];c===d?e=!1:c.Q()&&d.Q()?e=c.k()!==d.k():c.Q()?(gf(a,b,Q,d,f),e=!0):d.Q()?(gf(a,b,c,Q,f),e=!0):e=gf(a,b,c,d,f);e?a.kd(b,d,f):c.m()!==d.m()&&a.kd(b,d,null);return e}
@@ -142,28 +143,28 @@ function xf(a,b){function c(b){var f=b.k();if(f&&lf(f))d.push(f.path()),null==f.
 function Bf(a,b){if(a.n){var c=a.n,d=b.path(),e=b.toString(),f=b.qb(),g,h=b.keys(),m=lf(b);Od(a.n,b,function(c){"ok"!==c?(c=sc(c),O("on() or once() for "+b.path().toString()+" failed: "+c.toString()),Cf(a,b,c)):g||(m?yf(a,b.path(),!0):Fb(h,function(a){(a=b.get(a))&&bf(a)}),Af(a,b.path()))});return function(){g=!0;Sd(c,d,e,f)}}return ca}function Cf(a,b,c){b&&(gd(b,function(a,b){for(var f=0;f<b.sa.length;f++){var g=b.sa[f];g.cancel&&qc(g.cancel,g.$)(c)}}),vf(a,b))}
 function rf(a,b){return"default"===a.Wa()?new cf(a,b):new nf(a,b)}qf.prototype.Eb=function(a,b,c,d){function e(a){pc(a,function(a,b){f[b]=3===a?3:(B(f,b)||a)===a?a:3})}var f={};gd(b,function(b,f){e(f.Eb(a,c,d))});c.Q()||c.B(function(a){A(f,a)||(f[a]=4)});return f};function Df(a,b,c,d,e){var f=b.path();b=a.Eb(f,b,d,e);var g=Q,h=[];pc(b,function(b,n){var q=new H(n);3===b||1===b?g=g.K(n,d.N(q)):(2===b&&h.push({path:f.J(n),ua:Q}),h=h.concat(Ef(a,d.N(q),I(c,q),e)))});return[{path:f,ua:g}].concat(h)}
 function Ff(a,b,c,d){var e;a:{var f=I(a.pa,b);e=f.parent();for(var g=[];null!==e;){var h=e.k();if(null!==h){if(lf(h)){e=[{path:b,ua:c}];break a}h=a.Eb(b,h,c,d);f=B(h,f.name());if(3===f||1===f){e=[{path:b,ua:c}];break a}2===f&&g.push({path:b,ua:Q})}f=e;e=e.parent()}e=g}if(1==e.length&&(!e[0].ua.f()||c.f()))return e;g=I(a.pa,b);f=g.k();null!==f?lf(f)?e.push({path:b,ua:c}):e=e.concat(Df(a,f,g,c,d)):e=e.concat(Ef(a,c,g,d));return e}
-function Ef(a,b,c,d){var e=c.k();if(null!==e)return lf(e)?[{path:c.path(),ua:b}]:Df(a,e,c,b,d);var f=[];c.B(function(c){var e=b.Q()?Q:b.P(c.name());c=Ef(a,e,c,d);f=f.concat(c)});return f};function Gf(a){this.D=a;this.ga=Wc(a);this.n=new Kd(this.D,r(this.uc,this),r(this.sc,this),r(this.nd,this),r(this.dd,this));this.be=Xc(a,r(function(){return new Tc(this.ga,this.n)},this));this.$a=new Ya;this.Ja=new ee;this.g=new fe;this.L=new qf(this.n,this.g.qa);this.fd=new ee;this.gd=new qf(null,this.fd);Hf(this,"connected",!1);this.U=new be;this.I=new Ie(a,r(this.n.I,this.n),r(this.n.Bd,this.n),r(this.jd,this));this.ic=0}k=Gf.prototype;
-k.toString=function(){return(this.D.Ya?"https://":"http://")+this.D.host};k.name=function(){return this.D.Sa};function If(a){a=U(a.fd,new H(".info/serverTimeOffset")).X()||0;return(new Date).getTime()+a}function Jf(a){a=a={timestamp:If(a)};a.timestamp=a.timestamp||(new Date).getTime();return a}
-k.uc=function(a,b,c){this.ic++;this.Md&&(b=this.Md(a,b));var d,e,f=[];9<=a.length&&a.lastIndexOf(".priority")===a.length-9?(d=new H(a.substring(0,a.length-9)),e=U(this.g.wa,d).Ka(b),f.push(d)):c?(d=new H(a),e=U(this.g.wa,d),pc(b,function(a,b){var c=new H(b);".priority"===b?e=e.Ka(a):(e=e.Ba(c,S(a)),f.push(d.J(b)))})):(d=new H(a),e=S(b),f.push(d));a=Ff(this.L,d,e,this.g.O);b=!1;for(c=0;c<a.length;++c){var g=a[c];b=ge(this.g,g.path,g.ua)||b}b&&(d=Kf(this,d));zf(this.L,d,f)};
+function Ef(a,b,c,d){var e=c.k();if(null!==e)return lf(e)?[{path:c.path(),ua:b}]:Df(a,e,c,b,d);var f=[];c.B(function(c){var e=b.Q()?Q:b.P(c.name());c=Ef(a,e,c,d);f=f.concat(c)});return f};function Gf(a){this.D=a;this.ga=Wc(a);this.n=new Kd(this.D,r(this.uc,this),r(this.sc,this),r(this.nd,this),r(this.dd,this));this.be=Xc(a,r(function(){return new Tc(this.ga,this.n)},this));this.$a=new Ya;this.Ka=new ee;this.g=new fe;this.L=new qf(this.n,this.g.qa);this.fd=new ee;this.gd=new qf(null,this.fd);Hf(this,"connected",!1);this.U=new be;this.I=new Ie(a,r(this.n.I,this.n),r(this.n.Bd,this.n),r(this.jd,this));this.ic=0}k=Gf.prototype;
+k.toString=function(){return(this.D.Ya?"https://":"http://")+this.D.host};k.name=function(){return this.D.Ta};function If(a){a=U(a.fd,new H(".info/serverTimeOffset")).X()||0;return(new Date).getTime()+a}function Jf(a){a=a={timestamp:If(a)};a.timestamp=a.timestamp||(new Date).getTime();return a}
+k.uc=function(a,b,c){this.ic++;this.Md&&(b=this.Md(a,b));var d,e,f=[];9<=a.length&&a.lastIndexOf(".priority")===a.length-9?(d=new H(a.substring(0,a.length-9)),e=U(this.g.wa,d).La(b),f.push(d)):c?(d=new H(a),e=U(this.g.wa,d),pc(b,function(a,b){var c=new H(b);".priority"===b?e=e.La(a):(e=e.Ba(c,S(a)),f.push(d.J(b)))})):(d=new H(a),e=S(b),f.push(d));a=Ff(this.L,d,e,this.g.O);b=!1;for(c=0;c<a.length;++c){var g=a[c];b=ge(this.g,g.path,g.ua)||b}b&&(d=Kf(this,d));zf(this.L,d,f)};
 k.sc=function(a){Hf(this,"connected",a);!1===a&&Lf(this)};k.nd=function(a){var b=this;oc(a,function(a,d){Hf(b,d,a)})};k.dd=function(a){a=new H(a);return U(this.g.wa,a).hash()};k.jd=function(a){Hf(this,"authenticated",a)};function Hf(a,b,c){b=new H("/.info/"+b);V(a.fd,b,S(c));zf(a.gd,b,[b])}
 k.wb=function(a,b,c,d){this.e("set",{path:a.toString(),value:b,la:c});var e=Jf(this);b=S(b,c);var e=me(b,e),e=Ff(this.L,a,e,this.g.O),f=this.g.set(a,e),g=this;this.n.put(a.toString(),b.X(!0),function(b,c){"ok"!==b&&O("set at "+a+" failed: "+b);je(g.g,f);he(g.g,a);var e=Kf(g,a);zf(g.L,e,[]);Mf(d,b,c)});e=Nf(this,a);Kf(this,e);zf(this.L,e,[a])};
 k.update=function(a,b,c){this.e("update",{path:a.toString(),value:b});var d=U(this.g.qa,a),e=!0,f=[],g=Jf(this),h=[],m;for(m in b){var e=!1,n=S(b[m]),n=me(n,g),d=d.K(m,n),q=a.J(m);f.push(q);n=Ff(this.L,q,n,this.g.O);h=h.concat(this.g.set(a,n))}if(e)M("update() called with empty data.  Don't do anything."),Mf(c,"ok");else{var s=this;Yd(this.n,a.toString(),b,function(b,d){"ok"!==b&&O("update at "+a+" failed: "+b);je(s.g,h);he(s.g,a);var e=Kf(s,a);zf(s.L,e,[]);Mf(c,b,d)});b=Nf(this,a);Kf(this,b);zf(s.L,
-b,f)}};k.vd=function(a,b,c){this.e("setPriority",{path:a.toString(),la:b});var d=Jf(this),d=ke(b,d),d=U(this.g.O,a).Ka(d),d=Ff(this.L,a,d,this.g.O),e=this.g.set(a,d),f=this;this.n.put(a.toString()+"/.priority",b,function(b,d){"permission_denied"===b&&O("setPriority at "+a+" failed: "+b);je(f.g,e);he(f.g,a);var m=Kf(f,a);zf(f.L,m,[]);Mf(c,b,d)});b=Kf(this,a);zf(f.L,b,[])};
+b,f)}};k.vd=function(a,b,c){this.e("setPriority",{path:a.toString(),la:b});var d=Jf(this),d=ke(b,d),d=U(this.g.O,a).La(d),d=Ff(this.L,a,d,this.g.O),e=this.g.set(a,d),f=this;this.n.put(a.toString()+"/.priority",b,function(b,d){"permission_denied"===b&&O("setPriority at "+a+" failed: "+b);je(f.g,e);he(f.g,a);var m=Kf(f,a);zf(f.L,m,[]);Mf(c,b,d)});b=Kf(this,a);zf(f.L,b,[])};
 function Lf(a){a.e("onDisconnectEvents");var b=[],c=Jf(a);de(le(a.U,c),new H(""),function(c,e){var f=Ff(a.L,c,e,a.g.O);b.push.apply(b,a.g.set(c,f));f=Nf(a,c);Kf(a,f);zf(a.L,f,[c])});je(a.g,b);a.U=new be}k.ld=function(a,b){var c=this;this.n.ld(a.toString(),function(d,e){"ok"===d&&ce(c.U,a);Mf(b,d,e)})};function Of(a,b,c,d){var e=S(c);Ud(a.n,b.toString(),e.X(!0),function(c,g){"ok"===c&&a.U.rb(b,e);Mf(d,c,g)})}
 function Pf(a,b,c,d,e){var f=S(c,d);Ud(a.n,b.toString(),f.X(!0),function(c,d){"ok"===c&&a.U.rb(b,f);Mf(e,c,d)})}function Qf(a,b,c,d){var e=!0,f;for(f in c)e=!1;e?(M("onDisconnect().update() called with empty data.  Don't do anything."),Mf(d,"ok")):Wd(a.n,b.toString(),c,function(e,f){if("ok"===e)for(var m in c){var n=S(c[m]);a.U.rb(b.J(m),n)}Mf(d,e,f)})}function Rf(a){Rc(a.ga,"deprecated_on_disconnect");a.be.yd.deprecated_on_disconnect=!0}
 k.ec=function(a,b,c,d,e){".info"===D(a.path)?this.gd.ec(a,b,c,d,e):this.L.ec(a,b,c,d,e)};k.Dc=function(a,b,c,d){if(".info"===D(a.path))this.gd.Dc(a,b,c,d);else{b=this.L.Dc(a,b,c,d);if(c=null!==b){c=this.g;d=a.path;for(var e=[],f=0;f<b.length;++f)e[f]=U(c.wa,b[f]);V(c.wa,d,Q);for(f=0;f<b.length;++f)V(c.wa,b[f],e[f]);c=he(c,d)}c&&(v(this.g.qa.ba===this.L.rc,"We should have raised any outstanding events by now.  Else, we'll blow them away."),V(this.g.qa,a.path,U(this.g.O,a.path)),this.L.rc=this.g.qa.ba)}};
-k.Pa=function(){this.n.Pa()};k.tb=function(){this.n.tb()};k.wd=function(a){if("undefined"!==typeof console){a?(this.Hc||(this.Hc=new Sc(this.ga)),a=this.Hc.get()):a=this.ga.get();var b=Ib(Kc(a),function(a,b){return Math.max(b.length,a)},0),c;for(c in a){for(var d=a[c],e=c.length;e<b+2;e++)c+=" ";console.log(c+d)}}};k.xd=function(a){Rc(this.ga,a);this.be.yd[a]=!0};k.e=function(){M("r:"+this.n.id+":",arguments)};
-function Mf(a,b,c){a&&uc(function(){if("ok"==b)a(null,c);else{var d=(b||"error").toUpperCase(),e=d;c&&(e+=": "+c);e=Error(e);e.code=d;a(e)}})};function Sf(a,b,c,d,e){function f(){}a.e("transaction on "+b);var g=new G(a,b);g.Ta("value",f);c={path:b,update:c,G:d,status:null,Sd:Yb(),Rc:e,Xd:0,Oc:function(){g.nb("value",f)},Pc:null};a.Ja.ba=Tf(a,a.Ja.ba,a.g.O.ba,a.$a);d=c.update(U(a.Ja,b).X());if(l(d)){Ga("transaction failed: Data returned ",d);c.status=1;e=I(a.$a,b);var h=e.k()||[];h.push(c);Za(e,h);h="object"===typeof d&&null!==d&&A(d,".priority")?d[".priority"]:U(a.g.O,b).m();e=Jf(a);d=S(d,h);d=me(d,e);V(a.Ja,b,d);c.Rc&&(V(a.g.qa,b,d),zf(a.L,
+k.Qa=function(){this.n.Qa()};k.tb=function(){this.n.tb()};k.wd=function(a){if("undefined"!==typeof console){a?(this.Hc||(this.Hc=new Sc(this.ga)),a=this.Hc.get()):a=this.ga.get();var b=Ib(Kc(a),function(a,b){return Math.max(b.length,a)},0),c;for(c in a){for(var d=a[c],e=c.length;e<b+2;e++)c+=" ";console.log(c+d)}}};k.xd=function(a){Rc(this.ga,a);this.be.yd[a]=!0};k.e=function(){M("r:"+this.n.id+":",arguments)};
+function Mf(a,b,c){a&&uc(function(){if("ok"==b)a(null,c);else{var d=(b||"error").toUpperCase(),e=d;c&&(e+=": "+c);e=Error(e);e.code=d;a(e)}})};function Sf(a,b,c,d,e){function f(){}a.e("transaction on "+b);var g=new G(a,b);g.Ua("value",f);c={path:b,update:c,G:d,status:null,Sd:Yb(),Rc:e,Xd:0,Oc:function(){g.nb("value",f)},Pc:null};a.Ka.ba=Tf(a,a.Ka.ba,a.g.O.ba,a.$a);d=c.update(U(a.Ka,b).X());if(l(d)){Ga("transaction failed: Data returned ",d);c.status=1;e=I(a.$a,b);var h=e.k()||[];h.push(c);Za(e,h);h="object"===typeof d&&null!==d&&A(d,".priority")?d[".priority"]:U(a.g.O,b).m();e=Jf(a);d=S(d,h);d=me(d,e);V(a.Ka,b,d);c.Rc&&(V(a.g.qa,b,d),zf(a.L,
 b,[b]));Uf(a)}else c.Oc(),c.G&&(a=Vf(a,b),c.G(null,!1,a))}function Uf(a,b){var c=b||a.$a;b||Wf(a,c);if(null!==c.k()){var d=Xf(a,c);v(0<d.length);Jb(d,function(a){return 1===a.status})&&Yf(a,c.path(),d)}else c.Fb()&&c.B(function(b){Uf(a,b)})}
-function Yf(a,b,c){for(var d=0;d<c.length;d++)v(1===c[d].status,"tryToSendTransactionQueue_: items in queue should all be run."),c[d].status=2,c[d].Xd++;var e=U(a.g.O,b).hash();V(a.g.O,b,U(a.g.qa,b));for(var f=U(a.Ja,b).X(!0),g=Yb(),h=Zf(c),d=0;d<h.length;d++)Za(I(a.g.Sb,h[d]),g);a.n.put(b.toString(),f,function(e){a.e("transaction put response",{path:b.toString(),status:e});for(d=0;d<h.length;d++){var f=I(a.g.Sb,h[d]),q=f.k();v(null!==q,"sendTransactionQueue_: pendingPut should not be null.");q===
+function Yf(a,b,c){for(var d=0;d<c.length;d++)v(1===c[d].status,"tryToSendTransactionQueue_: items in queue should all be run."),c[d].status=2,c[d].Xd++;var e=U(a.g.O,b).hash();V(a.g.O,b,U(a.g.qa,b));for(var f=U(a.Ka,b).X(!0),g=Yb(),h=Zf(c),d=0;d<h.length;d++)Za(I(a.g.Sb,h[d]),g);a.n.put(b.toString(),f,function(e){a.e("transaction put response",{path:b.toString(),status:e});for(d=0;d<h.length;d++){var f=I(a.g.Sb,h[d]),q=f.k();v(null!==q,"sendTransactionQueue_: pendingPut should not be null.");q===
 g&&(Za(f,null),V(a.g.O,h[d],U(a.g.wa,h[d])))}if("ok"===e){e=[];for(d=0;d<c.length;d++)c[d].status=3,c[d].G&&(f=Vf(a,c[d].path),e.push(r(c[d].G,null,null,!0,f))),c[d].Oc();Wf(a,I(a.$a,b));Uf(a);for(d=0;d<e.length;d++)uc(e[d])}else{if("datastale"===e)for(d=0;d<c.length;d++)c[d].status=4===c[d].status?5:1;else for(O("transaction at "+b+" failed: "+e),d=0;d<c.length;d++)c[d].status=5,c[d].Pc=e;e=Kf(a,b);zf(a.L,e,[b])}},e)}
 function Zf(a){for(var b={},c=0;c<a.length;c++)a[c].Rc&&(b[a[c].path.toString()]=a[c].path);a=[];for(var d in b)a.push(b[d]);return a}
-function Kf(a,b){var c=$f(a,b),d=c.path(),c=Xf(a,c);V(a.g.qa,d,U(a.g.O,d));V(a.Ja,d,U(a.g.O,d));if(0!==c.length){for(var e=U(a.g.qa,d),f=e,g=[],h=0;h<c.length;h++){var m=Wa(d,c[h].path),n=!1,q;v(null!==m,"rerunTransactionsUnderNode_: relativePath should not be null.");if(5===c[h].status)n=!0,q=c[h].Pc;else if(1===c[h].status)if(25<=c[h].Xd)n=!0,q="maxretry";else{var s=e.N(m),t=c[h].update(s.X());if(l(t)){Ga("transaction failed: Data returned ",t);var w=S(t);"object"===typeof t&&null!=t&&A(t,".priority")||
-(w=w.Ka(s.m()));e=e.Ba(m,w);c[h].Rc&&(f=f.Ba(m,w))}else n=!0,q="nodata"}n&&(c[h].status=3,setTimeout(c[h].Oc,Math.floor(0)),c[h].G&&(n=new G(a,c[h].path),m=new T(e.N(m),n),"nodata"===q?g.push(r(c[h].G,null,null,!1,m)):g.push(r(c[h].G,null,Error(q),!1,m))))}V(a.Ja,d,e);V(a.g.qa,d,f);Wf(a,a.$a);for(h=0;h<g.length;h++)uc(g[h]);Uf(a)}return d}function $f(a,b){for(var c,d=a.$a;null!==(c=D(b))&&null===d.k();)d=I(d,c),b=Ua(b);return d}
+function Kf(a,b){var c=$f(a,b),d=c.path(),c=Xf(a,c);V(a.g.qa,d,U(a.g.O,d));V(a.Ka,d,U(a.g.O,d));if(0!==c.length){for(var e=U(a.g.qa,d),f=e,g=[],h=0;h<c.length;h++){var m=Wa(d,c[h].path),n=!1,q;v(null!==m,"rerunTransactionsUnderNode_: relativePath should not be null.");if(5===c[h].status)n=!0,q=c[h].Pc;else if(1===c[h].status)if(25<=c[h].Xd)n=!0,q="maxretry";else{var s=e.N(m),t=c[h].update(s.X());if(l(t)){Ga("transaction failed: Data returned ",t);var w=S(t);"object"===typeof t&&null!=t&&A(t,".priority")||
+(w=w.La(s.m()));e=e.Ba(m,w);c[h].Rc&&(f=f.Ba(m,w))}else n=!0,q="nodata"}n&&(c[h].status=3,setTimeout(c[h].Oc,Math.floor(0)),c[h].G&&(n=new G(a,c[h].path),m=new T(e.N(m),n),"nodata"===q?g.push(r(c[h].G,null,null,!1,m)):g.push(r(c[h].G,null,Error(q),!1,m))))}V(a.Ka,d,e);V(a.g.qa,d,f);Wf(a,a.$a);for(h=0;h<g.length;h++)uc(g[h]);Uf(a)}return d}function $f(a,b){for(var c,d=a.$a;null!==(c=D(b))&&null===d.k();)d=I(d,c),b=Ua(b);return d}
 function Xf(a,b){var c=[];ag(a,b,c);c.sort(function(a,b){return a.Sd-b.Sd});return c}function ag(a,b,c){var d=b.k();if(null!==d)for(var e=0;e<d.length;e++)c.push(d[e]);b.B(function(b){ag(a,b,c)})}function Wf(a,b){var c=b.k();if(c){for(var d=0,e=0;e<c.length;e++)3!==c[e].status&&(c[d]=c[e],d++);c.length=d;Za(b,0<c.length?c:null)}b.B(function(b){Wf(a,b)})}function Nf(a,b){var c=$f(a,b).path(),d=I(a.$a,b);bb(d,function(a){bg(a)});bg(d);ab(d,function(a){bg(a)});return c}
-function bg(a){var b=a.k();if(null!==b){for(var c=[],d=-1,e=0;e<b.length;e++)4!==b[e].status&&(2===b[e].status?(v(d===e-1,"All SENT items should be at beginning of queue."),d=e,b[e].status=4,b[e].Pc="set"):(v(1===b[e].status),b[e].Oc(),b[e].G&&c.push(r(b[e].G,null,Error("set"),!1,null))));-1===d?Za(a,null):b.length=d+1;for(e=0;e<c.length;e++)uc(c[e])}}function Vf(a,b){var c=new G(a,b);return new T(U(a.Ja,b),c)}
-function Tf(a,b,c,d){if(d.f())return c;if(null!=d.k())return b;var e=c;d.B(function(d){var g=d.name(),h=new H(g);d=Tf(a,b.N(h),c.N(h),d);e=e.K(g,d)});return e};function Y(){this.sb={}}da(Y);Y.prototype.Pa=function(){for(var a in this.sb)this.sb[a].Pa()};Y.prototype.interrupt=Y.prototype.Pa;Y.prototype.tb=function(){for(var a in this.sb)this.sb[a].tb()};Y.prototype.resume=Y.prototype.tb;function cg(a){var b=this;this.zb=a;this.Jc="*";Ae()?this.Kb=this.lc=se():(this.Kb=window.opener,this.lc=window);if(!b.Kb)throw"Unable to find relay frame";te(this.lc,"message",r(this.ob,this));te(this.lc,"message",r(this.Pd,this));try{dg(this,{a:"ready"})}catch(c){te(this.Kb,"load",function(){dg(b,{a:"ready"})})}te(window,"unload",r(this.Ie,this))}function dg(a,b){b=u(b);Ae()?a.Kb.doPost(b,a.Jc):a.Kb.postMessage(b,a.Jc)}
-cg.prototype.ob=function(a){var b=this,c;try{c=va(a.data)}catch(d){}c&&"request"===c.a&&(ue(window,"message",this.ob),this.Jc=a.origin,this.zb&&setTimeout(function(){b.zb(b.Jc,c.d,function(a,c){b.oe=!c;b.zb=void 0;dg(b,{a:"response",d:a,forceKeepWindowOpen:c})})},0))};cg.prototype.Ie=function(){try{ue(this.lc,"message",this.Pd)}catch(a){}this.zb&&(dg(this,{a:"error",d:"unknown closed window"}),this.zb=void 0);try{window.close()}catch(b){}};cg.prototype.Pd=function(a){if(this.oe&&"die"===a.data)try{window.close()}catch(b){}};var Z={xe:function(a){var b=R.prototype.hash;R.prototype.hash=a;var c=vc.prototype.hash;vc.prototype.hash=a;return function(){R.prototype.hash=b;vc.prototype.hash=c}}};Z.hijackHash=Z.xe;Z.Wa=function(a){return a.Wa()};Z.queryIdentifier=Z.Wa;Z.Ae=function(a){return a.i.n.ja};Z.listens=Z.Ae;Z.Me=function(a){return a.i.n.ma};Z.refConnection=Z.Me;Z.ee=Kd;Z.DataConnection=Z.ee;Kd.prototype.sendRequest=Kd.prototype.Ia;Kd.prototype.interrupt=Kd.prototype.Pa;Z.fe=td;Z.RealTimeConnection=Z.fe;
+function bg(a){var b=a.k();if(null!==b){for(var c=[],d=-1,e=0;e<b.length;e++)4!==b[e].status&&(2===b[e].status?(v(d===e-1,"All SENT items should be at beginning of queue."),d=e,b[e].status=4,b[e].Pc="set"):(v(1===b[e].status),b[e].Oc(),b[e].G&&c.push(r(b[e].G,null,Error("set"),!1,null))));-1===d?Za(a,null):b.length=d+1;for(e=0;e<c.length;e++)uc(c[e])}}function Vf(a,b){var c=new G(a,b);return new T(U(a.Ka,b),c)}
+function Tf(a,b,c,d){if(d.f())return c;if(null!=d.k())return b;var e=c;d.B(function(d){var g=d.name(),h=new H(g);d=Tf(a,b.N(h),c.N(h),d);e=e.K(g,d)});return e};function Y(){this.sb={}}da(Y);Y.prototype.Qa=function(){for(var a in this.sb)this.sb[a].Qa()};Y.prototype.interrupt=Y.prototype.Qa;Y.prototype.tb=function(){for(var a in this.sb)this.sb[a].tb()};Y.prototype.resume=Y.prototype.tb;function cg(a){var b=this;this.zb=a;this.Jc="*";Ae()?this.Kb=this.lc=se():(this.Kb=window.opener,this.lc=window);if(!b.Kb)throw"Unable to find relay frame";te(this.lc,"message",r(this.ob,this));te(this.lc,"message",r(this.Pd,this));try{dg(this,{a:"ready"})}catch(c){te(this.Kb,"load",function(){dg(b,{a:"ready"})})}te(window,"unload",r(this.Ie,this))}function dg(a,b){b=u(b);Ae()?a.Kb.doPost(b,a.Jc):a.Kb.postMessage(b,a.Jc)}
+cg.prototype.ob=function(a){var b=this,c;try{c=va(a.data)}catch(d){}c&&"request"===c.a&&(ue(window,"message",this.ob),this.Jc=a.origin,this.zb&&setTimeout(function(){b.zb(b.Jc,c.d,function(a,c){b.oe=!c;b.zb=void 0;dg(b,{a:"response",d:a,forceKeepWindowOpen:c})})},0))};cg.prototype.Ie=function(){try{ue(this.lc,"message",this.Pd)}catch(a){}this.zb&&(dg(this,{a:"error",d:"unknown closed window"}),this.zb=void 0);try{window.close()}catch(b){}};cg.prototype.Pd=function(a){if(this.oe&&"die"===a.data)try{window.close()}catch(b){}};var Z={xe:function(a){var b=R.prototype.hash;R.prototype.hash=a;var c=vc.prototype.hash;vc.prototype.hash=a;return function(){R.prototype.hash=b;vc.prototype.hash=c}}};Z.hijackHash=Z.xe;Z.Wa=function(a){return a.Wa()};Z.queryIdentifier=Z.Wa;Z.Ae=function(a){return a.i.n.ja};Z.listens=Z.Ae;Z.Me=function(a){return a.i.n.ma};Z.refConnection=Z.Me;Z.ee=Kd;Z.DataConnection=Z.ee;Kd.prototype.sendRequest=Kd.prototype.Ja;Kd.prototype.interrupt=Kd.prototype.Qa;Z.fe=td;Z.RealTimeConnection=Z.fe;
 td.prototype.sendRequest=td.prototype.Zd;td.prototype.close=td.prototype.close;Z.de=yb;Z.ConnectionTarget=Z.de;Z.ue=function(){id=$c=!0};Z.forceLongPolling=Z.ue;Z.ve=function(){jd=!0};Z.forceWebSockets=Z.ve;Z.Te=function(a,b){a.i.n.ud=b};Z.setSecurityDebugCallback=Z.Te;Z.wd=function(a,b){a.i.wd(b)};Z.stats=Z.wd;Z.xd=function(a,b){a.i.xd(b)};Z.statsIncrementCounter=Z.xd;Z.ic=function(a){return a.i.ic};Z.dataUpdateCount=Z.ic;Z.ye=function(a,b){a.i.Md=b};Z.interceptServerData=Z.ye;Z.Fe=function(a){new cg(a)};
 Z.onPopupOpen=Z.Fe;Z.Qe=function(a){ne=a};Z.setAuthenticationServer=Z.Qe;function $(a,b,c){this.Wb=a;this.Z=b;this.Ha=c}$.prototype.cancel=function(a){x("Firebase.onDisconnect().cancel",0,1,arguments.length);z("Firebase.onDisconnect().cancel",1,a,!0);this.Wb.ld(this.Z,a)};$.prototype.cancel=$.prototype.cancel;$.prototype.remove=function(a){x("Firebase.onDisconnect().remove",0,1,arguments.length);C("Firebase.onDisconnect().remove",this.Z);z("Firebase.onDisconnect().remove",1,a,!0);Of(this.Wb,this.Z,null,a)};$.prototype.remove=$.prototype.remove;
 $.prototype.set=function(a,b){x("Firebase.onDisconnect().set",1,2,arguments.length);C("Firebase.onDisconnect().set",this.Z);Fa("Firebase.onDisconnect().set",a,!1);z("Firebase.onDisconnect().set",2,b,!0);Of(this.Wb,this.Z,a,b)};$.prototype.set=$.prototype.set;
@@ -171,7 +172,7 @@ $.prototype.wb=function(a,b,c){x("Firebase.onDisconnect().setWithPriority",2,3,a
 $.prototype.update=function(a,b){x("Firebase.onDisconnect().update",1,2,arguments.length);C("Firebase.onDisconnect().update",this.Z);if(fa(a)){for(var c={},d=0;d<a.length;++d)c[""+d]=a[d];a=c;O("Passing an Array to Firebase.onDisconnect().update() is deprecated. Use set() if you want to overwrite the existing data, or an Object with integer keys if you really do want to only update some of the children.")}Ja("Firebase.onDisconnect().update",a);z("Firebase.onDisconnect().update",2,b,!0);Qf(this.Wb,
 this.Z,a,b)};$.prototype.update=$.prototype.update;var eg=function(){var a=0,b=[];return function(c){var d=c===a;a=c;for(var e=Array(8),f=7;0<=f;f--)e[f]="-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".charAt(c%64),c=Math.floor(c/64);v(0===c,"Cannot push at time == 0");c=e.join("");if(d){for(f=11;0<=f&&63===b[f];f--)b[f]=0;b[f]++}else for(f=0;12>f;f++)b[f]=Math.floor(64*Math.random());for(f=0;12>f;f++)c+="-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ_abcdefghijklmnopqrstuvwxyz".charAt(b[f]);v(20===c.length,"NextPushId: Length should be 20.");
 return c}}();function G(a,b){var c,d,e;if(a instanceof Gf)c=a,d=b;else{x("new Firebase",1,2,arguments.length);d=hc(arguments[0]);c=d.Ve;"firebase"===d.domain&&gc(d.host+" is no longer supported. Please use <YOUR FIREBASE>.firebaseio.com instead");c||gc("Cannot parse Firebase url. Please use https://<YOUR FIREBASE>.firebaseio.com");d.Ya||"undefined"!==typeof window&&window.location&&window.location.protocol&&-1!==window.location.protocol.indexOf("https:")&&O("Insecure Firebase access from a secure page. Please use https in calls to new Firebase().");
-c=new yb(d.host,d.Ya,c,"ws"===d.scheme||"wss"===d.scheme);d=new H(d.Rb);e=d.toString();var f;!(f=!p(c.host)||0===c.host.length||!Ea(c.Sa))&&(f=0!==e.length)&&(e&&(e=e.replace(/^\/*\.info(\/|$)/,"/")),f=!(p(e)&&0!==e.length&&!Da.test(e)));if(f)throw Error(y("new Firebase",1,!1)+'must be a valid firebase URL and the path can\'t contain ".", "#", "$", "[", or "]".');if(b)if(b instanceof Y)e=b;else if(p(b))e=Y.ib(),c.yc=b;else throw Error("Expected a valid Firebase.Context for second argument to new Firebase()");
+c=new yb(d.host,d.Ya,c,"ws"===d.scheme||"wss"===d.scheme);d=new H(d.Rb);e=d.toString();var f;!(f=!p(c.host)||0===c.host.length||!Ea(c.Ta))&&(f=0!==e.length)&&(e&&(e=e.replace(/^\/*\.info(\/|$)/,"/")),f=!(p(e)&&0!==e.length&&!Da.test(e)));if(f)throw Error(y("new Firebase",1,!1)+'must be a valid firebase URL and the path can\'t contain ".", "#", "$", "[", or "]".');if(b)if(b instanceof Y)e=b;else if(p(b))e=Y.ib(),c.yc=b;else throw Error("Expected a valid Firebase.Context for second argument to new Firebase()");
 else e=Y.ib();f=c.toString();var g=B(e.sb,f);g||(g=new Gf(c),e.sb[f]=g);c=g}F.call(this,c,d)}oa(G,F);na("Firebase",G);G.prototype.name=function(){x("Firebase.name",0,0,arguments.length);return this.path.f()?null:Va(this.path)};G.prototype.name=G.prototype.name;
 G.prototype.J=function(a){x("Firebase.child",1,1,arguments.length);if(ha(a))a=String(a);else if(!(a instanceof H))if(null===D(this.path)){var b=a;b&&(b=b.replace(/^\/*\.info(\/|$)/,"/"));Na("Firebase.child",b)}else Na("Firebase.child",a);return new G(this.i,this.path.J(a))};G.prototype.child=G.prototype.J;G.prototype.parent=function(){x("Firebase.parent",0,0,arguments.length);var a=this.path.parent();return null===a?null:new G(this.i,a)};G.prototype.parent=G.prototype.parent;
 G.prototype.root=function(){x("Firebase.ref",0,0,arguments.length);for(var a=this;null!==a.parent();)a=a.parent();return a};G.prototype.root=G.prototype.root;G.prototype.toString=function(){x("Firebase.toString",0,0,arguments.length);var a;if(null===this.parent())a=this.i.toString();else{a=this.parent().toString()+"/";var b=this.name();a+=encodeURIComponent(String(b))}return a};G.prototype.toString=G.prototype.toString;
@@ -183,7 +184,7 @@ G.prototype.transaction=function(a,b,c){x("Firebase.transaction",1,3,arguments.l
 G.prototype.vd=function(a,b){x("Firebase.setPriority",1,2,arguments.length);C("Firebase.setPriority",this.path);Ka("Firebase.setPriority",1,a,!1);z("Firebase.setPriority",2,b,!0);this.i.vd(this.path,a,b)};G.prototype.setPriority=G.prototype.vd;G.prototype.push=function(a,b){x("Firebase.push",0,2,arguments.length);C("Firebase.push",this.path);Fa("Firebase.push",a,!0);z("Firebase.push",2,b,!0);var c=If(this.i),c=eg(c),c=this.J(c);"undefined"!==typeof a&&null!==a&&c.set(a,b);return c};
 G.prototype.push=G.prototype.push;G.prototype.ka=function(){return new $(this.i,this.path,this.name())};G.prototype.onDisconnect=G.prototype.ka;G.prototype.Ne=function(){O("FirebaseRef.removeOnDisconnect() being deprecated. Please use FirebaseRef.onDisconnect().remove() instead.");this.ka().remove();Rf(this.i)};G.prototype.removeOnDisconnect=G.prototype.Ne;
 G.prototype.Se=function(a){O("FirebaseRef.setOnDisconnect(value) being deprecated. Please use FirebaseRef.onDisconnect().set(value) instead.");this.ka().set(a);Rf(this.i)};G.prototype.setOnDisconnect=G.prototype.Se;G.prototype.I=function(a,b,c){O("FirebaseRef.auth() being deprecated. Please use FirebaseRef.authWithCustomToken() instead.");x("Firebase.auth",1,3,arguments.length);Oa("Firebase.auth",a);z("Firebase.auth",2,b,!0);z("Firebase.auth",3,b,!0);Oe(this.i.I,a,{},{remember:"none"},b,c)};
-G.prototype.auth=G.prototype.I;G.prototype.Bd=function(a){x("Firebase.unauth",0,1,arguments.length);z("Firebase.unauth",1,a,!0);Pe(this.i.I,a)};G.prototype.unauth=G.prototype.Bd;G.prototype.bd=function(){x("Firebase.getAuth",0,0,arguments.length);return this.i.I.bd()};G.prototype.getAuth=G.prototype.bd;G.prototype.Ee=function(a,b){x("Firebase.onAuth",1,2,arguments.length);z("Firebase.onAuth",1,a,!1);za("Firebase.onAuth",2,b);this.i.I.Ta("auth_status",a,b)};G.prototype.onAuth=G.prototype.Ee;
+G.prototype.auth=G.prototype.I;G.prototype.Bd=function(a){x("Firebase.unauth",0,1,arguments.length);z("Firebase.unauth",1,a,!0);Pe(this.i.I,a)};G.prototype.unauth=G.prototype.Bd;G.prototype.bd=function(){x("Firebase.getAuth",0,0,arguments.length);return this.i.I.bd()};G.prototype.getAuth=G.prototype.bd;G.prototype.Ee=function(a,b){x("Firebase.onAuth",1,2,arguments.length);z("Firebase.onAuth",1,a,!1);za("Firebase.onAuth",2,b);this.i.I.Ua("auth_status",a,b)};G.prototype.onAuth=G.prototype.Ee;
 G.prototype.De=function(a,b){x("Firebase.offAuth",1,2,arguments.length);z("Firebase.offAuth",1,a,!1);za("Firebase.offAuth",2,b);this.i.I.nb("auth_status",a,b)};G.prototype.offAuth=G.prototype.De;G.prototype.je=function(a,b,c){x("Firebase.authWithCustomToken",2,3,arguments.length);Oa("Firebase.authWithCustomToken",a);z("Firebase.authWithCustomToken",2,b,!1);E("Firebase.authWithCustomToken",3,c,!0);Oe(this.i.I,a,{},c||{},b)};G.prototype.authWithCustomToken=G.prototype.je;
 G.prototype.ke=function(a,b,c){x("Firebase.authWithOAuthPopup",2,3,arguments.length);Pa("Firebase.authWithOAuthPopup",1,a);z("Firebase.authWithOAuthPopup",2,b,!1);E("Firebase.authWithOAuthPopup",3,c,!0);Te(this.i.I,a,c,b)};G.prototype.authWithOAuthPopup=G.prototype.ke;
 G.prototype.le=function(a,b,c){x("Firebase.authWithOAuthRedirect",2,3,arguments.length);Pa("Firebase.authWithOAuthRedirect",1,a);z("Firebase.authWithOAuthRedirect",2,b,!1);E("Firebase.authWithOAuthRedirect",3,c,!0);var d=this.i.I;Re(d);var e=[He],f=qe(c);"anonymous"===a||"firebase"===a?P(b,W("TRANSPORT_UNAVAILABLE")):(J.set("redirect_client_options",f.hc),Se(d,e,"/auth/"+a,f,b))};G.prototype.authWithOAuthRedirect=G.prototype.le;
@@ -192,8 +193,8 @@ G.prototype.ie=function(a,b){x("Firebase.authAnonymously",1,2,arguments.length);
 G.prototype.ne=function(a,b,c){x("Firebase.authWithPassword",2,3,arguments.length);E("Firebase.authWithPassword",1,a,!1);Qa("Firebase.authWithPassword",a,"email");Qa("Firebase.authWithPassword",a,"password");z("Firebase.authAnonymously",2,b,!1);E("Firebase.authAnonymously",3,c,!0);Qe(this.i.I,"password",a,b)};G.prototype.authWithPassword=G.prototype.ne;
 G.prototype.Xc=function(a,b){x("Firebase.createUser",2,2,arguments.length);E("Firebase.createUser",1,a,!1);Qa("Firebase.createUser",a,"email");Qa("Firebase.createUser",a,"password");z("Firebase.createUser",2,b,!1);this.i.I.Xc(a,b)};G.prototype.createUser=G.prototype.Xc;G.prototype.sd=function(a,b){x("Firebase.removeUser",2,2,arguments.length);E("Firebase.removeUser",1,a,!1);Qa("Firebase.removeUser",a,"email");Qa("Firebase.removeUser",a,"password");z("Firebase.removeUser",2,b,!1);this.i.I.sd(a,b)};
 G.prototype.removeUser=G.prototype.sd;G.prototype.Tc=function(a,b){x("Firebase.changePassword",2,2,arguments.length);E("Firebase.changePassword",1,a,!1);Qa("Firebase.changePassword",a,"email");Qa("Firebase.changePassword",a,"oldPassword");Qa("Firebase.changePassword",a,"newPassword");z("Firebase.changePassword",2,b,!1);this.i.I.Tc(a,b)};G.prototype.changePassword=G.prototype.Tc;
-G.prototype.td=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);E("Firebase.resetPassword",1,a,!1);Qa("Firebase.resetPassword",a,"email");z("Firebase.resetPassword",2,b,!1);this.i.I.td(a,b)};G.prototype.resetPassword=G.prototype.td;G.goOffline=function(){x("Firebase.goOffline",0,0,arguments.length);Y.ib().Pa()};G.goOnline=function(){x("Firebase.goOnline",0,0,arguments.length);Y.ib().tb()};
-function dc(a,b){v(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?bc=r(console.log,console):"object"===typeof console.log&&(bc=function(a){console.log(a)})),b&&J.set("logging_enabled",!0)):a?bc=a:(bc=null,J.remove("logging_enabled"))}G.enableLogging=dc;G.ServerValue={TIMESTAMP:{".sv":"timestamp"}};G.SDK_VERSION="1.1.1";G.INTERNAL=Z;G.Context=Y;})();
+G.prototype.td=function(a,b){x("Firebase.resetPassword",2,2,arguments.length);E("Firebase.resetPassword",1,a,!1);Qa("Firebase.resetPassword",a,"email");z("Firebase.resetPassword",2,b,!1);this.i.I.td(a,b)};G.prototype.resetPassword=G.prototype.td;G.goOffline=function(){x("Firebase.goOffline",0,0,arguments.length);Y.ib().Qa()};G.goOnline=function(){x("Firebase.goOnline",0,0,arguments.length);Y.ib().tb()};
+function dc(a,b){v(!b||!0===a||!1===a,"Can't turn on custom loggers persistently.");!0===a?("undefined"!==typeof console&&("function"===typeof console.log?bc=r(console.log,console):"object"===typeof console.log&&(bc=function(a){console.log(a)})),b&&J.set("logging_enabled",!0)):a?bc=a:(bc=null,J.remove("logging_enabled"))}G.enableLogging=dc;G.ServerValue={TIMESTAMP:{".sv":"timestamp"}};G.SDK_VERSION="1.1.2";G.INTERNAL=Z;G.Context=Y;})();
 module.exports = Firebase;
 
 },{}],2:[function(require,module,exports){
@@ -11533,65 +11534,75 @@ process.chdir = function (dir) {
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],9:[function(require,module,exports){
-var LocationDispatcher = require('../dispatchers/LocationDispatcher');
-var makePath = require('../utils/makePath');
-
 /**
  * Actions that modify the URL.
  */
 var LocationActions = {
 
+  /**
+   * Indicates a new location is being pushed to the history stack.
+   */
   PUSH: 'push',
+
+  /**
+   * Indicates the current location should be replaced.
+   */
   REPLACE: 'replace',
-  POP: 'pop',
-  UPDATE_SCROLL: 'update-scroll',
 
   /**
-   * Transitions to the URL specified in the arguments by pushing
-   * a new URL onto the history stack.
+   * Indicates the most recent entry should be removed from the history stack.
    */
-  transitionTo: function (to, params, query) {
-    LocationDispatcher.handleViewAction({
-      type: LocationActions.PUSH,
-      path: makePath(to, params, query)
-    });
-  },
-
-  /**
-   * Transitions to the URL specified in the arguments by replacing
-   * the current URL in the history stack.
-   */
-  replaceWith: function (to, params, query) {
-    LocationDispatcher.handleViewAction({
-      type: LocationActions.REPLACE,
-      path: makePath(to, params, query)
-    });
-  },
-
-  /**
-   * Transitions to the previous URL.
-   */
-  goBack: function () {
-    LocationDispatcher.handleViewAction({
-      type: LocationActions.POP
-    });
-  },
-
-  /**
-   * Updates the window's scroll position to the last known position
-   * for the current URL path.
-   */
-  updateScroll: function () {
-    LocationDispatcher.handleViewAction({
-      type: LocationActions.UPDATE_SCROLL
-    });
-  }
+  POP: 'pop'
 
 };
 
 module.exports = LocationActions;
 
-},{"../dispatchers/LocationDispatcher":16,"../utils/makePath":34}],10:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
+
+/**
+ * A scroll behavior that attempts to imitate the default behavior
+ * of modern browsers.
+ */
+var ImitateBrowserBehavior = {
+
+  updateScrollPosition: function (position, actionType) {
+    switch (actionType) {
+      case LocationActions.PUSH:
+      case LocationActions.REPLACE:
+        window.scrollTo(0, 0);
+        break;
+      case LocationActions.POP:
+        if (position) {
+          window.scrollTo(position.x, position.y);
+        } else {
+          window.scrollTo(0, 0);
+        }
+        break;
+    }
+  }
+
+};
+
+module.exports = ImitateBrowserBehavior;
+
+},{"../actions/LocationActions":9}],11:[function(require,module,exports){
+/**
+ * A scroll behavior that always scrolls to the top of the page
+ * after a transition.
+ */
+var ScrollToTopBehavior = {
+
+  updateScrollPosition: function () {
+    window.scrollTo(0, 0);
+  }
+
+};
+
+module.exports = ScrollToTopBehavior;
+
+},{}],12:[function(require,module,exports){
 var merge = require('react/lib/merge');
 var Route = require('./Route');
 
@@ -11612,14 +11623,12 @@ function DefaultRoute(props) {
 
 module.exports = DefaultRoute;
 
-},{"./Route":14,"react/lib/merge":180}],11:[function(require,module,exports){
+},{"./Route":16,"react/lib/merge":180}],13:[function(require,module,exports){
 var React = require('react');
+var classSet = require('react/lib/cx');
+var merge = require('react/lib/merge');
 var ActiveState = require('../mixins/ActiveState');
-var transitionTo = require('../actions/LocationActions').transitionTo;
-var withoutProperties = require('../utils/withoutProperties');
-var hasOwnProperty = require('../utils/hasOwnProperty');
-var makeHref = require('../utils/makeHref');
-var warning = require('react/lib/warning');
+var Navigation = require('../mixins/Navigation');
 
 function isLeftClickEvent(event) {
   return event.button === 0;
@@ -11630,69 +11639,32 @@ function isModifiedEvent(event) {
 }
 
 /**
- * DEPRECATED: A map of <Link> component props that are reserved for use by the
- * router and/or React. All other props are used as params that are
- * interpolated into the link's path.
- */
-var RESERVED_PROPS = {
-  to: true,
-  key: true,
-  className: true,
-  activeClassName: true,
-  query: true,
-  onClick:true,
-  children: true // ReactChildren
-};
-
-/**
  * <Link> components are used to create an <a> element that links to a route.
  * When that route is active, the link gets an "active" class name (or the
  * value of its `activeClassName` prop).
  *
  * For example, assuming you have the following route:
  *
- *   <Route name="showPost" path="/posts/:postId" handler={Post}/>
+ *   <Route name="showPost" path="/posts/:postID" handler={Post}/>
  *
  * You could use the following component to link to that route:
  *
- *   <Link to="showPost" params={{postId: "123"}} />
+ *   <Link to="showPost" params={{ postID: "123" }} />
  *
  * In addition to params, links may pass along query string parameters
  * using the `query` prop.
  *
- *   <Link to="showPost" params={{postId: "123"}} query={{show:true}}/>
+ *   <Link to="showPost" params={{ postID: "123" }} query={{ show:true }}/>
  */
 var Link = React.createClass({
 
   displayName: 'Link',
 
-  mixins: [ ActiveState ],
-
-  statics: {
-
-    // TODO: Deprecate passing props as params in v1.0
-    getUnreservedProps: function (props) {
-      var props = withoutProperties(props, RESERVED_PROPS);
-      warning(
-        Object.keys(props).length === 0,
-        'Passing props for params on <Link>s is deprecated, '+
-        'please use the `params` property.'
-      );
-      return props;
-    },
-
-    /**
-     * Returns a hash of URL parameters to use in this <Link>'s path.
-     */
-    getParams: function (props) {
-      return props.params || Link.getUnreservedProps(props);
-    }
-
-  },
+  mixins: [ ActiveState, Navigation ],
 
   propTypes: {
-    to: React.PropTypes.string.isRequired,
     activeClassName: React.PropTypes.string.isRequired,
+    to: React.PropTypes.string.isRequired,
     params: React.PropTypes.object,
     query: React.PropTypes.object,
     onClick: React.PropTypes.func
@@ -11704,17 +11676,30 @@ var Link = React.createClass({
     };
   },
 
-  getInitialState: function () {
-    return {
-      isActive: false
-    };
+  handleClick: function (event) {
+    var allowTransition = true;
+    var clickResult;
+
+    if (this.props.onClick)
+      clickResult = this.props.onClick(event);
+
+    if (isModifiedEvent(event) || !isLeftClickEvent(event))
+      return;
+
+    if (clickResult === false || event.defaultPrevented === true)
+      allowTransition = false;
+
+    event.preventDefault();
+
+    if (allowTransition)
+      this.transitionTo(this.props.to, this.props.params, this.props.query);
   },
 
   /**
    * Returns the value of the "href" attribute to use on the DOM element.
    */
   getHref: function () {
-    return makeHref(this.props.to, Link.getParams(this.props), this.props.query);
+    return this.makeHref(this.props.to, this.props.params, this.props.query);
   },
 
   /**
@@ -11722,59 +11707,23 @@ var Link = React.createClass({
    * the value of the activeClassName property when this <Link> is active.
    */
   getClassName: function () {
-    var className = this.props.className || '';
+    var classNames = {};
 
-    if (this.state.isActive)
-      return className + ' ' + this.props.activeClassName;
+    if (this.props.className)
+      classNames[this.props.className] = true;
 
-    return className;
-  },
+    if (this.isActive(this.props.to, this.props.params, this.props.query))
+      classNames[this.props.activeClassName] = true;
 
-  componentWillReceiveProps: function (nextProps) {
-    var params = Link.getParams(nextProps);
-
-    this.setState({
-      isActive: Link.isActive(nextProps.to, params, nextProps.query)
-    });
-  },
-
-  updateActiveState: function () {
-    this.setState({
-      isActive: Link.isActive(this.props.to, Link.getParams(this.props), this.props.query)
-    });
-  },
-
-  handleClick: function (event) {
-    var allowTransition = true;
-    var ret;
-
-    if (this.props.onClick)
-      ret = this.props.onClick(event);
-
-    if (isModifiedEvent(event) || !isLeftClickEvent(event))
-      return;
-
-    if (ret === false || event.defaultPrevented === true)
-      allowTransition = false;
-
-    event.preventDefault();
-
-    if (allowTransition)
-      transitionTo(this.props.to, Link.getParams(this.props), this.props.query);
+    return classSet(classNames);
   },
 
   render: function () {
-    var props = {
+    var props = merge(this.props, {
       href: this.getHref(),
       className: this.getClassName(),
       onClick: this.handleClick
-    };
-
-    // pull in props without overriding
-    for (var propName in this.props) {
-      if (hasOwnProperty(this.props, propName) && hasOwnProperty(props, propName) === false)
-        props[propName] = this.props[propName];
-    }
+    });
 
     return React.DOM.a(props, this.props.children);
   }
@@ -11783,7 +11732,7 @@ var Link = React.createClass({
 
 module.exports = Link;
 
-},{"../actions/LocationActions":9,"../mixins/ActiveState":23,"../utils/hasOwnProperty":32,"../utils/makeHref":33,"../utils/withoutProperties":37,"react":194,"react/lib/warning":193}],12:[function(require,module,exports){
+},{"../mixins/ActiveState":23,"../mixins/Navigation":26,"react":194,"react/lib/cx":150,"react/lib/merge":180}],14:[function(require,module,exports){
 var merge = require('react/lib/merge');
 var Route = require('./Route');
 
@@ -11805,15 +11754,15 @@ function NotFoundRoute(props) {
 
 module.exports = NotFoundRoute;
 
-},{"./Route":14,"react/lib/merge":180}],13:[function(require,module,exports){
+},{"./Route":16,"react/lib/merge":180}],15:[function(require,module,exports){
 var React = require('react');
 var Route = require('./Route');
 
-function createRedirectHandler(to) {
+function createRedirectHandler(to, _params, _query) {
   return React.createClass({
     statics: {
       willTransitionTo: function (transition, params, query) {
-        transition.redirect(to, params, query);
+        transition.redirect(to, _params || params, _query || query);
       }
     },
 
@@ -11831,13 +11780,13 @@ function Redirect(props) {
   return Route({
     name: props.name,
     path: props.from || props.path || '*',
-    handler: createRedirectHandler(props.to)
+    handler: createRedirectHandler(props.to, props.params, props.query)
   });
 }
 
 module.exports = Redirect;
 
-},{"./Route":14,"react":194}],14:[function(require,module,exports){
+},{"./Route":16,"react":194}],16:[function(require,module,exports){
 var React = require('react');
 var withoutProperties = require('../utils/withoutProperties');
 
@@ -11850,6 +11799,7 @@ var RESERVED_PROPS = {
   handler: true,
   path: true,
   defaultRoute: true,
+  notFoundRoute: true,
   paramNames: true,
   children: true // ReactChildren
 };
@@ -11863,10 +11813,6 @@ var RESERVED_PROPS = {
  * When one is found, all routes in the tree that lead to it are considered
  * "active" and their components are rendered into the DOM, nested in the same
  * order as they are in the tree.
- *
- * Unlike Ember, a nested route's path does not build upon that of its parents.
- * This may seem like it creates more work up front in specifying URLs, but it
- * has the nice benefit of decoupling nested UI from "nested" URLs.
  *
  * The preferred way to configure a router is using JSX. The XML-like syntax is
  * a great way to visualize how routes are laid out in an application.
@@ -11911,21 +11857,14 @@ var Route = React.createClass({
 
     getUnreservedProps: function (props) {
       return withoutProperties(props, RESERVED_PROPS);
-    },
+    }
 
   },
 
   propTypes: {
-    preserveScrollPosition: React.PropTypes.bool.isRequired,
     handler: React.PropTypes.any.isRequired,
     path: React.PropTypes.string,
     name: React.PropTypes.string
-  },
-
-  getDefaultProps: function () {
-    return {
-      preserveScrollPosition: false
-    };
   },
 
   render: function () {
@@ -11939,230 +11878,29 @@ var Route = React.createClass({
 
 module.exports = Route;
 
-},{"../utils/withoutProperties":37,"react":194}],15:[function(require,module,exports){
+},{"../utils/withoutProperties":38,"react":194}],17:[function(require,module,exports){
 var React = require('react');
 var warning = require('react/lib/warning');
+var invariant = require('react/lib/invariant');
 var copyProperties = require('react/lib/copyProperties');
-var Promise = require('when/lib/Promise');
-var LocationActions = require('../actions/LocationActions');
-var Route = require('../components/Route');
-var Path = require('../utils/Path');
-var Redirect = require('../utils/Redirect');
-var Transition = require('../utils/Transition');
-var DefaultLocation = require('../locations/DefaultLocation');
 var HashLocation = require('../locations/HashLocation');
-var HistoryLocation = require('../locations/HistoryLocation');
-var RefreshLocation = require('../locations/RefreshLocation');
-var ActiveStore = require('../stores/ActiveStore');
-var PathStore = require('../stores/PathStore');
-var RouteStore = require('../stores/RouteStore');
+var ActiveContext = require('../mixins/ActiveContext');
+var LocationContext = require('../mixins/LocationContext');
+var RouteContext = require('../mixins/RouteContext');
+var ScrollContext = require('../mixins/ScrollContext');
+var reversedArray = require('../utils/reversedArray');
+var Transition = require('../utils/Transition');
+var Redirect = require('../utils/Redirect');
+var Path = require('../utils/Path');
+var Route = require('./Route');
 
-/**
- * The ref name that can be used to reference the active route component.
- */
-var REF_NAME = '__activeRoute__';
-
-/**
- * A hash of { name, location } pairs of all locations.
- */
-var NAMED_LOCATIONS = {
-  hash: HashLocation,
-  history: HistoryLocation,
-  refresh: RefreshLocation
-};
-
-/**
- * The default handler for aborted transitions. Redirects replace
- * the current URL and all others roll it back.
- */
-function defaultAbortedTransitionHandler(transition) {
-  var reason = transition.abortReason;
-
-  if (reason instanceof Redirect) {
-    LocationActions.replaceWith(reason.to, reason.params, reason.query);
-  } else {
-    LocationActions.goBack();
-  }
+function makeMatch(route, params) {
+  return { route: route, params: params };
 }
 
-/**
- * The default handler for active state updates.
- */
-function defaultActiveStateChangeHandler(state) {
-  ActiveStore.updateState(state);
+function getRootMatch(matches) {
+  return matches[matches.length - 1];
 }
-
-/**
- * The default handler for errors that were thrown asynchronously
- * while transitioning. The default behavior is to re-throw the
- * error so that it isn't silently swallowed.
- */
-function defaultTransitionErrorHandler(error) {
-  throw error; // This error probably originated in a transition hook.
-}
-
-function maybeUpdateScroll(routes, rootRoute) {
-  if (!routes.props.preserveScrollPosition && !rootRoute.props.preserveScrollPosition)
-    LocationActions.updateScroll();
-}
-
-/**
- * The <Routes> component configures the route hierarchy and renders the
- * route matching the current location when rendered into a document.
- *
- * See the <Route> component for more details.
- */
-var Routes = React.createClass({
-
-  displayName: 'Routes',
-
-  propTypes: {
-    onAbortedTransition: React.PropTypes.func.isRequired,
-    onActiveStateChange: React.PropTypes.func.isRequired,
-    onTransitionError: React.PropTypes.func.isRequired,
-    preserveScrollPosition: React.PropTypes.bool,
-    location: function (props, propName, componentName) {
-      var location = props[propName];
-
-      if (typeof location === 'string' && !(location in NAMED_LOCATIONS))
-        return new Error('Unknown location "' + location + '", see ' + componentName);
-    }
-  },
-
-  getDefaultProps: function () {
-    return {
-      onAbortedTransition: defaultAbortedTransitionHandler,
-      onActiveStateChange: defaultActiveStateChangeHandler,
-      onTransitionError: defaultTransitionErrorHandler,
-      preserveScrollPosition: false,
-      location: DefaultLocation
-    };
-  },
-
-  getInitialState: function () {
-    return {
-      routes: RouteStore.registerChildren(this.props.children, this)
-    };
-  },
-
-  getLocation: function () {
-    var location = this.props.location;
-
-    if (typeof location === 'string')
-      return NAMED_LOCATIONS[location];
-
-    return location;
-  },
-
-  componentWillMount: function () {
-    PathStore.setup(this.getLocation());
-    PathStore.addChangeListener(this.handlePathChange);
-  },
-
-  componentDidMount: function () {
-    this.handlePathChange();
-  },
-
-  componentWillUnmount: function () {
-    PathStore.removeChangeListener(this.handlePathChange);
-  },
-
-  handlePathChange: function () {
-    this.dispatch(PathStore.getCurrentPath());
-  },
-
-  /**
-   * Performs a depth-first search for the first route in the tree that matches
-   * on the given path. Returns an array of all routes in the tree leading to
-   * the one that matched in the format { route, params } where params is an
-   * object that contains the URL parameters relevant to that route. Returns
-   * null if no route in the tree matches the path.
-   *
-   *   React.renderComponent(
-   *     <Routes>
-   *       <Route handler={App}>
-   *         <Route name="posts" handler={Posts}/>
-   *         <Route name="post" path="/posts/:id" handler={Post}/>
-   *       </Route>
-   *     </Routes>
-   *   ).match('/posts/123'); => [ { route: <AppRoute>, params: {} },
-   *                               { route: <PostRoute>, params: { id: '123' } } ]
-   */
-  match: function (path) {
-    return findMatches(Path.withoutQuery(path), this.state.routes, this.props.defaultRoute, this.props.notFoundRoute);
-  },
-
-  /**
-   * Performs a transition to the given path and returns a promise for the
-   * Transition object that was used.
-   *
-   * In order to do this, the router first determines which routes are involved
-   * in the transition beginning with the current route, up the route tree to
-   * the first parent route that is shared with the destination route, and back
-   * down the tree to the destination route. The willTransitionFrom static
-   * method is invoked on all route handlers we're transitioning away from, in
-   * reverse nesting order. Likewise, the willTransitionTo static method
-   * is invoked on all route handlers we're transitioning to.
-   *
-   * Both willTransitionFrom and willTransitionTo hooks may either abort or
-   * redirect the transition. If they need to resolve asynchronously, they may
-   * return a promise.
-   *
-   * Any error that occurs asynchronously during the transition is re-thrown in
-   * the top-level scope unless returnRejectedPromise is true, in which case a
-   * rejected promise is returned so the caller may handle the error.
-   *
-   * Note: This function does not update the URL in a browser's location bar.
-   * If you want to keep the URL in sync with transitions, use Router.transitionTo,
-   * Router.replaceWith, or Router.goBack instead.
-   */
-  dispatch: function (path, returnRejectedPromise) {
-    var transition = new Transition(path);
-    var routes = this;
-
-    var promise = runTransitionHooks(routes, transition).then(function (nextState) {
-      if (transition.isAborted) {
-        routes.props.onAbortedTransition(transition);
-      } else if (nextState) {
-        routes.setState(nextState);
-        routes.props.onActiveStateChange(nextState);
-
-        // TODO: add functional test
-        var rootMatch = getRootMatch(nextState.matches);
-
-        if (rootMatch)
-          maybeUpdateScroll(routes, rootMatch.route);
-      }
-
-      return transition;
-    });
-
-    if (!returnRejectedPromise) {
-      promise = promise.then(undefined, function (error) {
-        // Use setTimeout to break the promise chain.
-        setTimeout(function () {
-          routes.props.onTransitionError(error);
-        });
-      });
-    }
-
-    return promise;
-  },
-
-  render: function () {
-    if (!this.state.path)
-      return null;
-
-    var matches = this.state.matches;
-    if (matches.length) {
-      // matches[0] corresponds to the top-most match
-      return matches[0].route.props.handler(computeHandlerProps(matches, this.state.activeQuery));
-    } else {
-      return null;
-    }
-  }
-
-});
 
 function findMatches(path, routes, defaultRoute, notFoundRoute) {
   var matches = null, route, params;
@@ -12175,7 +11913,7 @@ function findMatches(path, routes, defaultRoute, notFoundRoute) {
 
     if (matches != null) {
       var rootParams = getRootMatch(matches).params;
-      
+
       params = route.props.paramNames.reduce(function (params, paramName) {
         params[paramName] = rootParams[paramName];
         return params;
@@ -12204,97 +11942,16 @@ function findMatches(path, routes, defaultRoute, notFoundRoute) {
   return matches;
 }
 
-function makeMatch(route, params) {
-  return { route: route, params: params };
-}
-
 function hasMatch(matches, match) {
   return matches.some(function (m) {
     if (m.route !== match.route)
       return false;
 
-    for (var property in m.params) {
+    for (var property in m.params)
       if (m.params[property] !== match.params[property])
         return false;
-    }
 
     return true;
-  });
-}
-
-function getRootMatch(matches) {
-  return matches[matches.length - 1];
-}
-
-function updateMatchComponents(matches, refs) {
-  var i = 0, component;
-  while (component = refs[REF_NAME]) {
-    matches[i++].component = component;
-    refs = component.refs;
-  }
-}
-
-/**
- * Runs all transition hooks that are required to get from the current state
- * to the state specified by the given transition and updates the current state
- * if they all pass successfully. Returns a promise that resolves to the new
- * state if it needs to be updated, or undefined if not.
- */
-function runTransitionHooks(routes, transition) {
-  if (routes.state.path === transition.path)
-    return Promise.resolve(); // Nothing to do!
-
-  var currentMatches = routes.state.matches;
-  var nextMatches = routes.match(transition.path);
-
-  warning(
-    nextMatches,
-    'No route matches path "' + transition.path + '". Make sure you have ' +
-    '<Route path="' + transition.path + '"> somewhere in your routes'
-  );
-
-  if (!nextMatches)
-    nextMatches = [];
-
-  var fromMatches, toMatches;
-  if (currentMatches) {
-    updateMatchComponents(currentMatches, routes.refs);
-
-    fromMatches = currentMatches.filter(function (match) {
-      return !hasMatch(nextMatches, match);
-    });
-
-    toMatches = nextMatches.filter(function (match) {
-      return !hasMatch(currentMatches, match);
-    });
-  } else {
-    fromMatches = [];
-    toMatches = nextMatches;
-  }
-
-  var query = Path.extractQuery(transition.path) || {};
-
-  return runTransitionFromHooks(fromMatches, transition).then(function () {
-    if (transition.isAborted)
-      return; // No need to continue.
-
-    return runTransitionToHooks(toMatches, transition, query).then(function () {
-      if (transition.isAborted)
-        return; // No need to continue.
-
-      var rootMatch = getRootMatch(nextMatches);
-      var params = (rootMatch && rootMatch.params) || {};
-
-      return {
-        path: transition.path,
-        matches: nextMatches,
-        activeParams: params,
-        activeQuery: query,
-        activeRoutes: nextMatches.map(function (match) {
-          return match.route;
-        })
-      };
-    });
   });
 }
 
@@ -12302,121 +11959,484 @@ function runTransitionHooks(routes, transition) {
  * Calls the willTransitionFrom hook of all handlers in the given matches
  * serially in reverse with the transition object and the current instance of
  * the route's handler, so that the deepest nested handlers are called first.
- * Returns a promise that resolves after the last handler.
+ * Calls callback(error) when finished.
  */
-function runTransitionFromHooks(matches, transition) {
-  var promise = Promise.resolve();
-
-  reversedArray(matches).forEach(function (match) {
-    promise = promise.then(function () {
+function runTransitionFromHooks(matches, transition, callback) {
+  var hooks = reversedArray(matches).map(function (match) {
+    return function () {
       var handler = match.route.props.handler;
 
       if (!transition.isAborted && handler.willTransitionFrom)
         return handler.willTransitionFrom(transition, match.component);
-    });
+
+      var promise = transition.promise;
+      delete transition.promise;
+
+      return promise;
+    };
   });
 
-  return promise;
+  runHooks(hooks, callback);
 }
 
 /**
- * Calls the willTransitionTo hook of all handlers in the given matches serially
- * with the transition object and any params that apply to that handler. Returns
- * a promise that resolves after the last handler.
+ * Calls the willTransitionTo hook of all handlers in the given matches
+ * serially with the transition object and any params that apply to that
+ * handler. Calls callback(error) when finished.
  */
-function runTransitionToHooks(matches, transition, query) {
-  var promise = Promise.resolve();
-
-  matches.forEach(function (match) {
-    promise = promise.then(function () {
+function runTransitionToHooks(matches, transition, query, callback) {
+  var hooks = matches.map(function (match) {
+    return function () {
       var handler = match.route.props.handler;
 
       if (!transition.isAborted && handler.willTransitionTo)
-        return handler.willTransitionTo(transition, match.params, query);
-    });
+        handler.willTransitionTo(transition, match.params, query);
+
+      var promise = transition.promise;
+      delete transition.promise;
+
+      return promise;
+    };
   });
 
-  return promise;
+  runHooks(hooks, callback);
 }
 
 /**
- * Given an array of matches as returned by findMatches, return a descriptor for
- * the handler hierarchy specified by the route.
+ * Runs all hook functions serially and calls callback(error) when finished.
+ * A hook may return a promise if it needs to execute asynchronously.
  */
-function computeHandlerProps(matches, query) {
-  var props = {
-    ref: null,
-    key: null,
-    params: null,
-    query: null,
-    activeRouteHandler: returnNull
-  };
+function runHooks(hooks, callback) {
+  try {
+    var promise = hooks.reduce(function (promise, hook) {
+      // The first hook to use transition.wait makes the rest
+      // of the transition async from that point forward.
+      return promise ? promise.then(hook) : hook();
+    }, null);
+  } catch (error) {
+    return callback(error); // Sync error.
+  }
 
-  var childHandler;
-  reversedArray(matches).forEach(function (match) {
-    var route = match.route;
+  if (promise) {
+    // Use setTimeout to break the promise chain.
+    promise.then(function () {
+      setTimeout(callback);
+    }, function (error) {
+      setTimeout(function () {
+        callback(error);
+      });
+    });
+  } else {
+    callback();
+  }
+}
 
-    props = Route.getUnreservedProps(route.props);
+function updateMatchComponents(matches, refs) {
+  var match;
+  for (var i = 0, len = matches.length; i < len; ++i) {
+    match = matches[i];
+    match.component = refs.__activeRoute__;
 
-    props.ref = REF_NAME;
-    props.params = match.params;
-    props.query = query;
+    if (match.component == null)
+      break; // End of the tree.
 
-    if (route.props.addHandlerKey)
-      props.key = Path.injectParams(route.props.path, match.params);
-
-    if (childHandler) {
-      props.activeRouteHandler = childHandler;
-    } else {
-      props.activeRouteHandler = returnNull;
-    }
-
-    childHandler = function (props, addedProps) {
-      if (arguments.length > 2 && typeof arguments[2] !== 'undefined')
-        throw new Error('Passing children to a route handler is not supported');
-
-      return route.props.handler(copyProperties(props, addedProps));
-    }.bind(this, props);
-  });
-
-  return props;
+    refs = match.component.refs;
+  }
 }
 
 function returnNull() {
   return null;
 }
 
-function reversedArray(array) {
-  return array.slice(0).reverse();
+function routeIsActive(activeRoutes, routeName) {
+  return activeRoutes.some(function (route) {
+    return route.props.name === routeName;
+  });
 }
 
-module.exports = Routes;
+function paramsAreActive(activeParams, params) {
+  for (var property in params)
+    if (String(activeParams[property]) !== String(params[property]))
+      return false;
 
-},{"../actions/LocationActions":9,"../components/Route":14,"../locations/DefaultLocation":18,"../locations/HashLocation":19,"../locations/HistoryLocation":20,"../locations/RefreshLocation":22,"../stores/ActiveStore":25,"../stores/PathStore":26,"../stores/RouteStore":27,"../utils/Path":28,"../utils/Redirect":29,"../utils/Transition":30,"react":194,"react/lib/copyProperties":147,"react/lib/warning":193,"when/lib/Promise":46}],16:[function(require,module,exports){
-var copyProperties = require('react/lib/copyProperties');
-var Dispatcher = require('flux').Dispatcher;
+  return true;
+}
+
+function queryIsActive(activeQuery, query) {
+  for (var property in query)
+    if (String(activeQuery[property]) !== String(query[property]))
+      return false;
+
+  return true;
+}
+
+function defaultTransitionErrorHandler(error) {
+  // Throw so we don't silently swallow async errors.
+  throw error; // This error probably originated in a transition hook.
+}
 
 /**
- * Dispatches actions that modify the URL.
+ * The <Routes> component configures the route hierarchy and renders the
+ * route matching the current location when rendered into a document.
+ *
+ * See the <Route> component for more details.
  */
-var LocationDispatcher = copyProperties(new Dispatcher, {
+var Routes = React.createClass({
 
-  handleViewAction: function (action) {
-    this.dispatch({
-      source: 'VIEW_ACTION',
-      action: action
+  displayName: 'Routes',
+
+  mixins: [ RouteContext, ActiveContext, LocationContext, ScrollContext ],
+
+  propTypes: {
+    initialPath: React.PropTypes.string,
+    initialMatches: React.PropTypes.array,
+    onChange: React.PropTypes.func,
+    onError: React.PropTypes.func.isRequired
+  },
+
+  getDefaultProps: function () {
+    return {
+      initialPath: null,
+      initialMatches: [],
+      onError: defaultTransitionErrorHandler
+    };
+  },
+
+  getInitialState: function () {
+    return {
+      path: this.props.initialPath,
+      matches: this.props.initialMatches
+    };
+  },
+
+  componentDidMount: function () {
+    warning(
+      this._owner == null,
+      '<Routes> should be rendered directly using React.renderComponent, not ' +
+      'inside some other component\'s render method'
+    );
+
+    if (this._handleStateChange) {
+      this._handleStateChange();
+      delete this._handleStateChange;
+    }
+  },
+
+  componentDidUpdate: function () {
+    if (this._handleStateChange) {
+      this._handleStateChange();
+      delete this._handleStateChange;
+    }
+  },
+
+  /**
+   * Performs a depth-first search for the first route in the tree that matches on
+   * the given path. Returns an array of all routes in the tree leading to the one
+   * that matched in the format { route, params } where params is an object that
+   * contains the URL parameters relevant to that route. Returns null if no route
+   * in the tree matches the path.
+   *
+   *   React.renderComponent(
+   *     <Routes>
+   *       <Route handler={App}>
+   *         <Route name="posts" handler={Posts}/>
+   *         <Route name="post" path="/posts/:id" handler={Post}/>
+   *       </Route>
+   *     </Routes>
+   *   ).match('/posts/123'); => [ { route: <AppRoute>, params: {} },
+   *                               { route: <PostRoute>, params: { id: '123' } } ]
+   */
+  match: function (path) {
+    var routes = this.getRoutes();
+    return findMatches(Path.withoutQuery(path), routes, this.props.defaultRoute, this.props.notFoundRoute);
+  },
+
+  updateLocation: function (path, actionType) {
+    if (this.state.path === path)
+      return; // Nothing to do!
+
+    if (this.state.path)
+      this.recordScroll(this.state.path);
+
+    this.dispatch(path, function (error, abortReason, nextState) {
+      if (error) {
+        this.props.onError.call(this, error);
+      } else if (abortReason instanceof Redirect) {
+        this.replaceWith(abortReason.to, abortReason.params, abortReason.query);
+      } else if (abortReason) {
+        this.goBack();
+      } else {
+        this._handleStateChange = this.handleStateChange.bind(this, path, actionType);
+        this.setState(nextState);
+      }
     });
+  },
+
+  handleStateChange: function (path, actionType) {
+    updateMatchComponents(this.state.matches, this.refs);
+
+    this.updateScroll(path, actionType);
+
+    if (this.props.onChange)
+      this.props.onChange.call(this);
+  },
+
+  /**
+   * Performs a transition to the given path and calls callback(error, abortReason, nextState)
+   * when the transition is finished. If there was an error, the first argument will not be null.
+   * Otherwise, if the transition was aborted for some reason, it will be given in the second arg.
+   *
+   * In a transition, the router first determines which routes are involved by beginning with the
+   * current route, up the route tree to the first parent route that is shared with the destination
+   * route, and back down the tree to the destination route. The willTransitionFrom hook is invoked
+   * on all route handlers we're transitioning away from, in reverse nesting order. Likewise, the
+   * willTransitionTo hook is invoked on all route handlers we're transitioning to.
+   *
+   * Both willTransitionFrom and willTransitionTo hooks may either abort or redirect the transition.
+   * To resolve asynchronously, they may use transition.wait(promise). If no hooks wait, the
+   * transition will be synchronous.
+   */
+  dispatch: function (path, callback) {
+    var transition = new Transition(this, path);
+    var currentMatches = this.state ? this.state.matches : []; // No state server-side.
+    var nextMatches = this.match(path) || [];
+
+    warning(
+      nextMatches.length,
+      'No route matches path "%s". Make sure you have <Route path="%s"> somewhere in your <Routes>',
+      path, path
+    );
+
+    var fromMatches, toMatches;
+    if (currentMatches.length) {
+      fromMatches = currentMatches.filter(function (match) {
+        return !hasMatch(nextMatches, match);
+      });
+
+      toMatches = nextMatches.filter(function (match) {
+        return !hasMatch(currentMatches, match);
+      });
+    } else {
+      fromMatches = [];
+      toMatches = nextMatches;
+    }
+
+    var callbackScope = this;
+    var query = Path.extractQuery(path) || {};
+
+    runTransitionFromHooks(fromMatches, transition, function (error) {
+      if (error || transition.isAborted)
+        return callback.call(callbackScope, error, transition.abortReason);
+
+      runTransitionToHooks(toMatches, transition, query, function (error) {
+        if (error || transition.isAborted)
+          return callback.call(callbackScope, error, transition.abortReason);
+
+        var matches = currentMatches.slice(0, currentMatches.length - fromMatches.length).concat(toMatches);
+        var rootMatch = getRootMatch(matches);
+        var params = (rootMatch && rootMatch.params) || {};
+        var routes = matches.map(function (match) {
+          return match.route;
+        });
+
+        callback.call(callbackScope, null, null, {
+          path: path,
+          matches: matches,
+          activeRoutes: routes,
+          activeParams: params,
+          activeQuery: query
+        });
+      });
+    });
+  },
+
+  /**
+   * Returns the props that should be used for the top-level route handler.
+   */
+  getHandlerProps: function () {
+    var matches = this.state.matches;
+    var query = this.state.activeQuery;
+    var handler = returnNull;
+    var props = {
+      ref: null,
+      params: null,
+      query: null,
+      activeRouteHandler: handler,
+      key: null
+    };
+
+    reversedArray(matches).forEach(function (match) {
+      var route = match.route;
+
+      props = Route.getUnreservedProps(route.props);
+
+      props.ref = '__activeRoute__';
+      props.params = match.params;
+      props.query = query;
+      props.activeRouteHandler = handler;
+
+      // TODO: Can we remove addHandlerKey?
+      if (route.props.addHandlerKey)
+        props.key = Path.injectParams(route.props.path, match.params);
+
+      handler = function (props, addedProps) {
+        if (arguments.length > 2 && typeof arguments[2] !== 'undefined')
+          throw new Error('Passing children to a route handler is not supported');
+
+        return route.props.handler(
+          copyProperties(props, addedProps)
+        );
+      }.bind(this, props);
+    });
+
+    return props;
+  },
+
+  /**
+   * Returns a reference to the active route handler's component instance.
+   */
+  getActiveComponent: function () {
+    return this.refs.__activeRoute__;
+  },
+
+  /**
+   * Returns the current URL path.
+   */
+  getCurrentPath: function () {
+    return this.state.path;
+  },
+
+  /**
+   * Returns an absolute URL path created from the given route
+   * name, URL parameters, and query values.
+   */
+  makePath: function (to, params, query) {
+    var path;
+    if (Path.isAbsolute(to)) {
+      path = Path.normalize(to);
+    } else {
+      var namedRoutes = this.getNamedRoutes();
+      var route = namedRoutes[to];
+
+      invariant(
+        route,
+        'Unable to find a route named "%s". Make sure you have <Route name="%s"> somewhere in your <Routes>',
+        to, to
+      );
+
+      path = route.props.path;
+    }
+
+    return Path.withQuery(Path.injectParams(path, params), query);
+  },
+
+  /**
+   * Returns a string that may safely be used as the href of a
+   * link to the route with the given name.
+   */
+  makeHref: function (to, params, query) {
+    var path = this.makePath(to, params, query);
+
+    if (this.getLocation() === HashLocation)
+      return '#' + path;
+
+    return path;
+  },
+
+    /**
+   * Transitions to the URL specified in the arguments by pushing
+   * a new URL onto the history stack.
+   */
+  transitionTo: function (to, params, query) {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use transitionTo without a location'
+    );
+
+    location.push(this.makePath(to, params, query));
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by replacing
+   * the current URL in the history stack.
+   */
+  replaceWith: function (to, params, query) {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use replaceWith without a location'
+    );
+
+    location.replace(this.makePath(to, params, query));
+  },
+
+  /**
+   * Transitions to the previous URL.
+   */
+  goBack: function () {
+    var location = this.getLocation();
+
+    invariant(
+      location,
+      'You cannot use goBack without a location'
+    );
+
+    location.pop();
+  },
+
+  /**
+   * Returns true if the given route, params, and query are active.
+   */
+  isActive: function (to, params, query) {
+    if (Path.isAbsolute(to))
+      return to === this.getCurrentPath();
+
+    return routeIsActive(this.getActiveRoutes(), to) &&
+      paramsAreActive(this.getActiveParams(), params) &&
+      (query == null || queryIsActive(this.getActiveQuery(), query));
+  },
+
+  render: function () {
+    var match = this.state.matches[0];
+
+    if (match == null)
+      return null;
+
+    return match.route.props.handler(
+      this.getHandlerProps()
+    );
+  },
+
+  childContextTypes: {
+    currentPath: React.PropTypes.string,
+    makePath: React.PropTypes.func.isRequired,
+    makeHref: React.PropTypes.func.isRequired,
+    transitionTo: React.PropTypes.func.isRequired,
+    replaceWith: React.PropTypes.func.isRequired,
+    goBack: React.PropTypes.func.isRequired,
+    isActive: React.PropTypes.func.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      currentPath: this.getCurrentPath(),
+      makePath: this.makePath,
+      makeHref: this.makeHref,
+      transitionTo: this.transitionTo,
+      replaceWith: this.replaceWith,
+      goBack: this.goBack,
+      isActive: this.isActive
+    };
   }
 
 });
 
-module.exports = LocationDispatcher;
+module.exports = Routes;
 
-},{"flux":38,"react/lib/copyProperties":147}],17:[function(require,module,exports){
-exports.goBack = require('./actions/LocationActions').goBack;
-exports.replaceWith = require('./actions/LocationActions').replaceWith;
-exports.transitionTo = require('./actions/LocationActions').transitionTo;
-
+},{"../locations/HashLocation":19,"../mixins/ActiveContext":22,"../mixins/LocationContext":25,"../mixins/RouteContext":27,"../mixins/ScrollContext":28,"../utils/Path":30,"../utils/Redirect":32,"../utils/Transition":34,"../utils/reversedArray":36,"./Route":16,"react":194,"react/lib/copyProperties":146,"react/lib/invariant":170,"react/lib/warning":193}],18:[function(require,module,exports){
 exports.DefaultRoute = require('./components/DefaultRoute');
 exports.Link = require('./components/Link');
 exports.NotFoundRoute = require('./components/NotFoundRoute');
@@ -12425,25 +12445,21 @@ exports.Route = require('./components/Route');
 exports.Routes = require('./components/Routes');
 
 exports.ActiveState = require('./mixins/ActiveState');
-exports.AsyncState = require('./mixins/AsyncState');
+exports.CurrentPath = require('./mixins/CurrentPath');
+exports.Navigation = require('./mixins/Navigation');
 
-exports.makeHref = require('./utils/makeHref');
+exports.renderRoutesToString = require('./utils/ServerRendering').renderRoutesToString;
+exports.renderRoutesToStaticMarkup = require('./utils/ServerRendering').renderRoutesToStaticMarkup;
 
-},{"./actions/LocationActions":9,"./components/DefaultRoute":10,"./components/Link":11,"./components/NotFoundRoute":12,"./components/Redirect":13,"./components/Route":14,"./components/Routes":15,"./mixins/ActiveState":23,"./mixins/AsyncState":24,"./utils/makeHref":33}],18:[function(require,module,exports){
-(function (process){
-module.exports = process.env.NODE_ENV === 'test'
-  ? require('./MemoryLocation')
-  : require('./HashLocation');
-
-}).call(this,require("1YiZ5S"))
-},{"./HashLocation":19,"./MemoryLocation":21,"1YiZ5S":6}],19:[function(require,module,exports){
-var invariant = require('react/lib/invariant');
-var ExecutionEnvironment = require('react/lib/ExecutionEnvironment');
+},{"./components/DefaultRoute":12,"./components/Link":13,"./components/NotFoundRoute":14,"./components/Redirect":15,"./components/Route":16,"./components/Routes":17,"./mixins/ActiveState":23,"./mixins/CurrentPath":24,"./mixins/Navigation":26,"./utils/ServerRendering":33}],19:[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
 var getWindowPath = require('../utils/getWindowPath');
 
 function getHashPath() {
   return window.location.hash.substr(1);
 }
+
+var _actionType;
 
 function ensureSlash() {
   var path = getHashPath();
@@ -12458,9 +12474,21 @@ function ensureSlash() {
 
 var _onChange;
 
-function handleHashChange() {
-  if (ensureSlash())
-    _onChange();
+function onHashChange() {
+  if (ensureSlash()) {
+    var path = getHashPath();
+
+    _onChange({
+      // If we don't have an _actionType then all we know is the hash
+      // changed. It was probably caused by the user clicking the Back
+      // button, but may have also been the Forward button or manual
+      // manipulation. So just guess 'pop'.
+      type: _actionType || LocationActions.POP,
+      path: getHashPath()
+    });
+
+    _actionType = null;
+  }
 }
 
 /**
@@ -12469,39 +12497,38 @@ function handleHashChange() {
 var HashLocation = {
 
   setup: function (onChange) {
-    invariant(
-      ExecutionEnvironment.canUseDOM,
-      'You cannot use HashLocation in an environment with no DOM'
-    );
-
     _onChange = onChange;
 
+    // Do this BEFORE listening for hashchange.
     ensureSlash();
 
     if (window.addEventListener) {
-      window.addEventListener('hashchange', handleHashChange, false);
+      window.addEventListener('hashchange', onHashChange, false);
     } else {
-      window.attachEvent('onhashchange', handleHashChange);
+      window.attachEvent('onhashchange', onHashChange);
     }
   },
 
   teardown: function () {
     if (window.removeEventListener) {
-      window.removeEventListener('hashchange', handleHashChange, false);
+      window.removeEventListener('hashchange', onHashChange, false);
     } else {
-      window.detachEvent('onhashchange', handleHashChange);
+      window.detachEvent('onhashchange', onHashChange);
     }
   },
 
   push: function (path) {
+    _actionType = LocationActions.PUSH;
     window.location.hash = path;
   },
 
   replace: function (path) {
+    _actionType = LocationActions.REPLACE;
     window.location.replace(getWindowPath() + '#' + path);
   },
 
   pop: function () {
+    _actionType = LocationActions.POP;
     window.history.back();
   },
 
@@ -12515,12 +12542,18 @@ var HashLocation = {
 
 module.exports = HashLocation;
 
-},{"../utils/getWindowPath":31,"react/lib/ExecutionEnvironment":71,"react/lib/invariant":170}],20:[function(require,module,exports){
-var invariant = require('react/lib/invariant');
-var ExecutionEnvironment = require('react/lib/ExecutionEnvironment');
+},{"../actions/LocationActions":9,"../utils/getWindowPath":35}],20:[function(require,module,exports){
+var LocationActions = require('../actions/LocationActions');
 var getWindowPath = require('../utils/getWindowPath');
 
 var _onChange;
+
+function onPopState() {
+  _onChange({
+    type: LocationActions.POP,
+    path: getWindowPath()
+  });
+}
 
 /**
  * A Location that uses HTML5 history.
@@ -12528,36 +12561,39 @@ var _onChange;
 var HistoryLocation = {
 
   setup: function (onChange) {
-    invariant(
-      ExecutionEnvironment.canUseDOM,
-      'You cannot use HistoryLocation in an environment with no DOM'
-    );
-
     _onChange = onChange;
 
     if (window.addEventListener) {
-      window.addEventListener('popstate', _onChange, false);
+      window.addEventListener('popstate', onPopState, false);
     } else {
-      window.attachEvent('popstate', _onChange);
+      window.attachEvent('popstate', onPopState);
     }
   },
 
   teardown: function () {
     if (window.removeEventListener) {
-      window.removeEventListener('popstate', _onChange, false);
+      window.removeEventListener('popstate', onPopState, false);
     } else {
-      window.detachEvent('popstate', _onChange);
+      window.detachEvent('popstate', onPopState);
     }
   },
 
   push: function (path) {
     window.history.pushState({ path: path }, '', path);
-    _onChange();
+
+    _onChange({
+      type: LocationActions.PUSH,
+      path: getWindowPath()
+    });
   },
 
   replace: function (path) {
     window.history.replaceState({ path: path }, '', path);
-    _onChange();
+
+    _onChange({
+      type: LocationActions.REPLACE,
+      path: getWindowPath()
+    });
   },
 
   pop: function () {
@@ -12574,59 +12610,7 @@ var HistoryLocation = {
 
 module.exports = HistoryLocation;
 
-},{"../utils/getWindowPath":31,"react/lib/ExecutionEnvironment":71,"react/lib/invariant":170}],21:[function(require,module,exports){
-var warning = require('react/lib/warning');
-
-var _lastPath = null;
-var _currentPath = null;
-var _onChange;
-
-/**
- * A Location that does not require a DOM.
- */
-var MemoryLocation = {
-
-  setup: function (onChange) {
-    _onChange = onChange;
-  },
-
-  push: function (path) {
-    _lastPath = _currentPath;
-    _currentPath = path;
-    _onChange();
-  },
-
-  replace: function (path) {
-    _currentPath = path;
-    _onChange();
-  },
-
-  pop: function () {
-    warning(
-      _lastPath != null,
-      'You cannot use MemoryLocation to go back more than once'
-    );
-
-    _currentPath = _lastPath;
-    _lastPath = null;
-    _onChange();
-  },
-
-  getCurrentPath: function () {
-    return _currentPath || '/';
-  },
-
-  toString: function () {
-    return '<MemoryLocation>';
-  }
-
-};
-
-module.exports = MemoryLocation;
-
-},{"react/lib/warning":193}],22:[function(require,module,exports){
-var invariant = require('react/lib/invariant');
-var ExecutionEnvironment = require('react/lib/ExecutionEnvironment');
+},{"../actions/LocationActions":9,"../utils/getWindowPath":35}],21:[function(require,module,exports){
 var getWindowPath = require('../utils/getWindowPath');
 
 /**
@@ -12635,13 +12619,6 @@ var getWindowPath = require('../utils/getWindowPath');
  * support the HTML5 history API.
  */
 var RefreshLocation = {
-
-  setup: function () {
-    invariant(
-      ExecutionEnvironment.canUseDOM,
-      'You cannot use RefreshLocation in an environment with no DOM'
-    );
-  },
 
   push: function (path) {
     window.location = path;
@@ -12665,562 +12642,715 @@ var RefreshLocation = {
 
 module.exports = RefreshLocation;
 
-},{"../utils/getWindowPath":31,"react/lib/ExecutionEnvironment":71,"react/lib/invariant":170}],23:[function(require,module,exports){
-var ActiveStore = require('../stores/ActiveStore');
+},{"../utils/getWindowPath":35}],22:[function(require,module,exports){
+var React = require('react');
+var copyProperties = require('react/lib/copyProperties');
 
 /**
- * A mixin for components that need to know about the routes, params,
- * and query that are currently active. Components that use it get two
- * things:
- *
- *   1. An `isActive` static method they can use to check if a route,
- *      params, and query are active.
- *   2. An `updateActiveState` instance method that is called when the
- *      active state changes.
+ * A mixin for components that store the active state of routes,
+ * URL parameters, and query.
+ */
+var ActiveContext = {
+
+  propTypes: {
+    initialActiveRoutes: React.PropTypes.array.isRequired,
+    initialActiveParams: React.PropTypes.object.isRequired,
+    initialActiveQuery: React.PropTypes.object.isRequired
+  },
+
+  getDefaultProps: function () {
+    return {
+      initialActiveRoutes: [],
+      initialActiveParams: {},
+      initialActiveQuery: {}
+    };
+  },
+
+  getInitialState: function () {
+    return {
+      activeRoutes: this.props.initialActiveRoutes,
+      activeParams: this.props.initialActiveParams,
+      activeQuery: this.props.initialActiveQuery
+    };
+  },
+
+  /**
+   * Returns a read-only array of the currently active routes.
+   */
+  getActiveRoutes: function () {
+    return this.state.activeRoutes.slice(0);
+  },
+
+  /**
+   * Returns a read-only object of the currently active URL parameters.
+   */
+  getActiveParams: function () {
+    return copyProperties({}, this.state.activeParams);
+  },
+
+  /**
+   * Returns a read-only object of the currently active query parameters.
+   */
+  getActiveQuery: function () {
+    return copyProperties({}, this.state.activeQuery);
+  },
+
+  childContextTypes: {
+    activeRoutes: React.PropTypes.array.isRequired,
+    activeParams: React.PropTypes.object.isRequired,
+    activeQuery: React.PropTypes.object.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      activeRoutes: this.getActiveRoutes(),
+      activeParams: this.getActiveParams(),
+      activeQuery: this.getActiveQuery()
+    };
+  }
+
+};
+
+module.exports = ActiveContext;
+
+},{"react":194,"react/lib/copyProperties":146}],23:[function(require,module,exports){
+var React = require('react');
+
+/**
+ * A mixin for components that need to know the routes, URL
+ * params and query that are currently active.
  *
  * Example:
  *
- *   var Tab = React.createClass({
- *     
+ *   var AboutLink = React.createClass({
  *     mixins: [ Router.ActiveState ],
- *
- *     getInitialState: function () {
- *       return {
- *         isActive: false
- *       };
- *     },
+ *     render: function () {
+ *       var className = this.props.className;
  *   
- *     updateActiveState: function () {
- *       this.setState({
- *         isActive: Tab.isActive(routeName, params, query)
- *       })
+ *       if (this.isActive('about'))
+ *         className += ' is-active';
+ *   
+ *       return React.DOM.a({ className: className }, this.props.children);
  *     }
- *   
  *   });
  */
 var ActiveState = {
 
-  statics: {
-
-    /**
-     * Returns true if the route with the given name, URL parameters, and query
-     * are all currently active.
-     */
-    isActive: ActiveStore.isActive
-
+  contextTypes: {
+    activeRoutes: React.PropTypes.array.isRequired,
+    activeParams: React.PropTypes.object.isRequired,
+    activeQuery: React.PropTypes.object.isRequired,
+    isActive: React.PropTypes.func.isRequired
   },
 
-  componentWillMount: function () {
-    ActiveStore.addChangeListener(this.handleActiveStateChange);
+  /**
+   * Returns an array of the routes that are currently active.
+   */
+  getActiveRoutes: function () {
+    return this.context.activeRoutes;
   },
 
-  componentDidMount: function () {
-    if (this.updateActiveState)
-      this.updateActiveState();
+  /**
+   * Returns an object of the URL params that are currently active.
+   */
+  getActiveParams: function () {
+    return this.context.activeParams;
   },
 
-  componentWillUnmount: function () {
-    ActiveStore.removeChangeListener(this.handleActiveStateChange);
+  /**
+   * Returns an object of the query params that are currently active.
+   */
+  getActiveQuery: function () {
+    return this.context.activeQuery;
   },
 
-  handleActiveStateChange: function () {
-    if (this.isMounted() && typeof this.updateActiveState === 'function')
-      this.updateActiveState();
+  /**
+   * A helper method to determine if a given route, params, and query
+   * are active.
+   */
+  isActive: function (to, params, query) {
+    return this.context.isActive(to, params, query);
   }
 
 };
 
 module.exports = ActiveState;
 
-},{"../stores/ActiveStore":25}],24:[function(require,module,exports){
+},{"react":194}],24:[function(require,module,exports){
 var React = require('react');
-var resolveAsyncState = require('../utils/resolveAsyncState');
 
 /**
- * A mixin for route handler component classes that fetch at least
- * part of their state asynchronously. Classes that use it should
- * declare a static `getInitialAsyncState` method that fetches state
- * for a component after it mounts. This function is given three
- * arguments: 1) the current route params, 2) the current query and
- * 3) a function that can be used to set state as it is received.
- *
- * Much like the familiar `getInitialState` method, `getInitialAsyncState`
- * should return a hash of key/value pairs to use in the component's
- * state. The difference is that the values may be promises. As these
- * values resolve, the component's state is updated. You should only
- * ever need to use the setState function for doing things like
- * streaming data and/or updating progress.
+ * A mixin for components that need to know the current URL path.
  *
  * Example:
  *
- *   var User = React.createClass({
- *   
- *     statics: {
- *   
- *       getInitialAsyncState: function (params, query, setState) {
- *         // Return a hash with keys named after the state variables
- *         // you want to set, as you normally do in getInitialState,
- *         // except the values may be immediate values or promises.
- *         // The state is automatically updated as promises resolve.
- *         return {
- *           user: getUserByID(params.userID) // may be a promise
- *         };
- *   
- *         // Or, use the setState function to stream data!
- *         var buffer = '';
- *   
- *         return {
- *
- *           // Same as above, the stream state variable is set to the
- *           // value returned by this promise when it resolves.
- *           stream: getStreamingData(params.userID, function (chunk) {
- *             buffer += chunk;
- *   
- *             // Notify of progress.
- *             setState({
- *               streamBuffer: buffer
- *             });
- *           })
- *   
- *         };
- *       }
- *   
- *     },
- *   
- *     getInitialState: function () {
- *       return {
- *         user: null,        // Receives a value when getUserByID resolves.
- *         stream: null,      // Receives a value when getStreamingData resolves.
- *         streamBuffer: ''   // Used to track data as it loads.
- *       };
- *     },
- *   
+ *   var ShowThePath = React.createClass({
+ *     mixins: [ Router.CurrentPath ],
  *     render: function () {
- *       if (!this.state.user)
- *         return <LoadingUser/>;
- *   
  *       return (
- *         <div>
- *           <p>Welcome {this.state.user.name}!</p>
- *           <p>So far, you've received {this.state.streamBuffer.length} data!</p>
- *         </div>
+ *         <div>The current path is: {this.getCurrentPath()}</div>
  *       );
  *     }
- *   
  *   });
- *
- * When testing, use the `initialAsyncState` prop to simulate asynchronous
- * data fetching. When this prop is present, no attempt is made to retrieve
- * additional state via `getInitialAsyncState`.
  */
-var AsyncState = {
+var CurrentPath = {
 
-  propTypes: {
-    initialAsyncState: React.PropTypes.object
-  },
-
-  getInitialState: function () {
-    return this.props.initialAsyncState || null;
-  },
-
-  updateAsyncState: function (state) {
-    if (this.isMounted())
-      this.setState(state);
-  },
-
-  componentDidMount: function () {
-    if (this.props.initialAsyncState || typeof this.constructor.getInitialAsyncState !== 'function')
-      return;
-
-    resolveAsyncState(
-      this.constructor.getInitialAsyncState(this.props.params, this.props.query, this.updateAsyncState),
-      this.updateAsyncState
-    );
-  }
-
-};
-
-module.exports = AsyncState;
-
-},{"../utils/resolveAsyncState":35,"react":194}],25:[function(require,module,exports){
-var EventEmitter = require('events').EventEmitter;
-
-var CHANGE_EVENT = 'change';
-var _events = new EventEmitter;
-
-_events.setMaxListeners(0);
-
-function notifyChange() {
-  _events.emit(CHANGE_EVENT);
-}
-
-var _activeRoutes = [];
-var _activeParams = {};
-var _activeQuery = {};
-
-function routeIsActive(routeName) {
-  return _activeRoutes.some(function (route) {
-    return route.props.name === routeName;
-  });
-}
-
-function paramsAreActive(params) {
-  for (var property in params) {
-    if (_activeParams[property] !== String(params[property]))
-      return false;
-  }
-
-  return true;
-}
-
-function queryIsActive(query) {
-  for (var property in query) {
-    if (_activeQuery[property] !== String(query[property]))
-      return false;
-  }
-
-  return true;
-}
-
-/**
- * The ActiveStore keeps track of which routes, URL and query parameters are
- * currently active on a page. <Link>s subscribe to the ActiveStore to know
- * whether or not they are active.
- */
-var ActiveStore = {
-
-  addChangeListener: function (listener) {
-    _events.on(CHANGE_EVENT, listener);
-  },
-
-  removeChangeListener: function (listener) {
-    _events.removeListener(CHANGE_EVENT, listener);
-  },
-
-  /**
-   * Updates the currently active state and notifies all listeners.
-   * This is automatically called by routes as they become active.
-   */
-  updateState: function (state) {
-    state = state || {};
-
-    _activeRoutes = state.activeRoutes || [];
-    _activeParams = state.activeParams || {};
-    _activeQuery = state.activeQuery || {};
-
-    notifyChange();
-  },
-
-  /**
-   * Returns true if the route with the given name, URL parameters, and query
-   * are all currently active.
-   */
-  isActive: function (routeName, params, query) {
-    var isActive = routeIsActive(routeName) && paramsAreActive(params);
-
-    if (query)
-      return isActive && queryIsActive(query);
-
-    return isActive;
-  }
-
-};
-
-module.exports = ActiveStore;
-
-},{"events":5}],26:[function(require,module,exports){
-var warning = require('react/lib/warning');
-var EventEmitter = require('events').EventEmitter;
-var LocationActions = require('../actions/LocationActions');
-var LocationDispatcher = require('../dispatchers/LocationDispatcher');
-var supportsHistory = require('../utils/supportsHistory');
-var HistoryLocation = require('../locations/HistoryLocation');
-var RefreshLocation = require('../locations/RefreshLocation');
-
-var CHANGE_EVENT = 'change';
-var _events = new EventEmitter;
-
-function notifyChange() {
-  _events.emit(CHANGE_EVENT);
-}
-
-var _scrollPositions = {};
-
-function recordScrollPosition(path) {
-  _scrollPositions[path] = {
-    x: window.scrollX,
-    y: window.scrollY
-  };
-}
-
-function updateScrollPosition(path) {
-  var p = PathStore.getScrollPosition(path);
-  window.scrollTo(p.x, p.y);
-}
-
-var _location;
-
-/**
- * The PathStore keeps track of the current URL path and manages
- * the location strategy that is used to update the URL.
- */
-var PathStore = {
-
-  addChangeListener: function (listener) {
-    _events.on(CHANGE_EVENT, listener);
-  },
-
-  removeChangeListener: function (listener) {
-    _events.removeListener(CHANGE_EVENT, listener);
-
-    // Automatically teardown when the last listener is removed.
-    if (EventEmitter.listenerCount(_events, CHANGE_EVENT) === 0)
-      PathStore.teardown();
-  },
-
-  setup: function (location) {
-    // When using HistoryLocation, automatically fallback
-    // to RefreshLocation in browsers that do not support
-    // the HTML5 history API.
-    if (location === HistoryLocation && !supportsHistory())
-      location = RefreshLocation;
-
-    if (_location == null) {
-      _location = location;
-
-      if (_location && typeof _location.setup === 'function')
-        _location.setup(notifyChange);
-    } else {
-      warning(
-        _location === location,
-        'Cannot use location %s, already using %s', location, _location
-      );
-    }
-  },
-
-  teardown: function () {
-    _events.removeAllListeners(CHANGE_EVENT);
-
-    if (_location && typeof _location.teardown === 'function')
-      _location.teardown();
-
-    _location = null;
-  },
-
-  /**
-   * Returns the location object currently in use.
-   */
-  getLocation: function () {
-    return _location;
+  contextTypes: {
+    currentPath: React.PropTypes.string.isRequired
   },
 
   /**
    * Returns the current URL path.
    */
   getCurrentPath: function () {
-    return _location.getCurrentPath();
+    return this.context.currentPath;
+  }
+
+};
+
+module.exports = CurrentPath;
+
+},{"react":194}],25:[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
+var HashLocation = require('../locations/HashLocation');
+var HistoryLocation = require('../locations/HistoryLocation');
+var RefreshLocation = require('../locations/RefreshLocation');
+var PathStore = require('../stores/PathStore');
+var supportsHistory = require('../utils/supportsHistory');
+
+/**
+ * A hash of { name: location } pairs.
+ */
+var NAMED_LOCATIONS = {
+  none: null,
+  hash: HashLocation,
+  history: HistoryLocation,
+  refresh: RefreshLocation
+};
+
+/**
+ * A mixin for components that manage location.
+ */
+var LocationContext = {
+
+  propTypes: {
+    location: function (props, propName, componentName) {
+      var location = props[propName];
+
+      if (typeof location === 'string' && !(location in NAMED_LOCATIONS))
+        return new Error('Unknown location "' + location + '", see ' + componentName);
+    }
+  },
+
+  getDefaultProps: function () {
+    return {
+      location: canUseDOM ? HashLocation : null
+    };
+  },
+
+  componentWillMount: function () {
+    var location = this.getLocation();
+
+    invariant(
+      location == null || canUseDOM,
+      'Cannot use location without a DOM'
+    );
+
+    if (location) {
+      PathStore.setup(location);
+      PathStore.addChangeListener(this.handlePathChange);
+
+      if (this.updateLocation)
+        this.updateLocation(PathStore.getCurrentPath(), PathStore.getCurrentActionType());
+    }
+  },
+
+  componentWillUnmount: function () {
+    if (this.getLocation())
+      PathStore.removeChangeListener(this.handlePathChange);
+  },
+
+  handlePathChange: function () {
+    if (this.updateLocation)
+      this.updateLocation(PathStore.getCurrentPath(), PathStore.getCurrentActionType());
   },
 
   /**
-   * Returns the last known scroll position for the given path.
+   * Returns the location object this component uses.
    */
-  getScrollPosition: function (path) {
-    return _scrollPositions[path] || { x: 0, y: 0 };
+  getLocation: function () {
+    if (this._location == null) {
+      var location = this.props.location;
+
+      if (typeof location === 'string')
+        location = NAMED_LOCATIONS[location];
+
+      // Automatically fall back to full page refreshes in
+      // browsers that do not support HTML5 history.
+      if (location === HistoryLocation && !supportsHistory())
+        location = RefreshLocation;
+
+      this._location = location;
+    }
+
+    return this._location;
   },
 
-  dispatchToken: LocationDispatcher.register(function (payload) {
-    var action = payload.action;
-    var currentPath = _location.getCurrentPath();
+  childContextTypes: {
+    location: React.PropTypes.object // Not required on the server.
+  },
 
-    switch (action.type) {
-      case LocationActions.PUSH:
-        if (currentPath !== action.path) {
-          recordScrollPosition(currentPath);
-          _location.push(action.path);
-        }
-        break;
+  getChildContext: function () {
+    return {
+      location: this.getLocation()
+    };
+  }
 
-      case LocationActions.REPLACE:
-        if (currentPath !== action.path) {
-          recordScrollPosition(currentPath);
-          _location.replace(action.path);
-        }
-        break;
+};
 
-      case LocationActions.POP:
-        recordScrollPosition(currentPath);
-        _location.pop();
-        break;
+module.exports = LocationContext;
 
-      case LocationActions.UPDATE_SCROLL:
-        updateScrollPosition(currentPath);
-        break;
+},{"../locations/HashLocation":19,"../locations/HistoryLocation":20,"../locations/RefreshLocation":21,"../stores/PathStore":29,"../utils/supportsHistory":37,"react":194,"react/lib/ExecutionEnvironment":69,"react/lib/invariant":170}],26:[function(require,module,exports){
+var React = require('react');
+
+/**
+ * A mixin for components that modify the URL.
+ */
+var Navigation = {
+
+  contextTypes: {
+    makePath: React.PropTypes.func.isRequired,
+    makeHref: React.PropTypes.func.isRequired,
+    transitionTo: React.PropTypes.func.isRequired,
+    replaceWith: React.PropTypes.func.isRequired,
+    goBack: React.PropTypes.func.isRequired
+  },
+
+  /**
+   * Returns an absolute URL path created from the given route
+   * name, URL parameters, and query values.
+   */
+  makePath: function (to, params, query) {
+    return this.context.makePath(to, params, query);
+  },
+
+  /**
+   * Returns a string that may safely be used as the href of a
+   * link to the route with the given name.
+   */
+  makeHref: function (to, params, query) {
+    return this.context.makeHref(to, params, query);
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by pushing
+   * a new URL onto the history stack.
+   */
+  transitionTo: function (to, params, query) {
+    this.context.transitionTo(to, params, query);
+  },
+
+  /**
+   * Transitions to the URL specified in the arguments by replacing
+   * the current URL in the history stack.
+   */
+  replaceWith: function (to, params, query) {
+    this.context.replaceWith(to, params, query);
+  },
+
+  /**
+   * Transitions to the previous URL.
+   */
+  goBack: function () {
+    this.context.goBack();
+  }
+
+};
+
+module.exports = Navigation;
+
+},{"react":194}],27:[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var Path = require('../utils/Path');
+
+/**
+ * Performs some normalization and validation on a <Route> component and
+ * all of its children.
+ */
+function processRoute(route, container, namedRoutes) {
+  // Note: parentRoute may be a <Route> _or_ a <Routes>.
+  var props = route.props;
+
+  invariant(
+    React.isValidClass(props.handler),
+    'The handler for the "%s" route must be a valid React class',
+    props.name || props.path
+  );
+
+  var parentPath = (container && container.props.path) || '/';
+
+  if ((props.path || props.name) && !props.isDefault && !props.catchAll) {
+    var path = props.path || props.name;
+
+    // Relative paths extend their parent.
+    if (!Path.isAbsolute(path))
+      path = Path.join(parentPath, path);
+
+    props.path = Path.normalize(path);
+  } else {
+    props.path = parentPath;
+
+    if (props.catchAll)
+      props.path += '*';
+  }
+
+  props.paramNames = Path.extractParamNames(props.path);
+
+  // Make sure the route's path has all params its parent needs.
+  if (container && Array.isArray(container.props.paramNames)) {
+    container.props.paramNames.forEach(function (paramName) {
+      invariant(
+        props.paramNames.indexOf(paramName) !== -1,
+        'The nested route path "%s" is missing the "%s" parameter of its parent path "%s"',
+        props.path, paramName, container.props.path
+      );
+    });
+  }
+
+  // Make sure the route can be looked up by <Link>s.
+  if (props.name) {
+    var existingRoute = namedRoutes[props.name];
+
+    invariant(
+      !existingRoute || route === existingRoute,
+      'You cannot use the name "%s" for more than one route',
+      props.name
+    );
+
+    namedRoutes[props.name] = route;
+  }
+
+  // Handle <NotFoundRoute>.
+  if (props.catchAll) {
+    invariant(
+      container,
+      '<NotFoundRoute> must have a parent <Route>'
+    );
+
+    invariant(
+      container.props.notFoundRoute == null,
+      'You may not have more than one <NotFoundRoute> per <Route>'
+    );
+
+    container.props.notFoundRoute = route;
+
+    return null;
+  }
+
+  // Handle <DefaultRoute>.
+  if (props.isDefault) {
+    invariant(
+      container,
+      '<DefaultRoute> must have a parent <Route>'
+    );
+
+    invariant(
+      container.props.defaultRoute == null,
+      'You may not have more than one <DefaultRoute> per <Route>'
+    );
+
+    container.props.defaultRoute = route;
+
+    return null;
+  }
+
+  // Make sure children is an array.
+  props.children = processRoutes(props.children, route, namedRoutes);
+
+  return route;
+}
+
+/**
+ * Processes many children <Route>s at once, always returning an array.
+ */
+function processRoutes(children, container, namedRoutes) {
+  var routes = [];
+
+  React.Children.forEach(children, function (child) {
+    // Exclude <DefaultRoute>s and <NotFoundRoute>s.
+    if (child = processRoute(child, container, namedRoutes))
+      routes.push(child);
+  });
+
+  return routes;
+}
+
+/**
+ * A mixin for components that have <Route> children.
+ */
+var RouteContext = {
+
+  _processRoutes: function () {
+    this._namedRoutes = {};
+    this._routes = processRoutes(this.props.children, this, this._namedRoutes);
+  },
+
+  /**
+   * Returns an array of <Route>s in this container.
+   */
+  getRoutes: function () {
+    if (this._routes == null)
+      this._processRoutes();
+
+    return this._routes;
+  },
+
+  /**
+   * Returns a hash { name: route } of all named <Route>s in this container.
+   */
+  getNamedRoutes: function () {
+    if (this._namedRoutes == null)
+      this._processRoutes();
+
+    return this._namedRoutes;
+  },
+
+  /**
+   * Returns the route with the given name.
+   */
+  getRouteByName: function (routeName) {
+    var namedRoutes = this.getNamedRoutes();
+    return namedRoutes[routeName] || null;
+  },
+
+  childContextTypes: {
+    routes: React.PropTypes.array.isRequired,
+    namedRoutes: React.PropTypes.object.isRequired
+  },
+
+  getChildContext: function () {
+    return {
+      routes: this.getRoutes(),
+      namedRoutes: this.getNamedRoutes(),
+    };
+  }
+
+};
+
+module.exports = RouteContext;
+
+},{"../utils/Path":30,"react":194,"react/lib/invariant":170}],28:[function(require,module,exports){
+var React = require('react');
+var invariant = require('react/lib/invariant');
+var canUseDOM = require('react/lib/ExecutionEnvironment').canUseDOM;
+var ImitateBrowserBehavior = require('../behaviors/ImitateBrowserBehavior');
+var ScrollToTopBehavior = require('../behaviors/ScrollToTopBehavior');
+
+function getWindowScrollPosition() {
+  invariant(
+    canUseDOM,
+    'Cannot get current scroll position without a DOM'
+  );
+
+  return {
+    x: window.scrollX,
+    y: window.scrollY
+  };
+}
+
+/**
+ * A hash of { name: scrollBehavior } pairs.
+ */
+var NAMED_SCROLL_BEHAVIORS = {
+  none: null,
+  browser: ImitateBrowserBehavior,
+  imitateBrowser: ImitateBrowserBehavior,
+  scrollToTop: ScrollToTopBehavior
+};
+
+/**
+ * A mixin for components that manage scroll position.
+ */
+var ScrollContext = {
+
+  propTypes: {
+    scrollBehavior: function (props, propName, componentName) {
+      var behavior = props[propName];
+
+      if (typeof behavior === 'string' && !(behavior in NAMED_SCROLL_BEHAVIORS))
+        return new Error('Unknown scroll behavior "' + behavior + '", see ' + componentName);
     }
-  })
+  },
+
+  getDefaultProps: function () {
+    return {
+      scrollBehavior: canUseDOM ? ImitateBrowserBehavior : null
+    };
+  },
+
+  componentWillMount: function () {
+    invariant(
+      this.getScrollBehavior() == null || canUseDOM,
+      'Cannot use scroll behavior without a DOM'
+    );
+  },
+
+  recordScroll: function (path) {
+    var positions = this.getScrollPositions();
+    positions[path] = getWindowScrollPosition();
+  },
+
+  updateScroll: function (path, actionType) {
+    var behavior = this.getScrollBehavior();
+    var position = this.getScrollPosition(path) || null;
+
+    if (behavior)
+      behavior.updateScrollPosition(position, actionType);
+  },
+
+  /**
+   * Returns the scroll behavior object this component uses.
+   */
+  getScrollBehavior: function () {
+    if (this._scrollBehavior == null) {
+      var behavior = this.props.scrollBehavior;
+
+      if (typeof behavior === 'string')
+        behavior = NAMED_SCROLL_BEHAVIORS[behavior];
+
+      this._scrollBehavior = behavior;
+    }
+
+    return this._scrollBehavior;
+  },
+
+  /**
+   * Returns a hash of URL paths to their last known scroll positions.
+   */
+  getScrollPositions: function () {
+    if (this._scrollPositions == null)
+      this._scrollPositions = {};
+
+    return this._scrollPositions;
+  },
+
+  /**
+   * Returns the last known scroll position for the given URL path.
+   */
+  getScrollPosition: function (path) {
+    var positions = this.getScrollPositions();
+    return positions[path];
+  },
+
+  childContextTypes: {
+    scrollBehavior: React.PropTypes.object // Not required on the server.
+  },
+
+  getChildContext: function () {
+    return {
+      scrollBehavior: this.getScrollBehavior()
+    };
+  }
+
+};
+
+module.exports = ScrollContext;
+
+},{"../behaviors/ImitateBrowserBehavior":10,"../behaviors/ScrollToTopBehavior":11,"react":194,"react/lib/ExecutionEnvironment":69,"react/lib/invariant":170}],29:[function(require,module,exports){
+var invariant = require('react/lib/invariant');
+var EventEmitter = require('events').EventEmitter;
+var LocationActions = require('../actions/LocationActions');
+
+var CHANGE_EVENT = 'change';
+var _events = new EventEmitter;
+
+function notifyChange() {
+  _events.emit(CHANGE_EVENT);
+}
+
+var _currentLocation, _currentActionType;
+var _currentPath = '/';
+
+function handleLocationChangeAction(action) {
+  if (_currentPath !== action.path) {
+    _currentPath = action.path;
+    _currentActionType = action.type;
+    notifyChange();
+  }
+}
+
+/**
+ * The PathStore keeps track of the current URL path.
+ */
+var PathStore = {
+
+  addChangeListener: function (listener) {
+    _events.addListener(CHANGE_EVENT, listener);
+  },
+
+  removeChangeListener: function (listener) {
+    _events.removeListener(CHANGE_EVENT, listener);
+  },
+
+  removeAllChangeListeners: function () {
+    _events.removeAllListeners(CHANGE_EVENT);
+  },
+
+  /**
+   * Setup the PathStore to use the given location.
+   */
+  setup: function (location) {
+    invariant(
+      _currentLocation == null || _currentLocation === location,
+      'You cannot use %s and %s on the same page',
+      _currentLocation, location
+    );
+
+    if (_currentLocation !== location) {
+      if (location.setup)
+        location.setup(handleLocationChangeAction);
+
+      _currentPath = location.getCurrentPath();
+    }
+
+    _currentLocation = location;
+  },
+
+  /**
+   * Tear down the PathStore. Really only used for testing.
+   */
+  teardown: function () {
+    if (_currentLocation && _currentLocation.teardown)
+      _currentLocation.teardown();
+
+    _currentLocation = _currentActionType = null;
+    _currentPath = '/';
+
+    PathStore.removeAllChangeListeners();
+  },
+
+  /**
+   * Returns the current URL path.
+   */
+  getCurrentPath: function () {
+    return _currentPath;
+  },
+
+  /**
+   * Returns the type of the action that changed the URL.
+   */
+  getCurrentActionType: function () {
+    return _currentActionType;
+  }
 
 };
 
 module.exports = PathStore;
 
-},{"../actions/LocationActions":9,"../dispatchers/LocationDispatcher":16,"../locations/HistoryLocation":20,"../locations/RefreshLocation":22,"../utils/supportsHistory":36,"events":5,"react/lib/warning":193}],27:[function(require,module,exports){
-var React = require('react');
-var invariant = require('react/lib/invariant');
-var warning = require('react/lib/warning');
-var Path = require('../utils/Path');
-
-var _namedRoutes = {};
-
-/**
- * The RouteStore contains a directory of all <Route>s in the system. It is
- * used primarily for looking up routes by name so that <Link>s can use a
- * route name in the "to" prop and users can use route names in `Router.transitionTo`
- * and other high-level utility methods.
- */
-var RouteStore = {
-
-  /**
-   * Removes all references to <Route>s from the store. Should only ever
-   * really be used in tests to clear the store between test runs.
-   */
-  unregisterAllRoutes: function () {
-    _namedRoutes = {};
-  },
-
-  /**
-   * Removes the reference to the given <Route> and all of its children
-   * from the store.
-   */
-  unregisterRoute: function (route) {
-    var props = route.props;
-
-    if (props.name)
-      delete _namedRoutes[props.name];
-
-    React.Children.forEach(props.children, RouteStore.unregisterRoute);
-  },
-
-  /**
-   * Registers a <Route> and all of its children with the store. Also,
-   * does some normalization and validation on route props.
-   */
-  registerRoute: function (route, parentRoute) {
-    // Note: parentRoute may be a <Route> _or_ a <Routes>.
-    var props = route.props;
-
-    invariant(
-      React.isValidClass(props.handler),
-      'The handler for the "%s" route must be a valid React class',
-      props.name || props.path
-    );
-
-    var parentPath = (parentRoute && parentRoute.props.path) || '/';
-
-    if ((props.path || props.name) && !props.isDefault && !props.catchAll) {
-      var path = props.path || props.name;
-
-      // Relative paths extend their parent.
-      if (!Path.isAbsolute(path))
-        path = Path.join(parentPath, path);
-
-      props.path = Path.normalize(path);
-    } else {
-      props.path = parentPath;
-
-      if (props.catchAll)
-        props.path += '*';
-    }
-
-    props.paramNames = Path.extractParamNames(props.path);
-
-    // Make sure the route's path has all params its parent needs.
-    if (parentRoute && Array.isArray(parentRoute.props.paramNames)) {
-      parentRoute.props.paramNames.forEach(function (paramName) {
-        invariant(
-          props.paramNames.indexOf(paramName) !== -1,
-          'The nested route path "%s" is missing the "%s" parameter of its parent path "%s"',
-          props.path, paramName, parentRoute.props.path
-        );
-      });
-    }
-
-    // Make sure the route can be looked up by <Link>s.
-    if (props.name) {
-      var existingRoute = _namedRoutes[props.name];
-
-      invariant(
-        !existingRoute || route === existingRoute,
-        'You cannot use the name "%s" for more than one route',
-        props.name
-      );
-
-      _namedRoutes[props.name] = route;
-    }
-
-    if (props.catchAll) {
-      invariant(
-        parentRoute,
-        '<NotFoundRoute> must have a parent <Route>'
-      );
-
-      invariant(
-        parentRoute.props.notFoundRoute == null,
-        'You may not have more than one <NotFoundRoute> per <Route>'
-      );
-
-      parentRoute.props.notFoundRoute = route;
-
-      return null;
-    }
-
-    if (props.isDefault) {
-      invariant(
-        parentRoute,
-        '<DefaultRoute> must have a parent <Route>'
-      );
-
-      invariant(
-        parentRoute.props.defaultRoute == null,
-        'You may not have more than one <DefaultRoute> per <Route>'
-      );
-
-      parentRoute.props.defaultRoute = route;
-
-      return null;
-    }
-
-    // Make sure children is an array.
-    props.children = RouteStore.registerChildren(props.children, route);
-
-    return route;
-  },
-
-  /**
-   * Registers many children routes at once, always returning an array.
-   */
-  registerChildren: function (children, parentRoute) {
-    var routes = [];
-
-    React.Children.forEach(children, function (child) {
-      // Exclude <DefaultRoute>s.
-      if (child = RouteStore.registerRoute(child, parentRoute))
-        routes.push(child);
-    });
-
-    return routes;
-  },
-
-  /**
-   * Returns the Route object with the given name, if one exists.
-   */
-  getRouteByName: function (routeName) {
-    return _namedRoutes[routeName] || null;
-  }
-
-};
-
-module.exports = RouteStore;
-
-},{"../utils/Path":28,"react":194,"react/lib/invariant":170,"react/lib/warning":193}],28:[function(require,module,exports){
+},{"../actions/LocationActions":9,"events":5,"react/lib/invariant":170}],30:[function(require,module,exports){
 var invariant = require('react/lib/invariant');
 var merge = require('qs/lib/utils').merge;
 var qs = require('qs');
@@ -13237,7 +13367,9 @@ function encodeURLPath(path) {
   return String(path).split('/').map(encodeURL).join('/');
 }
 
-var paramMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|[*.()\[\]\\+|{}^$]/g;
+var paramCompileMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|[*.()\[\]\\+|{}^$]/g;
+var paramInjectMatcher = /:([a-zA-Z_$][a-zA-Z0-9_$?]*[?]?)|[*]/g;
+var paramInjectTrailingSlashMatcher = /\/\/\?|\/\?/g;
 var queryMatcher = /\?(.+)/;
 
 var _compiledPatterns = {};
@@ -13245,10 +13377,10 @@ var _compiledPatterns = {};
 function compilePattern(pattern) {
   if (!(pattern in _compiledPatterns)) {
     var paramNames = [];
-    var source = pattern.replace(paramMatcher, function (match, paramName) {
+    var source = pattern.replace(paramCompileMatcher, function (match, paramName) {
       if (paramName) {
         paramNames.push(paramName);
-        return '([^./?#]+)';
+        return '([^/?#]+)';
       } else if (match === '*') {
         paramNames.push('splat');
         return '(.*?)';
@@ -13305,13 +13437,21 @@ var Path = {
 
     var splatIndex = 0;
 
-    return pattern.replace(paramMatcher, function (match, paramName) {
+    return pattern.replace(paramInjectMatcher, function (match, paramName) {
       paramName = paramName || 'splat';
 
-      invariant(
-        params[paramName] != null,
-        'Missing "' + paramName + '" parameter for path "' + pattern + '"'
-      );
+      // If param is optional don't check for existence
+      if (paramName.slice(-1) !== '?') {
+        invariant(
+          params[paramName] != null,
+          'Missing "' + paramName + '" parameter for path "' + pattern + '"'
+        );
+      } else {
+        paramName = paramName.slice(0, -1)
+        if (params[paramName] == null) {
+            return '';
+        }
+      }
 
       var segment;
       if (paramName === 'splat' && Array.isArray(params[paramName])) {
@@ -13326,7 +13466,7 @@ var Path = {
       }
 
       return encodeURLPath(segment);
-    });
+    }).replace(paramInjectTrailingSlashMatcher, '/');
   },
 
   /**
@@ -13334,7 +13474,7 @@ var Path = {
    * in the given path, null if the path contains no query string.
    */
   extractQuery: function (path) {
-    var match = decodeURL(path).match(queryMatcher);
+    var match = path.match(queryMatcher);
     return match && qs.parse(match[1]);
   },
 
@@ -13388,7 +13528,15 @@ var Path = {
 
 module.exports = Path;
 
-},{"qs":41,"qs/lib/utils":45,"react/lib/invariant":170}],29:[function(require,module,exports){
+},{"qs":39,"qs/lib/utils":43,"react/lib/invariant":170}],31:[function(require,module,exports){
+var Promise = require('when/lib/Promise');
+
+// TODO: Use process.env.NODE_ENV check + envify to enable
+// when's promise monitor here when in dev.
+
+module.exports = Promise;
+
+},{"when/lib/Promise":44}],32:[function(require,module,exports){
 /**
  * Encapsulates a redirect to the given route.
  */
@@ -13400,9 +13548,119 @@ function Redirect(to, params, query) {
 
 module.exports = Redirect;
 
-},{}],30:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
+var ReactDescriptor = require('react/lib/ReactDescriptor');
+var ReactInstanceHandles = require('react/lib/ReactInstanceHandles');
+var ReactMarkupChecksum = require('react/lib/ReactMarkupChecksum');
+var ReactServerRenderingTransaction = require('react/lib/ReactServerRenderingTransaction');
+
+var cloneWithProps = require('react/lib/cloneWithProps');
+var copyProperties = require('react/lib/copyProperties');
+var instantiateReactComponent = require('react/lib/instantiateReactComponent');
+var invariant = require('react/lib/invariant');
+
+function cloneRoutesForServerRendering(routes) {
+  return cloneWithProps(routes, {
+    location: 'none',
+    scrollBehavior: 'none'
+  });
+}
+
+function mergeStateIntoInitialProps(state, props) {
+  copyProperties(props, {
+    initialPath: state.path,
+    initialMatches: state.matches,
+    initialActiveRoutes: state.activeRoutes,
+    initialActiveParams: state.activeParams,
+    initialActiveQuery: state.activeQuery
+  });
+}
+
+/**
+ * Renders a <Routes> component to a string of HTML at the given URL
+ * path and calls callback(error, abortReason, html) when finished.
+ *
+ * If there was an error during the transition, it is passed to the
+ * callback. Otherwise, if the transition was aborted for some reason,
+ * it is given in the abortReason argument (with the exception of
+ * internal redirects which are transparently handled for you).
+ *
+ * TODO: <NotFoundRoute> should be handled specially so servers know
+ * to use a 404 status code.
+ */
+function renderRoutesToString(routes, path, callback) {
+  invariant(
+    ReactDescriptor.isValidDescriptor(routes),
+    'You must pass a valid ReactComponent to renderRoutesToString'
+  );
+
+  var component = instantiateReactComponent(
+    cloneRoutesForServerRendering(routes)
+  );
+
+  component.dispatch(path, function (error, abortReason, nextState) {
+    if (error || abortReason)
+      return callback(error, abortReason);
+
+    mergeStateIntoInitialProps(nextState, component.props);
+
+    var transaction;
+    try {
+      var id = ReactInstanceHandles.createReactRootID();
+      transaction = ReactServerRenderingTransaction.getPooled(false);
+
+      transaction.perform(function () {
+        var markup = component.mountComponent(id, transaction, 0);
+        callback(null, null, ReactMarkupChecksum.addChecksumToMarkup(markup));
+      }, null);
+    } finally {
+      ReactServerRenderingTransaction.release(transaction);
+    }
+  });
+}
+
+/**
+ * Renders a <Routes> component to static markup at the given URL
+ * path and calls callback(error, abortReason, markup) when finished.
+ */
+function renderRoutesToStaticMarkup(routes, path, callback) {
+  invariant(
+    ReactDescriptor.isValidDescriptor(routes),
+    'You must pass a valid ReactComponent to renderRoutesToStaticMarkup'
+  );
+
+  var component = instantiateReactComponent(
+    cloneRoutesForServerRendering(routes)
+  );
+
+  component.dispatch(path, function (error, abortReason, nextState) {
+    if (error || abortReason)
+      return callback(error, abortReason);
+
+    mergeStateIntoInitialProps(nextState, component.props);
+
+    var transaction;
+    try {
+      var id = ReactInstanceHandles.createReactRootID();
+      transaction = ReactServerRenderingTransaction.getPooled(false);
+
+      transaction.perform(function () {
+        callback(null, null, component.mountComponent(id, transaction, 0));
+      }, null);
+    } finally {
+      ReactServerRenderingTransaction.release(transaction);
+    }
+  });
+}
+
+module.exports = {
+  renderRoutesToString: renderRoutesToString,
+  renderRoutesToStaticMarkup: renderRoutesToStaticMarkup
+};
+
+},{"react/lib/ReactDescriptor":99,"react/lib/ReactInstanceHandles":107,"react/lib/ReactMarkupChecksum":108,"react/lib/ReactServerRenderingTransaction":122,"react/lib/cloneWithProps":144,"react/lib/copyProperties":146,"react/lib/instantiateReactComponent":169,"react/lib/invariant":170}],34:[function(require,module,exports){
 var mixInto = require('react/lib/mixInto');
-var transitionTo = require('../actions/LocationActions').transitionTo;
+var Promise = require('./Promise');
 var Redirect = require('./Redirect');
 
 /**
@@ -13411,7 +13669,8 @@ var Redirect = require('./Redirect');
  * The willTransitionTo and willTransitionFrom handlers receive
  * an instance of this class as their first argument.
  */
-function Transition(path) {
+function Transition(routesComponent, path) {
+  this.routesComponent = routesComponent;
   this.path = path;
   this.abortReason = null;
   this.isAborted = false;
@@ -13428,15 +13687,19 @@ mixInto(Transition, {
     this.abort(new Redirect(to, params, query));
   },
 
+  wait: function (value) {
+    this.promise = Promise.resolve(value);
+  },
+
   retry: function () {
-    transitionTo(this.path);
+    this.routesComponent.replaceWith(this.path);
   }
 
 });
 
 module.exports = Transition;
 
-},{"../actions/LocationActions":9,"./Redirect":29,"react/lib/mixInto":183}],31:[function(require,module,exports){
+},{"./Promise":31,"./Redirect":32,"react/lib/mixInto":183}],35:[function(require,module,exports){
 /**
  * Returns the current URL path from `window.location`, including query string
  */
@@ -13446,88 +13709,14 @@ function getWindowPath() {
 
 module.exports = getWindowPath;
 
-
-},{}],32:[function(require,module,exports){
-module.exports = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
-
-},{}],33:[function(require,module,exports){
-var HashLocation = require('../locations/HashLocation');
-var PathStore = require('../stores/PathStore');
-var makePath = require('./makePath');
-
-/**
- * Returns a string that may safely be used as the href of a
- * link to the route with the given name.
- */
-function makeHref(to, params, query) {
-  var path = makePath(to, params, query);
-
-  if (PathStore.getLocation() === HashLocation)
-    return '#' + path;
-
-  return path;
+},{}],36:[function(require,module,exports){
+function reversedArray(array) {
+  return array.slice(0).reverse();
 }
 
-module.exports = makeHref;
+module.exports = reversedArray;
 
-},{"../locations/HashLocation":19,"../stores/PathStore":26,"./makePath":34}],34:[function(require,module,exports){
-var invariant = require('react/lib/invariant');
-var RouteStore = require('../stores/RouteStore');
-var Path = require('./Path');
-
-/**
- * Returns an absolute URL path created from the given route name, URL
- * parameters, and query values.
- */
-function makePath(to, params, query) {
-  var path;
-  if (Path.isAbsolute(to)) {
-    path = Path.normalize(to);
-  } else {
-    var route = RouteStore.getRouteByName(to);
-
-    invariant(
-      route,
-      'Unable to find a route named "' + to + '". Make sure you have ' +
-      'a <Route name="' + to + '"> defined somewhere in your routes'
-    );
-
-    path = route.props.path;
-  }
-
-  return Path.withQuery(Path.injectParams(path, params), query);
-}
-
-module.exports = makePath;
-
-},{"../stores/RouteStore":27,"./Path":28,"react/lib/invariant":170}],35:[function(require,module,exports){
-var Promise = require('when/lib/Promise');
-
-/**
- * Resolves all values in asyncState and calls the setState
- * function with new state as they resolve. Returns a promise
- * that resolves after all values are resolved.
- */
-function resolveAsyncState(asyncState, setState) {
-  if (asyncState == null)
-    return Promise.resolve();
-
-  var keys = Object.keys(asyncState);
-  
-  return Promise.all(
-    keys.map(function (key) {
-      return Promise.resolve(asyncState[key]).then(function (value) {
-        var newState = {};
-        newState[key] = value;
-        setState(newState);
-      });
-    })
-  );
-}
-
-module.exports = resolveAsyncState;
-
-},{"when/lib/Promise":46}],36:[function(require,module,exports){
+},{}],37:[function(require,module,exports){
 function supportsHistory() {
   /*! taken from modernizr
    * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
@@ -13545,7 +13734,7 @@ function supportsHistory() {
 
 module.exports = supportsHistory;
 
-},{}],37:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 function withoutProperties(object, properties) {
   var result = {};
 
@@ -13559,327 +13748,10 @@ function withoutProperties(object, properties) {
 
 module.exports = withoutProperties;
 
-},{}],38:[function(require,module,exports){
-/**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- */
-
-module.exports.Dispatcher = require('./lib/Dispatcher')
-
-},{"./lib/Dispatcher":39}],39:[function(require,module,exports){
-/*
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule Dispatcher
- * @typechecks
- */
-
-var invariant = require('./invariant');
-
-var _lastID = 1;
-var _prefix = 'ID_';
-
-/**
- * Dispatcher is used to broadcast payloads to registered callbacks. This is
- * different from generic pub-sub systems in two ways:
- *
- *   1) Callbacks are not subscribed to particular events. Every payload is
- *      dispatched to every registered callback.
- *   2) Callbacks can be deferred in whole or part until other callbacks have
- *      been executed.
- *
- * For example, consider this hypothetical flight destination form, which
- * selects a default city when a country is selected:
- *
- *   var flightDispatcher = new Dispatcher();
- *
- *   // Keeps track of which country is selected
- *   var CountryStore = {country: null};
- *
- *   // Keeps track of which city is selected
- *   var CityStore = {city: null};
- *
- *   // Keeps track of the base flight price of the selected city
- *   var FlightPriceStore = {price: null}
- *
- * When a user changes the selected city, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'city-update',
- *     selectedCity: 'paris'
- *   });
- *
- * This payload is digested by `CityStore`:
- *
- *   flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'city-update') {
- *       CityStore.city = payload.selectedCity;
- *     }
- *   });
- *
- * When the user selects a country, we dispatch the payload:
- *
- *   flightDispatcher.dispatch({
- *     actionType: 'country-update',
- *     selectedCountry: 'australia'
- *   });
- *
- * This payload is digested by both stores:
- *
- *    CountryStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       CountryStore.country = payload.selectedCountry;
- *     }
- *   });
- *
- * When the callback to update `CountryStore` is registered, we save a reference
- * to the returned token. Using this token with `waitFor()`, we can guarantee
- * that `CountryStore` is updated before the callback that updates `CityStore`
- * needs to query its data.
- *
- *   CityStore.dispatchToken = flightDispatcher.register(function(payload) {
- *     if (payload.actionType === 'country-update') {
- *       // `CountryStore.country` may not be updated.
- *       flightDispatcher.waitFor([CountryStore.dispatchToken]);
- *       // `CountryStore.country` is now guaranteed to be updated.
- *
- *       // Select the default city for the new country
- *       CityStore.city = getDefaultCityForCountry(CountryStore.country);
- *     }
- *   });
- *
- * The usage of `waitFor()` can be chained, for example:
- *
- *   FlightPriceStore.dispatchToken =
- *     flightDispatcher.register(function(payload) {
- *       switch (payload.actionType) {
- *         case 'country-update':
- *           flightDispatcher.waitFor([CityStore.dispatchToken]);
- *           FlightPriceStore.price =
- *             getFlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *
- *         case 'city-update':
- *           FlightPriceStore.price =
- *             FlightPriceStore(CountryStore.country, CityStore.city);
- *           break;
- *     }
- *   });
- *
- * The `country-update` payload will be guaranteed to invoke the stores'
- * registered callbacks in order: `CountryStore`, `CityStore`, then
- * `FlightPriceStore`.
- */
-
-  function Dispatcher() {"use strict";
-    this.$Dispatcher_callbacks = {};
-    this.$Dispatcher_isPending = {};
-    this.$Dispatcher_isHandled = {};
-    this.$Dispatcher_isDispatching = false;
-    this.$Dispatcher_pendingPayload = null;
-  }
-
-  /**
-   * Registers a callback to be invoked with every dispatched payload. Returns
-   * a token that can be used with `waitFor()`.
-   *
-   * @param {function} callback
-   * @return {string}
-   */
-  Dispatcher.prototype.register=function(callback) {"use strict";
-    var id = _prefix + _lastID++;
-    this.$Dispatcher_callbacks[id] = callback;
-    return id;
-  };
-
-  /**
-   * Removes a callback based on its token.
-   *
-   * @param {string} id
-   */
-  Dispatcher.prototype.unregister=function(id) {"use strict";
-    invariant(
-      this.$Dispatcher_callbacks[id],
-      'Dispatcher.unregister(...): `%s` does not map to a registered callback.',
-      id
-    );
-    delete this.$Dispatcher_callbacks[id];
-  };
-
-  /**
-   * Waits for the callbacks specified to be invoked before continuing execution
-   * of the current callback. This method should only be used by a callback in
-   * response to a dispatched payload.
-   *
-   * @param {array<string>} ids
-   */
-  Dispatcher.prototype.waitFor=function(ids) {"use strict";
-    invariant(
-      this.$Dispatcher_isDispatching,
-      'Dispatcher.waitFor(...): Must be invoked while dispatching.'
-    );
-    for (var ii = 0; ii < ids.length; ii++) {
-      var id = ids[ii];
-      if (this.$Dispatcher_isPending[id]) {
-        invariant(
-          this.$Dispatcher_isHandled[id],
-          'Dispatcher.waitFor(...): Circular dependency detected while ' +
-          'waiting for `%s`.',
-          id
-        );
-        continue;
-      }
-      invariant(
-        this.$Dispatcher_callbacks[id],
-        'Dispatcher.waitFor(...): `%s` does not map to a registered callback.',
-        id
-      );
-      this.$Dispatcher_invokeCallback(id);
-    }
-  };
-
-  /**
-   * Dispatches a payload to all registered callbacks.
-   *
-   * @param {object} payload
-   */
-  Dispatcher.prototype.dispatch=function(payload) {"use strict";
-    invariant(
-      !this.$Dispatcher_isDispatching,
-      'Dispatch.dispatch(...): Cannot dispatch in the middle of a dispatch.'
-    );
-    this.$Dispatcher_startDispatching(payload);
-    try {
-      for (var id in this.$Dispatcher_callbacks) {
-        if (this.$Dispatcher_isPending[id]) {
-          continue;
-        }
-        this.$Dispatcher_invokeCallback(id);
-      }
-    } finally {
-      this.$Dispatcher_stopDispatching();
-    }
-  };
-
-  /**
-   * Is this Dispatcher currently dispatching.
-   *
-   * @return {boolean}
-   */
-  Dispatcher.prototype.isDispatching=function() {"use strict";
-    return this.$Dispatcher_isDispatching;
-  };
-
-  /**
-   * Call the callback stored with the given id. Also do some internal
-   * bookkeeping.
-   *
-   * @param {string} id
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_invokeCallback=function(id) {"use strict";
-    this.$Dispatcher_isPending[id] = true;
-    this.$Dispatcher_callbacks[id](this.$Dispatcher_pendingPayload);
-    this.$Dispatcher_isHandled[id] = true;
-  };
-
-  /**
-   * Set up bookkeeping needed when dispatching.
-   *
-   * @param {object} payload
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_startDispatching=function(payload) {"use strict";
-    for (var id in this.$Dispatcher_callbacks) {
-      this.$Dispatcher_isPending[id] = false;
-      this.$Dispatcher_isHandled[id] = false;
-    }
-    this.$Dispatcher_pendingPayload = payload;
-    this.$Dispatcher_isDispatching = true;
-  };
-
-  /**
-   * Clear bookkeeping used for dispatching.
-   *
-   * @internal
-   */
-  Dispatcher.prototype.$Dispatcher_stopDispatching=function() {"use strict";
-    this.$Dispatcher_pendingPayload = null;
-    this.$Dispatcher_isDispatching = false;
-  };
-
-
-module.exports = Dispatcher;
-
-},{"./invariant":40}],40:[function(require,module,exports){
-/**
- * Copyright (c) 2014, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule invariant
- */
-
-"use strict";
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var invariant = function(condition, format, a, b, c, d, e, f) {
-  if (false) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  }
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error(
-        'Minified exception occurred; use the non-minified dev environment ' +
-        'for the full error message and additional helpful warnings.'
-      );
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(
-        'Invariant Violation: ' +
-        format.replace(/%s/g, function() { return args[argIndex++]; })
-      );
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-};
-
-module.exports = invariant;
-
-},{}],41:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 module.exports = require('./lib');
 
-},{"./lib":42}],42:[function(require,module,exports){
+},{"./lib":40}],40:[function(require,module,exports){
 // Load modules
 
 var Stringify = require('./stringify');
@@ -13896,7 +13768,7 @@ module.exports = {
     parse: Parse
 };
 
-},{"./parse":43,"./stringify":44}],43:[function(require,module,exports){
+},{"./parse":41,"./stringify":42}],41:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -14052,7 +13924,7 @@ module.exports = function (str, options) {
     return Utils.compact(obj);
 };
 
-},{"./utils":45}],44:[function(require,module,exports){
+},{"./utils":43}],42:[function(require,module,exports){
 // Load modules
 
 var Utils = require('./utils');
@@ -14112,7 +13984,7 @@ module.exports = function (obj, options) {
     return keys.join(delimiter);
 };
 
-},{"./utils":45}],45:[function(require,module,exports){
+},{"./utils":43}],43:[function(require,module,exports){
 (function (Buffer){
 // Load modules
 
@@ -14255,7 +14127,7 @@ exports.isBuffer = function (obj) {
 };
 
 }).call(this,require("buffer").Buffer)
-},{"buffer":2}],46:[function(require,module,exports){
+},{"buffer":2}],44:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -14274,7 +14146,7 @@ define(function (require) {
 });
 })(typeof define === 'function' && define.amd ? define : function (factory) { module.exports = factory(require); });
 
-},{"./Scheduler":48,"./async":49,"./makePromise":50}],47:[function(require,module,exports){
+},{"./Scheduler":46,"./async":47,"./makePromise":48}],45:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -14346,7 +14218,7 @@ define(function() {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
 
-},{}],48:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -14430,7 +14302,7 @@ define(function(require) {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
 
-},{"./Queue":47}],49:[function(require,module,exports){
+},{"./Queue":45}],47:[function(require,module,exports){
 (function (process){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
@@ -14476,10 +14348,20 @@ define(function(require) {
 
 	} else {
 		nextTick = (function(cjsRequire) {
+			var vertx;
 			try {
 				// vert.x 1.x || 2.x
-				return cjsRequire('vertx').runOnLoop || cjsRequire('vertx').runOnContext;
+				vertx = cjsRequire('vertx');
 			} catch (ignore) {}
+
+			if (vertx) {
+				if (typeof vertx.runOnLoop === 'function') {
+					return vertx.runOnLoop;
+				}
+				if (typeof vertx.runOnContext === 'function') {
+					return vertx.runOnContext;
+				}
+			}
 
 			// capture setTimeout to avoid being caught by fake timers
 			// used in time based tests
@@ -14495,7 +14377,7 @@ define(function(require) {
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(require); }));
 
 }).call(this,require("1YiZ5S"))
-},{"1YiZ5S":6}],50:[function(require,module,exports){
+},{"1YiZ5S":6}],48:[function(require,module,exports){
 /** @license MIT License (c) copyright 2010-2014 original author or authors */
 /** @author Brian Cavalier */
 /** @author John Hann */
@@ -15293,7 +15175,7 @@ define(function() {
 });
 }(typeof define === 'function' && define.amd ? define : function(factory) { module.exports = factory(); }));
 
-},{}],51:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15327,7 +15209,7 @@ var AutoFocusMixin = {
 
 module.exports = AutoFocusMixin;
 
-},{"./focusNode":156}],52:[function(require,module,exports){
+},{"./focusNode":156}],50:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -15551,7 +15433,7 @@ var BeforeInputEventPlugin = {
 
 module.exports = BeforeInputEventPlugin;
 
-},{"./EventConstants":65,"./EventPropagators":70,"./ExecutionEnvironment":71,"./SyntheticInputEvent":136,"./keyOf":177}],53:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPropagators":68,"./ExecutionEnvironment":69,"./SyntheticInputEvent":134,"./keyOf":177}],51:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15674,7 +15556,7 @@ var CSSProperty = {
 
 module.exports = CSSProperty;
 
-},{}],54:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -15773,7 +15655,7 @@ var CSSPropertyOperations = {
 
 module.exports = CSSPropertyOperations;
 
-},{"./CSSProperty":53,"./dangerousStyleValue":151,"./hyphenateStyleName":168,"./memoizeStringOnly":179}],55:[function(require,module,exports){
+},{"./CSSProperty":51,"./dangerousStyleValue":151,"./hyphenateStyleName":168,"./memoizeStringOnly":179}],53:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -15880,7 +15762,7 @@ PooledClass.addPoolingTo(CallbackQueue);
 module.exports = CallbackQueue;
 
 }).call(this,require("1YiZ5S"))
-},{"./PooledClass":76,"./invariant":170,"./mixInto":183,"1YiZ5S":6}],56:[function(require,module,exports){
+},{"./PooledClass":74,"./invariant":170,"./mixInto":183,"1YiZ5S":6}],54:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16269,7 +16151,7 @@ var ChangeEventPlugin = {
 
 module.exports = ChangeEventPlugin;
 
-},{"./EventConstants":65,"./EventPluginHub":67,"./EventPropagators":70,"./ExecutionEnvironment":71,"./ReactUpdates":126,"./SyntheticEvent":134,"./isEventSupported":171,"./isTextInputElement":173,"./keyOf":177}],57:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPluginHub":65,"./EventPropagators":68,"./ExecutionEnvironment":69,"./ReactUpdates":124,"./SyntheticEvent":132,"./isEventSupported":171,"./isTextInputElement":173,"./keyOf":177}],55:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16301,7 +16183,7 @@ var ClientReactRootIndex = {
 
 module.exports = ClientReactRootIndex;
 
-},{}],58:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -16567,7 +16449,7 @@ var CompositionEventPlugin = {
 
 module.exports = CompositionEventPlugin;
 
-},{"./EventConstants":65,"./EventPropagators":70,"./ExecutionEnvironment":71,"./ReactInputSelection":108,"./SyntheticCompositionEvent":132,"./getTextContentAccessor":165,"./keyOf":177}],59:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPropagators":68,"./ExecutionEnvironment":69,"./ReactInputSelection":106,"./SyntheticCompositionEvent":130,"./getTextContentAccessor":165,"./keyOf":177}],57:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -16749,7 +16631,7 @@ var DOMChildrenOperations = {
 module.exports = DOMChildrenOperations;
 
 }).call(this,require("1YiZ5S"))
-},{"./Danger":62,"./ReactMultiChildUpdateTypes":113,"./getTextContentAccessor":165,"./invariant":170,"1YiZ5S":6}],60:[function(require,module,exports){
+},{"./Danger":60,"./ReactMultiChildUpdateTypes":111,"./getTextContentAccessor":165,"./invariant":170,"1YiZ5S":6}],58:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17051,7 +16933,7 @@ var DOMProperty = {
 module.exports = DOMProperty;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],61:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],59:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17248,7 +17130,7 @@ var DOMPropertyOperations = {
 module.exports = DOMPropertyOperations;
 
 }).call(this,require("1YiZ5S"))
-},{"./DOMProperty":60,"./escapeTextForBrowser":154,"./memoizeStringOnly":179,"./warning":193,"1YiZ5S":6}],62:[function(require,module,exports){
+},{"./DOMProperty":58,"./escapeTextForBrowser":154,"./memoizeStringOnly":179,"./warning":193,"1YiZ5S":6}],60:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -17439,7 +17321,7 @@ var Danger = {
 module.exports = Danger;
 
 }).call(this,require("1YiZ5S"))
-},{"./ExecutionEnvironment":71,"./createNodesFromMarkup":150,"./emptyFunction":152,"./getMarkupWrap":162,"./invariant":170,"1YiZ5S":6}],63:[function(require,module,exports){
+},{"./ExecutionEnvironment":69,"./createNodesFromMarkup":149,"./emptyFunction":152,"./getMarkupWrap":162,"./invariant":170,"1YiZ5S":6}],61:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17486,7 +17368,7 @@ var DefaultEventPluginOrder = [
 
 module.exports = DefaultEventPluginOrder;
 
-},{"./keyOf":177}],64:[function(require,module,exports){
+},{"./keyOf":177}],62:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17633,7 +17515,7 @@ var EnterLeaveEventPlugin = {
 
 module.exports = EnterLeaveEventPlugin;
 
-},{"./EventConstants":65,"./EventPropagators":70,"./ReactMount":111,"./SyntheticMouseEvent":138,"./keyOf":177}],65:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPropagators":68,"./ReactMount":109,"./SyntheticMouseEvent":136,"./keyOf":177}],63:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -17712,7 +17594,7 @@ var EventConstants = {
 
 module.exports = EventConstants;
 
-},{"./keyMirror":176}],66:[function(require,module,exports){
+},{"./keyMirror":176}],64:[function(require,module,exports){
 (function (process){
 /**
  * @providesModule EventListener
@@ -17788,7 +17670,7 @@ var EventListener = {
 module.exports = EventListener;
 
 }).call(this,require("1YiZ5S"))
-},{"./emptyFunction":152,"1YiZ5S":6}],67:[function(require,module,exports){
+},{"./emptyFunction":152,"1YiZ5S":6}],65:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18082,7 +17964,7 @@ var EventPluginHub = {
 module.exports = EventPluginHub;
 
 }).call(this,require("1YiZ5S"))
-},{"./EventPluginRegistry":68,"./EventPluginUtils":69,"./accumulate":144,"./forEachAccumulated":157,"./invariant":170,"./isEventSupported":171,"./monitorCodeUse":184,"1YiZ5S":6}],68:[function(require,module,exports){
+},{"./EventPluginRegistry":66,"./EventPluginUtils":67,"./accumulate":142,"./forEachAccumulated":157,"./invariant":170,"./isEventSupported":171,"./monitorCodeUse":184,"1YiZ5S":6}],66:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18369,7 +18251,7 @@ var EventPluginRegistry = {
 module.exports = EventPluginRegistry;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],69:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],67:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18597,7 +18479,7 @@ var EventPluginUtils = {
 module.exports = EventPluginUtils;
 
 }).call(this,require("1YiZ5S"))
-},{"./EventConstants":65,"./invariant":170,"1YiZ5S":6}],70:[function(require,module,exports){
+},{"./EventConstants":63,"./invariant":170,"1YiZ5S":6}],68:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -18744,7 +18626,7 @@ var EventPropagators = {
 module.exports = EventPropagators;
 
 }).call(this,require("1YiZ5S"))
-},{"./EventConstants":65,"./EventPluginHub":67,"./accumulate":144,"./forEachAccumulated":157,"1YiZ5S":6}],71:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPluginHub":65,"./accumulate":142,"./forEachAccumulated":157,"1YiZ5S":6}],69:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -18796,7 +18678,7 @@ var ExecutionEnvironment = {
 
 module.exports = ExecutionEnvironment;
 
-},{}],72:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -18987,7 +18869,7 @@ var HTMLDOMPropertyConfig = {
 
 module.exports = HTMLDOMPropertyConfig;
 
-},{"./DOMProperty":60,"./ExecutionEnvironment":71}],73:[function(require,module,exports){
+},{"./DOMProperty":58,"./ExecutionEnvironment":69}],71:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19150,7 +19032,7 @@ var LinkedValueUtils = {
 module.exports = LinkedValueUtils;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactPropTypes":119,"./invariant":170,"1YiZ5S":6}],74:[function(require,module,exports){
+},{"./ReactPropTypes":117,"./invariant":170,"1YiZ5S":6}],72:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -19206,7 +19088,7 @@ var LocalEventTrapMixin = {
 module.exports = LocalEventTrapMixin;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactBrowserEventEmitter":79,"./accumulate":144,"./forEachAccumulated":157,"./invariant":170,"1YiZ5S":6}],75:[function(require,module,exports){
+},{"./ReactBrowserEventEmitter":77,"./accumulate":142,"./forEachAccumulated":157,"./invariant":170,"1YiZ5S":6}],73:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -19271,7 +19153,7 @@ var MobileSafariClickEventPlugin = {
 
 module.exports = MobileSafariClickEventPlugin;
 
-},{"./EventConstants":65,"./emptyFunction":152}],76:[function(require,module,exports){
+},{"./EventConstants":63,"./emptyFunction":152}],74:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19394,7 +19276,7 @@ var PooledClass = {
 module.exports = PooledClass;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],77:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],75:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19549,7 +19431,7 @@ React.version = '0.11.2';
 module.exports = React;
 
 }).call(this,require("1YiZ5S"))
-},{"./DOMPropertyOperations":61,"./EventPluginUtils":69,"./ExecutionEnvironment":71,"./ReactChildren":80,"./ReactComponent":81,"./ReactCompositeComponent":83,"./ReactContext":84,"./ReactCurrentOwner":85,"./ReactDOM":86,"./ReactDOMComponent":88,"./ReactDefaultInjection":98,"./ReactDescriptor":101,"./ReactInstanceHandles":109,"./ReactMount":111,"./ReactMultiChild":112,"./ReactPerf":115,"./ReactPropTypes":119,"./ReactServerRendering":123,"./ReactTextComponent":125,"./onlyChild":185,"./warning":193,"1YiZ5S":6}],78:[function(require,module,exports){
+},{"./DOMPropertyOperations":59,"./EventPluginUtils":67,"./ExecutionEnvironment":69,"./ReactChildren":78,"./ReactComponent":79,"./ReactCompositeComponent":81,"./ReactContext":82,"./ReactCurrentOwner":83,"./ReactDOM":84,"./ReactDOMComponent":86,"./ReactDefaultInjection":96,"./ReactDescriptor":99,"./ReactInstanceHandles":107,"./ReactMount":109,"./ReactMultiChild":110,"./ReactPerf":113,"./ReactPropTypes":117,"./ReactServerRendering":121,"./ReactTextComponent":123,"./onlyChild":185,"./warning":193,"1YiZ5S":6}],76:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -19599,7 +19481,7 @@ var ReactBrowserComponentMixin = {
 module.exports = ReactBrowserComponentMixin;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactEmptyComponent":103,"./ReactMount":111,"./invariant":170,"1YiZ5S":6}],79:[function(require,module,exports){
+},{"./ReactEmptyComponent":101,"./ReactMount":109,"./invariant":170,"1YiZ5S":6}],77:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -19961,7 +19843,7 @@ var ReactBrowserEventEmitter = merge(ReactEventEmitterMixin, {
 
 module.exports = ReactBrowserEventEmitter;
 
-},{"./EventConstants":65,"./EventPluginHub":67,"./EventPluginRegistry":68,"./ReactEventEmitterMixin":105,"./ViewportMetrics":143,"./isEventSupported":171,"./merge":180}],80:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPluginHub":65,"./EventPluginRegistry":66,"./ReactEventEmitterMixin":103,"./ViewportMetrics":141,"./isEventSupported":171,"./merge":180}],78:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -20118,7 +20000,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 }).call(this,require("1YiZ5S"))
-},{"./PooledClass":76,"./traverseAllChildren":192,"./warning":193,"1YiZ5S":6}],81:[function(require,module,exports){
+},{"./PooledClass":74,"./traverseAllChildren":192,"./warning":193,"1YiZ5S":6}],79:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -20568,7 +20450,7 @@ var ReactComponent = {
 module.exports = ReactComponent;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactDescriptor":101,"./ReactOwner":114,"./ReactUpdates":126,"./invariant":170,"./keyMirror":176,"./merge":180,"1YiZ5S":6}],82:[function(require,module,exports){
+},{"./ReactDescriptor":99,"./ReactOwner":112,"./ReactUpdates":124,"./invariant":170,"./keyMirror":176,"./merge":180,"1YiZ5S":6}],80:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -20697,7 +20579,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactDOMIDOperations":90,"./ReactMarkupChecksum":110,"./ReactMount":111,"./ReactPerf":115,"./ReactReconcileTransaction":121,"./getReactRootElementInContainer":164,"./invariant":170,"./setInnerHTML":188,"1YiZ5S":6}],83:[function(require,module,exports){
+},{"./ReactDOMIDOperations":88,"./ReactMarkupChecksum":108,"./ReactMount":109,"./ReactPerf":113,"./ReactReconcileTransaction":119,"./getReactRootElementInContainer":164,"./invariant":170,"./setInnerHTML":188,"1YiZ5S":6}],81:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22126,7 +22008,7 @@ var ReactCompositeComponent = {
 module.exports = ReactCompositeComponent;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactComponent":81,"./ReactContext":84,"./ReactCurrentOwner":85,"./ReactDescriptor":101,"./ReactDescriptorValidator":102,"./ReactEmptyComponent":103,"./ReactErrorUtils":104,"./ReactOwner":114,"./ReactPerf":115,"./ReactPropTransferer":116,"./ReactPropTypeLocationNames":117,"./ReactPropTypeLocations":118,"./ReactUpdates":126,"./instantiateReactComponent":169,"./invariant":170,"./keyMirror":176,"./mapObject":178,"./merge":180,"./mixInto":183,"./monitorCodeUse":184,"./shouldUpdateReactComponent":190,"./warning":193,"1YiZ5S":6}],84:[function(require,module,exports){
+},{"./ReactComponent":79,"./ReactContext":82,"./ReactCurrentOwner":83,"./ReactDescriptor":99,"./ReactDescriptorValidator":100,"./ReactEmptyComponent":101,"./ReactErrorUtils":102,"./ReactOwner":112,"./ReactPerf":113,"./ReactPropTransferer":114,"./ReactPropTypeLocationNames":115,"./ReactPropTypeLocations":116,"./ReactUpdates":124,"./instantiateReactComponent":169,"./invariant":170,"./keyMirror":176,"./mapObject":178,"./merge":180,"./mixInto":183,"./monitorCodeUse":184,"./shouldUpdateReactComponent":190,"./warning":193,"1YiZ5S":6}],82:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22195,7 +22077,7 @@ var ReactContext = {
 
 module.exports = ReactContext;
 
-},{"./merge":180}],85:[function(require,module,exports){
+},{"./merge":180}],83:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22236,7 +22118,7 @@ var ReactCurrentOwner = {
 
 module.exports = ReactCurrentOwner;
 
-},{}],86:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22451,7 +22333,7 @@ ReactDOM.injection = injection;
 module.exports = ReactDOM;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactDOMComponent":88,"./ReactDescriptor":101,"./ReactDescriptorValidator":102,"./mapObject":178,"./mergeInto":182,"1YiZ5S":6}],87:[function(require,module,exports){
+},{"./ReactDOMComponent":86,"./ReactDescriptor":99,"./ReactDescriptorValidator":100,"./mapObject":178,"./mergeInto":182,"1YiZ5S":6}],85:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -22522,7 +22404,7 @@ var ReactDOMButton = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMButton;
 
-},{"./AutoFocusMixin":51,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86,"./keyMirror":176}],88:[function(require,module,exports){
+},{"./AutoFocusMixin":49,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84,"./keyMirror":176}],86:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -22944,7 +22826,7 @@ mixInto(ReactDOMComponent, ReactBrowserComponentMixin);
 module.exports = ReactDOMComponent;
 
 }).call(this,require("1YiZ5S"))
-},{"./CSSPropertyOperations":54,"./DOMProperty":60,"./DOMPropertyOperations":61,"./ReactBrowserComponentMixin":78,"./ReactBrowserEventEmitter":79,"./ReactComponent":81,"./ReactMount":111,"./ReactMultiChild":112,"./ReactPerf":115,"./escapeTextForBrowser":154,"./invariant":170,"./keyOf":177,"./merge":180,"./mixInto":183,"1YiZ5S":6}],89:[function(require,module,exports){
+},{"./CSSPropertyOperations":52,"./DOMProperty":58,"./DOMPropertyOperations":59,"./ReactBrowserComponentMixin":76,"./ReactBrowserEventEmitter":77,"./ReactComponent":79,"./ReactMount":109,"./ReactMultiChild":110,"./ReactPerf":113,"./escapeTextForBrowser":154,"./invariant":170,"./keyOf":177,"./merge":180,"./mixInto":183,"1YiZ5S":6}],87:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23000,7 +22882,7 @@ var ReactDOMForm = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMForm;
 
-},{"./EventConstants":65,"./LocalEventTrapMixin":74,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86}],90:[function(require,module,exports){
+},{"./EventConstants":63,"./LocalEventTrapMixin":72,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84}],88:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -23193,7 +23075,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 }).call(this,require("1YiZ5S"))
-},{"./CSSPropertyOperations":54,"./DOMChildrenOperations":59,"./DOMPropertyOperations":61,"./ReactMount":111,"./ReactPerf":115,"./invariant":170,"./setInnerHTML":188,"1YiZ5S":6}],91:[function(require,module,exports){
+},{"./CSSPropertyOperations":52,"./DOMChildrenOperations":57,"./DOMPropertyOperations":59,"./ReactMount":109,"./ReactPerf":113,"./invariant":170,"./setInnerHTML":188,"1YiZ5S":6}],89:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23247,7 +23129,7 @@ var ReactDOMImg = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMImg;
 
-},{"./EventConstants":65,"./LocalEventTrapMixin":74,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86}],92:[function(require,module,exports){
+},{"./EventConstants":63,"./LocalEventTrapMixin":72,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84}],90:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -23433,7 +23315,7 @@ var ReactDOMInput = ReactCompositeComponent.createClass({
 module.exports = ReactDOMInput;
 
 }).call(this,require("1YiZ5S"))
-},{"./AutoFocusMixin":51,"./DOMPropertyOperations":61,"./LinkedValueUtils":73,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86,"./ReactMount":111,"./invariant":170,"./merge":180,"1YiZ5S":6}],93:[function(require,module,exports){
+},{"./AutoFocusMixin":49,"./DOMPropertyOperations":59,"./LinkedValueUtils":71,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84,"./ReactMount":109,"./invariant":170,"./merge":180,"1YiZ5S":6}],91:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -23492,7 +23374,7 @@ var ReactDOMOption = ReactCompositeComponent.createClass({
 module.exports = ReactDOMOption;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86,"./warning":193,"1YiZ5S":6}],94:[function(require,module,exports){
+},{"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84,"./warning":193,"1YiZ5S":6}],92:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23675,7 +23557,7 @@ var ReactDOMSelect = ReactCompositeComponent.createClass({
 
 module.exports = ReactDOMSelect;
 
-},{"./AutoFocusMixin":51,"./LinkedValueUtils":73,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86,"./merge":180}],95:[function(require,module,exports){
+},{"./AutoFocusMixin":49,"./LinkedValueUtils":71,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84,"./merge":180}],93:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -23891,7 +23773,7 @@ var ReactDOMSelection = {
 
 module.exports = ReactDOMSelection;
 
-},{"./ExecutionEnvironment":71,"./getNodeForCharacterOffset":163,"./getTextContentAccessor":165}],96:[function(require,module,exports){
+},{"./ExecutionEnvironment":69,"./getNodeForCharacterOffset":163,"./getTextContentAccessor":165}],94:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -24037,7 +23919,7 @@ var ReactDOMTextarea = ReactCompositeComponent.createClass({
 module.exports = ReactDOMTextarea;
 
 }).call(this,require("1YiZ5S"))
-},{"./AutoFocusMixin":51,"./DOMPropertyOperations":61,"./LinkedValueUtils":73,"./ReactBrowserComponentMixin":78,"./ReactCompositeComponent":83,"./ReactDOM":86,"./invariant":170,"./merge":180,"./warning":193,"1YiZ5S":6}],97:[function(require,module,exports){
+},{"./AutoFocusMixin":49,"./DOMPropertyOperations":59,"./LinkedValueUtils":71,"./ReactBrowserComponentMixin":76,"./ReactCompositeComponent":81,"./ReactDOM":84,"./invariant":170,"./merge":180,"./warning":193,"1YiZ5S":6}],95:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24114,7 +23996,7 @@ var ReactDefaultBatchingStrategy = {
 
 module.exports = ReactDefaultBatchingStrategy;
 
-},{"./ReactUpdates":126,"./Transaction":142,"./emptyFunction":152,"./mixInto":183}],98:[function(require,module,exports){
+},{"./ReactUpdates":124,"./Transaction":140,"./emptyFunction":152,"./mixInto":183}],96:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -24246,7 +24128,7 @@ module.exports = {
 };
 
 }).call(this,require("1YiZ5S"))
-},{"./BeforeInputEventPlugin":52,"./ChangeEventPlugin":56,"./ClientReactRootIndex":57,"./CompositionEventPlugin":58,"./DefaultEventPluginOrder":63,"./EnterLeaveEventPlugin":64,"./ExecutionEnvironment":71,"./HTMLDOMPropertyConfig":72,"./MobileSafariClickEventPlugin":75,"./ReactBrowserComponentMixin":78,"./ReactComponentBrowserEnvironment":82,"./ReactDOM":86,"./ReactDOMButton":87,"./ReactDOMForm":89,"./ReactDOMImg":91,"./ReactDOMInput":92,"./ReactDOMOption":93,"./ReactDOMSelect":94,"./ReactDOMTextarea":96,"./ReactDefaultBatchingStrategy":97,"./ReactDefaultPerf":99,"./ReactEventListener":106,"./ReactInjection":107,"./ReactInstanceHandles":109,"./ReactMount":111,"./SVGDOMPropertyConfig":127,"./SelectEventPlugin":128,"./ServerReactRootIndex":129,"./SimpleEventPlugin":130,"./createFullPageComponent":149,"1YiZ5S":6}],99:[function(require,module,exports){
+},{"./BeforeInputEventPlugin":50,"./ChangeEventPlugin":54,"./ClientReactRootIndex":55,"./CompositionEventPlugin":56,"./DefaultEventPluginOrder":61,"./EnterLeaveEventPlugin":62,"./ExecutionEnvironment":69,"./HTMLDOMPropertyConfig":70,"./MobileSafariClickEventPlugin":73,"./ReactBrowserComponentMixin":76,"./ReactComponentBrowserEnvironment":80,"./ReactDOM":84,"./ReactDOMButton":85,"./ReactDOMForm":87,"./ReactDOMImg":89,"./ReactDOMInput":90,"./ReactDOMOption":91,"./ReactDOMSelect":92,"./ReactDOMTextarea":94,"./ReactDefaultBatchingStrategy":95,"./ReactDefaultPerf":97,"./ReactEventListener":104,"./ReactInjection":105,"./ReactInstanceHandles":107,"./ReactMount":109,"./SVGDOMPropertyConfig":125,"./SelectEventPlugin":126,"./ServerReactRootIndex":127,"./SimpleEventPlugin":128,"./createFullPageComponent":148,"1YiZ5S":6}],97:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24509,7 +24391,7 @@ var ReactDefaultPerf = {
 
 module.exports = ReactDefaultPerf;
 
-},{"./DOMProperty":60,"./ReactDefaultPerfAnalysis":100,"./ReactMount":111,"./ReactPerf":115,"./performanceNow":187}],100:[function(require,module,exports){
+},{"./DOMProperty":58,"./ReactDefaultPerfAnalysis":98,"./ReactMount":109,"./ReactPerf":113,"./performanceNow":187}],98:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -24714,7 +24596,7 @@ var ReactDefaultPerfAnalysis = {
 
 module.exports = ReactDefaultPerfAnalysis;
 
-},{"./merge":180}],101:[function(require,module,exports){
+},{"./merge":180}],99:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -24969,7 +24851,7 @@ ReactDescriptor.isValidDescriptor = function(object) {
 module.exports = ReactDescriptor;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactContext":84,"./ReactCurrentOwner":85,"./merge":180,"./warning":193,"1YiZ5S":6}],102:[function(require,module,exports){
+},{"./ReactContext":82,"./ReactCurrentOwner":83,"./merge":180,"./warning":193,"1YiZ5S":6}],100:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -25254,7 +25136,7 @@ var ReactDescriptorValidator = {
 
 module.exports = ReactDescriptorValidator;
 
-},{"./ReactCurrentOwner":85,"./ReactDescriptor":101,"./ReactPropTypeLocations":118,"./monitorCodeUse":184}],103:[function(require,module,exports){
+},{"./ReactCurrentOwner":83,"./ReactDescriptor":99,"./ReactPropTypeLocations":116,"./monitorCodeUse":184}],101:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -25336,7 +25218,7 @@ var ReactEmptyComponent = {
 module.exports = ReactEmptyComponent;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],104:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],102:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25375,7 +25257,7 @@ var ReactErrorUtils = {
 
 module.exports = ReactErrorUtils;
 
-},{}],105:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25432,7 +25314,7 @@ var ReactEventEmitterMixin = {
 
 module.exports = ReactEventEmitterMixin;
 
-},{"./EventPluginHub":67}],106:[function(require,module,exports){
+},{"./EventPluginHub":65}],104:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25623,7 +25505,7 @@ var ReactEventListener = {
 
 module.exports = ReactEventListener;
 
-},{"./EventListener":66,"./ExecutionEnvironment":71,"./PooledClass":76,"./ReactInstanceHandles":109,"./ReactMount":111,"./ReactUpdates":126,"./getEventTarget":161,"./getUnboundedScrollPosition":166,"./mixInto":183}],107:[function(require,module,exports){
+},{"./EventListener":64,"./ExecutionEnvironment":69,"./PooledClass":74,"./ReactInstanceHandles":107,"./ReactMount":109,"./ReactUpdates":124,"./getEventTarget":161,"./getUnboundedScrollPosition":166,"./mixInto":183}],105:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25670,7 +25552,7 @@ var ReactInjection = {
 
 module.exports = ReactInjection;
 
-},{"./DOMProperty":60,"./EventPluginHub":67,"./ReactBrowserEventEmitter":79,"./ReactComponent":81,"./ReactCompositeComponent":83,"./ReactDOM":86,"./ReactEmptyComponent":103,"./ReactPerf":115,"./ReactRootIndex":122,"./ReactUpdates":126}],108:[function(require,module,exports){
+},{"./DOMProperty":58,"./EventPluginHub":65,"./ReactBrowserEventEmitter":77,"./ReactComponent":79,"./ReactCompositeComponent":81,"./ReactDOM":84,"./ReactEmptyComponent":101,"./ReactPerf":113,"./ReactRootIndex":120,"./ReactUpdates":124}],106:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -25813,7 +25695,7 @@ var ReactInputSelection = {
 
 module.exports = ReactInputSelection;
 
-},{"./ReactDOMSelection":95,"./containsNode":146,"./focusNode":156,"./getActiveElement":158}],109:[function(require,module,exports){
+},{"./ReactDOMSelection":93,"./containsNode":145,"./focusNode":156,"./getActiveElement":158}],107:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -26155,7 +26037,7 @@ var ReactInstanceHandles = {
 module.exports = ReactInstanceHandles;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactRootIndex":122,"./invariant":170,"1YiZ5S":6}],110:[function(require,module,exports){
+},{"./ReactRootIndex":120,"./invariant":170,"1YiZ5S":6}],108:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -26210,7 +26092,7 @@ var ReactMarkupChecksum = {
 
 module.exports = ReactMarkupChecksum;
 
-},{"./adler32":145}],111:[function(require,module,exports){
+},{"./adler32":143}],109:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -26895,7 +26777,7 @@ var ReactMount = {
 module.exports = ReactMount;
 
 }).call(this,require("1YiZ5S"))
-},{"./DOMProperty":60,"./ReactBrowserEventEmitter":79,"./ReactCurrentOwner":85,"./ReactDescriptor":101,"./ReactInstanceHandles":109,"./ReactPerf":115,"./containsNode":146,"./getReactRootElementInContainer":164,"./instantiateReactComponent":169,"./invariant":170,"./shouldUpdateReactComponent":190,"./warning":193,"1YiZ5S":6}],112:[function(require,module,exports){
+},{"./DOMProperty":58,"./ReactBrowserEventEmitter":77,"./ReactCurrentOwner":83,"./ReactDescriptor":99,"./ReactInstanceHandles":107,"./ReactPerf":113,"./containsNode":145,"./getReactRootElementInContainer":164,"./instantiateReactComponent":169,"./invariant":170,"./shouldUpdateReactComponent":190,"./warning":193,"1YiZ5S":6}],110:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27327,7 +27209,7 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 
-},{"./ReactComponent":81,"./ReactMultiChildUpdateTypes":113,"./flattenChildren":155,"./instantiateReactComponent":169,"./shouldUpdateReactComponent":190}],113:[function(require,module,exports){
+},{"./ReactComponent":79,"./ReactMultiChildUpdateTypes":111,"./flattenChildren":155,"./instantiateReactComponent":169,"./shouldUpdateReactComponent":190}],111:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27367,7 +27249,7 @@ var ReactMultiChildUpdateTypes = keyMirror({
 
 module.exports = ReactMultiChildUpdateTypes;
 
-},{"./keyMirror":176}],114:[function(require,module,exports){
+},{"./keyMirror":176}],112:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27530,7 +27412,7 @@ var ReactOwner = {
 module.exports = ReactOwner;
 
 }).call(this,require("1YiZ5S"))
-},{"./emptyObject":153,"./invariant":170,"1YiZ5S":6}],115:[function(require,module,exports){
+},{"./emptyObject":153,"./invariant":170,"1YiZ5S":6}],113:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27619,7 +27501,7 @@ function _noMeasure(objName, fnName, func) {
 module.exports = ReactPerf;
 
 }).call(this,require("1YiZ5S"))
-},{"1YiZ5S":6}],116:[function(require,module,exports){
+},{"1YiZ5S":6}],114:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27785,7 +27667,7 @@ var ReactPropTransferer = {
 module.exports = ReactPropTransferer;
 
 }).call(this,require("1YiZ5S"))
-},{"./emptyFunction":152,"./invariant":170,"./joinClasses":175,"./merge":180,"1YiZ5S":6}],117:[function(require,module,exports){
+},{"./emptyFunction":152,"./invariant":170,"./joinClasses":175,"./merge":180,"1YiZ5S":6}],115:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -27820,7 +27702,7 @@ if ("production" !== process.env.NODE_ENV) {
 module.exports = ReactPropTypeLocationNames;
 
 }).call(this,require("1YiZ5S"))
-},{"1YiZ5S":6}],118:[function(require,module,exports){
+},{"1YiZ5S":6}],116:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -27851,7 +27733,7 @@ var ReactPropTypeLocations = keyMirror({
 
 module.exports = ReactPropTypeLocations;
 
-},{"./keyMirror":176}],119:[function(require,module,exports){
+},{"./keyMirror":176}],117:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28196,7 +28078,7 @@ function getPreciseType(propValue) {
 
 module.exports = ReactPropTypes;
 
-},{"./ReactDescriptor":101,"./ReactPropTypeLocationNames":117,"./emptyFunction":152}],120:[function(require,module,exports){
+},{"./ReactDescriptor":99,"./ReactPropTypeLocationNames":115,"./emptyFunction":152}],118:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28259,7 +28141,7 @@ PooledClass.addPoolingTo(ReactPutListenerQueue);
 
 module.exports = ReactPutListenerQueue;
 
-},{"./PooledClass":76,"./ReactBrowserEventEmitter":79,"./mixInto":183}],121:[function(require,module,exports){
+},{"./PooledClass":74,"./ReactBrowserEventEmitter":77,"./mixInto":183}],119:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28443,7 +28325,7 @@ PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
 
-},{"./CallbackQueue":55,"./PooledClass":76,"./ReactBrowserEventEmitter":79,"./ReactInputSelection":108,"./ReactPutListenerQueue":120,"./Transaction":142,"./mixInto":183}],122:[function(require,module,exports){
+},{"./CallbackQueue":53,"./PooledClass":74,"./ReactBrowserEventEmitter":77,"./ReactInputSelection":106,"./ReactPutListenerQueue":118,"./Transaction":140,"./mixInto":183}],120:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28481,7 +28363,7 @@ var ReactRootIndex = {
 
 module.exports = ReactRootIndex;
 
-},{}],123:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -28574,7 +28456,7 @@ module.exports = {
 };
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactDescriptor":101,"./ReactInstanceHandles":109,"./ReactMarkupChecksum":110,"./ReactServerRenderingTransaction":124,"./instantiateReactComponent":169,"./invariant":170,"1YiZ5S":6}],124:[function(require,module,exports){
+},{"./ReactDescriptor":99,"./ReactInstanceHandles":107,"./ReactMarkupChecksum":108,"./ReactServerRenderingTransaction":122,"./instantiateReactComponent":169,"./invariant":170,"1YiZ5S":6}],122:[function(require,module,exports){
 /**
  * Copyright 2014 Facebook, Inc.
  *
@@ -28691,7 +28573,7 @@ PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
 
-},{"./CallbackQueue":55,"./PooledClass":76,"./ReactPutListenerQueue":120,"./Transaction":142,"./emptyFunction":152,"./mixInto":183}],125:[function(require,module,exports){
+},{"./CallbackQueue":53,"./PooledClass":74,"./ReactPutListenerQueue":118,"./Transaction":140,"./emptyFunction":152,"./mixInto":183}],123:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -28800,7 +28682,7 @@ mixInto(ReactTextComponent, {
 
 module.exports = ReactDescriptor.createFactory(ReactTextComponent);
 
-},{"./DOMPropertyOperations":61,"./ReactBrowserComponentMixin":78,"./ReactComponent":81,"./ReactDescriptor":101,"./escapeTextForBrowser":154,"./mixInto":183}],126:[function(require,module,exports){
+},{"./DOMPropertyOperations":59,"./ReactBrowserComponentMixin":76,"./ReactComponent":79,"./ReactDescriptor":99,"./escapeTextForBrowser":154,"./mixInto":183}],124:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -29069,7 +28951,7 @@ var ReactUpdates = {
 module.exports = ReactUpdates;
 
 }).call(this,require("1YiZ5S"))
-},{"./CallbackQueue":55,"./PooledClass":76,"./ReactCurrentOwner":85,"./ReactPerf":115,"./Transaction":142,"./invariant":170,"./mixInto":183,"./warning":193,"1YiZ5S":6}],127:[function(require,module,exports){
+},{"./CallbackQueue":53,"./PooledClass":74,"./ReactCurrentOwner":83,"./ReactPerf":113,"./Transaction":140,"./invariant":170,"./mixInto":183,"./warning":193,"1YiZ5S":6}],125:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29168,7 +29050,7 @@ var SVGDOMPropertyConfig = {
 
 module.exports = SVGDOMPropertyConfig;
 
-},{"./DOMProperty":60}],128:[function(require,module,exports){
+},{"./DOMProperty":58}],126:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29370,7 +29252,7 @@ var SelectEventPlugin = {
 
 module.exports = SelectEventPlugin;
 
-},{"./EventConstants":65,"./EventPropagators":70,"./ReactInputSelection":108,"./SyntheticEvent":134,"./getActiveElement":158,"./isTextInputElement":173,"./keyOf":177,"./shallowEqual":189}],129:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPropagators":68,"./ReactInputSelection":106,"./SyntheticEvent":132,"./getActiveElement":158,"./isTextInputElement":173,"./keyOf":177,"./shallowEqual":189}],127:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29408,7 +29290,7 @@ var ServerReactRootIndex = {
 
 module.exports = ServerReactRootIndex;
 
-},{}],130:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -29831,7 +29713,7 @@ var SimpleEventPlugin = {
 module.exports = SimpleEventPlugin;
 
 }).call(this,require("1YiZ5S"))
-},{"./EventConstants":65,"./EventPluginUtils":69,"./EventPropagators":70,"./SyntheticClipboardEvent":131,"./SyntheticDragEvent":133,"./SyntheticEvent":134,"./SyntheticFocusEvent":135,"./SyntheticKeyboardEvent":137,"./SyntheticMouseEvent":138,"./SyntheticTouchEvent":139,"./SyntheticUIEvent":140,"./SyntheticWheelEvent":141,"./invariant":170,"./keyOf":177,"1YiZ5S":6}],131:[function(require,module,exports){
+},{"./EventConstants":63,"./EventPluginUtils":67,"./EventPropagators":68,"./SyntheticClipboardEvent":129,"./SyntheticDragEvent":131,"./SyntheticEvent":132,"./SyntheticFocusEvent":133,"./SyntheticKeyboardEvent":135,"./SyntheticMouseEvent":136,"./SyntheticTouchEvent":137,"./SyntheticUIEvent":138,"./SyntheticWheelEvent":139,"./invariant":170,"./keyOf":177,"1YiZ5S":6}],129:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29884,7 +29766,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 
-},{"./SyntheticEvent":134}],132:[function(require,module,exports){
+},{"./SyntheticEvent":132}],130:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29937,7 +29819,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticCompositionEvent;
 
 
-},{"./SyntheticEvent":134}],133:[function(require,module,exports){
+},{"./SyntheticEvent":132}],131:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -29983,7 +29865,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
 
-},{"./SyntheticMouseEvent":138}],134:[function(require,module,exports){
+},{"./SyntheticMouseEvent":136}],132:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30149,7 +30031,7 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.threeArgumentPooler);
 
 module.exports = SyntheticEvent;
 
-},{"./PooledClass":76,"./emptyFunction":152,"./getEventTarget":161,"./merge":180,"./mergeInto":182}],135:[function(require,module,exports){
+},{"./PooledClass":74,"./emptyFunction":152,"./getEventTarget":161,"./merge":180,"./mergeInto":182}],133:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30195,7 +30077,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
 
-},{"./SyntheticUIEvent":140}],136:[function(require,module,exports){
+},{"./SyntheticUIEvent":138}],134:[function(require,module,exports){
 /**
  * Copyright 2013 Facebook, Inc.
  *
@@ -30249,7 +30131,7 @@ SyntheticEvent.augmentClass(
 module.exports = SyntheticInputEvent;
 
 
-},{"./SyntheticEvent":134}],137:[function(require,module,exports){
+},{"./SyntheticEvent":132}],135:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30338,7 +30220,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
 
-},{"./SyntheticUIEvent":140,"./getEventKey":159,"./getEventModifierState":160}],138:[function(require,module,exports){
+},{"./SyntheticUIEvent":138,"./getEventKey":159,"./getEventModifierState":160}],136:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30428,7 +30310,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
 
-},{"./SyntheticUIEvent":140,"./ViewportMetrics":143,"./getEventModifierState":160}],139:[function(require,module,exports){
+},{"./SyntheticUIEvent":138,"./ViewportMetrics":141,"./getEventModifierState":160}],137:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30483,7 +30365,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
 
-},{"./SyntheticUIEvent":140,"./getEventModifierState":160}],140:[function(require,module,exports){
+},{"./SyntheticUIEvent":138,"./getEventModifierState":160}],138:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30552,7 +30434,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
 
-},{"./SyntheticEvent":134,"./getEventTarget":161}],141:[function(require,module,exports){
+},{"./SyntheticEvent":132,"./getEventTarget":161}],139:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30620,7 +30502,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
 
-},{"./SyntheticMouseEvent":138}],142:[function(require,module,exports){
+},{"./SyntheticMouseEvent":136}],140:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -30868,7 +30750,7 @@ var Transaction = {
 module.exports = Transaction;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],143:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],141:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -30907,7 +30789,7 @@ var ViewportMetrics = {
 
 module.exports = ViewportMetrics;
 
-},{"./getUnboundedScrollPosition":166}],144:[function(require,module,exports){
+},{"./getUnboundedScrollPosition":166}],142:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -30965,7 +30847,7 @@ function accumulate(current, next) {
 module.exports = accumulate;
 
 }).call(this,require("1YiZ5S"))
-},{"./invariant":170,"1YiZ5S":6}],145:[function(require,module,exports){
+},{"./invariant":170,"1YiZ5S":6}],143:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31006,7 +30888,72 @@ function adler32(data) {
 
 module.exports = adler32;
 
-},{}],146:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
+(function (process){
+/**
+ * Copyright 2013-2014 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @typechecks
+ * @providesModule cloneWithProps
+ */
+
+"use strict";
+
+var ReactPropTransferer = require("./ReactPropTransferer");
+
+var keyOf = require("./keyOf");
+var warning = require("./warning");
+
+var CHILDREN_PROP = keyOf({children: null});
+
+/**
+ * Sometimes you want to change the props of a child passed to you. Usually
+ * this is to add a CSS class.
+ *
+ * @param {object} child child component you'd like to clone
+ * @param {object} props props you'd like to modify. They will be merged
+ * as if you used `transferPropsTo()`.
+ * @return {object} a clone of child with props merged in.
+ */
+function cloneWithProps(child, props) {
+  if ("production" !== process.env.NODE_ENV) {
+    ("production" !== process.env.NODE_ENV ? warning(
+      !child.props.ref,
+      'You are calling cloneWithProps() on a child with a ref. This is ' +
+      'dangerous because you\'re creating a new child which will not be ' +
+      'added as a ref to its parent.'
+    ) : null);
+  }
+
+  var newProps = ReactPropTransferer.mergeProps(props, child.props);
+
+  // Use `child.props.children` if it is provided.
+  if (!newProps.hasOwnProperty(CHILDREN_PROP) &&
+      child.props.hasOwnProperty(CHILDREN_PROP)) {
+    newProps.children = child.props.children;
+  }
+
+  // The current API doesn't retain _owner and _context, which is why this
+  // doesn't use ReactDescriptor.cloneAndReplaceProps.
+  return child.constructor(newProps);
+}
+
+module.exports = cloneWithProps;
+
+}).call(this,require("1YiZ5S"))
+},{"./ReactPropTransferer":114,"./keyOf":177,"./warning":193,"1YiZ5S":6}],145:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31057,7 +31004,7 @@ function containsNode(outerNode, innerNode) {
 
 module.exports = containsNode;
 
-},{"./isTextNode":174}],147:[function(require,module,exports){
+},{"./isTextNode":174}],146:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31115,7 +31062,7 @@ function copyProperties(obj, a, b, c, d, e, f) {
 module.exports = copyProperties;
 
 }).call(this,require("1YiZ5S"))
-},{"1YiZ5S":6}],148:[function(require,module,exports){
+},{"1YiZ5S":6}],147:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31208,7 +31155,7 @@ function createArrayFrom(obj) {
 
 module.exports = createArrayFrom;
 
-},{"./toArray":191}],149:[function(require,module,exports){
+},{"./toArray":191}],148:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31275,7 +31222,7 @@ function createFullPageComponent(componentClass) {
 module.exports = createFullPageComponent;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactCompositeComponent":83,"./invariant":170,"1YiZ5S":6}],150:[function(require,module,exports){
+},{"./ReactCompositeComponent":81,"./invariant":170,"1YiZ5S":6}],149:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -31372,7 +31319,53 @@ function createNodesFromMarkup(markup, handleScript) {
 module.exports = createNodesFromMarkup;
 
 }).call(this,require("1YiZ5S"))
-},{"./ExecutionEnvironment":71,"./createArrayFrom":148,"./getMarkupWrap":162,"./invariant":170,"1YiZ5S":6}],151:[function(require,module,exports){
+},{"./ExecutionEnvironment":69,"./createArrayFrom":147,"./getMarkupWrap":162,"./invariant":170,"1YiZ5S":6}],150:[function(require,module,exports){
+/**
+ * Copyright 2013-2014 Facebook, Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * @providesModule cx
+ */
+
+/**
+ * This function is used to mark string literals representing CSS class names
+ * so that they can be transformed statically. This allows for modularization
+ * and minification of CSS class names.
+ *
+ * In static_upstream, this function is actually implemented, but it should
+ * eventually be replaced with something more descriptive, and the transform
+ * that is used in the main stack should be ported for use elsewhere.
+ *
+ * @param string|object className to modularize, or an object of key/values.
+ *                      In the object case, the values are conditions that
+ *                      determine if the className keys should be included.
+ * @param [string ...]  Variable list of classNames in the string case.
+ * @return string       Renderable space-separated CSS className.
+ */
+function cx(classNames) {
+  if (typeof classNames == 'object') {
+    return Object.keys(classNames).filter(function(className) {
+      return classNames[className];
+    }).join(' ');
+  } else {
+    return Array.prototype.join.call(arguments, ' ');
+  }
+}
+
+module.exports = cx;
+
+},{}],151:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31437,7 +31430,7 @@ function dangerousStyleValue(name, value) {
 
 module.exports = dangerousStyleValue;
 
-},{"./CSSProperty":53}],152:[function(require,module,exports){
+},{"./CSSProperty":51}],152:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -31482,7 +31475,7 @@ copyProperties(emptyFunction, {
 
 module.exports = emptyFunction;
 
-},{"./copyProperties":147}],153:[function(require,module,exports){
+},{"./copyProperties":146}],153:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2013-2014 Facebook, Inc.
@@ -32068,7 +32061,7 @@ function getMarkupWrap(nodeName) {
 module.exports = getMarkupWrap;
 
 }).call(this,require("1YiZ5S"))
-},{"./ExecutionEnvironment":71,"./invariant":170,"1YiZ5S":6}],163:[function(require,module,exports){
+},{"./ExecutionEnvironment":69,"./invariant":170,"1YiZ5S":6}],163:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32236,7 +32229,7 @@ function getTextContentAccessor() {
 
 module.exports = getTextContentAccessor;
 
-},{"./ExecutionEnvironment":71}],166:[function(require,module,exports){
+},{"./ExecutionEnvironment":69}],166:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -32573,7 +32566,7 @@ function isEventSupported(eventNameSuffix, capture) {
 
 module.exports = isEventSupported;
 
-},{"./ExecutionEnvironment":71}],172:[function(require,module,exports){
+},{"./ExecutionEnvironment":69}],172:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33299,7 +33292,7 @@ function onlyChild(children) {
 module.exports = onlyChild;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactDescriptor":101,"./invariant":170,"1YiZ5S":6}],186:[function(require,module,exports){
+},{"./ReactDescriptor":99,"./invariant":170,"1YiZ5S":6}],186:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33334,7 +33327,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = performance || {};
 
-},{"./ExecutionEnvironment":71}],187:[function(require,module,exports){
+},{"./ExecutionEnvironment":69}],187:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33456,7 +33449,7 @@ if (ExecutionEnvironment.canUseDOM) {
 
 module.exports = setInnerHTML;
 
-},{"./ExecutionEnvironment":71}],189:[function(require,module,exports){
+},{"./ExecutionEnvironment":69}],189:[function(require,module,exports){
 /**
  * Copyright 2013-2014 Facebook, Inc.
  *
@@ -33829,7 +33822,7 @@ function traverseAllChildren(children, callback, traverseContext) {
 module.exports = traverseAllChildren;
 
 }).call(this,require("1YiZ5S"))
-},{"./ReactInstanceHandles":109,"./ReactTextComponent":125,"./invariant":170,"1YiZ5S":6}],193:[function(require,module,exports){
+},{"./ReactInstanceHandles":107,"./ReactTextComponent":123,"./invariant":170,"1YiZ5S":6}],193:[function(require,module,exports){
 (function (process){
 /**
  * Copyright 2014 Facebook, Inc.
@@ -33884,7 +33877,7 @@ module.exports = warning;
 },{"./emptyFunction":152,"1YiZ5S":6}],194:[function(require,module,exports){
 module.exports = require('./lib/React');
 
-},{"./lib/React":77}],195:[function(require,module,exports){
+},{"./lib/React":75}],195:[function(require,module,exports){
 'use strict';
 
 /**
@@ -34772,7 +34765,9 @@ module.exports = Reflux.createActions([
 	"newchatmessageloaded",
 	"chatdataloaded",
 	"clearlog",
-	"userdataloaded"
+	"userdataloaded",
+	"updateuserfield",
+	"updateuserfieldsuccess"
 ]);
 },{"reflux":203}],209:[function(require,module,exports){
 /** @jsx React.DOM */
@@ -34784,6 +34779,7 @@ var Routes = require('react-router').Routes,
     Chat = require('./chat'),
     Userlist = require('./userlist'),
     User = require('./user'),
+    Start = require('./start.js'),
     Wrapper = require('./wrapper');
 
 var App = (
@@ -34794,12 +34790,12 @@ var App = (
         Route({name: "user", path: ":username", handler: User}), 
         DefaultRoute({handler: Userlist})
       ), 
-      DefaultRoute({handler: Userlist})
+      DefaultRoute({name: "start", handler: Start})
     )
   )
 );
 module.exports = App;
-},{"./chat":210,"./multiroute":214,"./user":215,"./userlist":216,"./wrapper":217,"react-router":17}],210:[function(require,module,exports){
+},{"./chat":210,"./multiroute":214,"./start.js":216,"./user":218,"./userlist":220,"./wrapper":221,"react-router":18}],210:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34833,7 +34829,13 @@ var Chat = React.createClass({displayName: 'Chat',
   render: function(){
     var messages = _.map(Object.keys(this.state.messages).reverse(),function(key){
       var val = this.state.messages[key];
-      return React.DOM.tr(null, React.DOM.td(null, val.date), React.DOM.td(null, Link({to: "user", params: {username:val.username}}, val.username)), React.DOM.td(null, val.message));
+      return (
+        React.DOM.tr(null, 
+          React.DOM.td(null, React.DOM.small(null, val.date, " ")), 
+          React.DOM.td(null, Link({to: "user", params: {username:val.username}}, val.username)), 
+          React.DOM.td(null, val.message)
+        )
+      );
     },this);
     return (
       React.DOM.div(null, 
@@ -34849,7 +34851,7 @@ var Chat = React.createClass({displayName: 'Chat',
 
 module.exports = Chat;
 
-},{"../actions":208,"../stores/chatcountstore":219,"../stores/chatstore":220,"../stores/loginstore":221,"./form":212,"lodash":7,"moment":8,"react":194,"react-router":17,"reflux":203}],211:[function(require,module,exports){
+},{"../actions":208,"../stores/chatcountstore":223,"../stores/chatstore":224,"../stores/loginstore":225,"./form":212,"lodash":7,"moment":8,"react":194,"react-router":18,"reflux":203}],211:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34862,17 +34864,22 @@ var Console = React.createClass({displayName: 'Console',
   mixins:[connect(logStore,"messages")],
   render: function(){
     var msgs = _.map((this.state||{}).messages||[],function(msg){
-      return React.DOM.li({className: msg[2]}, React.DOM.span(null, msg[0]), msg[1]);
+      return React.DOM.div({className: msg[2]}, React.DOM.small(null, React.DOM.i(null, msg[0].substr(0,5)), " ", msg[1]));
     },this);
-    return React.DOM.div(null, 
-      React.DOM.button({onClick: actions.clearlog}, "Clear log"), 
-      React.DOM.ul(null, msgs)
+    return (
+      React.DOM.div({className: "panel panel-default"}, 
+        React.DOM.div({className: "panel-heading"}, 
+          "Log", 
+          React.DOM.button({className: "btn btn-default pull-right", onClick: actions.clearlog}, "Clear log")
+        ), 
+        React.DOM.div({className: "panel-body"}, msgs)
+      )
     );
   }
 });
 
 module.exports = Console;
-},{"../actions":208,"../stores/logstore":222,"lodash":7,"react":194,"reflux":203}],212:[function(require,module,exports){
+},{"../actions":208,"../stores/logstore":226,"lodash":7,"react":194,"reflux":203}],212:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34892,9 +34899,11 @@ var Form = React.createClass({displayName: 'Form',
   },
   render: function() {
     return (
-      React.DOM.div(null, 
-        React.DOM.input({type: "text", ref: "field", value: this.props.value||''}), 
-        React.DOM.button({onClick: this.onSubmit}, "Send!")
+      React.DOM.div({className: "input-group"}, 
+        React.DOM.input({className: "form-control", type: "text", ref: "field"}), 
+        React.DOM.span({className: "input-group-btn"}, 
+          React.DOM.button({className: "btn btn-default", type: "button", onClick: this.onSubmit}, "Send!")
+        )
       )
     );
   }
@@ -34913,13 +34922,14 @@ var Loginbutton = React.createClass({displayName: 'Loginbutton',
   mixins: [connect(loginStore,"username")],
   getInitialState: function(){return {};},
   render: function(){
+    var cls = 'btn btn-default navbar-btn';
     return this.state.username ?
-      React.DOM.button({onClick: actions.initlogout}, "log out ", this.state.username)
-      : React.DOM.button({onClick: actions.initlogin}, "log in");
+      React.DOM.button({className: cls, onClick: actions.initlogout}, "log out ", this.state.username)
+      : React.DOM.button({className: cls, onClick: actions.initlogin}, "log in");
   }
 });
 module.exports = Loginbutton;
-},{"../actions":208,"../stores/loginstore":221,"react":194,"reflux":203}],214:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":225,"react":194,"reflux":203}],214:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react');
@@ -34935,12 +34945,72 @@ module.exports = Multiroute;
 },{"react":194}],215:[function(require,module,exports){
 /** @jsx React.DOM */
 
+//The purpose of this component is to make sure the <li> link element gets the `active` class
+//as expected by bootstrap. See explanation [here](https://github.com/rackt/react-router/blob/master/docs/api/mixins/ActiveState.md)
+
+var React = require('react');
+var Link = require('react-router').Link;
+var ActiveState = require('react-router').ActiveState;
+
+var Navlink = React.createClass({displayName: 'Navlink',
+  mixins: [ ActiveState ],
+  render: function() {
+    var className = this.isActive(this.props.to, this.props.params, this.props.query) ? 'active' : '';
+    return React.DOM.li({className: className}, Link(this.props));
+  }
+});
+
+module.exports = Navlink;
+},{"react":194,"react-router":18}],216:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react');
+
+var Start = React.createClass({displayName: 'Start',
+  render: function() {
+    return (
+      React.DOM.p(null, "Welcome to the JavaScript Guild!")
+    );
+  }
+});
+
+module.exports = Start;
+},{"react":194}],217:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    Navlink = require('./navlink'),
+    Loginbutton = require('./loginbutton');
+
+var Topbar = React.createClass({displayName: 'Topbar',
+  render: function() {
+    return (
+      React.DOM.div({className: "navbar navbar-default"}, 
+        React.DOM.ul({className: "nav nav-pills navbar-left", role: "tablist"}, 
+          React.DOM.li(null, Navlink({to: "start"}, "Home")), 
+          React.DOM.li(null, Navlink({to: "users"}, "Users")), 
+          React.DOM.li(null, Navlink({to: "chat"}, "Chat"))
+        ), 
+        React.DOM.div({className: "navbar-right"}, 
+          Loginbutton(null)
+        )
+      )
+    );
+  }
+});
+
+module.exports = Topbar;
+},{"./loginbutton":213,"./navlink":215,"react":194}],218:[function(require,module,exports){
+/** @jsx React.DOM */
+
 var React = require('react'),
     listenTo = require('reflux').listenTo,
-    userStore = require('../stores/userstore');
+    userStore = require('../stores/userstore'),
+    UserField = require('./userfield');
 
 var User = React.createClass({displayName: 'User',
   mixins: [listenTo(userStore,"getUserData","getUserData")],
+  getInitialState: function(){return {};},
   getUserData: function(users){
     var user = users[this.props.params.username];
     if (user){
@@ -34950,14 +35020,91 @@ var User = React.createClass({displayName: 'User',
     }
   },
   render: function(){
-    var name = this.props.params.username;
-    return this.state && this.state.found ? React.DOM.p(null, name, " is a nice dude!") : React.DOM.p(null, "Couldn't find user ", name, ".");
+    var name = this.props.params.username,
+        user = this.state && this.state.user || {},
+        repo = user.repo;
+    return this.state && this.state.found ? (
+      React.DOM.div(null, 
+        React.DOM.h3(null, name), 
+        React.DOM.dl({className: "dl-horizontal"}, 
+          React.DOM.dt(null, "Logins:"), React.DOM.dd(null, user.logins), 
+          React.DOM.dt(null, "Chats:"), React.DOM.dd(null, user.chats), 
+          React.DOM.dt(null, "Description:"), 
+          React.DOM.dd(null, 
+            UserField({username: name, path: "desc"})
+          ), 
+          React.DOM.dt(null, "repo name:"), 
+          React.DOM.dd(null, 
+            UserField({username: name, path: "repo"}), 
+            repo ? (
+              React.DOM.span(null, 
+                ' ', React.DOM.a({href: 'http://github.com/'+name+"/"+repo}, "code"), 
+                ' ', React.DOM.a({href: 'https://'+name+'.github.io/'+repo+"/dist"}, "app")
+              )
+            ) : ""
+          )
+        )
+      )
+    ) : React.DOM.p(null, "Couldn't find user ", name, ".");
   }
 });
 
 module.exports = User;
 
-},{"../stores/userstore":224,"react":194,"reflux":203}],216:[function(require,module,exports){
+},{"../stores/userstore":228,"./userfield":219,"react":194,"reflux":203}],219:[function(require,module,exports){
+/** @jsx React.DOM */
+
+var React = require('react'),
+    Reflux = require('reflux'),
+    listenTo = Reflux.listenTo,
+    connect = Reflux.connect,
+    userStore = require('../stores/userstore'),
+    _ = require('lodash'),
+    actions = require('../actions'),
+    loginStore = require('../stores/loginstore');
+
+var UserField = React.createClass({displayName: 'UserField',
+  mixins: [listenTo(userStore,"getUserData","getUserData"),connect(loginStore,'username')],
+  getInitialState: function(){return {val:""};},
+  getUserData: function(users){
+  	var val = _.reduce([this.props.username].concat(this.props.path.split("/")),function(memo,step){
+      return memo[step];
+  	},users);
+  	this.setState({val:val});
+  },
+  startEdit: function(){
+  	this.setState({editing:true});
+  },
+  save: function(e){
+  	e.preventDefault();
+    actions.updateuserfield(this.props.username,this.props.path,this.refs.input.getDOMNode().value);
+    this.stopEdit();
+    return false;
+  },
+  stopEdit: function(){
+  	this.setState({editing:false});
+  },
+  render: function(){
+    return this.state.editing ? (
+      React.DOM.form({style: {display:'inline-block'}, onSubmit: this.save}, 
+        React.DOM.input({type: "text", ref: "input", defaultValue: this.state.val||""}), 
+        ' ', React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.stopEdit}, "Cancel"), 
+        ' ', React.DOM.button({className: "btn btn-default btn-xs", type: "submit"}, "Save")
+      )
+    ) : (
+      React.DOM.span(null, 
+        React.DOM.span(null, this.state.val), 
+        ' ', 
+        this.state.username===this.props.username?
+          React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.startEdit}, "Edit"):''
+      )
+    );
+  }
+});
+
+module.exports = UserField;
+
+},{"../actions":208,"../stores/loginstore":225,"../stores/userstore":228,"lodash":7,"react":194,"reflux":203}],220:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34967,11 +35114,14 @@ var React = require('react'),
     Link = require('react-router').Link;
 
 var Userlist = React.createClass({displayName: 'Userlist',
-  mixins: [connect(userStore)],
+  mixins: [connect(userStore,"users")],
+  getInitialState: function(){return {};},
   render: function(){
-    var users = _.map(this.state,function(user,key){
+    console.log("RENDER IN USERLIST");
+    var users = _.map(this.state.users,function(user,key){
       return React.DOM.tr(null, React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), React.DOM.td(null, "Logins:", user.logins), React.DOM.td(null, "Chats:", user.chats));
     },this);
+    console.log("here be the stuff",users);
     return (
       React.DOM.div(null, 
         React.DOM.table({className: "user-table"}, 
@@ -34984,41 +35134,43 @@ var Userlist = React.createClass({displayName: 'Userlist',
 
 module.exports = Userlist;
 
-},{"../stores/userstore":224,"lodash":7,"react":194,"react-router":17,"reflux":203}],217:[function(require,module,exports){
+},{"../stores/userstore":228,"lodash":7,"react":194,"react-router":18,"reflux":203}],221:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Router = require('react-router'),
-    Link = Router.Link,
-    Loginbutton = require('./loginbutton'),
+    Topbar = require('./topbar'),
     Console = require('./console');
 
 var Wrapper = React.createClass({displayName: 'Wrapper',
   render: function(){
     return (
-      React.DOM.div(null, 
-        React.DOM.ul(null, 
-          React.DOM.li(null, Link({to: "users"}, "Users")), 
-          React.DOM.li(null, Link({to: "chat"}, "Chat"))
+      React.DOM.div({className: "container"}, 
+        React.DOM.div({className: "row"}, 
+          Topbar(null)
         ), 
-        Loginbutton(null), 
-        this.props.activeRouteHandler(), 
-        Console(null)
+        React.DOM.div({className: "row"}, 
+          React.DOM.div({className: "col-md-9"}, 
+            this.props.activeRouteHandler()
+          ), 
+          React.DOM.div({className: "col-md-3"}, 
+            Console(null)
+          )
+        )
       )
     );
   }
 });
 module.exports = Wrapper;
-},{"./console":211,"./loginbutton":213,"react":194,"react-router":17}],218:[function(require,module,exports){
+},{"./console":211,"./topbar":217,"react":194}],222:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
-	React = require('react');
+    React = require('react');
 
 React.renderComponent(
   App,
-  document.getElementById('main'));
-},{"./components/app":209,"react":194}],219:[function(require,module,exports){
+  document.querySelector('body'));
+},{"./components/app":209,"react":194}],223:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     countRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chatcount"),
@@ -35040,7 +35192,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],220:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],224:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
@@ -35076,7 +35228,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],221:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],225:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
@@ -35122,7 +35274,7 @@ module.exports = Reflux.createStore({
     return this.last;
   }
 });
-},{"../actions":208,"./users.json":223,"firebase":1,"reflux":203}],222:[function(require,module,exports){
+},{"../actions":208,"./users.json":227,"firebase":1,"reflux":203}],226:[function(require,module,exports){
 var Reflux = require('reflux'),
     actions = require('../actions'),
     _ = require('lodash'),
@@ -35134,7 +35286,9 @@ var Reflux = require('reflux'),
       finishlogin: ["Logged in as %S","net"],
       initlogout: ["Started logout sequence","loc"],
       finishlogout: ["Finished logout","net"],
-      error: ["Error: %S","error"]
+      error: ["Error: %S","error"],
+      userdataloaded: ["User data received","net"],
+      updateuserfieldsuccess: ["Updated user data field","net"]
     };
 
 module.exports = Reflux.createStore({
@@ -35152,9 +35306,9 @@ module.exports = Reflux.createStore({
     this.trigger((this.messages = [[stamp,msg,def[1]]].concat(this.messages)));
   }
 });
-},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],223:[function(require,module,exports){
+},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],227:[function(require,module,exports){
 module.exports=["litenjacob","krawaller","hkwaller"]
-},{}],224:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     dataRef = new Firebase("https://riaht2014.firebaseio.com/web/data/users"),
@@ -35165,20 +35319,29 @@ module.exports = Reflux.createStore({
     dataRef.on("value",this.transmitUserData.bind(this));
     this.listenTo(actions.sendchatmsgsuccess,this.updateUserChatCount.bind(this));
     this.listenTo(actions.finishlogin,this.updateUserLoginCount.bind(this));
+    this.listenTo(actions.updateuserfield,"updateUserField");
   },
   transmitUserData: function(snapshot){
     actions.userdataloaded();
-    this.trigger((this.last = snapshot.val()||{}));
+    this.trigger((this.last = snapshot.val()||{}),snapshot);
   },
   updateUserChatCount: function(msg){
-    dataRef.child(msg.username).child("chats").transaction(function(count){return (count||0)+1;});
+    dataRef.child(msg.username+"/chats").transaction(function(count){return (count||0)+1;});
   },
   updateUserLoginCount: function(username){
-    dataRef.child(username).child("logins").transaction(function(count){return (count||0)+1;});
+    dataRef.child(username+"/logins").transaction(function(count){return (count||0)+1;});
+  },
+  updateUserField: function(username,fieldname,data){
+    dataRef.child(username).child(fieldname).set(data,function(err){
+      if (err){
+        actions.error("User field save failed: "+err);
+      } else {
+        actions.updateuserfieldsuccess();
+      }
+    });
   },
   getDefaultData: function(){
-    dataRef.once("value",this.transmitUserData.bind(this));
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}]},{},[218])
+},{"../actions":208,"firebase":1,"reflux":203}]},{},[222])

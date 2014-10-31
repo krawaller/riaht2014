@@ -9,7 +9,9 @@ var Reflux = require('reflux'),
       finishlogin: ["Logged in as %S","net"],
       initlogout: ["Started logout sequence","loc"],
       finishlogout: ["Finished logout","net"],
-      error: ["Error: %S","error"]
+      error: ["Error: %S","error"],
+      userdataloaded: ["User data received","net"],
+      updateuserfieldsuccess: ["Updated user data field","net"]
     };
 
 module.exports = Reflux.createStore({

@@ -1,22 +1,24 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Router = require('react-router'),
-    Link = Router.Link,
-    Loginbutton = require('./loginbutton'),
+    Topbar = require('./topbar'),
     Console = require('./console');
 
 var Wrapper = React.createClass({
   render: function(){
     return (
-      <div>
-        <ul>
-          <li><Link to="users">Users</Link></li>
-          <li><Link to="chat">Chat</Link></li>
-        </ul>
-        <Loginbutton />
-        {this.props.activeRouteHandler()}
-        <Console />
+      <div className='container'>
+        <div className='row'>
+          <Topbar />
+        </div>
+        <div className='row'>
+          <div className='col-md-9'>
+            {this.props.activeRouteHandler()}
+          </div>
+          <div className='col-md-3'>
+            <Console />
+          </div>
+        </div>
       </div>
     );
   }

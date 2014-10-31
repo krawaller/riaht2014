@@ -42,16 +42,22 @@
   mixins:[connect(logStore,<span class="hljs-string">"messages"</span>)],
   render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
     <span class="hljs-keyword">var</span> msgs = _.map((<span class="hljs-keyword">this</span>.state||{}).messages||[],<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(msg)</span></span>{
-      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{msg[2]}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>{msg[0]}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>{msg[1]}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>;</span>
+      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{msg[2]}</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">i</span>&gt;</span>{msg[0].substr(0,5)}<span class="hljs-tag">&lt;/<span class="hljs-title">i</span>&gt;</span> {msg[1]}<span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>;</span>
     },<span class="hljs-keyword">this</span>);
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.clearlog}</span>&gt;</span>Clear log<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>{msgs}<span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>;</span>
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel panel-default'</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel-heading'</span>&gt;</span>
+          Log
+          <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default pull-right'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{actions.clearlog}</span>&gt;</span>Clear log<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel-body'</span>&gt;</span>{msgs}<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    );
   }
 });
 
-<span class="hljs-built_in">module</span>.exports = Console;</pre></div></div>
+module.exports = Console;
+</span></pre></div></div>
             
         </li>
         

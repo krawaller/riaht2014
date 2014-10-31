@@ -10,12 +10,17 @@ var Console = React.createClass({
   mixins:[connect(logStore,"messages")],
   render: function(){
     var msgs = _.map((this.state||{}).messages||[],function(msg){
-      return <li className={msg[2]}><span>{msg[0]}</span>{msg[1]}</li>;
+      return <div className={msg[2]}><small><i>{msg[0].substr(0,5)}</i> {msg[1]}</small></div>;
     },this);
-    return <div>
-      <button onClick={actions.clearlog}>Clear log</button>
-      <ul>{msgs}</ul>
-    </div>;
+    return (
+      <div className='panel panel-default'>
+        <div className='panel-heading'>
+          Log
+          <button className='btn btn-default pull-right' onClick={actions.clearlog}>Clear log</button>
+        </div>
+        <div className='panel-body'>{msgs}</div>
+      </div>
+    );
   }
 });
 
