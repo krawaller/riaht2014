@@ -43,12 +43,31 @@
   getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">return</span> {};},
   render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
     <span class="hljs-keyword">var</span> users = _.map(<span class="hljs-keyword">this</span>.state.users,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user,key)</span></span>{
-      <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:key}}</span>&gt;</span>{key}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>Logins:{user.logins}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>Chats:{user.chats}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>;</span>
-    },<span class="hljs-keyword">this</span>);
-    <span class="hljs-keyword">return</span> (
-      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">table</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'user-table'</span>&gt;</span>
-          {users}
+      <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:key}}</span>&gt;</span>{key}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>{user.logins}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>{user.chats}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>{Object.keys(user.blogs||{}).length}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>{Object.keys(user.pulls||{}).length}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+      );
+    },this);
+    return (
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">table</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'table table-bordered'</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Name<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Logins<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Chats<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Blogs<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>Pulls<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">thead</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">tbody</span>&gt;</span>
+            {users}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">tbody</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     );

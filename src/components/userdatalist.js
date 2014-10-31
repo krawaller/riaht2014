@@ -44,7 +44,7 @@ var UserDataList = React.createClass({
     return (
       <div className={this.state.editing?'panel panel-default':''}>
         {(lines.length?lines:[<div className='small'>list is empty</div>]).concat(this.state.editing&&this.props.username===this.state.username?(
-          <div>
+          <div key='form'>
             <form className='panel-body' onSubmit={this.addItem}>
               <div className='input-group'>
                 <input className='form-control' type='text' ref='input'/>
@@ -58,7 +58,7 @@ var UserDataList = React.createClass({
             </div>
           </div>
         ):(
-          this.props.username===this.state.username?<button className='btn btn-default btn-xs' onClick={this.startEdit}>Edit list</button>:""
+          this.props.username===this.state.username?<button key='startedit' className='btn btn-default btn-xs' onClick={this.startEdit}>Edit list</button>:""
         ))}
       </div>
     );

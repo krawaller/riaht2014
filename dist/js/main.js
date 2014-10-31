@@ -34836,8 +34836,8 @@ var Chat = React.createClass({displayName: 'Chat',
       return (
         React.DOM.tr(null, 
           React.DOM.td(null, React.DOM.small(null, val.date, " ")), 
-          React.DOM.td(null, Link({to: "user", params: {username:val.username}}, val.username)), 
-          React.DOM.td(null, val.message)
+          React.DOM.td(null, " ", Link({to: "user", params: {username:val.username}}, val.username), " "), 
+          React.DOM.td(null, " ", val.message, " ")
         )
       );
     },this);
@@ -35174,7 +35174,7 @@ var UserDataList = React.createClass({displayName: 'UserDataList',
     return (
       React.DOM.div({className: this.state.editing?'panel panel-default':''}, 
         (lines.length?lines:[React.DOM.div({className: "small"}, "list is empty")]).concat(this.state.editing&&this.props.username===this.state.username?(
-          React.DOM.div(null, 
+          React.DOM.div({key: "form"}, 
             React.DOM.form({className: "panel-body", onSubmit: this.addItem}, 
               React.DOM.div({className: "input-group"}, 
                 React.DOM.input({className: "form-control", type: "text", ref: "input"}), 
@@ -35188,7 +35188,7 @@ var UserDataList = React.createClass({displayName: 'UserDataList',
             )
           )
         ):(
-          this.props.username===this.state.username?React.DOM.button({className: "btn btn-default btn-xs", onClick: this.startEdit}, "Edit list"):""
+          this.props.username===this.state.username?React.DOM.button({key: "startedit", className: "btn btn-default btn-xs", onClick: this.startEdit}, "Edit list"):""
         ))
       )
     );
@@ -35211,12 +35211,31 @@ var Userlist = React.createClass({displayName: 'Userlist',
   getInitialState: function(){return {};},
   render: function(){
     var users = _.map(this.state.users,function(user,key){
-      return React.DOM.tr(null, React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), React.DOM.td(null, "Logins:", user.logins), React.DOM.td(null, "Chats:", user.chats));
+      return (
+        React.DOM.tr(null, 
+          React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), 
+          React.DOM.td(null, user.logins), 
+          React.DOM.td(null, user.chats), 
+          React.DOM.td(null, Object.keys(user.blogs||{}).length), 
+          React.DOM.td(null, Object.keys(user.pulls||{}).length)
+        )
+      );
     },this);
     return (
       React.DOM.div(null, 
-        React.DOM.table({className: "user-table"}, 
-          users
+        React.DOM.table({className: "table table-bordered"}, 
+          React.DOM.thead(null, 
+            React.DOM.tr(null, 
+              React.DOM.th(null, "Name"), 
+              React.DOM.th(null, "Logins"), 
+              React.DOM.th(null, "Chats"), 
+              React.DOM.th(null, "Blogs"), 
+              React.DOM.th(null, "Pulls")
+            )
+          ), 
+          React.DOM.tbody(null, 
+            users
+          )
         )
       )
     );

@@ -76,7 +76,7 @@
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{this.state.editing?'panel</span> <span class="hljs-attribute">panel-default</span>'<span class="hljs-attribute">:</span>''}&gt;</span>
         {(lines.length?lines:[<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'small'</span>&gt;</span>list is empty<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>]).concat(this.state.editing&amp;&amp;this.props.username===this.state.username?(
-          <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">'form'</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'panel-body'</span> <span class="hljs-attribute">onSubmit</span>=<span class="hljs-value">{this.addItem}</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'input-group'</span>&gt;</span>
                 <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'form-control'</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">'text'</span> <span class="hljs-attribute">ref</span>=<span class="hljs-value">'input'</span>/&gt;</span>
@@ -90,7 +90,7 @@
             <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
           <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
         ):(
-          this.props.username===this.state.username?<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default btn-xs'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.startEdit}</span>&gt;</span>Edit list<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>:""
+          this.props.username===this.state.username?<span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">key</span>=<span class="hljs-value">'startedit'</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default btn-xs'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.startEdit}</span>&gt;</span>Edit list<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>:""
         ))}
       <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
     );

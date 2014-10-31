@@ -66,8 +66,8 @@
       <span class="hljs-keyword">return</span> (
         <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">small</span>&gt;</span>{val.date} <span class="hljs-tag">&lt;/<span class="hljs-title">small</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:val.username}}</span>&gt;</span>{val.username}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
-          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span>{val.message}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span> <span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:val.username}}</span>&gt;</span>{val.username}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span> <span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span> {val.message} <span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
       );
     },this);

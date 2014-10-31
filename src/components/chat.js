@@ -34,8 +34,8 @@ var Chat = React.createClass({
       return (
         <tr>
           <td><small>{val.date} </small></td>
-          <td><Link to="user" params={{username:val.username}}>{val.username}</Link></td>
-          <td>{val.message}</td>
+          <td> <Link to="user" params={{username:val.username}}>{val.username}</Link> </td>
+          <td> {val.message} </td>
         </tr>
       );
     },this);
