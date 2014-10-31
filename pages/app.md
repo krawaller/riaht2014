@@ -31,6 +31,6 @@ Nog prokrastrinerat - vad skall ni bygga? Som sagt väljer ni själva, men här 
 *    Kanske en enkel **personaldatabas**? Varje person har en given person som chef (förutom chefchefen såklart), vilket ger bra utrymme för relationer, listor och vyer av enskilda personer.
 *    Varför inte en liten **Bank** eller motsvarande? Konton och transaktioner ger kul möjligheter till funktionalitet.
 *    Enkla (observera *enkla*) **spel** skulle också kunna fungera, såsom Blackjack eller Roulette. Spel brukar dock innebära mer jobb med kontexten än vad man först kan tro, så, tänk er för före! Å andra sidan har React visat sig vara en bra matchning för att sätta ihop dylika appar.
-*    Nej, ni får **<span color='red'>inte</span>** bygga en TODO-applikation. :)
+*    Nej, ni får **<span style='color:red;'>inte</span>** bygga en TODO-applikation. :)
 
 En sak vi vill trycka på är återigen att **projektet inte kommer vara särskilt stort i omfattning**, eftersom såpass mycket fokus läggs på processen. Tjuvkika gärna på tidigare års projekt så förstår ni nog - de flesta är ganska "enkla", och vid en första anblick kan de se ut som att de knappast tagit 20*5 timmar att utveckla. Men det beror som sagt på att de studerande parallellt har forskat, bloggat, diskuterat och omprövat. Vilket också ni skall göra! Håll därför ner ambitionsnivån i projektplanerandet!
