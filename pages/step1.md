@@ -15,8 +15,8 @@ Nu har det blivit dags att lägga grunden för projektet. Det är ganska mycket 
 </span>}</code></pre> Installera dependencies genom att köra `npm install`. Registrera dig också på [David DM](http://david-dm.org).
 
 2.    Bestäm projektets regler för [JSHint](../jshint) genom att skapa den korresponderande `.jshintrc`-filen.
-3.    Installera [Gulp](../gulp) och det som behövs för [byggprocessen](../build).
-3.    Skapa en `src`-katalog, i den en `components`-katalog, och i den filen `app.js` med en enkel [React-komponent](../react) som skriver ut något enkelt på skärmen.
+3.    Installera [Gulp](../gulp).
+3.    Skapa en `src`-katalog, i den en `components`-katalog, och i den filen `app.js` med en enkel [React-komponent](../react) som skriver ut något enkelt på skärmen. Se [byggprocessen](../build) för mer info.
 4.    Registrera dig på [Firebase](../firebase), och uppdatera din enkla React-komponent till att skriva ut data därifrån.
 5.    Koppla in repot mot [Travis](../travis)
 6.    Skapa en [testsvit med Jest](../jest)
