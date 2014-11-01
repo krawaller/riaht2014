@@ -1,5 +1,5 @@
 
-Nu har det blivit dags att lägga grunden för projektet. Det är ganska mycket som ska hamna på plats, men ta ett steg i taget!
+Nu har det blivit dags att lägga grunden för projektet. Det är ganska mycket som ska hamna på plats, men ta ett steg i taget! Utförliga instruktioner finns under [byggprocessen](../build), men här kommer en steg-för-steg-lista:
 
 1.   Skapa filen `package.json` i roten på projektet med lite grundläggande fakta: <pre><code>{
   "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"riaht2014"</span></span>,
@@ -15,7 +15,6 @@ Nu har det blivit dags att lägga grunden för projektet. Det är ganska mycket 
 </span>}</code></pre> Installera dependencies genom att köra `npm install`. Registrera dig också på [David DM](http://david-dm.org).
 
 2.    Bestäm projektets regler för [JSHint](../jshint) genom att skapa den korresponderande `.jshintrc`-filen.
-3.    Installera [Gulp](../gulp).
 3.    Skapa en `src`-katalog, i den en `components`-katalog, och i den filen `app.js` med en enkel [React-komponent](../react) som skriver ut något enkelt på skärmen. Se [byggprocessen](../build) för mer info.
 4.    Registrera dig på [Firebase](../firebase), och uppdatera din enkla React-komponent till att skriva ut data därifrån.
 5.    Koppla in repot mot [Travis](../travis)
