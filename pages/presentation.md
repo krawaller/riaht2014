@@ -1,3 +1,7 @@
+
+<iframe width="420" height="315" src="//www.youtube.com/embed/wZmRucW636M" frameborder="0" allowfullscreen></iframe>
+
+
 ### Introduktion
 
 Kursen RIA-utveckling med JavaScript syftar till att lära ut best-practices gällande just RIA-utveckling med JavaScript. Detta görs genom att - you guessed it - **bygga en RIA** (Rich Internet Application) i JavaScript! Dessa publiceras sedan på webben via Github Pages, och också på mobila plattformar via Phonegap.
