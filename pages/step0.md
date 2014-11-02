@@ -1,5 +1,6 @@
 Varmt välkomna till RIA-kursen! Här i steg 0 ska vi kratta manégen inför de kommande stordåden genom att...
 
+1.    titta igenom [kursens introduktionsvideo på presentationssidan](../om-2)
 1.    fräscha upp JavaScriptkunskaperna genom att köra igenom [John Resigs interaktiva lektion](http://ejohn.org/apps/learn/). Kursens förkunskapskrav inkluderar att ha full förståelse för allt som tas upp i lektionen, så om du känner dig vilsen så måste du läsa på!
 4.    starta en [kursblogg](../blog)
 2.    installera [Node & NPM](../node-och-npm)
