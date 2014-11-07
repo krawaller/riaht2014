@@ -6,8 +6,8 @@ Varmt välkomna till RIA-kursen! Här i steg 0 ska vi kratta manégen inför de 
 2.    installera [Node & NPM](../node-och-npm)
 3.    [installera Git och registrera dig på Github](../git-github)
 3.    Installera [Gulp](../gulp)
-5.    gå med i [guilden](../guilden)
+5.    gå med i [guilden](../guilden) och fyll i en kort beskrivning av dig själv där
 6.    börja så smått att läsa på om [React](../react) och [Firebase](../firebase)
 6.    försök fånga David för ett första [handledningstillfälle](../handledning)!
 7.    skriv ett första blogginlägg där du **presenterar dig**, beskriver dina **förväntningar på kursen**, din **JavaScript idag** inklusive kommentarer till hur det gick att gå igenom **Resigs lektion**.
-
+8.    lägg till URL:n till ditt blogginlägg på guilden!
