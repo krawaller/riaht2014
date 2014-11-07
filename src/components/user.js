@@ -36,8 +36,9 @@ var User = React.createClass({
             <UserDataField username={name} path="repo"/>
             {repo ? (
               <span>
-                {' '}<a href={'http://github.com/'+name+"/"+repo}>code</a>
-                {' '}<a href={'https://'+name+'.github.io/'+repo+"/dist"}>app</a>
+                {' '}<a href={'http://github.com/'+name+"/"+repo} target='_blank'>code</a>
+                {' '}<a href={'https://'+name+'.github.io/'+repo+"/dist"} target='_blank'>app</a>
+                {' '}<a href={'https://'+name+'.github.io/'+repo+"/docs"} target='_blank'>docs</a>
               </span>
             ) : ""}
           </dd>

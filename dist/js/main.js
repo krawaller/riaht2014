@@ -35063,8 +35063,9 @@ var User = React.createClass({displayName: 'User',
             UserDataField({username: name, path: "repo"}), 
             repo ? (
               React.DOM.span(null, 
-                ' ', React.DOM.a({href: 'http://github.com/'+name+"/"+repo}, "code"), 
-                ' ', React.DOM.a({href: 'https://'+name+'.github.io/'+repo+"/dist"}, "app")
+                ' ', React.DOM.a({href: 'http://github.com/'+name+"/"+repo, target: "_blank"}, "code"), 
+                ' ', React.DOM.a({href: 'https://'+name+'.github.io/'+repo+"/dist", target: "_blank"}, "app"), 
+                ' ', React.DOM.a({href: 'https://'+name+'.github.io/'+repo+"/docs", target: "_blank"}, "docs")
               )
             ) : ""
           ), 
@@ -35131,7 +35132,7 @@ var UserDataField = React.createClass({displayName: 'UserDataField',
       )
     ) : (
       React.DOM.span(null, 
-        (this.state.val||"").substr(0,4)==="http"?React.DOM.a({href: this.state.val}, this.state.val):React.DOM.span(null, this.state.val||""), 
+        (this.state.val||"").substr(0,4)==="http"?React.DOM.a({href: this.state.val, target: "_blank"}, this.state.val):React.DOM.span(null, this.state.val||""), 
         ' ', 
         !this.props.surpressedit && this.state.username===this.props.username?
           React.DOM.button({className: "btn btn-default btn-xs", type: "button", onClick: this.startEdit}, "Edit"):'', 
