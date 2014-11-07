@@ -17,8 +17,8 @@
     "gulp-concat": "2.2.0",
     "gulp-docco": "0.0.4",
     "gulp-highlight": "0.0.3",
-    "gulp-jest": "0.2.2",
     "gulp-jshint": "1.8.5",
+	"gulp-jest": "0.2.2",
     "gulp-react": "1.0.2",
     "jquery": "2.1.1",
     "jshint-stylish": "1.0.0",
@@ -30,5 +30,8 @@
     "reactfire": "0.3.0",
     "reactify": "0.14.0",
     "reflux": "0.1.13"
+  },
+  "dependencies": {
+    "gulp": "^3.8.10"
   }
 }
