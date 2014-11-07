@@ -80,7 +80,7 @@
       <span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span>
     ) : (
       <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>
-        {this.state.val.substr(0,4)==="http"?<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">{this.state.val}</span>&gt;</span>{this.state.val}<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>:<span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>{this.state.val}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>}
+        {(this.state.val||"").substr(0,4)==="http"?<span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">{this.state.val}</span>&gt;</span>{this.state.val}<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>:<span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span>{this.state.val||""}<span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>}
         {' '}
         {!this.props.surpressedit &amp;&amp; this.state.username===this.props.username?
           <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'btn btn-default btn-xs'</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">'button'</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{this.startEdit}</span>&gt;</span>Edit<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>:''}

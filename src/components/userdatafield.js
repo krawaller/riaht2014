@@ -48,7 +48,7 @@ var UserDataField = React.createClass({
       </form>
     ) : (
       <span>
-        {this.state.val.substr(0,4)==="http"?<a href={this.state.val}>{this.state.val}</a>:<span>{this.state.val}</span>}
+        {(this.state.val||"").substr(0,4)==="http"?<a href={this.state.val}>{this.state.val}</a>:<span>{this.state.val||""}</span>}
         {' '}
         {!this.props.surpressedit && this.state.username===this.props.username?
           <button className='btn btn-default btn-xs' type='button' onClick={this.startEdit}>Edit</button>:''}
