@@ -34790,6 +34790,7 @@ var App = (
   Routes({location: "hash"}, 
     Route({name: "app", path: "/", handler: Wrapper}, 
       Route({name: "chat", handler: Chat}), 
+"//Multiroute is just an empty view that displays the activeRouteHandler, ie User or Userlist. The point of this is to make both of those views sort under the same path so that \"users\" are \"active\" in the navbar for both.", 
       Route({name: "users", handler: Multiroute}, 
         Route({name: "user", path: ":username", handler: User}), 
         DefaultRoute({handler: Userlist})
@@ -34939,6 +34940,8 @@ var Loginbutton = React.createClass({displayName: 'Loginbutton',
 module.exports = Loginbutton;
 },{"../actions":208,"../stores/loginstore":226,"react":194,"reflux":203}],214:[function(require,module,exports){
 /** @jsx React.DOM */
+
+//Multiroute is just an empty view that displays the activeRouteHandler. The point of this is to make two views sort under the same path so the same navbar item is active for both. Used in app.js for routes User and Users.
 
 var React = require('react');
 
@@ -35238,6 +35241,7 @@ var Userlist = React.createClass({displayName: 'Userlist',
     },this);
     return (
       React.DOM.div(null, 
+        React.DOM.p(null, "To see a user's data, click their name in the table below!"), 
         React.DOM.table({className: "table table-bordered"}, 
           React.DOM.thead(null, 
             React.DOM.tr(null, 

@@ -46,8 +46,23 @@
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Routes</span> <span class="hljs-attribute">location</span>=<span class="hljs-value">"hash"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"app"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">"/"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Wrapper}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"chat"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Chat}</span>/&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"users"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Multiroute}</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">":username"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{User}</span>/&gt;</span>
+</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>Multiroute is just an empty view that displays the activeRouteHandler, ie User or Userlist. The point of this is to make both of those views sort under the same path so that “users” are “active” in the navbar for both.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      &lt;Route name=<span class="hljs-string">"users"</span> handler={Multiroute}&gt;
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">":username"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{User}</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">DefaultRoute</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Userlist}</span>/&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">Route</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">DefaultRoute</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"start"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Start}</span>/&gt;</span>

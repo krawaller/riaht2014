@@ -23,6 +23,7 @@ var Userlist = React.createClass({
     },this);
     return (
       <div>
+        <p>To see a user's data, click their name in the table below!</p>
         <table className='table table-bordered'>
           <thead>
             <tr>
