@@ -10,11 +10,11 @@ var Routes = require('react-router').Routes,
     Start = require('./start.js'),
     Wrapper = require('./wrapper');
 
+//Multiroute is just an empty view that displays the activeRouteHandler, ie User or Userlist. The point of this is to make both of those views sort under the same path so that "users" are "active" in the navbar for both.
 var App = (
   <Routes location="hash">
     <Route name="app" path="/" handler={Wrapper}>
       <Route name="chat" handler={Chat}/>
-//Multiroute is just an empty view that displays the activeRouteHandler, ie User or Userlist. The point of this is to make both of those views sort under the same path so that "users" are "active" in the navbar for both.
       <Route name="users" handler={Multiroute}>
         <Route name="user" path=":username" handler={User}/>
         <DefaultRoute handler={Userlist}/>
