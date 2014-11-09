@@ -38,6 +38,7 @@
     Multiroute = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./multiroute'</span>),
     Chat = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./chat'</span>),
     Userlist = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./userlist'</span>),
+    PullRequestList = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./pullrequestlist'</span>),
     User = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./user'</span>),
     Start = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./start.js'</span>),
     Wrapper = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./wrapper'</span>);</pre></div></div>
@@ -63,6 +64,7 @@
         <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">path</span>=<span class="hljs-value">":username"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{User}</span>/&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-title">DefaultRoute</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Userlist}</span>/&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-title">Route</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Route</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"pullrequests"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{PullRequestList}</span>/&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">DefaultRoute</span> <span class="hljs-attribute">name</span>=<span class="hljs-value">"start"</span> <span class="hljs-attribute">handler</span>=<span class="hljs-value">{Start}</span>/&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">Route</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">Routes</span>&gt;</span>

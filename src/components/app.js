@@ -6,6 +6,7 @@ var Routes = require('react-router').Routes,
     Multiroute = require('./multiroute'),
     Chat = require('./chat'),
     Userlist = require('./userlist'),
+    PullRequestList = require('./pullrequestlist'),
     User = require('./user'),
     Start = require('./start.js'),
     Wrapper = require('./wrapper');
@@ -19,6 +20,7 @@ var App = (
         <Route name="user" path=":username" handler={User}/>
         <DefaultRoute handler={Userlist}/>
       </Route>
+      <Route name="pullrequests" handler={PullRequestList}/>
       <DefaultRoute name="start" handler={Start}/>
     </Route>
   </Routes>

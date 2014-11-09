@@ -12,6 +12,7 @@ var Topbar = React.createClass({
           <li><Navlink to="start">Home</Navlink></li>
           <li><Navlink to="users">Users</Navlink></li>
           <li><Navlink to="chat">Chat</Navlink></li>
+          <li><Navlink to="pullrequests">Pull requests</Navlink></li>
         </ul>
         <div className='navbar-right'>
           <Loginbutton />

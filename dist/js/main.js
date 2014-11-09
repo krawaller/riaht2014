@@ -34782,6 +34782,7 @@ var Routes = require('react-router').Routes,
     Multiroute = require('./multiroute'),
     Chat = require('./chat'),
     Userlist = require('./userlist'),
+    PullRequestList = require('./pullrequestlist'),
     User = require('./user'),
     Start = require('./start.js'),
     Wrapper = require('./wrapper');
@@ -34795,12 +34796,13 @@ var App = (
         Route({name: "user", path: ":username", handler: User}), 
         DefaultRoute({handler: Userlist})
       ), 
+      Route({name: "pullrequests", handler: PullRequestList}), 
       DefaultRoute({name: "start", handler: Start})
     )
   )
 );
 module.exports = App;
-},{"./chat":210,"./multiroute":214,"./start.js":216,"./user":218,"./userlist":221,"./wrapper":222,"react-router":18}],210:[function(require,module,exports){
+},{"./chat":210,"./multiroute":214,"./pullrequestlist":216,"./start.js":217,"./user":219,"./userlist":222,"./wrapper":223,"react-router":18}],210:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34856,7 +34858,7 @@ var Chat = React.createClass({displayName: 'Chat',
 
 module.exports = Chat;
 
-},{"../actions":208,"../stores/chatcountstore":224,"../stores/chatstore":225,"../stores/loginstore":226,"./chatform":211,"lodash":7,"moment":8,"react":194,"react-router":18,"reflux":203}],211:[function(require,module,exports){
+},{"../actions":208,"../stores/chatcountstore":225,"../stores/chatstore":226,"../stores/loginstore":227,"./chatform":211,"lodash":7,"moment":8,"react":194,"react-router":18,"reflux":203}],211:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34919,7 +34921,7 @@ var Console = React.createClass({displayName: 'Console',
 });
 
 module.exports = Console;
-},{"../actions":208,"../stores/logstore":227,"lodash":7,"react":194,"reflux":203}],213:[function(require,module,exports){
+},{"../actions":208,"../stores/logstore":228,"lodash":7,"react":194,"reflux":203}],213:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -34938,7 +34940,7 @@ var Loginbutton = React.createClass({displayName: 'Loginbutton',
   }
 });
 module.exports = Loginbutton;
-},{"../actions":208,"../stores/loginstore":226,"react":194,"reflux":203}],214:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":227,"react":194,"reflux":203}],214:[function(require,module,exports){
 /** @jsx React.DOM */
 
 //Multiroute is just an empty view that displays the activeRouteHandler. The point of this is to make two views sort under the same path so the same navbar item is active for both. Used in app.js for routes User and Users.
@@ -34975,6 +34977,53 @@ module.exports = Navlink;
 },{"react":194,"react-router":18}],216:[function(require,module,exports){
 /** @jsx React.DOM */
 
+var React = require('react'),
+    connect = require('reflux').connect,
+    _ = require('lodash'),
+    pullrequestStore = require('../stores/pullrequeststore'),
+    Link = require('react-router').Link;
+
+var PullRequestList = React.createClass({displayName: 'PullRequestList',
+  mixins: [connect(pullrequestStore,"PR")],
+  getInitialState: function(){return {PR:{}};},
+  render: function(){
+    var PR = this.state.PR, names = Object.keys(this.state.PR);
+    var rows = _.map(names,function(user){
+      var cells = _.map(names,function(target){
+        var val = target===user?"---":PR[user][target]||0;
+        return React.DOM.td({className: val===0?'text-danger':''}, val); });
+      return (
+        React.DOM.tr(null, 
+          React.DOM.td(null, Link({to: "user", params: {username:user}}, user)), 
+          cells
+        )
+      );
+    },this);
+    var headers = _.map(names,function(n){return React.DOM.th(null, Link({to: "user", params: {username:n}}, n));});
+    return (
+      React.DOM.div(null, 
+        React.DOM.p(null, "Here you see an overview of all registered pull requests."), 
+        React.DOM.table({className: "table table-bordered"}, 
+          React.DOM.thead(null, 
+            React.DOM.tr(null, 
+              React.DOM.th(null, "By \\ Target"), 
+              headers
+            )
+          ), 
+          React.DOM.tbody(null, 
+            rows
+          )
+        )
+      )
+    );
+  }
+});
+
+module.exports = PullRequestList;
+
+},{"../stores/pullrequeststore":229,"lodash":7,"react":194,"react-router":18,"reflux":203}],217:[function(require,module,exports){
+/** @jsx React.DOM */
+
 var React = require('react');
 
 var Start = React.createClass({displayName: 'Start',
@@ -34999,7 +35048,7 @@ var Start = React.createClass({displayName: 'Start',
 });
 
 module.exports = Start;
-},{"react":194}],217:[function(require,module,exports){
+},{"react":194}],218:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35013,7 +35062,8 @@ var Topbar = React.createClass({displayName: 'Topbar',
         React.DOM.ul({className: "nav nav-pills navbar-left", role: "tablist"}, 
           React.DOM.li(null, Navlink({to: "start"}, "Home")), 
           React.DOM.li(null, Navlink({to: "users"}, "Users")), 
-          React.DOM.li(null, Navlink({to: "chat"}, "Chat"))
+          React.DOM.li(null, Navlink({to: "chat"}, "Chat")), 
+          React.DOM.li(null, Navlink({to: "pullrequests"}, "Pull requests"))
         ), 
         React.DOM.div({className: "navbar-right"}, 
           Loginbutton(null)
@@ -35024,7 +35074,7 @@ var Topbar = React.createClass({displayName: 'Topbar',
 });
 
 module.exports = Topbar;
-},{"./loginbutton":213,"./navlink":215,"react":194}],218:[function(require,module,exports){
+},{"./loginbutton":213,"./navlink":215,"react":194}],219:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35081,7 +35131,7 @@ var User = React.createClass({displayName: 'User',
 
 module.exports = User;
 
-},{"../stores/userstore":229,"./userdatafield":219,"./userdatalist":220,"react":194,"reflux":203}],219:[function(require,module,exports){
+},{"../stores/userstore":231,"./userdatafield":220,"./userdatalist":221,"react":194,"reflux":203}],220:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35146,7 +35196,7 @@ var UserDataField = React.createClass({displayName: 'UserDataField',
 
 module.exports = UserDataField;
 
-},{"../actions":208,"../stores/loginstore":226,"../stores/userstore":229,"lodash":7,"react":194,"reflux":203}],220:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":227,"../stores/userstore":231,"lodash":7,"react":194,"reflux":203}],221:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35216,7 +35266,7 @@ var UserDataList = React.createClass({displayName: 'UserDataList',
 
 module.exports = UserDataList;
 
-},{"../actions":208,"../stores/loginstore":226,"../stores/userstore":229,"./userdatafield":219,"lodash":7,"react":194,"reflux":203}],221:[function(require,module,exports){
+},{"../actions":208,"../stores/loginstore":227,"../stores/userstore":231,"./userdatafield":220,"lodash":7,"react":194,"reflux":203}],222:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35234,9 +35284,9 @@ var Userlist = React.createClass({displayName: 'Userlist',
         React.DOM.tr(null, 
           React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), 
           React.DOM.td(null, user.logins), 
-          React.DOM.td(null, user.chats), 
-          React.DOM.td(null, Object.keys(user.blogs||{}).length), 
-          React.DOM.td(null, Object.keys(user.pulls||{}).length)
+          React.DOM.td({className: user.chats?'':'text-danger'}, user.chats||0), 
+          React.DOM.td({className: Object.keys(user.blogs||{}).length?'':'text-danger'}, Object.keys(user.blogs||{}).length), 
+          React.DOM.td({className: Object.keys(user.pulls||{}).length?'':'text-danger'}, Object.keys(user.pulls||{}).length)
         )
       );
     },this);
@@ -35250,7 +35300,7 @@ var Userlist = React.createClass({displayName: 'Userlist',
               React.DOM.th(null, "Logins"), 
               React.DOM.th(null, "Chats"), 
               React.DOM.th(null, "Blogs"), 
-              React.DOM.th(null, "Pulls")
+              React.DOM.th(null, "PR:s")
             )
           ), 
           React.DOM.tbody(null, 
@@ -35264,7 +35314,7 @@ var Userlist = React.createClass({displayName: 'Userlist',
 
 module.exports = Userlist;
 
-},{"../stores/userstore":229,"lodash":7,"react":194,"react-router":18,"reflux":203}],222:[function(require,module,exports){
+},{"../stores/userstore":231,"lodash":7,"react":194,"react-router":18,"reflux":203}],223:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var React = require('react'),
@@ -35291,7 +35341,7 @@ var Wrapper = React.createClass({displayName: 'Wrapper',
   }
 });
 module.exports = Wrapper;
-},{"./console":212,"./topbar":217,"react":194}],223:[function(require,module,exports){
+},{"./console":212,"./topbar":218,"react":194}],224:[function(require,module,exports){
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
@@ -35300,7 +35350,7 @@ var App = require('./components/app'),
 React.renderComponent(
   App,
   document.querySelector('body'));
-},{"./components/app":209,"react":194}],224:[function(require,module,exports){
+},{"./components/app":209,"react":194}],225:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     countRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chatcount"),
@@ -35322,7 +35372,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],225:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],226:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     chatRef = new Firebase("https://riaht2014.firebaseio.com/web/data/chat"),
@@ -35358,7 +35408,7 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}],226:[function(require,module,exports){
+},{"../actions":208,"firebase":1,"reflux":203}],227:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     ref = new Firebase("https://riaht2014.firebaseio.com/"),
@@ -35404,7 +35454,7 @@ module.exports = Reflux.createStore({
     return this.last;
   }
 });
-},{"../actions":208,"./users.json":228,"firebase":1,"reflux":203}],227:[function(require,module,exports){
+},{"../actions":208,"./users.json":230,"firebase":1,"reflux":203}],228:[function(require,module,exports){
 var Reflux = require('reflux'),
     actions = require('../actions'),
     _ = require('lodash'),
@@ -35438,9 +35488,31 @@ module.exports = Reflux.createStore({
     this.trigger((this.messages = [[stamp,msg,def[1]]].concat(this.messages)));
   }
 });
-},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],228:[function(require,module,exports){
+},{"../actions":208,"lodash":7,"moment":8,"reflux":203}],229:[function(require,module,exports){
+var Reflux = require('reflux'),
+    userstore = require('./userstore'),
+    _ = require('lodash');
+
+module.exports = Reflux.createStore({
+  listenables:{onUpdatedUsers:userstore},
+  onUpdatedUsers: function(users){
+    var names = Object.keys(users);
+    this.trigger((this.last = _.reduce(names,function(m,name){
+      m[name] = _.reduce(users[name].pulls||{},function(mp,pr){
+        var targetuser = _.find(names,function(tname){return pr.match(tname+"/"+users[tname].repo);})||"UNKNOWN";
+        mp[targetuser] = (mp[targetuser]||0)+1;
+        return mp;
+      },{});
+      return m;
+    },{})));
+  },
+  getDefaultData: function(){
+    return this.last || {};
+  }
+});
+},{"./userstore":231,"lodash":7,"reflux":203}],230:[function(require,module,exports){
 module.exports=["litenjacob","krawaller","hkwaller","shjelm"]
-},{}],229:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
     dataRef = new Firebase("https://riaht2014.firebaseio.com/web/data/users"),
@@ -35496,4 +35568,4 @@ module.exports = Reflux.createStore({
     return this.last || {};
   }
 });
-},{"../actions":208,"firebase":1,"reflux":203}]},{},[223])
+},{"../actions":208,"firebase":1,"reflux":203}]},{},[224])

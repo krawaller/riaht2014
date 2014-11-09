@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>pullrequestlist.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="../docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>pullrequestlist.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/** @jsx React.DOM */</span>
+
+<span class="hljs-keyword">var</span> React = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react'</span>),
+    connect = <span class="hljs-built_in">require</span>(<span class="hljs-string">'reflux'</span>).connect,
+    _ = <span class="hljs-built_in">require</span>(<span class="hljs-string">'lodash'</span>),
+    pullrequestStore = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../stores/pullrequeststore'</span>),
+    Link = <span class="hljs-built_in">require</span>(<span class="hljs-string">'react-router'</span>).Link;
+
+<span class="hljs-keyword">var</span> PullRequestList = React.createClass({
+  mixins: [connect(pullrequestStore,<span class="hljs-string">"PR"</span>)],
+  getInitialState: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{<span class="hljs-keyword">return</span> {PR:{}};},
+  render: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">var</span> PR = <span class="hljs-keyword">this</span>.state.PR, names = <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.state.PR);
+    <span class="hljs-keyword">var</span> rows = _.map(names,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(user)</span></span>{
+      <span class="hljs-keyword">var</span> cells = _.map(names,<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(target)</span></span>{
+        <span class="hljs-keyword">var</span> val = target===user?<span class="hljs-string">"---"</span>:PR[user][target]||<span class="hljs-number">0</span>;
+        <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">td</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{val===0?'text-danger':''}</span>&gt;</span>{val}<span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>;</span> });
+      <span class="hljs-keyword">return</span> (
+        <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">td</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:user}}</span>&gt;</span>{user}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">td</span>&gt;</span>
+          {cells}
+        <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+      );
+    },this);
+    var headers = _.map(names,function(n){return <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-title">Link</span> <span class="hljs-attribute">to</span>=<span class="hljs-value">"user"</span> <span class="hljs-attribute">params</span>=<span class="hljs-value">{{username:n}}</span>&gt;</span>{n}<span class="hljs-tag">&lt;/<span class="hljs-title">Link</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>;</span>});
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Here you see an overview of all registered pull requests.<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">table</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">'table table-bordered'</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">thead</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">tr</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">th</span>&gt;</span>By \ Target<span class="hljs-tag">&lt;/<span class="hljs-title">th</span>&gt;</span>
+              {headers}
+            <span class="hljs-tag">&lt;/<span class="hljs-title">tr</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">thead</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">tbody</span>&gt;</span>
+            {rows}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">tbody</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">table</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    );
+  }
+});
+
+module.exports = PullRequestList;
+
+</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
