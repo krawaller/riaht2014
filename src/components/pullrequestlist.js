@@ -14,7 +14,7 @@ var PullRequestList = React.createClass({
     var rows = _.map(names,function(user){
       var cells = _.map(names,function(target){
         var val = target===user?"---":PR[user][target]||0;
-        return <td className={val===0?'text-danger':''}>{val}</td>; });
+        return <td className={val===0?'text-danger bg-danger':''}>{val}</td>; });
       return (
         <tr>
           <td><Link to="user" params={{username:user}}>{user}</Link></td>

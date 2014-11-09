@@ -34991,7 +34991,7 @@ var PullRequestList = React.createClass({displayName: 'PullRequestList',
     var rows = _.map(names,function(user){
       var cells = _.map(names,function(target){
         var val = target===user?"---":PR[user][target]||0;
-        return React.DOM.td({className: val===0?'text-danger':''}, val); });
+        return React.DOM.td({className: val===0?'text-danger bg-danger':''}, val); });
       return (
         React.DOM.tr(null, 
           React.DOM.td(null, Link({to: "user", params: {username:user}}, user)), 
@@ -35284,9 +35284,9 @@ var Userlist = React.createClass({displayName: 'Userlist',
         React.DOM.tr(null, 
           React.DOM.td(null, Link({to: "user", params: {username:key}}, key)), 
           React.DOM.td(null, user.logins), 
-          React.DOM.td({className: user.chats?'':'text-danger'}, user.chats||0), 
-          React.DOM.td({className: Object.keys(user.blogs||{}).length?'':'text-danger'}, Object.keys(user.blogs||{}).length), 
-          React.DOM.td({className: Object.keys(user.pulls||{}).length?'':'text-danger'}, Object.keys(user.pulls||{}).length)
+          React.DOM.td({className: user.chats?'':'text-danger bg-danger'}, user.chats||0), 
+          React.DOM.td({className: Object.keys(user.blogs||{}).length?'':'text-danger bg-danger'}, Object.keys(user.blogs||{}).length), 
+          React.DOM.td({className: Object.keys(user.pulls||{}).length?'':'text-danger bg-danger'}, Object.keys(user.pulls||{}).length)
         )
       );
     },this);

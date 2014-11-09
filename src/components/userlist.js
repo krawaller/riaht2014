@@ -15,9 +15,9 @@ var Userlist = React.createClass({
         <tr>
           <td><Link to="user" params={{username:key}}>{key}</Link></td>
           <td>{user.logins}</td>
-          <td className={user.chats?'':'text-danger'}>{user.chats||0}</td>
-          <td className={Object.keys(user.blogs||{}).length?'':'text-danger'}>{Object.keys(user.blogs||{}).length}</td>
-          <td className={Object.keys(user.pulls||{}).length?'':'text-danger'}>{Object.keys(user.pulls||{}).length}</td>
+          <td className={user.chats?'':'text-danger bg-danger'}>{user.chats||0}</td>
+          <td className={Object.keys(user.blogs||{}).length?'':'text-danger bg-danger'}>{Object.keys(user.blogs||{}).length}</td>
+          <td className={Object.keys(user.pulls||{}).length?'':'text-danger bg-danger'}>{Object.keys(user.pulls||{}).length}</td>
         </tr>
       );
     },this);
