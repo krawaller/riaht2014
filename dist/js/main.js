@@ -35511,7 +35511,8 @@ module.exports = Reflux.createStore({
   }
 });
 },{"./userstore":231,"lodash":7,"reflux":203}],230:[function(require,module,exports){
-module.exports=["litenjacob","krawaller","hkwaller","shjelm"]
+module.exports=["litenjacob","krawaller","hkwaller","shjelm", "klambycom", "ok222ax"]
+
 },{}],231:[function(require,module,exports){
 var Reflux = require('reflux'),
     Firebase = require("firebase"),
