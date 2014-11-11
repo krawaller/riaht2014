@@ -11,6 +11,7 @@ Eftersom kursen fokuserar på process och inte på resultat så är det av stör
 Du är välkommen att försöka nå David närhelst du vill och via [valfri kanal](../kursledning), men nedanstående schema visar vilka dagar David enbart jobbar med RIA-kursen och därmed är lättast att nå. Andra dagar är han lärare inom Kriminalvården, och har då (väldigt) begränsad tillgång till dator & telefon.
 
 *    **Vecka 45 (3-9nov):** onsdag och fredag
-*    **Vecka 46 (10-6nov):** tisdag och fredag
+*    **Vecka 46 (10-16nov):** torsdag, fredag, lördag
+*    **Vecka 47 (17-23nov):** onsdag
 
 Denna lista kommer uppdateras löpande.
