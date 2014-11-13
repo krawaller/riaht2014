@@ -1,0 +1,7 @@
+
+.chat-table td {
+	padding: 2px;
+	padding-top: 1em;
+	min-width: 100px;
+	vertical-align: top;
+}
