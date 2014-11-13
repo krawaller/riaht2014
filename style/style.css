@@ -5,3 +5,7 @@
 	min-width: 100px;
 	vertical-align: top;
 }
+
+.chat-table td:nth-child(2) {
+	text-align: center;
+}
