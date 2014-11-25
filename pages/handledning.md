@@ -13,5 +13,7 @@ Du är välkommen att försöka nå David närhelst du vill och via [valfri kana
 *    **Vecka 45 (3-9nov):** onsdag och fredag
 *    **Vecka 46 (10-16nov):** torsdag, fredag, lördag
 *    **Vecka 47 (17-23nov):** onsdag
+*    **Vecka 48 (24-30nov):** Lanzarote! Ingen dag & gungit hotell-wifi, men har tid avsatt att hjälpa så skicka mail om ni hamnar i trubbel!
+*    **Vecka 49 (1-7dec):** torsdag och fredag
 
 Denna lista kommer uppdateras löpande.
