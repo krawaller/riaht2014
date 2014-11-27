@@ -1,8 +1,11 @@
 /** @jsx React.DOM */
 
 var App = require('./components/app'),
-    React = require('react');
+    React = require('react'),
+    Router = require('react-router');
 
-React.renderComponent(
-  App,
-  document.querySelector('body'));
+Router.run(App, function (Handler, state) {
+  React.render(
+    <Handler params={state.params} query={state.query} />,
+    document.querySelector('body'));
+});

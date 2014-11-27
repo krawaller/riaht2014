@@ -5,12 +5,12 @@
 
 var React = require('react');
 var Link = require('react-router').Link;
-var ActiveState = require('react-router').ActiveState;
+var Router = require('react-router');
 
 var Navlink = React.createClass({
-  mixins: [ ActiveState ],
+  mixins: [ Router.State ],
   render: function() {
-    var className = this.isActive(this.props.to, this.props.params, this.props.query) ? 'active' : '';
+    var className = this.isActive(this.props.to, this.getParams(), this.getQuery()) ? 'active' : '';
     return <li className={className}>{Link(this.props)}</li>;
   }
 });
