@@ -2,7 +2,8 @@
 
 var React = require('react'),
     Topbar = require('./topbar'),
-    Console = require('./console');
+    Console = require('./console'),
+    RouteHandler = require('react-router').RouteHandler;
 
 var Wrapper = React.createClass({
   render: function(){
@@ -13,7 +14,7 @@ var Wrapper = React.createClass({
         </div>
         <div className='row'>
           <div className='col-md-9'>
-            {this.props.activeRouteHandler()}
+            <RouteHandler />
           </div>
           <div className='col-md-3'>
             <Console />
