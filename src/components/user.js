@@ -4,13 +4,14 @@ var React = require('react'),
     listenTo = require('reflux').listenTo,
     userStore = require('../stores/userstore'),
     UserDataField = require('./userdatafield'),
-    UserDataList = require('./userdatalist');
+    UserDataList = require('./userdatalist'),
+    Router = require('react-router');
 
 var User = React.createClass({
-  mixins: [listenTo(userStore,"getUserData","getUserData")],
+  mixins: [listenTo(userStore,"getUserData","getUserData"), Router.State],
   getInitialState: function(){return {};},
   getUserData: function(users){
-    var user = users[this.props.params.username];
+    var user = users[this.getParams().username];
     if (user){
       this.setState({found:true,user:user});
     } else {
@@ -18,7 +19,7 @@ var User = React.createClass({
     }
   },
   render: function(){
-    var name = this.props.params.username,
+    var name = this.getParams().username,
         user = this.state && this.state.user || {},
         repo = user.repo;
     return this.state && this.state.found ? (
